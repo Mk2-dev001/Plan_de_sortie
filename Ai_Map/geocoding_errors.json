@@ -1,0 +1,34 @@
+[
+    {
+        "cinema": "Megarama Rambouillet La Lanterne",
+        "adresse": "2 rue de la Légion d'Honneur, 78120 Rambouillet"
+    },
+    {
+        "cinema": "Salettes (Les), Plein Air",
+        "adresse": "Cinema Plein Air, rue Elie Gauthier, 83320 Carqueiranne"
+    },
+    {
+        "cinema": "Kursaal",
+        "adresse": "place E. Landouat, 40260 Castets"
+    },
+    {
+        "cinema": "Ciné 4",
+        "adresse": "4, place Jasmin, 47330 Castillonnès"
+    },
+    {
+        "cinema": "Millénium",
+        "adresse": "Place des Mantilles, 59544 Caudry"
+    },
+    {
+        "cinema": "Millénium",
+        "adresse": "Place des Mantilles, 59544 Caudry"
+    },
+    {
+        "cinema": "Studio MIRAMAR",
+        "adresse": "Maison de la Mer - 50 rond point saint expert"
+    },
+    {
+        "cinema": "CinéMalraux",
+        "adresse": "Malraux scène nationale, Service cinéma, 67 Place François Mitterrand, CS 50147"
+    }
+]

@@ -12,6 +12,8 @@ from geopy.distance import geodesic # Utilise geodesic pour des distances plus p
 import folium
 from streamlit_folium import st_folium # Pour mieux intégrer Folium dans Streamlit
 import os
+import pandas as pd
+import uuid
 import pandas # Ajouté pour st.dataframe
 
 # --- CONFIGURATION DE LA PAGE (DOIT ÊTRE LA PREMIÈRE COMMANDE STREAMLIT) ---
@@ -19,7 +21,7 @@ st.set_page_config(layout="wide", page_title="Assistant Cinéma MK2", page_icon=
 
 # --- Configuration (Variables globales) ---
 # Nom du fichier JSON contenant les cinémas AVEC leurs coordonnées pré-calculées
-GEOCATED_CINEMAS_FILE = "cinemas_geocoded.json"
+GEOCATED_CINEMAS_FILE = "cinemas_grouped.json"
 # User agent pour le service de géocodage (utilisé seulement pour les localisations demandées par l'utilisateur)
 GEOCODER_USER_AGENT = "CinemaMapApp/1.0 (App)"
 # Timeout pour le géocodage des localisations demandées
@@ -85,6 +87,7 @@ def analyser_requete_ia(question: str):
         "1️⃣ Chaque intention doit devenir un dictionnaire JSON avec deux clés :\n"
         "   - 'localisation' : une ville (pas une région, sauf cas particulier),\n"
         "   - 'nombre' : un nombre entier de spectateurs à atteindre.\n\n"
+        "   - 'nombre_seances' : quand l'utilisateur spécifie un nombre de séances ou salles souhaité.\n\n"
 
         "2️⃣ Si l'utilisateur parle de régions vagues (région, zone géographique, tout le pays...), tu dois automatiquement les convertir en **villes représentatives**, selon ce mapping :\n"
         "   - 'région parisienne', 'idf', 'île-de-france' → ['Paris']\n"
@@ -95,14 +98,17 @@ def analyser_requete_ia(question: str):
         "   - 'centre', 'centre-val de loire', 'auvergne' → ['Clermont-Ferrand']\n"
         "   - 'France entière', 'toute la France', 'province', 'le territoire', 'le reste du territoire français' → ['Lyon', 'Marseille', 'Lille', 'Bordeaux', 'Strasbourg']\n\n"
 
-        "3️⃣ Si une **quantité globale** est donnée pour une zone, répartis-la équitablement entre les villes que tu as déduites.\n"
-        "   Par exemple : '3000 spectateurs dans le reste du territoire' → 600 pour chaque ville choisie (5 villes).\n"
+        "3️⃣ Si une **quantité globale** est donnée pour une zone, répartis-la équitablement entre les salles de cinéma (ATTENTION 1 salle = 1 séance !) de cette Zone dont la capacité total sera égale a la quantité global\n"
+        "   Par exemple : '3000 spectateurs dans le reste du territoire' → 3000 spéctateur au total repartis dans chaque ville choisie (5 villes) le plus équitablement possible.\n"
         "   Tu peux ajuster légèrement les répartitions si le total n'est pas divisible parfaitement.\n\n"
+        "   ATTENTION : Jamais plus de 500 séances"
+        
+        "8️⃣ Nouvelle règle IMPORTANTE: Si l'utilisateur précise un nombre de séances ou de salles (ex: '15 séances dans toute la France'), tu dois extraire cette information dans le champ 'nombre_seances' pour chaque localisation. Tu dois distribuer ce nombre entre les localisations si elles sont multiples. Par exemple, pour '15 séances pour un total de 8000 personnes dans toute la France', tu dois répartir les 15 séances entre les villes représentatives de la France et les 8000 personnes entre ces séances."
 
         "4️⃣ Si un lieu est donné **sans nombre précis**, déduis une estimation raisonnable en fonction du contexte :\n"
         "   - 'petite salle', 'séance test' → 50 à 100\n"
         "   - 'avant-première' → 200 à 400\n"
-        "   - 'lancement national', 'grande ville' → 500 à 1000\n"
+        "   - 'grande salle', 'grande ville' → 500 à 1000\n"
         "   - 'province' → 100 à 300\n"
         "   - 'cinéma art et essai' → 100 à 150\n\n"
 
@@ -262,75 +268,103 @@ def geo_localisation(adresse: str):
 
 # Fonction pour trouver les cinémas proches et ayant une capacité suffisante
 # Utilise maintenant les coordonnées pré-calculées des cinémas
-def trouver_cinemas_proches(localisation_cible: str, spectateurs_voulus: int, rayon_km: int = 50):
+def trouver_cinemas_proches(localisation_cible: str, spectateurs_voulus: int, nombre_de_salles_voulues: int, rayon_km: int = 50):
     """
-    Trouve les cinémas dans un rayon donné autour d'un point central
-    qui ont une capacité suffisante.
-    Utilise les coordonnées pré-calculées du fichier JSON.
-
+    Trouve des cinémas proches d'une localisation cible, avec une capacité adaptée au nombre de spectateurs voulus.
+    Respecte strictement le nombre de salles demandées, quitte à élargir les critères.
+    
     Args:
-        localisation_cible (str): Le nom du lieu demandé par l'utilisateur (ex: "Paris", "Lyon").
-        spectateurs_voulus (int): La capacité minimale requise pour le cinéma.
-        rayon_km (int): Le rayon de recherche maximum autour du point central (par défaut 50km).
-
+        localisation_cible (str): Ville ou région où chercher
+        spectateurs_voulus (int): Nombre total de spectateurs cible
+        nombre_de_salles_voulues (int): Nombre EXACT de salles à trouver
+        rayon_km (int): Rayon de recherche en kilomètres
+        
     Returns:
-        list: Une liste de dictionnaires, chaque dictionnaire représentant un cinéma trouvé.
-              Retourne une liste vide si le point central ne peut être géocodé ou si aucun cinéma ne correspond.
+        list: Liste des salles sélectionnées
     """
-    # Étape 1: Géocoder le point central de la recherche (la localisation demandée)
     point_central_coords = geo_localisation(localisation_cible)
-
-    # Si le point central n'a pas pu être trouvé, on ne peut pas chercher de cinémas
     if not point_central_coords:
         st.warning(f"Impossible de trouver des cinémas car la localisation centrale '{localisation_cible}' n'a pas pu être géocodée.")
         return []
 
     resultats = []
-    # Étape 2: Parcourir les cinémas pré-géocodés
+    capacite_cumulee = 0
+    
+    # Liste temporaire de toutes les salles avec leurs infos
+    salles_eligibles = []
+
     for cinema in cinemas_data:
-        # Récupérer les coordonnées et la capacité du cinéma courant
         lat = cinema.get('lat')
         lon = cinema.get('lon')
-        capacite_str = cinema.get("capacite") # La capacité peut être une chaîne ou un nombre
+        if lat is None or lon is None:
+            continue
 
-        # Vérifier si le cinéma a des coordonnées valides
-        if lat is not None and lon is not None:
-            cinema_coords = (lat, lon)
+        try:
+            distance = geodesic(point_central_coords, (lat, lon)).km
+        except Exception as e:
+            st.sidebar.warning(f"Erreur de distance pour {cinema.get('cinema')} : {e}")
+            continue
 
-            # Vérifier et convertir la capacité
+        if distance > rayon_km:
+            continue
+
+        for salle in cinema.get("salles", []):
             try:
-                 # Gère les cas où la capacité est None, une chaîne vide, ou non numérique
-                 capacite = int(capacite_str) if capacite_str is not None and str(capacite_str).isdigit() else 0
+                capacite = int(salle.get("capacite", 0))
             except (ValueError, TypeError):
-                 capacite = 0 # Met 0 si la conversion échoue
+                continue
 
-            # Étape 3: Vérifier si la capacité est suffisante
-            if capacite >= spectateurs_voulus:
-                # Étape 4: Calculer la distance entre le point central et le cinéma
-                try:
-                    distance = geodesic(point_central_coords, cinema_coords).km
-                except ValueError as e:
-                    # Gère les erreurs potentielles de calcul de distance (coordonnées invalides?)
-                    st.sidebar.warning(f"Impossible de calculer la distance pour {cinema.get('cinema', 'Inconnu')} : {e}")
-                    continue # Passe au cinéma suivant
+            if capacite <= 0 or capacite < 66:  # On ignore les salles trop petites
+                continue
 
-                # Étape 5: Vérifier si le cinéma est dans le rayon de recherche
-                if distance <= rayon_km:
-                    # Ajoute les informations du cinéma trouvé à la liste des résultats
-                    resultats.append({
-                        "nom": cinema.get('cinema', 'Nom inconnu'),
-                        "adresse": cinema.get('adresse', 'Adresse inconnue'),
-                        "lat": lat,
-                        "lon": lon,
-                        "distance_km": round(distance, 2), # Arrondit la distance pour l'affichage
-                        "capacite": capacite,
-                        "source_localisation": localisation_cible # Garde une trace de quelle requête a trouvé ce ciné
-                    })
+            salles_eligibles.append({
+                "cinema": cinema.get("cinema"),
+                "salle": salle.get("salle"),
+                "adresse": cinema.get("adresse"),
+                "lat": lat,
+                "lon": lon,
+                "capacite": capacite,
+                "distance_km": round(distance, 2),
+                "contact": cinema.get("contact", {}),
+                "source_localisation": localisation_cible
+            })
 
-    # Étape 6: Trier les résultats par distance (du plus proche au plus lointain)
-    resultats.sort(key=lambda x: x["distance_km"])
-
-    return resultats
+    # Si aucune salle n'est trouvée, retourner liste vide
+    if not salles_eligibles:
+        st.sidebar.warning(f"Aucune salle éligible trouvée pour {localisation_cible} dans un rayon de {rayon_km} km.")
+        return []
+        
+    # Trie les salles par distance ET capacité (priorité à la distance)
+    salles_eligibles.sort(key=lambda x: (x["distance_km"], -x["capacite"]))
+    
+    # PHASE 1 : Essayer d'obtenir exactement le nombre de salles demandées avec la meilleure capacité
+    capacite_moyenne_cible = spectateurs_voulus / nombre_de_salles_voulues if nombre_de_salles_voulues > 0 else 0
+    
+    # Première tentative : prendre les salles les plus proches respectant la capacité moyenne
+    for salle in salles_eligibles:
+        if len(resultats) < nombre_de_salles_voulues and capacite_cumulee + salle["capacite"] <= spectateurs_voulus:
+            resultats.append(salle)
+            capacite_cumulee += salle["capacite"]
+    
+    # PHASE 2 : Si nous n'avons pas assez de salles, relâcher la contrainte de capacité
+    if len(resultats) < nombre_de_salles_voulues:
+        st.sidebar.info(f"Assouplissement des critères pour {localisation_cible} : seulement {len(resultats)}/{nombre_de_salles_voulues} salles trouvées.")
+        
+        # Vider la liste des résultats pour recommencer
+        resultats = []
+        capacite_cumulee = 0
+        
+        # Prendre les N meilleures salles, même si on dépasse la capacité totale
+        for salle in salles_eligibles[:nombre_de_salles_voulues]:
+            resultats.append(salle)
+            capacite_cumulee += salle["capacite"]
+    
+    # Si on n'a toujours pas assez de salles, c'est qu'il n'y en a vraiment pas assez dans la base
+    if len(resultats) < nombre_de_salles_voulues:
+        st.sidebar.warning(f"Impossible de trouver {nombre_de_salles_voulues} salles pour {localisation_cible}. Seulement {len(resultats)} disponibles.")
+    
+    # Limiter au nombre exact de salles demandées (cas où la phase 2 a pris trop de salles)
+    return resultats[:nombre_de_salles_voulues]
 
 # Fonction pour générer la carte Folium
 def generer_carte_folium(groupes_de_cinemas: list):
@@ -358,46 +392,54 @@ def generer_carte_folium(groupes_de_cinemas: list):
     avg_lon = sum(c['lon'] for c in tous_les_cinemas) / len(tous_les_cinemas)
 
     # Crée l'objet carte Folium
-    # Ajuste le zoom initial en fonction du nombre de groupes ? (Optionnel)
     m = folium.Map(location=[avg_lat, avg_lon], zoom_start=6, tiles="CartoDB positron")
 
-    # Définit une palette de couleurs pour distinguer les groupes de recherche
-    couleurs = ["blue", "green", "red", "purple", "orange", "darkred", "lightred", "beige", "darkblue", "darkgreen", "cadetblue", "lightgray", "black"]
+    # Palette de couleurs pour les groupes
+    couleurs = [
+        "blue", "green", "red", "purple", "orange", "darkred", "lightred",
+        "beige", "darkblue", "darkgreen", "cadetblue", "lightgray", "black"
+    ]
 
-    # Ajoute des marqueurs pour chaque cinéma sur la carte
+    # Ajoute chaque groupe de résultats
     for idx, groupe in enumerate(groupes_de_cinemas):
-        couleur = couleurs[idx % len(couleurs)] # Cycle à travers les couleurs
+        couleur = couleurs[idx % len(couleurs)]
         localisation_origine = groupe.get("localisation", "Inconnue")
         resultats_groupe = groupe.get("resultats", [])
 
-        # Crée un groupe de fonctionnalités pour chaque requête (permettra de les afficher/masquer plus tard si besoin)
         feature_group = folium.FeatureGroup(name=f"{localisation_origine} ({len(resultats_groupe)} cinémas)")
 
         for cinema in resultats_groupe:
-            # Crée le texte du popup pour chaque marqueur
+            # Ajout manuel des infos contact pour affichage et table
+            contact = cinema.get("contact", {})
+            contact_nom = contact.get("nom", "N/A")
+            contact_email = contact.get("email", "N/A")
+            cinema["contact_nom"] = contact_nom
+            cinema["contact_email"] = contact_email
+
             popup_html = f"""
-            <b>{cinema['nom']}</b><br>
+            <b>{cinema.get('cinema', 'Nom inconnu')}</b><br>
             <i>{cinema['adresse']}</i><br>
             Capacité : {cinema['capacite']} places<br>
-            Distance ({localisation_origine}) : {cinema['distance_km']} km
+            Distance ({localisation_origine}) : {cinema['distance_km']} km<br>
+            Contact : <b>{contact_nom}</b><br>
+            📧 {contact_email}
             """
-            # Ajoute un marqueur circulaire pour le cinéma
+
             folium.CircleMarker(
                 location=[cinema['lat'], cinema['lon']],
-                radius=5, # Taille du marqueur
-                color=couleur, # Couleur du contour
+                radius=5,
+                color=couleur,
                 fill=True,
-                fill_color=couleur, # Couleur de remplissage
+                fill_color=couleur,
                 fill_opacity=0.7,
-                popup=folium.Popup(popup_html, max_width=300) # Contenu du popup
-            ).add_to(feature_group) # Ajoute au groupe spécifique
+                popup=folium.Popup(popup_html, max_width=300)
+            ).add_to(feature_group)
 
-        feature_group.add_to(m) # Ajoute le groupe à la carte
+        feature_group.add_to(m)
 
-    # Ajoute un contrôle des couches pour afficher/masquer les groupes
     folium.LayerControl().add_to(m)
 
-    return m # Retourne l'objet carte Folium
+    return m
 
 # --- Interface Utilisateur Streamlit ---
 # st.set_page_config(layout="wide") # Utilise toute la largeur de la page
@@ -472,11 +514,48 @@ if query:
                         rayon_recherche = 120
                         st.sidebar.info(f"🔁 Localisation régionale détectée ('{loc}'). Rayon élargi automatiquement à {rayon_recherche} km.")
                     else:
-                        rayon_recherche = st.sidebar.slider(f"Rayon de recherche autour de {loc} (km)", 5, 200, 50, key=f"rayon_{loc}")
-
+                        rayon_recherche = st.sidebar.slider(f"Rayon de recherche autour de {loc} (km)", 5, 200, 50, key=f"rayon_{loc}_{hash(str(instruction))}")
 
                     # Appel à la fonction de recherche de cinémas
-                    resultats_cinemas = trouver_cinemas_proches(loc, num, rayon_km=rayon_recherche)
+                    if "nombre_seances" in instruction:
+                        # Si l'IA a explicitement extrait un nombre de séances demandé
+                        nombre_seances = instruction.get("nombre_seances")
+                    else:
+                        # Sinon, estimation par défaut (comme avant)
+                        if "nombre_seances" in instruction and instruction["nombre_seances"]:
+                            nombre_seances = int(instruction["nombre_seances"])
+                            st.sidebar.info(f"Nombre de séances explicitement demandé : {nombre_seances}")
+                        else:
+                            nombre_seances = max(1, round(num / 66))
+                            st.sidebar.info(f"Nombre de séances calculé automatiquement : {nombre_seances}")
+
+                        # Et plus bas, ajoutez une information explicite dans l'interface :
+                        total_seances_voulues = sum(int(i.get('nombre_seances', 0)) for i in instructions_ia if 'nombre_seances' in i)
+                        if total_seances_voulues > 0:
+                            st.info(f"🤖 **IA a compris :** {len(instructions_ia)} zone(s) de recherche pour un objectif total estimé à {total_spectateurs_estimes} spectateurs et {total_seances_voulues} séances.")
+                        else:
+                            st.info(f"🤖 **IA a compris :** {len(instructions_ia)} zone(s) de recherche pour un objectif total estimé à {total_spectateurs_estimes} spectateurs.")
+
+                        # Et enfin, lors de l'affichage du résultat final, ajoutez cette vérification
+                        total_seances_trouvees = sum(len(groupe["resultats"]) for groupe in liste_groupes_resultats)
+                        seances_manquantes = total_seances_voulues - total_seances_trouvees if total_seances_voulues > 0 else 0
+
+                        if cinemas_trouves_total > 0:
+                            if seances_manquantes > 0:
+                                st.warning(f"⚠️ Attention : {seances_manquantes} séances n'ont pas pu être trouvées sur les {total_seances_voulues} demandées.")
+                            else:
+                                st.success(f"✅ Recherche terminée ! {cinemas_trouves_total} salles pertinente(s) trouvées au total, correspondant exactement aux {total_seances_voulues} séances demandées.")
+                        else:
+                            st.error("❌ Aucun cinéma correspondant à votre demande n'a été trouvé dans la base de données selon les critères définis.")
+
+                    st.sidebar.info(f"Recherche de {nombre_seances} salle(s) pour {num} spectateurs à {loc}")
+                    resultats_cinemas = trouver_cinemas_proches(
+                        loc, 
+                        spectateurs_voulus=num, 
+                        rayon_km=rayon_recherche, 
+                        nombre_de_salles_voulues=nombre_seances
+                    )    
+                    resultats_cinemas = trouver_cinemas_proches(loc, num, rayon_km=rayon_recherche, nombre_de_salles_voulues=nombre_seances)
 
                     # Affiche le nombre de cinémas trouvés pour cette instruction
                     if resultats_cinemas:
@@ -499,7 +578,7 @@ if query:
 
         # Génération et affichage de la carte si des cinémas ont été trouvés
         if cinemas_trouves_total > 0:
-            st.success(f"✅ Recherche terminée ! {cinemas_trouves_total} cinéma(s) pertinent(s) trouvé(s) au total.")
+            st.success(f"✅ Recherche terminée ! {cinemas_trouves_total} salles pertinente(s) trouvé(s) au total.")
             # Génère la carte Folium
             carte = generer_carte_folium(liste_groupes_resultats)
 
@@ -527,7 +606,11 @@ if query:
                          if groupe["resultats"]:
                              st.subheader(f"Cinémas pour la recherche : {groupe['localisation']}")
                              # Affiche sous forme de dataframe pour une meilleure lisibilité
-                             st.dataframe(groupe["resultats"], use_container_width=True)
+                             df = pd.DataFrame(groupe["resultats"])
+                             colonnes_a_masquer = ["lat", "lon", "contact"]
+                             colonnes_a_afficher = [col for col in df.columns if col not in colonnes_a_masquer]
+
+                             st.dataframe(df[colonnes_a_afficher], use_container_width=True)
 
             else:
                 # Ce cas ne devrait pas arriver si cinemas_trouves_total > 0, mais par sécurité

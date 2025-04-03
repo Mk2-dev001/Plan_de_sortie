@@ -10,8 +10,8 @@
         "nom_contact": "Jonathan Lelièvre",
         "email": "jonathan@noecinemas.com",
         "telephone": "",
-        "lat": 49.30148125779038,
-        "lon": -1.2491540698173276
+        "lat": 49.303892641432384,
+        "lon": -1.2461617457584495
     },
     {
         "cinema": "Cotentin (Le)",
@@ -24,8 +24,8 @@
         "nom_contact": "Jonathan Lelièvre",
         "email": "jonathan@noecinemas.com",
         "telephone": "",
-        "lat": 49.30148125779038,
-        "lon": -1.2491540698173276
+        "lat": 49.303892641432384,
+        "lon": -1.2461617457584495
     },
     {
         "cinema": "Artéa",
@@ -38,8 +38,8 @@
         "nom_contact": "Lydie Ratajczyk",
         "email": "lydie@mc4-distribution.fr",
         "telephone": "",
-        "lat": null,
-        "lon": null
+        "lat": 43.2583,
+        "lon": 5.56555
     },
     {
         "cinema": "Rivoli",
@@ -52,8 +52,8 @@
         "nom_contact": "Florence Passalacqua",
         "email": "direction@cine-rivoli.com",
         "telephone": "",
-        "lat": 44.04552798779699,
-        "lon": 5.048429249001226
+        "lat": 44.05004667945735,
+        "lon": 5.047748655194746
     },
     {
         "cinema": "Rivoli",
@@ -66,8 +66,8 @@
         "nom_contact": "Florence Passalacqua",
         "email": "direction@cine-rivoli.com",
         "telephone": "",
-        "lat": 44.04552798779699,
-        "lon": 5.048429249001226
+        "lat": 44.05004667945735,
+        "lon": 5.047748655194746
     },
     {
         "cinema": "Rivoli",
@@ -80,8 +80,8 @@
         "nom_contact": "Florence Passalacqua",
         "email": "direction@cine-rivoli.com",
         "telephone": "",
-        "lat": 44.04552798779699,
-        "lon": 5.048429249001226
+        "lat": 44.05004667945735,
+        "lon": 5.047748655194746
     },
     {
         "cinema": "Rivoli",
@@ -94,8 +94,8 @@
         "nom_contact": "Florence Passalacqua",
         "email": "direction@cine-rivoli.com",
         "telephone": "",
-        "lat": 44.04552798779699,
-        "lon": 5.048429249001226
+        "lat": 44.05004667945735,
+        "lon": 5.047748655194746
     },
     {
         "cinema": "Megarama Rambouillet La Lanterne",
@@ -122,8 +122,8 @@
         "nom_contact": "Mickaël ROBERT-GONÇALVES",
         "email": "mickael.robertgoncalves@lecubegarges.fr",
         "telephone": "",
-        "lat": 48.97642864802322,
-        "lon": 2.392833485191903
+        "lat": 48.97539898413405,
+        "lon": 2.3971348602018887
     },
     {
         "cinema": "Espace Culturel La Fleuraye",
@@ -192,8 +192,8 @@
         "nom_contact": "Valérian",
         "email": "cinema.batel@hotmail.fr",
         "telephone": "",
-        "lat": 43.48291329392799,
-        "lon": -0.2793700493474484
+        "lat": 43.4732878,
+        "lon": -0.278978
     },
     {
         "cinema": "Salle Multiservice (Batel)",
@@ -206,8 +206,8 @@
         "nom_contact": "Valérian",
         "email": "cinema.batel@hotmail.fr",
         "telephone": "",
-        "lat": 43.48291329392799,
-        "lon": -0.2793700493474484
+        "lat": 43.4732878,
+        "lon": -0.278978
     },
     {
         "cinema": "Juliette Gréco",
@@ -220,8 +220,8 @@
         "nom_contact": "Lydie Ratajczyk",
         "email": "lydie@mc4-distribution.fr",
         "telephone": "",
-        "lat": 43.770722238988604,
-        "lon": 7.1958266564491655
+        "lat": 43.770729201178014,
+        "lon": 7.195913765370328
     },
     {
         "cinema": "MJC Ciné 113",
@@ -262,8 +262,8 @@
         "nom_contact": "Marie Vidal",
         "email": "cinema@lestive.com",
         "telephone": "",
-        "lat": null,
-        "lon": null
+        "lat": 42.987600799999996,
+        "lon": 1.293757515253109
     },
     {
         "cinema": "Salle communale Castelnau Durban",
@@ -276,8 +276,8 @@
         "nom_contact": "Marie Vidal",
         "email": "cinema@lestive.com",
         "telephone": "",
-        "lat": null,
-        "lon": null
+        "lat": 42.987600799999996,
+        "lon": 1.293757515253109
     },
     {
         "cinema": "Salle communale Castelnau Durban",
@@ -290,8 +290,8 @@
         "nom_contact": "Marie Vidal",
         "email": "cinema@lestive.com",
         "telephone": "",
-        "lat": null,
-        "lon": null
+        "lat": 42.987600799999996,
+        "lon": 1.293757515253109
     },
     {
         "cinema": "Kursaal",
@@ -626,8 +626,8 @@
         "nom_contact": "Sarah Beaufol",
         "email": "sbeaufol@la-comete.fr",
         "telephone": "",
-        "lat": null,
-        "lon": null
+        "lat": 48.95633657035371,
+        "lon": 4.364161406134264
     },
     {
         "cinema": "Bijou (Le)",
@@ -1046,8 +1046,8 @@
         "nom_contact": "Rod Assous",
         "email": "cinemaelyseecontact@gmail.com, cinemaelysee@live.fr",
         "telephone": "",
-        "lat": 49.1913886,
-        "lon": 2.4642017
+        "lat": 49.1913775,
+        "lon": 2.4642576
     },
     {
         "cinema": "Elysée (L')",
@@ -1060,8 +1060,8 @@
         "nom_contact": "Rod Assous",
         "email": "cinemaelyseecontact@gmail.com, cinemaelysee@live.fr",
         "telephone": "",
-        "lat": 49.1913886,
-        "lon": 2.4642017
+        "lat": 49.1913775,
+        "lon": 2.4642576
     },
     {
         "cinema": "Elysée (L')",
@@ -1074,8 +1074,8 @@
         "nom_contact": "Rod Assous",
         "email": "cinemaelyseecontact@gmail.com, cinemaelysee@live.fr",
         "telephone": "",
-        "lat": 49.1913886,
-        "lon": 2.4642017
+        "lat": 49.1913775,
+        "lon": 2.4642576
     },
     {
         "cinema": "Elysée (L')",
@@ -1088,8 +1088,8 @@
         "nom_contact": "Rod Assous",
         "email": "cinemaelyseecontact@gmail.com, cinemaelysee@live.fr",
         "telephone": "",
-        "lat": 49.1913886,
-        "lon": 2.4642017
+        "lat": 49.1913775,
+        "lon": 2.4642576
     },
     {
         "cinema": "Ciné lumière",
@@ -1102,8 +1102,8 @@
         "nom_contact": "GRP",
         "email": "Laurent Geissmann",
         "telephone": "laurent.geissmann@prog-gpci.fr",
-        "lat": 46.68922814922468,
-        "lon": -1.038857532699187
+        "lat": 46.6877473236474,
+        "lon": -1.043871802701327
     },
     {
         "cinema": "Astrolab (L')",
