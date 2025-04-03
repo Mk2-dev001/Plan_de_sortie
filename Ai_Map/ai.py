@@ -76,90 +76,122 @@ def analyser_requete_ia(question: str):
     """
     # Prompt système détaillé pour guider l'IA
     system_prompt = (
-        "Tu es un assistant expert pour des programmateurs de cinéma. "
-        "L'utilisateur décrit un projet de projection ou d'exploitation d'un film en France. "
-        "Ton rôle est d'extraire les intentions de diffusion de sa demande. "
-        "Pour chaque lieu géographique distinct mentionné (ville, région spécifique), tu dois déduire un nombre cible de spectateurs pour ce lieu. "
-        "Si aucun nombre précis n'est donné pour un lieu, propose une estimation réaliste basée sur le contexte (par exemple, 'petit public' = 100, 'séance test' = 50, 'gros cinéma' = 400, 'lancement majeur' = 1000). "
-        "Interprète les régions larges en choisissant une ville représentative (ex: 'sud' -> 'Marseille', 'Bretagne' -> 'Rennes', 'région parisienne' -> 'Paris'). "
-        "Le résultat DOIT être UNIQUEMENT une liste JSON valide. Ne retourne RIEN d'autre (pas de texte avant, pas de texte après, pas d'explication). "
-        "Le format attendu est une liste de dictionnaires, chaque dictionnaire ayant les clés 'localisation' (str, nom de la ville ou lieu précis) et 'nombre' (int, nombre de spectateurs). "
-        "Exemple de sortie attendue : [{'localisation': 'Marseille', 'nombre': 200}, {'localisation': 'Paris', 'nombre': 500}] "
-        "Si la requête est trop vague ou ne mentionne aucun lieu/objectif, retourne une liste JSON vide []."
+        "Tu es un expert en distribution cinématographique en France. "
+        "L'utilisateur te confie un projet de diffusion en salle (test, avant-première, lancement, tournée, etc.). "
+        "Ta mission est de transformer ce besoin en une liste JSON claire de villes cibles et de jauges spectateurs, pour construire un plan de sortie réaliste. "
+
+        "Voici les règles à suivre :\n\n"
+
+        "1️⃣ Chaque intention doit devenir un dictionnaire JSON avec deux clés :\n"
+        "   - 'localisation' : une ville (pas une région, sauf cas particulier),\n"
+        "   - 'nombre' : un nombre entier de spectateurs à atteindre.\n\n"
+
+        "2️⃣ Si l'utilisateur parle de régions vagues (région, zone géographique, tout le pays...), tu dois automatiquement les convertir en **villes représentatives**, selon ce mapping :\n"
+        "   - 'région parisienne', 'idf', 'île-de-france' → ['Paris']\n"
+        "   - 'sud', 'sud de la France', 'paca', 'provence' → ['Marseille', 'Toulouse', 'Nice']\n"
+        "   - 'nord', 'hauts-de-france' → ['Lille']\n"
+        "   - 'ouest', 'bretagne', 'normandie' → ['Nantes', 'Rennes']\n"
+        "   - 'est', 'grand est', 'alsace' → ['Strasbourg']\n"
+        "   - 'centre', 'centre-val de loire', 'auvergne' → ['Clermont-Ferrand']\n"
+        "   - 'France entière', 'toute la France', 'province', 'le territoire', 'le reste du territoire français' → ['Lyon', 'Marseille', 'Lille', 'Bordeaux', 'Strasbourg']\n\n"
+
+        "3️⃣ Si une **quantité globale** est donnée pour une zone, répartis-la équitablement entre les villes que tu as déduites.\n"
+        "   Par exemple : '3000 spectateurs dans le reste du territoire' → 600 pour chaque ville choisie (5 villes).\n"
+        "   Tu peux ajuster légèrement les répartitions si le total n'est pas divisible parfaitement.\n\n"
+
+        "4️⃣ Si un lieu est donné **sans nombre précis**, déduis une estimation raisonnable en fonction du contexte :\n"
+        "   - 'petite salle', 'séance test' → 50 à 100\n"
+        "   - 'avant-première' → 200 à 400\n"
+        "   - 'lancement national', 'grande ville' → 500 à 1000\n"
+        "   - 'province' → 100 à 300\n"
+        "   - 'cinéma art et essai' → 100 à 150\n\n"
+
+        "5️⃣ Si le texte contient plusieurs zones ou intentions, tu dois retourner une liste de toutes les intentions séparées.\n"
+        "   Exemple : '300 à Paris, 100 à Lyon et test en Bretagne' → ['Paris', 300], ['Lyon', 100], ['Rennes', 100]\n\n"
+
+        "6️⃣ Le résultat DOIT être une **liste JSON pure**, sans explication, sans texte avant ou après. "
+        "Juste : [ {{...}}, {{...}} ]\n\n"
+
+        "7️⃣ Si aucun lieu ni objectif n’est identifiable, retourne simplement : []"
     )
 
     try:
-        # Appel à l'API OpenAI ChatCompletion
+        # Appel à l'API OpenAI ChatCompletion (sans forcer le format JSON strict)
         response = client.chat.completions.create(
-            model="gpt-4o", # Utilise le modèle spécifié
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": question}
-            ],
-            response_format={"type": "json_object"} # Demande une réponse JSON directement si possible avec le modèle
+            ]
         )
 
-        # Récupère le contenu de la réponse
+        # Récupère la réponse textuelle brute
         text_response = response.choices[0].message.content.strip()
 
-        # Affiche la réponse brute de l'IA pour le débogage (dans un bloc de code)
+        # Affiche dans la sidebar pour débogage
         st.sidebar.write("Réponse brute de l'IA :")
         st.sidebar.code(text_response, language="json")
 
-        # Tente de parser la réponse JSON
-        # GPT peut parfois retourner le JSON dans une structure plus large, on essaie de l'extraire.
-        # Le format attendu est une liste, mais avec response_format="json_object",
-        # il pourrait l'envelopper dans un objet, ex: {"result": [...]}. On cherche la liste.
+        # Tente de parser la réponse en JSON (souple)
         try:
-            # Essai direct
             data = json.loads(text_response)
-            # Si la réponse est un dictionnaire contenant une clé évidente pour la liste (ex: 'resultats', 'projections', 'locations')
-            if isinstance(data, dict):
-                 potential_keys = ['resultats', 'projections', 'locations', 'intentions', 'data', 'result']
-                 for key in potential_keys:
-                     if key in data and isinstance(data[key], list):
-                         extracted_list = data[key]
-                         # Vérifie si les éléments de la liste ont le bon format
-                         if all(isinstance(item, dict) and 'localisation' in item and 'nombre' in item for item in extracted_list):
-                              return extracted_list
-                 # Si aucune clé ne correspond ou si le format interne est incorrect, on retourne vide
-                 st.warning("L'IA a retourné un objet JSON, mais la structure attendue (liste de localisations/nombres) n'a pas été trouvée.")
-                 return []
-            # Si la réponse est directement une liste
+
+            # Si la réponse contient un message d’erreur (ex : JSON forcé)
+            if isinstance(data, dict) and "message" in data:
+                st.warning(f"⚠️ L'IA a répondu : {data['message']}")
+                return []
+
+            # ✅ Cas spécial : un seul objet, on l'encapsule
+            if isinstance(data, dict) and 'localisation' in data and 'nombre' in data:
+                localisation = str(data['localisation']).strip()
+                try:
+                    nombre = int(data['nombre'])
+                except ValueError:
+                    nombre = 0
+                return [{"localisation": localisation, "nombre": nombre}]
+
+            # ✅ Cas classique : une liste d’intentions
             elif isinstance(data, list):
-                 # Vérifie si les éléments de la liste ont le bon format
-                 if all(isinstance(item, dict) and 'localisation' in item and 'nombre' in item for item in data):
-                      return data
-                 else:
-                      st.warning("L'IA a retourné une liste JSON, mais les éléments n'ont pas le format attendu ({'localisation': ..., 'nombre': ...}).")
-                      return []
-            # Si ce n'est ni un dict ni une liste valide
+                if all(isinstance(item, dict) and 'localisation' in item and 'nombre' in item for item in data):
+                    return data
+                else:
+                    st.warning("L'IA a retourné une liste JSON, mais les éléments n'ont pas le bon format.")
+                    return []
+
+            # ✅ Cas enveloppé dans un objet avec des clés
+            elif isinstance(data, dict):
+                potential_keys = ['resultats', 'projections', 'locations', 'intentions', 'data', 'result']
+                for key in potential_keys:
+                    if key in data and isinstance(data[key], list):
+                        extracted = data[key]
+                        if all(isinstance(item, dict) and 'localisation' in item and 'nombre' in item for item in extracted):
+                            return extracted
+                st.warning("L'IA a retourné un objet, mais aucune structure attendue n'a été trouvée.")
+                return []
+
             else:
-                st.warning("La réponse JSON de l'IA n'est ni un objet contenant la liste attendue, ni la liste elle-même.")
+                st.warning("La réponse n'est ni une liste ni un dictionnaire exploitable.")
                 return []
 
         except json.JSONDecodeError:
-            # Si le parsing JSON direct échoue, essaie d'extraire manuellement la partie liste
-            # (utile si l'IA ajoute du texte autour du JSON malgré les instructions)
-            st.warning("La réponse de l'IA n'était pas un JSON valide, tentative d'extraction manuelle...")
+            st.warning("La réponse n'était pas un JSON valide, tentative d'extraction manuelle...")
             try:
-                json_part = text_response[text_response.find("["):text_response.rfind("]") + 1]
-                extracted_list = json.loads(json_part)
-                # Vérifie le format interne après extraction manuelle
-                if all(isinstance(item, dict) and 'localisation' in item and 'nombre' in item for item in extracted_list):
-                     return extracted_list
+                json_part = text_response[text_response.find("["):text_response.rfind("]")+1]
+                extracted = json.loads(json_part)
+                if all(isinstance(item, dict) and 'localisation' in item and 'nombre' in item for item in extracted):
+                    return extracted
                 else:
-                     st.warning("La liste JSON extraite manuellement n'a pas le format attendu.")
-                     return []
+                    st.warning("Le JSON extrait manuellement n’a pas le bon format.")
+                    return []
             except Exception:
-                st.error("Impossible d'extraire ou de parser une liste JSON valide depuis la réponse de l'IA.")
-                return [] # Retourne une liste vide en cas d'échec total
+                st.error("Impossible d’interpréter la réponse de l’IA.")
+                return []
 
     except openai.APIError as e:
-        st.error(f"Erreur de l'API OpenAI : {e}")
+        st.error(f"Erreur OpenAI : {e}")
         return []
     except Exception as e:
-        st.error(f"Erreur inattendue lors de l'appel à l'IA : {e}")
+        st.error(f"Erreur inattendue : {e}")
         return []
 
 # Fonction pour géocoder une adresse (utilisée pour la localisation CIBLE de l'utilisateur)
@@ -425,8 +457,23 @@ if query:
                 # Vérifie si l'instruction est valide avant de chercher
                 if loc and isinstance(num, int) and num > 0:
                     st.write(f"--- Recherche pour : **{loc}** (capacité min: {num}) ---")
-                    # Récupère le rayon de recherche (on peut le rendre configurable plus tard)
-                    rayon_recherche = st.sidebar.slider(f"Rayon de recherche autour de {loc} (km)", 5, 200, 50, key=f"rayon_{loc}")
+                    # Logique pour adapter automatiquement le rayon si on détecte une région large
+                    corrections_regionales = [
+                        "nord", "le nord", "hauts-de-france",
+                        "sud", "le sud", "paca", "provence-alpes-côte d'azur",
+                        "bretagne",
+                        "région parisienne", "idf", "île-de-france", "ile de france",
+                        "aquitaine", "nouvelle-aquitaine",
+                        "alsace", "grand est"
+                    ]
+
+                    # Si la localisation est une région large, on élargit automatiquement le rayon
+                    if loc.lower() in corrections_regionales:
+                        rayon_recherche = 120
+                        st.sidebar.info(f"🔁 Localisation régionale détectée ('{loc}'). Rayon élargi automatiquement à {rayon_recherche} km.")
+                    else:
+                        rayon_recherche = st.sidebar.slider(f"Rayon de recherche autour de {loc} (km)", 5, 200, 50, key=f"rayon_{loc}")
+
 
                     # Appel à la fonction de recherche de cinémas
                     resultats_cinemas = trouver_cinemas_proches(loc, num, rayon_km=rayon_recherche)
