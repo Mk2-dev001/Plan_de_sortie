@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7ad06b2b1a1c966bbf54dbe8885d8402 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_7ad06b2b1a1c966bbf54dbe8885d8402" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_7ad06b2b1a1c966bbf54dbe8885d8402 = L.map(
+                "map_7ad06b2b1a1c966bbf54dbe8885d8402",
+                {
+                    center: [50.1200938, 1.8250146],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_4742c70d07cc1a8ab7c5a10d802e885f = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_4742c70d07cc1a8ab7c5a10d802e885f.addTo(map_7ad06b2b1a1c966bbf54dbe8885d8402);
+        
+    
+            var circle_marker_12b686ab9b9b5db2d438e23fd7f3e4e3 = L.circleMarker(
+                [50.1200938, 1.8250146],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_7ad06b2b1a1c966bbf54dbe8885d8402);
+        
+    
+        var popup_81d2925235a4c8b3567898b109444033 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_55e2738ed16ad6fbaf4e0f37de6469b9 = $(`<div id="html_55e2738ed16ad6fbaf4e0f37de6469b9" style="width: 100.0%; height: 100.0%;">CGR Abbeville<br>2, rue Menchecourt - 80100 Abbeville<br>Capacité : 476 places</div>`)[0];
+                popup_81d2925235a4c8b3567898b109444033.setContent(html_55e2738ed16ad6fbaf4e0f37de6469b9);
+            
+        
+
+        circle_marker_12b686ab9b9b5db2d438e23fd7f3e4e3.bindPopup(popup_81d2925235a4c8b3567898b109444033)
+        ;
+
+        
+    
+</script>
+</html>
