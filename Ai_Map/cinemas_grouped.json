@@ -2,8 +2,8 @@
     {
         "cinema": "Cotentin (Le)",
         "adresse": "rue Holgate - 50500 Carentan-les-Marais",
-        "lat": 49.303892641432384,
-        "lon": -1.2461617457584495,
+        "lat": 49.3036786,
+        "lon": -1.2463863,
         "contact": {
             "nom": "Jonathan Lelièvre",
             "email": "jonathan@noecinemas.com",
@@ -29,8 +29,8 @@
     {
         "cinema": "Artéa",
         "adresse": "BP 20 - 13716 Carnoux-en-Provence",
-        "lat": 43.2583,
-        "lon": 5.56555,
+        "lat": 43.255669499999996,
+        "lon": 5.568743912728651,
         "contact": {
             "nom": "Lydie Ratajczyk",
             "email": "lydie@mc4-distribution.fr",
@@ -49,8 +49,8 @@
     {
         "cinema": "Rivoli",
         "adresse": "56, av. Victor Hugo - 84200 Carpentras",
-        "lat": 44.05004667945735,
-        "lon": 5.047748655194746,
+        "lat": 44.04552798779699,
+        "lon": 5.048429249001226,
         "contact": {
             "nom": "Florence Passalacqua",
             "email": "direction@cine-rivoli.com",
@@ -90,8 +90,8 @@
     {
         "cinema": "Megarama Rambouillet La Lanterne",
         "adresse": "2 rue de la Légion d'Honneur - 78120 Rambouillet",
-        "lat": null,
-        "lon": null,
+        "lat": 48.6452851,
+        "lon": 1.819207,
         "contact": {
             "nom": "Thomas Graux",
             "email": "tg@megarama.com, assistantprogrammation@megarama.com",
@@ -110,8 +110,8 @@
     {
         "cinema": "Ecran du Cube Garges (L')",
         "adresse": "Avenue du Général de Gaulle - 95140 Garges-lès-Gonesse",
-        "lat": 48.97539898413405,
-        "lon": 2.3971348602018887,
+        "lat": 48.97642864802322,
+        "lon": 2.392833485191903,
         "contact": {
             "nom": "Mickaël ROBERT-GONÇALVES",
             "email": "mickael.robertgoncalves@lecubegarges.fr",
@@ -170,8 +170,8 @@
     {
         "cinema": "Salettes (Les), Plein Air",
         "adresse": "Cinema Plein Air - rue Elie Gauthier - 83320 Carqueiranne",
-        "lat": null,
-        "lon": null,
+        "lat": 43.0910087,
+        "lon": 6.0766933,
         "contact": {
             "nom": "Mme MANGOT",
             "email": "contact@cinemasolbia.com",
@@ -210,8 +210,8 @@
     {
         "cinema": "Salle Multiservice (Batel)",
         "adresse": "Mairie - 64160 Carrère",
-        "lat": 43.4732878,
-        "lon": -0.278978,
+        "lat": 43.48291329392799,
+        "lon": -0.2793700493474484,
         "contact": {
             "nom": "Valérian",
             "email": "cinema.batel@hotmail.fr",
@@ -237,8 +237,8 @@
     {
         "cinema": "Juliette Gréco",
         "adresse": "bd la Colle Belle - 06510 Carros",
-        "lat": 43.770729201178014,
-        "lon": 7.195913765370328,
+        "lat": 43.770722238988604,
+        "lon": 7.1958266564491655,
         "contact": {
             "nom": "Lydie Ratajczyk",
             "email": "lydie@mc4-distribution.fr",
@@ -277,8 +277,8 @@
     {
         "cinema": "Odyssée (L')",
         "adresse": "place José Bes - 47700 Casteljaloux",
-        "lat": 44.3129838,
-        "lon": 0.08810133361463467,
+        "lat": 44.312953300000004,
+        "lon": 0.08847994332126835,
         "contact": {
             "nom": "Programmation régions de Marseille + GRP + DROM et Bordeaux",
             "email": "Sandrine Gueynard",
@@ -331,8 +331,8 @@
     {
         "cinema": "Kursaal",
         "adresse": "place E. Landouat - 40260 Castets",
-        "lat": null,
-        "lon": null,
+        "lat": 43.882825,
+        "lon": -1.1457945,
         "contact": {
             "nom": "Xabi Garat",
             "email": "ententesaintlouis@gmail.com",
@@ -351,8 +351,8 @@
     {
         "cinema": "Ciné 4",
         "adresse": "4, place Jasmin - 47330 Castillonnès",
-        "lat": null,
-        "lon": null,
+        "lat": 44.6506766,
+        "lon": 0.5928205,
         "contact": {
             "nom": "Programmation régions de Marseille + GRP + DROM et Bordeaux",
             "email": "Sandrine Gueynard",
@@ -398,8 +398,8 @@
     {
         "cinema": "Paris (Le)",
         "adresse": "Rue Aristide Cauchois - 76490 Caudebec-en-Caux",
-        "lat": 49.525630627100405,
-        "lon": 0.7266090905446836,
+        "lat": 49.5254969,
+        "lon": 0.726734772736493,
         "contact": {
             "nom": "Jonathan Lelièvre",
             "email": "jonathan@noecinemas.com",
@@ -418,8 +418,8 @@
     {
         "cinema": "Millénium",
         "adresse": "Place des Mantilles - 59544 Caudry",
-        "lat": null,
-        "lon": null,
+        "lat": 50.124391,
+        "lon": 3.410362,
         "contact": {
             "nom": "Nicolas Houppermans",
             "email": "programmation@le-millenium.fr",
@@ -505,8 +505,8 @@
     {
         "cinema": "Armagnac",
         "adresse": "Barbotan Les Thermes - 32150 Barbotan - Cazaubon",
-        "lat": 43.9484022,
-        "lon": -0.0455474,
+        "lat": 43.9502147,
+        "lon": -0.0423427,
         "contact": {
             "nom": "Programmation régions de Marseille + GRP + DROM et Bordeaux",
             "email": "Sandrine Gueynard",
@@ -525,8 +525,8 @@
     {
         "cinema": "Capucins (Les)",
         "adresse": "rue des Capucins - 31220 Cazères",
-        "lat": 43.20312013837802,
-        "lon": 1.083620308207016,
+        "lat": 43.2046648,
+        "lon": 1.083700932718302,
         "contact": {
             "nom": "Pierre-Alexandre Nicaise",
             "email": "pan@cinefol31.org",
@@ -706,8 +706,8 @@
     {
         "cinema": "Espace Ciné",
         "adresse": "rue Félix Faure - 49290 Chalonnes-sur-Loire",
-        "lat": 47.35322713119959,
-        "lon": -0.7648250783766711,
+        "lat": 47.3531899,
+        "lon": -0.7641002,
         "contact": {
             "nom": "Sylvain Clochard",
             "email": "sylvain@leconcorde.fr",
@@ -956,8 +956,8 @@
     {
         "cinema": "Rhodo (Le)",
         "adresse": "Place du centre - 73350 Champagny-en-Vanoise",
-        "lat": 45.455952100000005,
-        "lon": 6.693976495705818,
+        "lat": 45.4560203,
+        "lon": 6.6935495,
         "contact": {
             "nom": "Lydie Ratajczyk",
             "email": "lydie@mc4-distribution.fr",
@@ -976,8 +976,8 @@
     {
         "cinema": "Embarcadère (L')",
         "adresse": "Place des droits de l'Homme - 71300 Montceau-les-Mines",
-        "lat": 46.67659345,
-        "lon": 4.36159624894958,
+        "lat": 46.676839799999996,
+        "lon": 4.361045079450696,
         "contact": {
             "nom": "Régis Faure",
             "email": "panacea.regis.faure@gmail.com",
@@ -1092,8 +1092,8 @@
     {
         "cinema": "Elysée (L')",
         "adresse": "25, av. du Maréchal Joffre - 60500 Chantilly",
-        "lat": 49.1913775,
-        "lon": 2.4642576,
+        "lat": 49.1913886,
+        "lon": 2.4642017,
         "contact": {
             "nom": "Rod Assous",
             "email": "cinemaelyseecontact@gmail.com, cinemaelysee@live.fr",
@@ -1133,8 +1133,8 @@
     {
         "cinema": "Ciné lumière",
         "adresse": "rue de la plaine - 85110 Chantonnay",
-        "lat": 46.6877473236474,
-        "lon": -1.043871802701327,
+        "lat": 46.6901078,
+        "lon": -1.0395435339754004,
         "contact": {
             "nom": "GRP",
             "email": "Laurent Geissmann",

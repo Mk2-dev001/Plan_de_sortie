@@ -449,18 +449,30 @@ st.markdown("Décrivez votre projet de diffusion et l'IA identifiera les cinéma
 # Section d'aide dans un expander
 with st.expander("ℹ️ Comment ça marche ?"):
     st.markdown("""
-    Cette application vous aide à trouver des cinémas en France correspondant à vos besoins de projection.
+    Cette application vous aide à planifier des projections de films en identifiant les cinémas les plus adaptés en France.
 
-    1.  **Décrivez votre besoin** dans la zone de texte ci-dessous en langage naturel. Soyez aussi précis que possible sur les lieux (villes, régions) et le public cible (nombre de spectateurs).
-        * *Exemple 1 :* "Je veux tester mon film dans une petite salle à Lyon et faire une avant-première à Paris pour 300 personnes."
-        * *Exemple 2 :* "Lancement national : prévoir des salles d'au moins 200 places à Lille, Bordeaux et Marseille."
-        * *Exemple 3 :* "Diffusion en Bretagne avec un objectif de 150 spectateurs par ville."
-    2.  **L'IA (GPT-4o)** analyse votre demande pour identifier les localisations et les jauges estimées. Les détails de l'interprétation apparaissent dans la barre latérale.
-    3.  **Le système recherche** dans la base de données les cinémas (préalablement géocodés) qui correspondent à ces critères (localisation proche, capacité suffisante).
-    4.  **Une carte interactive** s'affiche avec les cinémas trouvés. Cliquez sur les marqueurs pour voir les détails. Utilisez le contrôle des couches (en haut à droite de la carte) pour filtrer par requête.
-    5.  Vous pouvez **télécharger la carte** au format HTML pour la partager ou l'analyser plus tard.
+    ### 📝 1. Décrivez votre plan
+    Dans la zone de texte ci-dessous, indiquez votre besoin en langage naturel : lieux (villes ou régions), type d'événement (test, avant-première, lancement) et public cible (nombre de spectateurs, nombre de séances, etc.).
 
-    *Note : La base de données des cinémas et leurs coordonnées sont issues du fichier `cinemas_geocoded.json`.*
+    *Exemples :*
+    - "Je veux tester mon film dans une petite salle à Lyon et faire une avant-première à Paris pour 300 personnes."
+    - "15 séances dans toute la France pour atteindre 8000 spectateurs."
+    - "Diffusion en Bretagne avec un objectif de 150 spectateurs par ville."
+
+    ### 🤖 2. Analyse par l’IA (GPT-4o)
+    L’intelligence artificielle interprète votre demande pour en extraire les localisations cibles, les jauges de spectateurs et les contraintes de séances éventuelles.
+
+    ### 🔍 3. Recherche automatique de cinémas
+    Le système explore une base de données de cinémas géolocalisés en France, à la recherche de salles adaptées à votre besoin (proximité, capacité, disponibilité).
+
+    ### 🗺️ 4. Carte interactive
+    Une carte Folium affiche les cinémas trouvés. Cliquez sur les points pour voir les détails (adresse, capacité, contact). Vous pouvez filtrer les résultats par zone via le menu en haut à droite de la carte.
+
+    ### 💾 5. Téléchargements disponibles
+    - **📍 Carte HTML** : téléchargez une version interactive de la carte pour l’ouvrir ou la partager facilement.  
+      👉 *Double-cliquez simplement sur le fichier téléchargé (`carte_cinemas.html`) pour l’ouvrir dans votre navigateur, même sans connexion internet.*
+
+    - **📊 Tableaux Excel ou CSV** : pour chaque zone, vous pouvez exporter la liste des cinémas sélectionnés avec leurs coordonnées, capacités et contacts.
     """)
 
 # Zone de saisie pour la requête utilisateur
@@ -482,8 +494,10 @@ if query:
     else:
         # Affiche un résumé de ce que l'IA a compris
         total_spectateurs_estimes = sum(i.get('nombre', 0) for i in instructions_ia)
-        st.info(f"🤖 **IA a compris :** {len(instructions_ia)} zone(s) de recherche pour un objectif total estimé à {total_spectateurs_estimes} spectateurs.")
-        st.json(instructions_ia) # Affiche les instructions JSON pour transparence
+        total_seances_voulues = sum(i.get("nombre_seances", 0) for i in instructions_ia)
+        with st.expander("🤖 Résumé de la compréhension de l'IA"):
+            st.info(f"**IA a compris :** {len(instructions_ia)} zone(s) pour un objectif total de {total_spectateurs_estimes} spectateurs et {total_seances_voulues} séance(s).")
+            st.json(instructions_ia)
 
         # Prépare la liste pour stocker les résultats par groupe de recherche
         liste_groupes_resultats = []
@@ -595,6 +609,12 @@ if query:
                         file_name="carte_cinemas.html",
                         mime="text/html"
                     )
+                with st.expander("💡 Comment utiliser ce fichier ?"):
+                    st.markdown("""
+                    - Double-cliquez sur le fichier téléchargé `carte_cinemas.html` pour l’ouvrir dans votre navigateur.
+                    - Vous n’avez pas besoin de connexion internet ou de logiciel spécial.
+                    - Vous pouvez le partager par email ou l’intégrer dans une présentation.
+                    """)
 
                 # Affiche la carte interactive dans Streamlit
                 # Utilise st_folium pour une meilleure intégration que st.components.v1.html
@@ -611,6 +631,19 @@ if query:
                              colonnes_a_afficher = [col for col in df.columns if col not in colonnes_a_masquer]
 
                              st.dataframe(df[colonnes_a_afficher], use_container_width=True)
+                
+                # Sauvegarde Excel par groupe
+                nom_fichier = f"cinemas_{groupe['localisation'].replace(' ', '_')}.xlsx"
+                df[colonnes_a_afficher].to_excel(nom_fichier, index=False)
+
+                # Ajoute un bouton de téléchargement pour chaque fichier Excel
+                with open(nom_fichier, "rb") as f:
+                    st.download_button(
+                        label=f"📥 Télécharger Excel pour {groupe['localisation']}",
+                        data=f,
+                        file_name=nom_fichier,
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    )
 
             else:
                 # Ce cas ne devrait pas arriver si cinemas_trouves_total > 0, mais par sécurité
