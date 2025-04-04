@@ -61,46 +61,63 @@ geolocator = Nominatim(user_agent=GEOCODER_USER_AGENT, timeout=GEOCODER_TIMEOUT)
 # --- Fonctions ---
 
 @st.cache_data(show_spinner=False)
+
 def analyser_requete_ia(question: str):
     """
     Interprète la requête de l'utilisateur en utilisant GPT-4o pour extraire
-    les localisations et le nombre de spectateurs cible.
+    les localisations et la fourchette de spectateurs cible.
     Retourne un tuple (liste_instructions, reponse_brute_ia) ou ([], "") en cas d'échec.
     """
     system_prompt = (
-        "Tu es un expert en distribution cinématographique en France. "
-        "L'utilisateur te confie un projet de diffusion en salle (test, avant-première, lancement, tournée, etc.). "
-        "Ta mission est de transformer ce besoin en une liste JSON claire de villes cibles et de jauges spectateurs, pour construire un plan de sortie réaliste. "
-        "Voici les règles à suivre :\n\n"
-        "1️⃣ Chaque intention doit devenir un dictionnaire JSON avec deux clés :\n"
-        "   - 'localisation' : une ville (pas une région, sauf cas particulier),\n"
-        "   - 'nombre' : un nombre entier de spectateurs à atteindre.\n"
-        "   - 'nombre_seances' : quand l'utilisateur spécifie un nombre de séances ou salles souhaité (OPTIONNEL).\n\n"
-        "2️⃣ Si l'utilisateur parle de régions vagues (région, zone géographique, tout le pays...), tu dois automatiquement les convertir en **villes représentatives**, selon ce mapping :\n"
-        "   - 'région parisienne', 'idf', 'île-de-france' → ['Paris']\n"
-        "   - 'sud', 'sud de la France', 'paca', 'provence' → ['Marseille', 'Toulouse', 'Nice']\n"
-        "   - 'nord', 'hauts-de-france' → ['Lille']\n"
-        "   - 'ouest', 'bretagne', 'normandie' → ['Nantes', 'Rennes']\n"
-        "   - 'est', 'grand est', 'alsace' → ['Strasbourg']\n"
-        "   - 'centre', 'centre-val de loire', 'auvergne' → ['Clermont-Ferrand']\n"
-        "   - 'France entière', 'toute la France', 'province', 'le territoire', 'le reste du territoire français' → ['Lyon', 'Marseille', 'Lille', 'Bordeaux', 'Strasbourg']\n\n"
-        "3️⃣ Si une **quantité globale** est donnée pour une zone, répartis-la équitablement entre les salles de cinéma (ATTENTION 1 salle = 1 séance !) de cette Zone dont la capacité total sera égale a la quantité global\n"
-        "   Par exemple : '3000 spectateurs dans le reste du territoire' → 3000 spéctateur au total repartis dans chaque ville choisie (5 villes) le plus équitablement possible.\n"
-        "   Tu peux ajuster légèrement les répartitions si le total n'est pas divisible parfaitement.\n\n"
-        "   ATTENTION : Jamais plus de 500 séances"
-        "8️⃣ Nouvelle règle IMPORTANTE: Si l'utilisateur précise un nombre de séances ou de salles (ex: '15 séances dans toute la France'), tu dois extraire cette information dans le champ 'nombre_seances' pour chaque localisation. Tu dois distribuer ce nombre entre les localisations si elles sont multiples. Par exemple, pour '15 séances pour un total de 8000 personnes dans toute la France', tu dois répartir les 15 séances entre les villes représentatives de la France et les 8000 personnes entre ces séances."
-        "4️⃣ Si un lieu est donné **sans nombre précis**, déduis une estimation raisonnable en fonction du contexte :\n"
-        "   - 'petite salle', 'séance test' → 50 à 100\n"
-        "   - 'avant-première' → 200 à 400\n"
-        "   - 'grande salle', 'grande ville' → 500 à 1000\n"
-        "   - 'province' → 100 à 300\n"
-        "   - 'cinéma art et essai' → 100 à 150\n\n"
-        "5️⃣ Si le texte contient plusieurs zones ou intentions, tu dois retourner une liste de toutes les intentions séparées.\n"
-        "   Exemple : '300 à Paris, 100 à Lyon et test en Bretagne' → [{'localisation': 'Paris', 'nombre': 300}, {'localisation': 'Lyon', 'nombre': 100}, {'localisation': 'Rennes', 'nombre': 100}]\n\n"
-        "6️⃣ Le résultat DOIT être une **liste JSON pure**, sans explication, sans texte avant ou après. "
-        "Juste : [ {{...}}, {{...}} ]\n\n"
-        "7️⃣ Si aucun lieu ni objectif n’est identifiable, retourne simplement : []"
+        "Tu es un expert en distribution de films en salles en France. L'utilisateur te décrit un projet (test, avant-première, tournée, etc.).\n\n"
+
+        "🎯 Ton objectif : retourner une liste JSON valide de villes avec :\n"
+        "- \"localisation\" : une ville en France,\n"
+        "- \"nombre\" : nombre de spectateurs à atteindre,\n"
+        "- \"nombre_seances\" : (optionnel) nombre de séances prévues.\n\n"
+
+        "🎯 Si l’utilisateur précise un nombre de séances et une fourchette de spectateurs (ex : entre 30 000 et 40 000) :\n"
+        "- Choisis un total réaliste dans cette fourchette,\n"
+        "- Répartis ce total entre les villes proportionnellement au nombre de séances,\n"
+        "- Ne dépasse jamais le maximum, et ne descends jamais en dessous du minimum.\n\n"
+
+        "🎯 Si l’utilisateur précise seulement une fourchette de spectateurs pour une zone :\n"
+        "- Choisis un total dans la fourchette,\n"
+        "- Répartis les spectateurs équitablement entre les villes de cette zone,\n"
+        "- Suppose 1 séance par ville sauf indication contraire.\n\n"
+
+        "🎯 Si plusieurs zones sont mentionnées, génère plusieurs blocs JSON.\n\n"
+
+        "🗺️ Pour les zones vagues, utilise les remplacements suivants :\n"
+        "- 'idf', 'île-de-france', 'région parisienne' → ['île-de-france']\n"
+        "- 'sud', 'paca', 'sud de la France', 'provence' → ['Marseille', 'Toulouse', 'Nice']\n"
+        "- 'nord', 'hauts-de-france' → ['Lille']\n"
+        "- 'ouest', 'bretagne', 'normandie' → ['Nantes', 'Rennes', 'Amiens']\n"
+        "- 'est', 'grand est', 'alsace' → ['Strasbourg']\n"
+        "- 'centre', 'centre-val de loire', 'auvergne' → ['Clermont-Ferrand']\n"
+        "- 'France entière', 'toute la France', 'province', 'le territoire', 'le reste du territoire français' → [\n"
+        "   'Paris', 'Lille', 'Strasbourg', 'Lyon', 'Marseille', 'Nice',\n"
+        "   'Toulouse', 'Montpellier', 'Bordeaux', 'Limoges', 'Nantes', 'Rennes',\n"
+        "   'Caen', 'Dijon', 'Clermont-Ferrand', 'Orléans', 'Besançon'\n"
+        "]\n\n"
+
+        "💡 Le résultat doit être une **liste JSON strictement valide** :\n"
+        "- Format : [{\"localisation\": \"Paris\", \"nombre\": 1000, \"nombre_seances\": 10}]\n"
+        "- Utilise des guillemets doubles,\n"
+        "- Mets des virgules entre les paires clé/valeur,\n"
+        "- Ne retourne **aucun texte en dehors** du JSON.\n\n"
+
+        "💡 Si aucun lieu ni objectif n’est identifiable, retourne simplement : []\n\n"
+
+        "🔐 Règle obligatoire :\n"
+        "- Le **nombre total de séances** (addition des \"nombre_seances\") doit correspondre **exactement** à ce que demande l'utilisateur,\n"
+        "- Ne t’arrête pas à une distribution ronde ou facile : ajuste si besoin pour que la somme soit strictement exacte."
+        "🔐 Règle stricte sur la fourchette :\n"
+        "- Si l’utilisateur donne une fourchette de spectateurs (ex : minimum 30 000, maximum 160 000),\n"
+        "- Alors le **nombre total de spectateurs** (toutes zones confondues) doit rester **strictement dans cette fourchette**.\n"
+        "- Tu ne dois **pas appliquer cette fourchette à une seule zone**, mais à l'ensemble de la demande.\n"
     )
+
     raw_response = ""
     try:
         response = client.chat.completions.create(
@@ -258,7 +275,22 @@ def trouver_cinemas_proches(localisation_cible: str, spectateurs_voulus: int, no
             st.warning(f"⚠️ Erreur calcul distance pour {cinema.get('cinema', 'Inconnu')} : {e}")
             continue
         if distance > rayon_km: continue
-        for salle in cinema.get("salles", []):
+        salles = cinema.get("salles", [])
+        # Ne garder que les 2 meilleures salles (par capacité décroissante)
+        # Nettoyage : on filtre les salles avec une capacité convertible en int
+        salles_valides = []
+        for s in salles:
+            try:
+                capacite = int(s.get("capacite", 0))
+                if capacite > 0:
+                    s["capacite"] = capacite
+                    salles_valides.append(s)
+            except (ValueError, TypeError):
+                continue
+
+        # Tri et limitation à 2 salles max par cinéma
+        salles = sorted(salles_valides, key=lambda s: s["capacite"], reverse=True)[:1]
+        for salle in salles:
             try: capacite = int(salle.get("capacite", 0))
             except (ValueError, TypeError): continue
             if capacite <= 0: continue # Ignore salles capacité nulle
