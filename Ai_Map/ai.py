@@ -96,7 +96,7 @@ def analyser_requete_ia(question: str):
         "- 'est', 'grand est', 'alsace' → ['Strasbourg']\n"
         "- 'centre', 'centre-val de loire', 'auvergne' → ['Clermont-Ferrand']\n"
         "- 'France entière', 'toute la France', 'province', 'le territoire', 'le reste du territoire français' → [\n"
-        "   'Paris', 'Lille', 'Strasbourg', 'Lyon', 'Marseille', 'Nice',\n"
+        "   'Île-de-france', 'Lille', 'Strasbourg', 'Lyon', 'Marseille', 'Nice',\n"
         "   'Toulouse', 'Montpellier', 'Bordeaux', 'Limoges', 'Nantes', 'Rennes',\n"
         "   'Caen', 'Dijon', 'Clermont-Ferrand', 'Orléans', 'Besançon'\n"
         "]\n\n"
