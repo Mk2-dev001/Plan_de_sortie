@@ -21,7 +21,7 @@ st.set_page_config(layout="wide", page_title="Assistant Cinéma MK2", page_icon=
 
 # --- Configuration (Variables globales) ---
 # Nom du fichier JSON contenant les cinémas AVEC leurs coordonnées pré-calculées
-GEOCATED_CINEMAS_FILE = "cinemas_grouped.json"
+GEOCATED_CINEMAS_FILE = "cinemas_groupedBig.json"
 # User agent pour le service de géocodage (utilisé seulement pour les localisations demandées par l'utilisateur)
 GEOCODER_USER_AGENT = "CinemaMapApp/1.0 (App)"
 # Timeout pour le géocodage des localisations demandées

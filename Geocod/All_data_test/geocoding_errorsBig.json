@@ -1,0 +1,162 @@
+[
+    {
+        "cinema": "Studio MIRAMAR",
+        "adresse": "Maison de la Mer - 50 rond point saint expert"
+    },
+    {
+        "cinema": "CinéMalraux",
+        "adresse": "Malraux scène nationale - Service cinéma - 67 Place François Mitterrand - CS 50147"
+    },
+    {
+        "cinema": "Centre Culturel Nelson Mandela",
+        "adresse": "Centre Culturel Nelson Mandela - 11 avenue Aimé Césaire"
+    },
+    {
+        "cinema": "Ciné la Sorgue",
+        "adresse": "3 rue de la République - lôt de la Tour d'Argent,"
+    },
+    {
+        "cinema": "Maline (La)",
+        "adresse": "Communauté de Communes de l'Ile de Ré - 19 avenue du Mail"
+    },
+    {
+        "cinema": "Turbine (La) - CDPC",
+        "adresse": "Cinéma La Turbine - 3, rue des tisserands"
+    },
+    {
+        "cinema": "FonCiné",
+        "adresse": "Salle Charles Lecoultre - 58 grande rue"
+    },
+    {
+        "cinema": "Cinéma des Brumiers",
+        "adresse": "Centre Culturel des Brumiers - Allée des Arts"
+    },
+    {
+        "cinema": "Majestic (Le)",
+        "adresse": "ZAC des Charmes - Avenue de L'Europe"
+    },
+    {
+        "cinema": "Tournée Drôme - FOL 26",
+        "adresse": "FOL 26 - 26 32 AV SADI CARNOT"
+    },
+    {
+        "cinema": "Cinéma de l'Ysieux",
+        "adresse": "Espace Germinal - 2 av. du Mesnil - BP 60025"
+    },
+    {
+        "cinema": "Cinémathèque municipale Gnidzaz",
+        "adresse": "Mairie de Martigues - Direction Culturelle"
+    },
+    {
+        "cinema": "Montmorélien (Le)",
+        "adresse": "avenue de l'aquitaine 89309 - 16190 Montmoreau-Saint-Cybard"
+    },
+    {
+        "cinema": "Ciné TNB",
+        "adresse": "1, rue Saint-Helier - CS 54007 - 35040 Rennes"
+    },
+    {
+        "cinema": "Sully (Le)",
+        "adresse": "Cinéma Le Sully - 22, boulevard Jeanne d'Arc"
+    },
+    {
+        "cinema": "Zoom",
+        "adresse": "Cinéma Zoom - Le LACET - Place de l'Hôtel de Ville"
+    },
+    {
+        "cinema": "Lac Blanc (Le)",
+        "adresse": "1087 Grande rue - Val Thorens"
+    },
+    {
+        "cinema": "Praloup",
+        "adresse": "Maison de Pra loup - Pra Loup 1600"
+    },
+    {
+        "cinema": "Ariane",
+        "adresse": "Immeuble Ceres - 73300 Villarembert-Le Corbier"
+    },
+    {
+        "cinema": "Pôle culturel",
+        "adresse": "Place Malherbe - 83470 Saint-Maximin-la-Sainte-Beaume"
+    },
+    {
+        "cinema": "Moulin du Roc (Le)",
+        "adresse": "9, bd Main - C.S 18555 - 79025 Niort"
+    },
+    {
+        "cinema": "Mondes et Multitudes",
+        "adresse": "Cote de Moulines, Bâtiment E146 - La Moulines"
+    },
+    {
+        "cinema": "Pathé Aubière",
+        "adresse": "Av. Lavoisier - ZAC des Varennes Est"
+    },
+    {
+        "cinema": "Ciné Liberté",
+        "adresse": "10, avenue G. Clemenceau - Place Clémenceau"
+    },
+    {
+        "cinema": "Pathé Cité Europe Coquelles",
+        "adresse": "Cité de l'Europe - 10 Bd du Kent"
+    },
+    {
+        "cinema": "Ciné Carroz",
+        "adresse": "3, place Ambiance - 74300 Les Carroz-d' Arraches"
+    },
+    {
+        "cinema": "Cinéma Plein Mon Cartable",
+        "adresse": "Pôle image XL - bâtiment B - 1er étage - 12 avenue de la Gare"
+    },
+    {
+        "cinema": "Aurec Cinéma",
+        "adresse": "Médiathèque - 6 place des Hêtres"
+    },
+    {
+        "cinema": "Pathé la Valette",
+        "adresse": "Centre Commercial Avenue 83 - 300 Av. de l'Université"
+    },
+    {
+        "cinema": "Amical (L')",
+        "adresse": "35, rue Joseph Leroy - BP 40028"
+    },
+    {
+        "cinema": "Club 2 (Le)",
+        "adresse": "Salle polyvalente - 69 Rue de Châtillon"
+    },
+    {
+        "cinema": "Circuit des pins (Parentis)",
+        "adresse": "128 avenue du 14 juillet - Bp 32"
+    },
+    {
+        "cinema": "CGR Blagnac",
+        "adresse": "ZAC du Grand-Noble - Allée Emile Zola"
+    },
+    {
+        "cinema": "UGC Ciné Bassins à Flots",
+        "adresse": "6 quai Virginie Hériot - Bassin à Flot N°2"
+    },
+    {
+        "cinema": "My Ciné",
+        "adresse": "Route Nationale - 3 Lieu dit Les Masures"
+    },
+    {
+        "cinema": "Salamandre (La)",
+        "adresse": "SEW – Manufacture des tabacs - 39ter-41 Quai du Léon"
+    },
+    {
+        "cinema": "Toile Filante (La)",
+        "adresse": "Espace Germinal - 2, avenue du Mesnil"
+    },
+    {
+        "cinema": "Cinévasion 43",
+        "adresse": "Michel Arsac - 9 rue Le Roure"
+    },
+    {
+        "cinema": "Maison de la Culture de Bourges",
+        "adresse": "Place Séraucourt - BP 257"
+    },
+    {
+        "cinema": "Cannet Toiles / Cinetoile Rocheville",
+        "adresse": "1, rue Victorien Sardou (Cannet Toiles) - 20 Boulevard Sadi Carnot (Cinetoile Rochevile)"
+    }
+]

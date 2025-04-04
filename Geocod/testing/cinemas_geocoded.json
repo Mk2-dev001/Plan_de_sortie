@@ -1,0 +1,452 @@
+[
+    {
+        "cinema": "Cotentin (Le)",
+        "adresse": "rue Holgate - 50500 Carentan-les-Marais",
+        "nom_contact": "Jonathan Lelièvre",
+        "email": "jonathan@noecinemas.com",
+        "telephone": "",
+        "lat": 49.3036786,
+        "lon": -1.2463863
+    },
+    {
+        "cinema": "Artéa",
+        "adresse": "BP 20 - 13716 Carnoux-en-Provence",
+        "nom_contact": "Lydie Ratajczyk",
+        "email": "lydie@mc4-distribution.fr",
+        "telephone": "",
+        "lat": 43.255669499999996,
+        "lon": 5.568743912728651
+    },
+    {
+        "cinema": "Rivoli",
+        "adresse": "56, av. Victor Hugo - 84200 Carpentras",
+        "nom_contact": "Florence Passalacqua",
+        "email": "direction@cine-rivoli.com",
+        "telephone": "",
+        "lat": 44.04552798779699,
+        "lon": 5.048429249001226
+    },
+    {
+        "cinema": "Megarama Rambouillet La Lanterne",
+        "adresse": "2 rue de la Légion d'Honneur - 78120 Rambouillet",
+        "nom_contact": "Thomas Graux",
+        "email": "tg@megarama.com, assistantprogrammation@megarama.com",
+        "telephone": "",
+        "lat": 48.6452851,
+        "lon": 1.819207
+    },
+    {
+        "cinema": "Ecran du Cube Garges (L')",
+        "adresse": "Avenue du Général de Gaulle - 95140 Garges-lès-Gonesse",
+        "nom_contact": "Mickaël ROBERT-GONÇALVES",
+        "email": "mickael.robertgoncalves@lecubegarges.fr",
+        "telephone": "",
+        "lat": 48.97642864802322,
+        "lon": 2.392833485191903
+    },
+    {
+        "cinema": "Espace Culturel La Fleuraye",
+        "adresse": "Bd Ampère - 44470 Carquefou",
+        "nom_contact": "Sylvain Clochard",
+        "email": "sylvain@leconcorde.fr",
+        "telephone": "",
+        "lat": 47.30284339439284,
+        "lon": -1.5075541049985357
+    },
+    {
+        "cinema": "Cinéma Saint Pierremont",
+        "adresse": "11 rue du Parc Mancieulles - 54790 Val de Briey",
+        "nom_contact": "",
+        "email": "Henri Biancalana",
+        "telephone": "",
+        "lat": 49.282754,
+        "lon": 5.897542808035714
+    },
+    {
+        "cinema": "Salettes (Les), Plein Air",
+        "adresse": "Cinema Plein Air - rue Elie Gauthier - 83320 Carqueiranne",
+        "nom_contact": "Mme MANGOT",
+        "email": "contact@cinemasolbia.com",
+        "telephone": "",
+        "lat": 43.0910087,
+        "lon": 6.0766933
+    },
+    {
+        "cinema": "Cinéma La Toile de Mer",
+        "adresse": "2 place Gambetta - 44380 Pornichet",
+        "nom_contact": "GRP",
+        "email": "Laurent Geissmann",
+        "telephone": "laurent.geissmann@prog-gpci.fr",
+        "lat": 47.26071885,
+        "lon": -2.337382973426869
+    },
+    {
+        "cinema": "Salle Multiservice (Batel)",
+        "adresse": "Mairie - 64160 Carrère",
+        "nom_contact": "Valérian",
+        "email": "cinema.batel@hotmail.fr",
+        "telephone": "",
+        "lat": 43.48291329392799,
+        "lon": -0.2793700493474484
+    },
+    {
+        "cinema": "Juliette Gréco",
+        "adresse": "bd la Colle Belle - 06510 Carros",
+        "nom_contact": "Lydie Ratajczyk",
+        "email": "lydie@mc4-distribution.fr",
+        "telephone": "",
+        "lat": 43.770722238988604,
+        "lon": 7.1958266564491655
+    },
+    {
+        "cinema": "MJC Ciné 113",
+        "adresse": "20, av. de Toulouse - 31320 Castanet-Tolosan",
+        "nom_contact": "Programmation régions de Marseille + GRP + DROM et Bordeaux",
+        "email": "Sandrine Gueynard",
+        "telephone": "sandrine.gueynard@veocine.fr",
+        "lat": 43.51712035,
+        "lon": 1.497614522025648
+    },
+    {
+        "cinema": "Odyssée (L')",
+        "adresse": "place José Bes - 47700 Casteljaloux",
+        "nom_contact": "Programmation régions de Marseille + GRP + DROM et Bordeaux",
+        "email": "Sandrine Gueynard",
+        "telephone": "sandrine.gueynard@veocine.fr",
+        "lat": 44.312953300000004,
+        "lon": 0.08847994332126835
+    },
+    {
+        "cinema": "Salle communale Castelnau Durban",
+        "adresse": "09420 Castelnau-Durban - Téléphone: 05 61 96 34 33",
+        "nom_contact": "Marie Vidal",
+        "email": "cinema@lestive.com",
+        "telephone": "",
+        "lat": 42.987600799999996,
+        "lon": 1.293757515253109
+    },
+    {
+        "cinema": "Kursaal",
+        "adresse": "place E. Landouat - 40260 Castets",
+        "nom_contact": "Xabi Garat",
+        "email": "ententesaintlouis@gmail.com",
+        "telephone": "",
+        "lat": 43.882825,
+        "lon": -1.1457945
+    },
+    {
+        "cinema": "Ciné 4",
+        "adresse": "4, place Jasmin - 47330 Castillonnès",
+        "nom_contact": "Programmation régions de Marseille + GRP + DROM et Bordeaux",
+        "email": "Sandrine Gueynard",
+        "telephone": "sandrine.gueynard@veocine.fr",
+        "lat": 44.6506766,
+        "lon": 0.5928205
+    },
+    {
+        "cinema": "Emeraude cinémas",
+        "adresse": "2, bd Albert 1er - 35800 Dinard",
+        "nom_contact": "Aurélie Saget",
+        "email": "asaget@cinediffusion.fr",
+        "telephone": "",
+        "lat": 48.6352763,
+        "lon": -2.0556693
+    },
+    {
+        "cinema": "Paris (Le)",
+        "adresse": "Rue Aristide Cauchois - 76490 Caudebec-en-Caux",
+        "nom_contact": "Jonathan Lelièvre",
+        "email": "jonathan@noecinemas.com",
+        "telephone": "",
+        "lat": 49.5254969,
+        "lon": 0.726734772736493
+    },
+    {
+        "cinema": "Millénium",
+        "adresse": "Place des Mantilles - 59544 Caudry",
+        "nom_contact": "Nicolas Houppermans",
+        "email": "programmation@le-millenium.fr",
+        "telephone": "",
+        "lat": 50.124391,
+        "lon": 3.410362
+    },
+    {
+        "cinema": "Cinéma Théatre",
+        "adresse": "32, rue des Recollets - 82300 Caussade",
+        "nom_contact": "Programmation régions de Marseille + GRP + DROM et Bordeaux",
+        "email": "Sandrine Gueynard",
+        "telephone": "sandrine.gueynard@veocine.fr",
+        "lat": 44.16299241393197,
+        "lon": 1.5381711855253468
+    },
+    {
+        "cinema": "Cigale (La)",
+        "adresse": "79, av. Maréchal Joffre - 84300 Cavaillon",
+        "nom_contact": "Eric Tellene",
+        "email": "",
+        "telephone": "",
+        "lat": 43.83446620823782,
+        "lon": 5.040995395607277
+    },
+    {
+        "cinema": "Studio MIRAMAR",
+        "adresse": "Maison de la Mer - 50 rond point saint expert",
+        "nom_contact": "Xabi Garat",
+        "email": "ententesaintlouis@gmail.com",
+        "telephone": "",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "cinema": "Armagnac",
+        "adresse": "Barbotan Les Thermes - 32150 Barbotan - Cazaubon",
+        "nom_contact": "Programmation régions de Marseille + GRP + DROM et Bordeaux",
+        "email": "Sandrine Gueynard",
+        "telephone": "sandrine.gueynard@veocine.fr",
+        "lat": 43.9502147,
+        "lon": -0.0423427
+    },
+    {
+        "cinema": "Capucins (Les)",
+        "adresse": "rue des Capucins - 31220 Cazères",
+        "nom_contact": "Pierre-Alexandre Nicaise",
+        "email": "pan@cinefol31.org",
+        "telephone": "",
+        "lat": 43.2046648,
+        "lon": 1.083700932718302
+    },
+    {
+        "cinema": "Cinénacre",
+        "adresse": "5 Allée du Temps Libre - 14440 Douvres-la-Délivrande",
+        "nom_contact": "Mathilde Fras",
+        "email": "mathilde@cinemalux.org",
+        "telephone": "",
+        "lat": 49.30086798166351,
+        "lon": -0.3830701301965551
+    },
+    {
+        "cinema": "Cinéma du Théatre",
+        "adresse": "8, av. Charles de Gaulle - 78170 La Celle-Saint-Cloud",
+        "nom_contact": "Benjamin Babski",
+        "email": "bbabski@ville-lacellesaintcloud.fr",
+        "telephone": "",
+        "lat": 48.8483876,
+        "lon": 2.1360244234391295
+    },
+    {
+        "cinema": "Cinéma des Cinéastes (Le)",
+        "adresse": "7, av. de Clichy - 75017 Paris",
+        "nom_contact": "Lydie Ratajczyk",
+        "email": "lydie@mc4-distribution.fr",
+        "telephone": "",
+        "lat": 48.8843074,
+        "lon": 2.3269007
+    },
+    {
+        "cinema": "Ceretan",
+        "adresse": "Bd Georges Clémenceau - 66400 Céret",
+        "nom_contact": "Michel Laporta",
+        "email": "",
+        "telephone": "",
+        "lat": 42.48612422555144,
+        "lon": 2.7494169435097806
+    },
+    {
+        "cinema": "7ème Art",
+        "adresse": "Place Lucie Aubrac - BP 51 - 79140 Cerizay",
+        "nom_contact": "Nadia Barteau",
+        "email": "sudcinenadia@orange.fr",
+        "telephone": "",
+        "lat": 46.8207702,
+        "lon": -0.6705205563117064
+    },
+    {
+        "cinema": "Espace Grün",
+        "adresse": "32, rue Georges Risler - 68700 Cernay",
+        "nom_contact": "Jonathan Lelièvre",
+        "email": "jonathan@noecinemas.com",
+        "telephone": "",
+        "lat": 47.80589525,
+        "lon": 7.173393662185271
+    },
+    {
+        "cinema": "Familial",
+        "adresse": "46, rue Diderot - 52600 Chalindrey",
+        "nom_contact": "Franck Mazzacavallo",
+        "email": "theatre.raon@wanadoo.fr, fmprog@orange.fr",
+        "telephone": "",
+        "lat": 47.80304531079375,
+        "lon": 5.431074952461951
+    },
+    {
+        "cinema": "Espace Ciné",
+        "adresse": "rue Félix Faure - 49290 Chalonnes-sur-Loire",
+        "nom_contact": "Sylvain Clochard",
+        "email": "sylvain@leconcorde.fr",
+        "telephone": "",
+        "lat": 47.3531899,
+        "lon": -0.7641002
+    },
+    {
+        "cinema": "Comète (La)",
+        "adresse": "5, rue des Fripiers - BP 233 - 51010 Châlons-en-Champagne",
+        "nom_contact": "Sarah Beaufol",
+        "email": "sbeaufol@la-comete.fr",
+        "telephone": "",
+        "lat": 48.95633657035371,
+        "lon": 4.364161406134264
+    },
+    {
+        "cinema": "Bijou (Le)",
+        "adresse": "4, place de la Libération - 93160 Noisy-le-Grand",
+        "nom_contact": "Christophe GOURJON",
+        "email": "christophe.gourjon@ville-noisylegrand.fr",
+        "telephone": "cinema.jeune.public@ville-noisylegrand.fr",
+        "lat": 48.848894,
+        "lon": 2.552548
+    },
+    {
+        "cinema": "Espace des Arts",
+        "adresse": "5 bis, av. Nicéphore Niepce - 71100 Chalon-sur-Saône",
+        "nom_contact": "Marine Moiraf",
+        "email": "info@espace-des-arts.com",
+        "telephone": "",
+        "lat": 46.7792317,
+        "lon": 4.849407
+    },
+    {
+        "cinema": "CinéMalraux",
+        "adresse": "Malraux scène nationale - Service cinéma - 67 Place François Mitterrand - CS 50147",
+        "nom_contact": "Cynthia Labat",
+        "email": "clabat@espacemalraux-chambery.fr",
+        "telephone": "",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "cinema": "Astrée (L')",
+        "adresse": "7, bd du théâtre - 73000 Chambéry",
+        "nom_contact": "Martin Bidou",
+        "email": "martin.bidou@hautetcourt.com",
+        "telephone": "",
+        "lat": 45.5661064,
+        "lon": 5.9230203
+    },
+    {
+        "cinema": "Cinéma le Forum",
+        "adresse": "7, Boulevard du Théâtre - 73000 Chambéry",
+        "nom_contact": "Martin Bidou",
+        "email": "martin.bidou@hautetcourt.com",
+        "telephone": "",
+        "lat": 45.5661064,
+        "lon": 5.9230203
+    },
+    {
+        "cinema": "Cinémascoop",
+        "adresse": "18, rue de la Poste - BP 24 - 43400 Le Chambon-sur-Lignon",
+        "nom_contact": "Alain Deleage",
+        "email": "cinema.scoop@orange.fr",
+        "telephone": "alain.deleage@neuf.fr",
+        "lat": 45.0611844,
+        "lon": 4.3029635
+    },
+    {
+        "cinema": "3 Républiques (Les)",
+        "adresse": "10, av. Edouard Herriot - 39300 Champagnole",
+        "nom_contact": "Lydie Ratajczyk",
+        "email": "lydie@mc4-distribution.fr",
+        "telephone": "",
+        "lat": 46.7533903267278,
+        "lon": 5.887635014899612
+    },
+    {
+        "cinema": "Rhodo (Le)",
+        "adresse": "Place du centre - 73350 Champagny-en-Vanoise",
+        "nom_contact": "Lydie Ratajczyk",
+        "email": "lydie@mc4-distribution.fr",
+        "telephone": "",
+        "lat": 45.4560203,
+        "lon": 6.6935495
+    },
+    {
+        "cinema": "Embarcadère (L')",
+        "adresse": "Place des droits de l'Homme - 71300 Montceau-les-Mines",
+        "nom_contact": "Régis Faure",
+        "email": "panacea.regis.faure@gmail.com",
+        "telephone": "",
+        "lat": 46.676839799999996,
+        "lon": 4.361045079450696
+    },
+    {
+        "cinema": "Mégarama Studio 66",
+        "adresse": "66, rue Jean Jaurès - 94500 Champigny-sur-Marne",
+        "nom_contact": "",
+        "email": "Thomas Graux",
+        "telephone": "tg@megarama.com, assistantprogrammation@megarama.com",
+        "lat": 48.814149,
+        "lon": 2.5081006542553195
+    },
+    {
+        "cinema": "Utopia Saint-Siméon",
+        "adresse": "5, place Camille Jullian - 33000 Bordeaux",
+        "nom_contact": "Patrick Troudet",
+        "email": "patrick.troudet@cinemas-utopia.org",
+        "telephone": "",
+        "lat": 44.839225299999995,
+        "lon": -0.5724140728570286
+    },
+    {
+        "cinema": "Elysée (L')",
+        "adresse": "25, av. du Maréchal Joffre - 60500 Chantilly",
+        "nom_contact": "Rod Assous",
+        "email": "cinemaelyseecontact@gmail.com, cinemaelysee@live.fr",
+        "telephone": "",
+        "lat": 49.1913886,
+        "lon": 2.4642017
+    },
+    {
+        "cinema": "Ciné lumière",
+        "adresse": "rue de la plaine - 85110 Chantonnay",
+        "nom_contact": "GRP",
+        "email": "Laurent Geissmann",
+        "telephone": "laurent.geissmann@prog-gpci.fr",
+        "lat": 46.6901078,
+        "lon": -1.0395435339754004
+    },
+    {
+        "cinema": "Astrolab (L')",
+        "adresse": "1 place Charles Trenet - 31860 Labarthe-sur-Leze",
+        "nom_contact": "Programmation régions de Marseille + GRP + DROM et Bordeaux",
+        "email": "Sandrine Gueynard",
+        "telephone": "sandrine.gueynard@veocine.fr",
+        "lat": 43.452377549999994,
+        "lon": 1.399134401085143
+    },
+    {
+        "cinema": "Jacques Demy",
+        "adresse": "11, rue du Stade - 44450 Divatte-sur-Loire",
+        "nom_contact": "GRP",
+        "email": "Laurent Geissmann",
+        "telephone": "laurent.geissmann@prog-gpci.fr",
+        "lat": 47.27042535,
+        "lon": -1.3351511660225344
+    },
+    {
+        "cinema": "Alpha",
+        "adresse": "24, av. Lamartine - 69751 Charbonnières-les-Bains",
+        "nom_contact": "Aurélie",
+        "email": "gsflyon@free.fr",
+        "telephone": "",
+        "lat": 45.78136671312272,
+        "lon": 4.739520706237254
+    },
+    {
+        "cinema": "Crystal Palace",
+        "adresse": "14, rue de Bourgogne - 58400 La Charité-sur-Loire",
+        "nom_contact": "Benoit Michel",
+        "email": "benoit@sceniquanon.com",
+        "telephone": "",
+        "lat": 47.1767066,
+        "lon": 3.0220745
+    }
+]
