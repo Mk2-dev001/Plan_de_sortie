@@ -459,11 +459,20 @@ if query:
                         for cinema in resultats_cinemas:
                             contact = cinema.get("contact", {})
                             data_for_df.append({
-                                "Cinéma": cinema.get("cinema", "N/A"), "Salle": cinema.get("salle", "N/A"),
-                                "Adresse": cinema.get("adresse", "N/A"), "Capacité": cinema.get("capacite", 0),
-                                "Distance (km)": cinema.get("distance_km", 0), "Contact Nom": contact.get("nom", "N/A"),
-                                "Contact Email": contact.get("email", "N/A"), "Latitude": cinema.get("lat", 0.0),
-                                "Longitude": cinema.get("lon", 0.0) })
+                                "Cinéma": cinema.get("cinema", "N/A"), 
+                                "Salle": cinema.get("salle", "N/A"),
+                                "Adresse": cinema.get("adresse", "N/A"), 
+                                "Capacité": cinema.get("capacite", 0),
+                                "Distance (km)": cinema.get("distance_km", 0), 
+                                # Remplacer les deux colonnes par une seule avec les informations combinées
+                                "Contact": " / ".join(filter(None, [
+                                    contact.get("nom", ""), 
+                                    contact.get("email", ""), 
+                                    contact.get("telephone", "")
+                                ])),
+                                "Latitude": cinema.get("lat", 0.0),
+                                "Longitude": cinema.get("lon", 0.0) 
+                            })
                         df = pd.DataFrame(data_for_df)
                         if not df.empty: dataframes_to_export[loc] = df
                     else: st.write(f"   -> Aucune salle trouvée pour '{loc}' correspondant aux critères.")
@@ -511,7 +520,7 @@ if query:
                 st.markdown(f"**Zone : {loc}** ({nb_trouves}/{nb_demandes} salles trouvées)")
                 if loc in dataframes_to_export:
                     df_display = dataframes_to_export[loc]
-                    st.dataframe(df_display[["Cinéma", "Salle", "Capacité", "Distance (km)", "Contact Nom", "Contact Email"]], use_container_width=True, hide_index=True)
+                    st.dataframe(df_display[["Cinéma", "Salle", "Capacité", "Distance (km)", "Contact"]], use_container_width=True, hide_index=True)
                 elif nb_trouves == 0 : st.caption("Aucune salle trouvée pour cette zone.")
                 st.divider()
         else:
