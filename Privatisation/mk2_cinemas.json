@@ -1,0 +1,675 @@
+[
+  {
+    "cinema": "MK2 Bibliothèque",
+    "adresse": "128-162 avenue de France - 75013 Paris",
+    "lat": 48.832448,
+    "lon": 2.3754884862479484,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "009602",
+        "capacite": "85",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "009603",
+        "capacite": "97",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "009604",
+        "capacite": "107",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "4",
+        "cnc": "009607",
+        "capacite": "192",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "5",
+        "cnc": "009606",
+        "capacite": "233",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "6",
+        "cnc": "009605",
+        "capacite": "236",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "7",
+        "cnc": "009608",
+        "capacite": "153",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "8",
+        "cnc": "009614",
+        "capacite": "118",
+        "equipement": "3D35mmNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "9",
+        "cnc": "009610",
+        "capacite": "139",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "10",
+        "cnc": "009611",
+        "capacite": "102",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "11",
+        "cnc": "009612",
+        "capacite": "122",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "12",
+        "cnc": "009613",
+        "capacite": "229",
+        "equipement": "Numérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "13",
+        "cnc": "009600",
+        "capacite": "586",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "14",
+        "cnc": "009601",
+        "capacite": "317",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "15",
+        "cnc": "009609",
+        "capacite": "118",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "16",
+        "cnc": "009615",
+        "capacite": "118",
+        "equipement": "3D35mmNumérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Odéon (côté st Germain)",
+    "adresse": "113, bd Saint-Germain - 75006 Paris",
+    "lat": 48.8524478,
+    "lon": 2.3382656,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "000731",
+        "capacite": "267",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "000702",
+        "capacite": "190",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "000703",
+        "capacite": "84",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "4",
+        "cnc": "000704",
+        "capacite": "63",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "5",
+        "cnc": "000705",
+        "capacite": "74",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Quai de Loire",
+    "adresse": "7, quai de la Loire - 75019 Paris",
+    "lat": 48.88409825,
+    "lon": 2.3719966935552144,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "009900",
+        "capacite": "358",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "009901",
+        "capacite": "358",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "009902",
+        "capacite": "125",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "4",
+        "cnc": "009903",
+        "capacite": "71",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "5",
+        "cnc": "009904",
+        "capacite": "125",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "6",
+        "cnc": "009905",
+        "capacite": "71",
+        "equipement": "3D35mmNumérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Gambetta",
+    "adresse": "6, rue Belgrand - 75020 Paris",
+    "lat": 48.864606544828625,
+    "lon": 2.406390226666064,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "005691",
+        "capacite": "496",
+        "equipement": "Numérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "005693",
+        "capacite": "214",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "005694",
+        "capacite": "112",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "4",
+        "cnc": "005704",
+        "capacite": "190",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "5",
+        "cnc": "005705",
+        "capacite": "78",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "6",
+        "cnc": "005706",
+        "capacite": "50",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Grand-Palais",
+    "adresse": "3, av. Winston Churchill - 75008 Paris",
+    "lat": 48.86668648906224,
+    "lon": 2.3138945950302654,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "009351",
+        "capacite": "104",
+        "equipement": "35mmNumérique",
+        "format_projection": ""
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Quai de Seine",
+    "adresse": "14, Quai de Seine - 75019 Paris",
+    "lat": 48.885007,
+    "lon": 2.3714598500000026,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "004731",
+        "capacite": "299",
+        "equipement": "3D35mmNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "004732",
+        "capacite": "299",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "004733",
+        "capacite": "120",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "4",
+        "cnc": "004734",
+        "capacite": "120",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "5",
+        "cnc": "004735",
+        "capacite": "77",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "6",
+        "cnc": "004736",
+        "capacite": "77",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Nation",
+    "adresse": "133, bd Diderot - 75012 Paris",
+    "lat": 48.8482399,
+    "lon": 2.3931394,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "006212",
+        "capacite": "232",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "006214",
+        "capacite": "99",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "006215",
+        "capacite": "81",
+        "equipement": "Numérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "4",
+        "cnc": "006224",
+        "capacite": "59",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "5",
+        "cnc": "009550",
+        "capacite": "61",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "6",
+        "cnc": "009551",
+        "capacite": "19",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "7",
+        "cnc": "009552",
+        "capacite": "2",
+        "equipement": "Numérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "8",
+        "cnc": "009553",
+        "capacite": "4",
+        "equipement": "Numérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Bastille (Beaumarchais)",
+    "adresse": "4, bd Beaumarchais - 75011 Paris",
+    "lat": 48.8546337,
+    "lon": 2.3690906,
+    "contact": {
+      "nom": "",
+      "email": "Bertrand Roger",
+      "telephone": "bertrand.roger@mk2.com"
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "005863",
+        "capacite": "45",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "",
+        "capacite": "",
+        "equipement": "Numérique",
+        "format_projection": ""
+      },
+      {
+        "salle": "3",
+        "cnc": "005862",
+        "capacite": "72",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "4",
+        "cnc": "005861",
+        "capacite": "114",
+        "equipement": "Numérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Bibliothèque Entrée BNF",
+    "adresse": "15/43, quai François Mauriac - 75013 Paris",
+    "lat": 48.83428340429272,
+    "lon": 2.3771275820762403,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "009616",
+        "capacite": "151",
+        "equipement": "3D35mmNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "009617",
+        "capacite": "110",
+        "equipement": "3D35mmNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "009618",
+        "capacite": "108",
+        "equipement": "3D35mmNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "4",
+        "cnc": "009619",
+        "capacite": "151",
+        "equipement": "3D35mmNumérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Odéon (côté St Michel)",
+    "adresse": "7, rue hautefeuille - 75006 Paris",
+    "lat": 48.8521797,
+    "lon": 2.3428666333924046,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "000721",
+        "capacite": "212",
+        "equipement": "35mmNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "000722",
+        "capacite": "143",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "000723",
+        "capacite": "97",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "4",
+        "cnc": "000724",
+        "capacite": "58",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Bastille (Faubourg Saint Antoine)",
+    "adresse": "5 Rue du Faubourg Saint Antoine - 75011 Paris",
+    "lat": 48.8530755,
+    "lon": 2.3708298,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "005841",
+        "capacite": "224",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "005842",
+        "capacite": "76",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "005843",
+        "capacite": "122",
+        "equipement": "Numérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Beaubourg",
+    "adresse": "50, rue Rambuteau - 75003 Paris",
+    "lat": 48.8615738,
+    "lon": 2.3524143,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "000531",
+        "capacite": "121",
+        "equipement": "3D35mmNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "000532",
+        "capacite": "62",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "000533",
+        "capacite": "46",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "4",
+        "cnc": "000534",
+        "capacite": "103",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "5",
+        "cnc": "000535",
+        "capacite": "183",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "6",
+        "cnc": "000536",
+        "capacite": "42",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  },
+  {
+    "cinema": "MK2 Parnasse",
+    "adresse": "11, rue Jules Chaplain - 75006 Paris",
+    "lat": 48.8428168,
+    "lon": 2.3305122,
+    "contact": {
+      "nom": "Bertrand Roger",
+      "email": "bertrand.roger@mk2.com",
+      "telephone": ""
+    },
+    "salles": [
+      {
+        "salle": "1",
+        "cnc": "000801",
+        "capacite": "135",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "2",
+        "cnc": "000805",
+        "capacite": "70",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      },
+      {
+        "salle": "3",
+        "cnc": "000811",
+        "capacite": "45",
+        "equipement": "3DNumérique",
+        "format_projection": "Numérique 2D"
+      }
+    ]
+  }
+]
