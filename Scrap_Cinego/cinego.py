@@ -1,7 +1,7 @@
 from playwright.sync_api import sync_playwright
 import csv
 import time
-import Scrap_Cinego.credentials as credentials
+import credentials
 import json
 
 login_url = "https://distri.cinego.net"
@@ -180,6 +180,3 @@ with sync_playwright() as p:
     log(f"📁 JSON : {json_output}")
 
     browser.close()
-
-
-TEST
