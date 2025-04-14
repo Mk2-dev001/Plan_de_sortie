@@ -180,3 +180,6 @@ with sync_playwright() as p:
     log(f"📁 JSON : {json_output}")
 
     browser.close()
+
+
+TEST
