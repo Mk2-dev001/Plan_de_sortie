@@ -1,0 +1,40 @@
+
+                           --------Rendre visible la métadonnée de durée de la conférence renseignée dans le back office sur la fiche produit en front - (Je m’occupe ensuite de renseigner toutes les durées effectives des conférences à la main)
+
+                           ********Dans le mail de confirmation de commande shopify, peux-tu demander d’afficher dans le mail « nom du conférencier » & « Retrouvez le lien de la vidéo dans votre compte client » ? Peux-tu également identifier pourquoi le template modifié des mails n'est pas effectif quand le client reçoit les emails de confirmation de commande ? Le paramétrage des emails est accessible ici :  https://admin.shopify.com/store/f05fbe35/email_templates/order_confirmation/preview
+
+                           --------Remplacer le terme « séances » par « vidéos » dans la partie « collections », et passer le texte en noir au lieu de rouge sur la homepage
+
+                           --------Peut-on faire en sorte que le champ « nom du conférencier » de la fiche produit soit pris en charge dans le champ de recherche (exemple :  Lola Lafon qui n’apparaît pas dans le champ de recherche comme le fait Charles Pépin)
+
+                           --------Sur la fiche produit, supprimer la mention de l’heure dans le champ heure et date et indiquer plutôt « En ligne le xx/xx/xx »
+
+                           --------Faire en sorte que les étiquettes sur les fiches produits indiquent « À venir » plutôt que « Précommander » et supprimer les étiquettes « En ce moment »
+
+                           --------Peut-on identifier le dysfonctionnement qui transforme l’étiquette « Derniers jours » en rectangles rouges sur la homepage et dans le catalogue ?
+
+                           ########Peut-on trouver le moyen d’ajouter un visuel du conférencier à côté de chaque collection dans la page catalogue ?
+
+                            -------Peut-on faire en sorte de ne pas afficher le prix de la conférence sur la fiche produit et de le faire apparaître uniquement lorsque le produit est ajouté au panier ?
+
+                            -?-?-?-Sur le player des conférences, peut-on rendre visible la description de la conférence achetée ?
+
+                            ------Le meilleur pour la fin : Ajouter un carrousel cliquable en une du site, avec les conférences « en vedette » et les dernières conférences publiées.
+
+
+*****
+save token = "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"
+*****
+
+****
+indicateur :"<p>{{ email_body }}</p>"
+
+save_code for Email =
+"            {% for line in subtotal_line_items %}
+  {% assign speaker_name = line.product.metafields.custom.speaker_name %}
+  {% if speaker_name %}
+    <p><strong>Conférencier :</strong> {{ speaker_name }}</p>
+    <p><em>Retrouvez le lien de la vidéo dans votre <a href="https://www.mk2institut.com/account">compte client</a>.</em></p>
+  {% endif %}
+{% endfor %}"
+****
