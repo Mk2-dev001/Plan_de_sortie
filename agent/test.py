@@ -49,8 +49,8 @@ except ImportError:
 # --- Fin Nouvelles importations ---
 
 # Configuration
-SOURCE_DIR = Path("ADOLESCENTE, L'")  # Remplacer par le dossier source réel
-DESTINATION_DIR = Path("Sorted16")
+SOURCE_DIR = Path("Chaplin")  # Remplacer par le dossier source réel
+DESTINATION_DIR = Path("SortedX")
 LOG_FILE = "traitement_medias.csv"
 MEDIA_LABELS = {'AfficheS': '1', 'Photo HD': '2', 'Dossier de presse': '3', 'Revue de presse': '4'}
 # Inclure les autres catégories pour une meilleure correspondance interne
@@ -80,8 +80,8 @@ KNOWN_FILMS = [
 ]
 
 # Seuils pour le matching flou (à ajuster)
-FUZZY_MATCH_THRESHOLD_FOLDER = 80 # Pourcentage de similarité pour lier dossier <-> titre excel
-FUZZY_MATCH_THRESHOLD_FILE = 85   # Pourcentage de similarité pour lier fichier <-> titre connu
+FUZZY_MATCH_THRESHOLD_FOLDER = 90 # Pourcentage de similarité pour lier dossier <-> titre excel
+FUZZY_MATCH_THRESHOLD_FILE = 95   # Pourcentage de similarité pour lier fichier <-> titre connu
 
 # Initialisation
 console = Console()
