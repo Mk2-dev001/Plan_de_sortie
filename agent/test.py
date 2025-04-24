@@ -49,8 +49,8 @@ except ImportError:
 # --- Fin Nouvelles importations ---
 
 # Configuration
-SOURCE_DIR = Path("Chaplin")  # Remplacer par le dossier source réel
-DESTINATION_DIR = Path("Sorted2")
+SOURCE_DIR = Path("ADOLESCENTE, L'")  # Remplacer par le dossier source réel
+DESTINATION_DIR = Path("Sorted16")
 LOG_FILE = "traitement_medias.csv"
 MEDIA_LABELS = {'AfficheS': '1', 'Photo HD': '2', 'Dossier de presse': '3', 'Revue de presse': '4'}
 # Inclure les autres catégories pour une meilleure correspondance interne
@@ -159,85 +159,221 @@ if openai_api_key:
 else:
     console.print("[yellow]Clé API OpenAI non trouvée. La détection avancée ne sera pas disponible.[/yellow]")
 
-def load_excel_ids():
-    """Tenter de charger les IDs des films depuis un fichier Excel"""
-    # ... (code inchangé, mais on pourrait ajouter du fuzzy matching ici aussi si les titres Excel sont variables) ...
+def create_default_alternatives_file():
+    """Crée un fichier de configuration par défaut pour les titres alternatifs s'il n'existe pas"""
+    alternatives_file = "film_alternatives.json"
+    
+    # Vérifier si le fichier existe déjà
+    if os.path.exists(alternatives_file):
+        return alternatives_file
+    
+    # Créer un dictionnaire par défaut avec quelques exemples
+    default_alternatives = {
+        "canine": ["dogtooth", "kynodontas", "canino", "kynodondas"],
+        "the kid": ["le kid", "el chico"],
+        "modern times": ["les temps modernes", "tempos modernos"],
+        # Ajouter d'autres exemples ici
+    }
+    
+    # Écrire le fichier JSON avec un formatage lisible
     try:
+        with open(alternatives_file, 'w', encoding='utf-8') as f:
+            json.dump(default_alternatives, f, indent=4, ensure_ascii=False)
+        console.print(f"[green]Fichier de configuration des titres alternatifs créé: {alternatives_file}[/green]")
+    except Exception as e:
+        console.print(f"[yellow]Impossible de créer le fichier de configuration: {e}[/yellow]")
+    
+    return alternatives_file
+
+# 2. Chargement des titres alternatifs depuis le fichier externe
+
+def load_alternative_titles():
+    """Charge les titres alternatifs depuis le fichier de configuration"""
+    alternatives_file = create_default_alternatives_file()
+    alternatives = {}
+    
+    try:
+        with open(alternatives_file, 'r', encoding='utf-8') as f:
+            alternatives = json.load(f)
+        console.print(f"[green]Titres alternatifs chargés depuis {alternatives_file}[/green]")
+        
+        # Afficher un aperçu des alternatives chargées
+        if alternatives:
+            console.print("[grey]Aperçu des titres alternatifs chargés:[/grey]")
+            for main_title, alts in list(alternatives.items())[:5]:  # Limiter à 5 pour l'affichage
+                console.print(f"[grey]  '{main_title}' → {', '.join(alts)}[/grey]")
+            if len(alternatives) > 5:
+                console.print(f"[grey]  ... et {len(alternatives) - 5} autres films[/grey]")
+    except Exception as e:
+        console.print(f"[yellow]Erreur lors du chargement des titres alternatifs: {e}[/yellow]")
+        console.print("[yellow]Utilisation des valeurs par défaut[/yellow]")
+        # Valeurs par défaut minimales en cas d'erreur
+        alternatives = {
+            "canine": ["dogtooth", "kynodontas"]
+        }
+    
+    return alternatives
+
+def load_excel_ids():
+    """Version améliorée pour charger les IDs avec support des titres alternatifs externes"""
+    try:
+        # Charger les titres alternatifs depuis le fichier externe
+        known_alternatives = load_alternative_titles()
+        
         excel_path = "MK2 - Metadatas export.xlsx"
         if not os.path.exists(excel_path):
             console.print("[yellow]Fichier Excel introuvable: Utilisation d'IDs séquentiels[/yellow]")
             return {}
-
-        # Essayer plusieurs engines
-        df = None
-        engines = ['openpyxl', 'xlrd', None]
-        for engine in engines:
+        
+        # Lecture de base avec header=None pour traiter les en-têtes manuellement
+        console.print(f"[blue]Tentative de lecture du fichier Excel: {excel_path}[/blue]")
+        
+        try:
+            # Première tentative avec openpyxl
+            df = pd.read_excel(excel_path, engine='openpyxl', header=None)
+            console.print("[green]Lecture réussie avec openpyxl[/green]")
+        except Exception as e1:
+            console.print(f"[yellow]Erreur avec openpyxl: {e1}[/yellow]")
             try:
-                if (engine):
-                    df = pd.read_excel(excel_path, engine=engine)
-                else:
-                    df = pd.read_excel(excel_path)
-                break # Succès
-            except Exception as e:
-                # console.print(f"[grey]Essai avec engine {engine} échoué: {e}[/grey]") # Debug
-                continue
-        else: # Si la boucle se termine sans break
-             console.print("[yellow]Impossible de lire le fichier Excel avec les engines disponibles: Utilisation d'IDs séquentiels[/yellow]")
-             return {}
-
-        if df is None: # Sécurité
-            return {}
-
-        # Chercher les colonnes pertinentes (inchangé)
-        title_col, id_col = None, None
-        for col in df.columns:
-            col_str = str(col).lower()
-            if not title_col and ('titre' in col_str or 'title' in col_str or 'nom' in col_str):
-                title_col = col
-            if not id_col and ('id' in col_str or 'code' in col_str or 'ref' in col_str):
-                 id_col = col
-            if title_col and id_col:
-                break # Trouvé les deux
-
-        if title_col is None or id_col is None:
-            console.print("[yellow]Colonnes Titre/ID non trouvées explicitement. Tentative avec les premières colonnes.[/yellow]")
-            if len(df.columns) >= 2:
-                title_col = df.columns[0]
-                id_col = df.columns[1]
-                console.print(f"[grey]Utilisation de '{title_col}' comme Titre et '{id_col}' comme ID[/grey]")
-            else:
-                console.print("[red]Pas assez de colonnes dans le fichier Excel pour déterminer Titre/ID.[/red]")
-                return {}
-
-        # Construire le dictionnaire
-        film_ids_dict = {}
-        duplicates = 0
-        for _, row in df.iterrows():
-            if pd.notnull(row[title_col]) and pd.notnull(row[id_col]):
-                title = str(row[title_col]).strip()
+                # Deuxième tentative avec xlrd
+                df = pd.read_excel(excel_path, engine='xlrd', header=None)
+                console.print("[green]Lecture réussie avec xlrd[/green]")
+            except Exception as e2:
+                console.print(f"[yellow]Erreur avec xlrd: {e2}[/yellow]")
                 try:
-                    # Essayer de convertir en entier, puis en string pour nettoyer (ex: 123.0 -> 123)
-                    id_val = str(int(row[id_col]))
-                except ValueError:
-                     # Sinon, utiliser la valeur telle quelle (peut être alphanumérique)
-                    id_val = str(row[id_col]).strip()
-
-                if title in film_ids_dict and film_ids_dict[title] != id_val:
-                    duplicates += 1
-                    # console.print(f"[yellow]Titre dupliqué avec ID différent: '{title}' (IDs: {film_ids_dict[title]}, {id_val})[/yellow]")
-                    # On garde le premier rencontré pour l'instant
-                elif title not in film_ids_dict:
-                     film_ids_dict[title] = id_val
-                     # Ajouter une version lowercase pour la recherche insensible à la casse
-                     film_ids_dict[title.lower()] = id_val
-
-        if duplicates > 0:
-             console.print(f"[yellow]Avertissement: {duplicates} titres dupliqués trouvés dans l'Excel (premier ID conservé).[/yellow]")
-        console.print(f"[green]Chargement réussi de {len(film_ids_dict) // 2} IDs uniques depuis le fichier Excel[/green]")
+                    # Dernière tentative avec moteur par défaut
+                    df = pd.read_excel(excel_path, header=None)
+                    console.print("[green]Lecture réussie avec moteur par défaut[/green]")
+                except Exception as e3:
+                    console.print(f"[red]Impossible de lire l'Excel: {e3}[/red]")
+                    return {}
+        
+        # Déterminer l'index des colonnes ID et Titre à partir de la deuxième ligne
+        id_col = None
+        title_col = None
+        original_title_col = None
+        
+        if len(df) > 1:  # Vérifie qu'il y a au moins 2 lignes
+            header_row = df.iloc[1]  # Deuxième ligne contenant les vrais en-têtes
+            
+            # Chercher l'index des colonnes importantes
+            for i, val in enumerate(header_row):
+                if pd.notnull(val):
+                    val_lower = str(val).lower()
+                    if val_lower == "id":
+                        id_col = i
+                    elif "titre" in val_lower and "original" not in val_lower:
+                        title_col = i
+                    elif "titre original" in val_lower or "original title" in val_lower:
+                        original_title_col = i
+            
+            # Si on n'a pas trouvé "Titre", prendre la colonne suivant "ID"
+            if id_col is not None and title_col is None and id_col + 1 < len(header_row):
+                title_col = id_col + 1
+        
+        # Valeurs par défaut si non trouvées
+        if id_col is None:
+            id_col = 0
+            console.print("[yellow]Utilisation de la colonne 1 pour ID par défaut[/yellow]")
+        if title_col is None:
+            title_col = 1
+            console.print("[yellow]Utilisation de la colonne 2 pour Titre par défaut[/yellow]")
+        
+        console.print(f"[green]Colonnes: ID = {id_col+1}, Titre = {title_col+1}, Titre Original = {original_title_col+1 if original_title_col is not None else 'Non trouvé'}[/green]")
+        
+        # Construction du dictionnaire de correspondance
+        film_ids_dict = {}
+        
+        # Fonction pour rechercher des titres alternatifs connus
+        def find_known_alternatives(main_title, id_val):
+            main_title_lower = main_title.lower()
+            added_variants = []
+            
+            # Chercher dans notre base de connaissances externe
+            for base_title, alternatives in known_alternatives.items():
+                # Si le titre principal correspond à une entrée connue ou à une alternative
+                if main_title_lower == base_title or main_title_lower in alternatives:
+                    # Ajouter toutes les variantes
+                    for alt in alternatives + [base_title]:
+                        if alt != main_title_lower and alt not in film_ids_dict:
+                            film_ids_dict[alt] = id_val
+                            added_variants.append(alt)
+            
+            return added_variants
+        
+        # Parcourir toutes les lignes à partir de la 3ème (index 2)
+        for i in range(2, len(df)):
+            row = df.iloc[i]
+            
+            # Vérifier que l'ID et le titre sont présents
+            if pd.notnull(row[id_col]) and pd.notnull(row[title_col]):
+                try:
+                    # Extraire et nettoyer l'ID
+                    id_val = str(row[id_col])
+                    if id_val.replace('.', '', 1).isdigit():  # Si c'est un nombre (entier ou décimal)
+                        id_val = str(int(float(id_val)))  # Convertir en entier
+                    else:
+                        id_val = id_val.strip()
+                    
+                    # Extraire et nettoyer le titre
+                    title = str(row[title_col]).strip()
+                    
+                    # Extraire le titre original si disponible
+                    original_title = None
+                    if original_title_col is not None and pd.notnull(row[original_title_col]):
+                        original_title = str(row[original_title_col]).strip()
+                    
+                    # Vérifier si c'est une ligne valide (pas une ligne d'en-tête répétée)
+                    if title.lower() not in ["titre", "title"] and id_val.lower() not in ["id"]:
+                        # Ajouter le titre principal
+                        film_ids_dict[title] = id_val
+                        film_ids_dict[title.lower()] = id_val
+                        
+                        # Ajouter le titre original s'il est différent
+                        if original_title and original_title != title:
+                            film_ids_dict[original_title] = id_val
+                            film_ids_dict[original_title.lower()] = id_val
+                        
+                        # Traiter les cas avec parenthèses ou crochets (souvent des variantes)
+                        for bracket_char in ['(', '[']:
+                            if bracket_char in title:
+                                base_title = title.split(bracket_char)[0].strip()
+                                film_ids_dict[base_title] = id_val
+                                film_ids_dict[base_title.lower()] = id_val
+                        
+                        # Rechercher des variantes connues
+                        alternatives = find_known_alternatives(title, id_val)
+                        if alternatives and (title.lower() == 'canine' or 'canine' in alternatives):
+                            console.print(f"[green]Film CANINE/DOGTOOTH trouvé: ID={id_val}, Titre={title}, Alternatives={alternatives}[/green]")
+                except Exception as e:
+                    # Ignorer les erreurs de conversion
+                    pass
+        
+        # Afficher un résumé
+        unique_ids = len(set(film_ids_dict.values()))
+        console.print(f"[green]Chargement réussi de {unique_ids} IDs uniques depuis l'Excel[/green]")
+        
+        if unique_ids > 0:
+            # Afficher quelques exemples pour vérification
+            console.print("[grey]Échantillon des correspondances:[/grey]")
+            count = 0
+            seen_ids = set()
+            for title, id_val in film_ids_dict.items():
+                if title.lower() == title:  # Skip lowercase variations
+                    continue
+                if id_val not in seen_ids:
+                    console.print(f"[grey]  '{title}' → {id_val}[/grey]")
+                    seen_ids.add(id_val)
+                    count += 1
+                    if count >= 5:
+                        break
+        
         return film_ids_dict
-
+        
     except Exception as e:
         console.print(f"[red]Erreur critique lors du chargement des IDs Excel: {e}[/red]")
+        import traceback
+        traceback.print_exc()
         return {}
 
 # Charger les IDs depuis Excel
@@ -297,27 +433,45 @@ def get_image_metadata(file_path):
 
 # --- Fin Fonctions d'extraction de contenu ---
 
-
 def is_film_by_pattern(folder_name):
     """Détecte si un dossier est un film basé sur son nom, sans utiliser l'IA"""
     folder_lower = folder_name.lower()
 
-    # Règle 1: Format "ANNÉE - TITRE"
-    if re.match(r'(19|20)\d{2}\s*-\s*', folder_name):
+    # Règle 0: Vérifier directement les cas spéciaux
+    special_cases = ["canine", "dogtooth", "kynodontas", "the kid", "1 2 3 bruegel", "123 bruegel"]
+    if folder_lower in special_cases:
         return True
 
-    # Règle 2: Contient le nom d'un film Chaplin connu (match exact ou flou si activé)
-    if process: # Vérifie si thefuzz est chargé
+    # Règle 1: Format "ANNÉE - TITRE" ou variantes
+    if re.match(r'(19|20)\d{2}\s*-\s*', folder_name) or re.match(r'.+\(\s*(19|20)\d{2}\s*\)', folder_name):
+        return True
+
+    # Règle 2: Contient le nom d'un film connu (match exact ou flou si activé)
+    if process:
         # Recherche floue partielle (plus tolérante)
         match, score = process.extractOne(folder_lower, [f.lower() for f in KNOWN_FILMS], scorer=fuzz.partial_ratio)
-        if score >= FUZZY_MATCH_THRESHOLD_FOLDER: # Utilisation du seuil
+        if score >= FUZZY_MATCH_THRESHOLD_FOLDER:
             return True
-    else: # Fallback si thefuzz n'est pas dispo
+    else:
         for film in KNOWN_FILMS:
             if film.lower() in folder_lower:
                 return True
-
-    # Règle 3: Termes qui indiquent un NON-film
+    
+    # Règle 3: Dossiers qui contiennent typiquement des médias de films
+    film_indicator_folders = [
+        'affiche', 'poster', 'dp', 'dossier de presse', 'press kit',
+        'photo', 'still', 'captures', 'screenshots', 'trailer',
+        'bande-annonce', 'vf', 'vo', 'restauration', 'restoration'
+    ]
+    
+    for indicator in film_indicator_folders:
+        if indicator in folder_lower:
+            # Vérifier si c'est un sous-dossier typique d'un film
+            parent_dir = Path(folder_name).parent.name.lower()
+            if parent_dir not in film_indicator_folders:
+                return True
+    
+    # Règle 4: Termes qui indiquent un NON-film (inchangé)
     non_film_indicators = [
         'collection', 'archives', 'bonus', 'resources', 'brochure', 'press',
         'marketing', 'communication', 'inventaire', 'inventory', 'logos',
@@ -330,12 +484,8 @@ def is_film_by_pattern(folder_name):
         if indicator in folder_lower:
             return False
 
-    # Cas spécial pour THE KID qui doit être un film (renforcé)
-    if 'the kid' in folder_lower:
-        return True
-
     # Par défaut, si on ne sait pas
-    return None  # Incertain, l'IA (si dispo) ou une règle par défaut décidera
+    return None  # Incertain
 
 async def analyze_folder_with_ai(folder_path):
     """Utiliser l'IA pour déterminer si un dossier est un film, avec des règles préalables"""
@@ -422,95 +572,190 @@ async def save_ai_cache():
          console.print(f"[yellow]Impossible de sauvegarder le cache d'IA: {e}[/yellow]")
 
 async def detect_film_structure():
-    """Analyser la structure des dossiers pour détecter les films"""
+    """Analyser la structure des dossiers pour détecter les films dans un grand catalogue"""
     global next_id
     console.print("[blue]Analyse de la structure des dossiers...[/blue]")
 
     film_folders = []
     film_paths = {}
-    known_films_map = {}  # Map des noms normalisés vers les IDs
-    title_to_id = {}  # Map directe titre -> ID
-
-    # Mapping des titres connus (pour normalisation)
-    title_mapping = {
-        "the kid": "The Kid",
-        "the gold rush": "The Gold Rush",
-        "the circus": "The Circus",
-        "city lights": "City Lights",
-        "modern times": "Modern Times",
-        "the great dictator": "The Great Dictator",
-        "monsieur verdoux": "Monsieur Verdoux",
-        "limelight": "Limelight",
-        "a king in new york": "A King in New York",
-        "a woman of paris": "A Woman of Paris"
-    }
-
-    # Récupérer tous les sous-dossiers récursivement
+    title_to_id = {}
+    
+    # AMÉLIORATION: Détection globale du type de catalogue
+    # Analyser les noms des dossiers pour comprendre le style de nommage prédominant
+    dossier_patterns = []
+    for root, dirs, _ in os.walk(SOURCE_DIR):
+        for dir_name in dirs:
+            dossier_patterns.append(dir_name)
+            if len(dossier_patterns) >= 100:  # Limiter pour performance
+                break
+        if len(dossier_patterns) >= 100:
+            break
+    
+    # Analyser les motifs prédominants
+    year_prefix_count = sum(1 for d in dossier_patterns if re.match(r'^(19|20)\d{2}\s*-\s*.+', d))
+    year_suffix_count = sum(1 for d in dossier_patterns if re.match(r'.+\(\s*(19|20)\d{2}\s*\)', d))
+    
+    console.print(f"[grey]Analyse des motifs: {year_prefix_count} dossiers avec année en préfixe, {year_suffix_count} avec année en suffixe[/grey]")
+    
+    # Vérifier si le dossier source lui-même pourrait être un film
+    source_dir_name = SOURCE_DIR.name.lower()
+    source_dir_is_film = False
+    source_film_id = None
+    
+    # Rechercher dans real_film_ids si le dossier source correspond à un film connu
+    for title, id_val in real_film_ids.items():
+        if isinstance(title, str):  # S'assurer que c'est une chaîne
+            title_lower = title.lower()
+            # Recherche exacte ou approximative
+            if title_lower == source_dir_name or (process and fuzz.ratio(title_lower, source_dir_name) > FUZZY_MATCH_THRESHOLD_FOLDER):
+                source_dir_is_film = True
+                source_film_id = id_val
+                film_name = title
+                console.print(f"[green]Dossier source '{SOURCE_DIR.name}' identifié comme le film '{title}' (ID: {id_val})[/green]")
+                break
+    
+    # Si le dossier source est un film, l'ajouter directement
+    if source_dir_is_film and source_film_id:
+        film_info = {
+            'id': source_film_id,
+            'name': film_name,
+            'path': SOURCE_DIR,
+            'match_score': 100,
+            'id_source': 'Excel'
+        }
+        film_folders.append(film_info)
+        film_paths[str(SOURCE_DIR)] = source_film_id
+        title_to_id[film_name] = source_film_id
+        DETECTED_FILMS[source_film_id] = film_name
+    
+    # Récupérer tous les sous-dossiers
     all_subdirs = []
     for root, dirs, _ in os.walk(SOURCE_DIR):
         for dir_name in dirs:
-            if dir_name.startswith(('19', '20')) and '-' in dir_name:
-                dir_path = Path(root) / dir_name
-                if not any(ignore in str(dir_path) for ignore in IGNORE_PATTERNS):
-                    all_subdirs.insert(0, dir_path)
-            else:
-                dir_path = Path(root) / dir_name
-                if not any(ignore in str(dir_path) for ignore in IGNORE_PATTERNS):
-                    all_subdirs.append(dir_path)
-
-    # Fonction pour normaliser les titres
-    def normalize_title(title):
-        title = title.lower().strip()
-        # Supprimer l'année si présente
-        title = re.sub(r'^(19|20)\d{2}\s*-\s*', '', title)
-        # Normaliser les variantes connues
-        return title_mapping.get(title, title.title())
-
+            dir_path = Path(root) / dir_name
+            if not any(ignore in str(dir_path) for ignore in IGNORE_PATTERNS):
+                all_subdirs.append(dir_path)
+    
+    # Trier pour prioriser les dossiers avec années (qui sont souvent des films)
+    all_subdirs.sort(key=lambda p: 0 if re.match(r'^(19|20)\d{2}\s*-\s*.+', p.name) else 1)
+    
+    # AMÉLIORATION: Traitement par lot pour des performances optimales
     with Progress() as progress:
         task = progress.add_task("Traitement TITRES", total=len(all_subdirs))
         
         for folder in all_subdirs:
             folder_name = folder.name
-            clean_title = None
-
-            # 1. Extraire le titre du format année si présent
-            year_match = re.match(r'^(19|20)\d{2}\s*-\s*(.+)$', folder_name)
-            if year_match:
-                clean_title = year_match.group(2).strip()
+            folder_name_lower = folder_name.lower()
             
-            # 2. Sinon chercher dans les films connus
-            if not clean_title and process:
-                matches = process.extractBests(folder_name, KNOWN_FILMS, score_cutoff=FUZZY_MATCH_THRESHOLD_FOLDER)
-                if matches:
-                    clean_title = matches[0][0]
-
-            if clean_title:
-                normalized_title = normalize_title(clean_title)
+            # Si ce dossier est déjà dans un dossier de film identifié, continuer
+            parent_is_film = False
+            current_path = folder.parent
+            while current_path != SOURCE_DIR and current_path != current_path.parent:
+                if str(current_path) in film_paths:
+                    parent_is_film = True
+                    break
+                current_path = current_path.parent
+            
+            # Sauter si le dossier parent est déjà identifié comme un film
+            if parent_is_film:
+                progress.advance(task)
+                continue
+            
+            # 1. Recherche dans les ID Excel directement par nom
+            film_id = None
+            film_name = None
+            
+            for title, id_val in real_film_ids.items():
+                if isinstance(title, str) and title.lower() == folder_name_lower:
+                    film_id = id_val
+                    film_name = title
+                    match_method = "correspondance exacte Excel"
+                    break
+            
+            # 2. Si non trouvé, utiliser matching flou avec les titres Excel
+            if not film_id and process:
+                best_match = None
+                best_score = 0
                 
-                # Utiliser l'ID existant si le film est déjà connu
-                if normalized_title in title_to_id:
-                    film_id = title_to_id[normalized_title]
-                else:
-                    # Chercher dans les IDs Excel
-                    film_id = None
-                    for known_title, known_id in real_film_ids.items():
-                        if fuzz.ratio(normalized_title.lower(), known_title.lower()) > FUZZY_MATCH_THRESHOLD_FOLDER:
-                            film_id = known_id
-                            break
+                for title, id_val in real_film_ids.items():
+                    if not isinstance(title, str):
+                        continue
                     
-                    # Si pas trouvé, générer un nouvel ID
-                    if not film_id:
-                        next_id += 1
-                        film_id = str(next_id).zfill(3)
+                    score = fuzz.ratio(title.lower(), folder_name_lower)
+                    if score > FUZZY_MATCH_THRESHOLD_FOLDER and score > best_score:
+                        best_score = score
+                        best_match = (title, id_val)
+                
+                if best_match:
+                    film_name, film_id = best_match
+                    match_method = f"match flou Excel (score: {best_score})"
+            
+            # 3. Analyser le contenu du dossier pour indices supplémentaires
+            if not film_id:
+                try:
+                    # Regarder les sous-dossiers et fichiers pour indices
+                    subdirs = [d.name for d in folder.iterdir() if d.is_dir()][:5]
+                    files = [f.name for f in folder.iterdir() if f.is_file()][:5]
                     
-                    title_to_id[normalized_title] = film_id
-                    DETECTED_FILMS[film_id] = normalized_title
-
+                    # Recherche de mots-clés liés aux films dans les noms
+                    media_keywords = [
+                        'affiche', 'poster', 'dp', 'dossier de presse', 'photo', 
+                        'still', 'trailer', 'bande-annonce', 'press kit'
+                    ]
+                    
+                    # Si le dossier contient plusieurs sous-dossiers typiques d'un film
+                    media_folder_count = sum(1 for s in subdirs if any(k in s.lower() for k in media_keywords))
+                    
+                    if media_folder_count >= 2:
+                        # Ce dossier contient probablement un film, chercher par analyse du nom
+                        for title, id_val in real_film_ids.items():
+                            if not isinstance(title, str):
+                                continue
+                                
+                            # Essayer d'extraire des mots-clés du nom du dossier
+                            folder_words = set(re.findall(r'\b\w+\b', folder_name_lower))
+                            title_words = set(re.findall(r'\b\w+\b', title.lower()))
+                            
+                            # Si au moins 50% des mots importants correspondent
+                            common_words = folder_words.intersection(title_words)
+                            if len(common_words) >= 1 and len(common_words) >= len(title_words) * 0.5:
+                                film_id = id_val
+                                film_name = title
+                                match_method = f"analyse de contenu et correspondance partielle"
+                                break
+                except Exception:
+                    pass  # Ignorer les erreurs d'accès aux sous-dossiers
+            
+            # 4. Si toujours pas trouvé mais dossier semble être un film, générer ID
+            if not film_id:
+                # Vérifier si ce dossier est probablement un film non répertorié
+                is_likely_film = (
+                    re.match(r'^(19|20)\d{2}\s*-\s*.+', folder_name) or 
+                    re.match(r'.+\(\s*(19|20)\d{2}\s*\)', folder_name) or
+                    any(k in folder_name_lower for k in ['film', 'movie', 'cinema'])
+                )
+                
+                if is_likely_film:
+                    # Générer un nouvel ID pour ce film non répertorié
+                    next_id += 1
+                    film_id = str(next_id).zfill(3)
+                    film_name = folder_name
+                    match_method = "film probable (ID généré)"
+            
+            # Si un film a été identifié, l'ajouter aux structures
+            if film_id and film_name:
+                console.print(f"[grey]Film détecté: '{folder_name}' → '{film_name}' (ID: {film_id}) via {match_method}[/grey]")
+                
+                # Éviter les doublons dans title_to_id
+                if film_name not in title_to_id:
+                    title_to_id[film_name] = film_id
+                    DETECTED_FILMS[film_id] = film_name
+                
                 film_info = {
                     'id': film_id,
-                    'name': normalized_title,
+                    'name': film_name,
                     'path': folder,
-                    'match_score': 100 if year_match else 90,
+                    'match_score': 100 if "correspondance exacte" in match_method else 90,
                     'id_source': 'Excel' if film_id in real_film_ids.values() else 'Généré'
                 }
                 
@@ -518,20 +763,31 @@ async def detect_film_structure():
                 film_paths[str(folder)] = film_id
             
             progress.advance(task)
-
+    
     # Afficher un résumé de la détection
     if film_folders:
         unique_films = len(set(f['id'] for f in film_folders))
         console.print(f"[green]Détection de {unique_films} films uniques terminée.[/green]")
         
-        # Afficher les associations
-        for film_id, film_name in sorted(DETECTED_FILMS.items()):
-            matching_folders = [f['path'].name for f in film_folders if f['id'] == film_id]
-            if matching_folders:
-                console.print(f"[grey]{film_name} (ID: {film_id}) -> {', '.join(matching_folders)}[/grey]")
+        # Regrouper les dossiers par film pour un affichage plus compact
+        film_id_to_folders = {}
+        for film in film_folders:
+            if film['id'] not in film_id_to_folders:
+                film_id_to_folders[film['id']] = {
+                    'name': film['name'],
+                    'folders': []
+                }
+            film_id_to_folders[film['id']]['folders'].append(film['path'].name)
+        
+        # Afficher les associations de manière plus compacte
+        for film_id, info in sorted(film_id_to_folders.items()):
+            folders_str = ", ".join(info['folders'][:5])
+            if len(info['folders']) > 5:
+                folders_str += f", ... ({len(info['folders']) - 5} autres)"
+            console.print(f"[grey]{info['name']} (ID: {film_id}) → {folders_str}[/grey]")
     else:
-        console.print("[yellow]Attention: Aucun film n'a été détecté.[/yellow]")
-
+        console.print("[yellow]Attention: Aucun film n'a été détecté. Vérifier les règles de détection.[/yellow]")
+    
     return film_folders, film_paths
 
 def should_ignore_file(file_path):
@@ -558,105 +814,121 @@ def should_ignore_file(file_path):
     return False, None # Ne pas ignorer
 
 async def determine_film_for_file(file_path, film_paths):
-    """Déterminer le film associé à un fichier avec une logique améliorée."""
+    """Déterminer le film associé à un fichier avec alternatives externes"""
     file_str_lower = str(file_path).lower()
     file_name_lower = file_path.name.lower()
-
+    
     # Stratégie 1: Le fichier est DANS un dossier de film déjà identifié
     current_path = file_path.parent
-    while current_path != SOURCE_DIR and current_path != current_path.parent: # Eviter boucle infinie
+    while current_path != SOURCE_DIR and current_path != current_path.parent:
         path_str = str(current_path)
         if path_str in film_paths:
-            return film_paths[path_str] # Trouvé !
+            return film_paths[path_str]
         current_path = current_path.parent
-
-    # Stratégie 2: Le nom du fichier contient EXACTEMENT le nom d'un film détecté (ou son ID)
-    for film_id, detected_name in DETECTED_FILMS.items():
-        # Extraire le nom "propre" du film (sans année si format "YYYY - Titre")
-        clean_name = detected_name
-        match_year_title = re.match(r'(19|20)\d{2}\s*-\s*(.*)', detected_name)
-        if match_year_title:
-            clean_name = match_year_title.group(2).strip()
-
-        # Vérifier nom propre et nom complet
-        if clean_name.lower() in file_name_lower or detected_name.lower() in file_name_lower:
-             return film_id
-        # Vérifier si l'ID lui-même est dans le nom (ex: 3_2373...)
-        if f"_{film_id}_" in file_name_lower or file_name_lower.startswith(f"{film_id}_"):
-             return film_id
-
-    # Stratégie 3: Le nom/chemin du fichier contient le nom d'un film CONNU (fuzzy match)
-    if process: # Si thefuzz est disponible
-        known_film_titles_lower = [f.lower() for f in KNOWN_FILMS]
-        # Utiliser partial_ratio car le nom du film peut être une partie du nom de fichier/chemin
-        best_match, score = process.extractOne(file_str_lower, known_film_titles_lower, scorer=fuzz.partial_ratio)
-
-        if score >= FUZZY_MATCH_THRESHOLD_FILE:
-            # Trouver l'ID du film détecté qui correspond le mieux à ce film connu
-            # (peut être ambigu si plusieurs dossiers détectés correspondent au même film connu)
-            matched_film_id = None
-            highest_score = 0
-            for film_id, detected_name in DETECTED_FILMS.items():
-                 # Comparer le film connu trouvé (best_match) avec le nom du dossier détecté
-                 current_score = fuzz.token_sort_ratio(best_match, detected_name.lower())
-                 if current_score > highest_score:
-                     highest_score = current_score
-                     matched_film_id = film_id
-
-            if matched_film_id and highest_score > 75: # Seuil interne pour lier match flou <-> dossier détecté
-                # console.print(f"[grey]Match flou fichier: '{file_path.name}' (via '{best_match}', score {score}) -> Film ID {matched_film_id}[/grey]")
-                return matched_film_id
-
-    # Stratégie 4: En dernier recours, vérifier si du texte extrait contient un nom de film
-    # (Cette partie pourrait être ajoutée si nécessaire, mais peut être lente)
-    # extracted_text = extract_text_from_file(file_path)
-    # if extracted_text:
-    #    # ... rechercher KNOWN_FILMS dans extracted_text ...
-
-    # Fallback: Pas de film spécifique trouvé
-    return None # Indique qu'aucun film spécifique n'a pu être associé
-
+    
+    # Stratégie 2: Recherche directe dans tous les titres connus (principaux et alternatifs)
+    for title, film_id in real_film_ids.items():
+        if isinstance(title, str) and len(title) > 3:  # Ignorer les titres trop courts
+            title_lower = title.lower()
+            # Vérifier si le titre apparaît dans le nom du fichier ou le chemin
+            if title_lower in file_name_lower or title_lower in file_str_lower:
+                return film_id
+    
+    # Stratégie 3: Matching flou si disponible
+    if process:
+        # Préparer une liste de titres à comparer
+        titles = [t for t in real_film_ids.keys() if isinstance(t, str) and len(t) > 3]
+        
+        # D'abord essayer avec le nom du fichier
+        best_matches = process.extractBests(file_name_lower, titles, scorer=fuzz.partial_ratio, score_cutoff=FUZZY_MATCH_THRESHOLD_FILE)
+        if best_matches:
+            best_title = best_matches[0][0]
+            return real_film_ids[best_title]
+        
+        # Ensuite avec le chemin complet
+        best_matches = process.extractBests(file_str_lower, titles, scorer=fuzz.partial_ratio, score_cutoff=FUZZY_MATCH_THRESHOLD_FILE)
+        if best_matches:
+            best_title = best_matches[0][0]
+            return real_film_ids[best_title]
+    
+    # Aucun film identifié
+    return None
 def categorize_file_by_rules(file_path):
-    """Catégoriser un fichier selon des règles basées sur nom/chemin/extension (Première passe)."""
+    """Catégoriser un fichier selon des règles améliorées basées sur nom/chemin/extension."""
     file_name_lower = file_path.name.lower()
     # Utiliser le chemin relatif pour éviter les faux positifs dus au nom du dossier source
     try:
         relative_path_str = str(file_path.relative_to(SOURCE_DIR)).lower()
-    except ValueError: # Si le fichier n'est pas dans SOURCE_DIR (ne devrait pas arriver ici)
+    except ValueError: # Si le fichier n'est pas dans SOURCE_DIR
         relative_path_str = str(file_path).lower()
 
     ext = file_path.suffix.lower()
 
-    # Règles spécifiques prioritaires
-    if any(term in file_name_lower or term in relative_path_str for term in ['affiche', 'poster', ' aff ', '_aff_', 'movie poster']):
+    # Règles spécifiques prioritaires pour les affiches
+    if any(term in file_name_lower or term in relative_path_str for term in [
+        'affiche', 'poster', ' aff ', '_aff_', 'movie poster', 'one sheet', 'locandina', 'cartel'
+    ]):
         if ext in ['.jpg', '.jpeg', '.png', '.tif', '.tiff', '.gif', '.bmp', '.pdf']:
             return 'AfficheS'
 
-    if any(term in file_name_lower or term in relative_path_str for term in ['dossier de presse', 'press kit', 'dp_', 'pressbook']):
-        if ext in ['.pdf', '.doc', '.docx', '.zip', '.rar']: # Zip peut contenir un DP
-             return 'Dossier de presse'
+    # Règles spécifiques pour dossier de presse - AJOUT DE NOUVELLES RÈGLES
+    if any(term in file_name_lower or term in relative_path_str for term in [
+        'dossier de presse', 'press kit', 'dp_', 'pressbook', 'press book', 'press release', 
+        'communiqué de presse', 'press materials', 'media kit', 'electronic press kit', 'epk',
+        'production notes', '/dp/', '/dp_', '_dp_'
+    ]):
+        # Présence du terme exact "DP" comme mot entier
+        if re.search(r'\bdp\b', file_name_lower) or re.search(r'\bdp\b', relative_path_str):
+            return 'Dossier de presse'
+        
+        if ext in ['.pdf', '.doc', '.docx', '.zip', '.rar', '.txt', '.rtf']:
+            return 'Dossier de presse'
 
-    if any(term in file_name_lower or term in relative_path_str for term in ['revue de presse', 'press review', ' article', 'critique', 'review', 'clipping']):
-         if ext in ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png', '.txt']: # Articles scannés ou textes
+    # Règles spécifiques pour revue de presse - AJOUT DE NOUVELLES RÈGLES
+    if any(term in file_name_lower or term in relative_path_str for term in [
+        'revue de presse', 'press review', ' article', 'critique', 'review', 'clipping',
+        'presse', 'press coverage', 'news clip', 'newspaper', 'magazine', 'quote', 'citation',
+        'quotes', 'citations', 'press quote', 'critics', 'media coverage', 'interview',
+        'recension', 'crítica', 'journal', 'publication'
+    ]):
+        if ext in ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png', '.txt', '.rtf']:
             return 'Revue de presse'
 
-    if any(term in file_name_lower or term in relative_path_str for term in ['photo', 'image', 'still', ' hd ', '_hd_', ' highres', ' high res', ' scene ']):
-         if ext in ['.jpg', '.jpeg', '.png', '.tif', '.tiff', '.bmp', '.gif']:
-             return 'Photo HD'
+    # Règles spécifiques pour photos
+    if any(term in file_name_lower or term in relative_path_str for term in [
+        'photo', 'image', 'still', ' hd ', '_hd_', ' highres', ' high res', ' scene ', 
+        'screenshot', 'capture', 'frame', 'photo hd', 'promotional', 'promo photo', 
+        'publicity', 'photo_', '_photo', ' jpg', '.jpeg'
+    ]):
+        if ext in ['.jpg', '.jpeg', '.png', '.tif', '.tiff', '.bmp', '.gif']:
+            return 'Photo HD'
 
-    # Autres catégories moins prioritaires (peuvent être affinées par contenu/IA)
-    if any(term in file_name_lower or term in relative_path_str for term in ['facture', 'invoice', 'billing']):
-         if ext in ['.pdf', '.xlsx', '.xls', '.doc', '.docx', '.csv']:
+    # Autres catégories moins prioritaires
+    if any(term in file_name_lower or term in relative_path_str for term in [
+        'facture', 'invoice', 'billing', 'payment', 'receipt', 'financial'
+    ]):
+        if ext in ['.pdf', '.xlsx', '.xls', '.doc', '.docx', '.csv']:
             return 'Factures'
-    if any(term in file_name_lower or term in relative_path_str for term in ['contrat', 'agreement', 'nda', 'contract']):
+            
+    if any(term in file_name_lower or term in relative_path_str for term in [
+        'contrat', 'agreement', 'nda', 'contract', 'legal', 'license', 'rights', 
+        'deal memo', 'terms'
+    ]):
         if ext in ['.pdf', '.doc', '.docx']:
             return 'Contrats'
-    if any(term in file_name_lower or term in relative_path_str for term in ['présentation', 'presentation', 'slides', 'deck']):
+            
+    if any(term in file_name_lower or term in relative_path_str for term in [
+        'présentation', 'presentation', 'slides', 'deck', 'powerpoint', 'keynote'
+    ]):
         if ext in ['.pptx', '.ppt', '.pdf', '.key']:
             return 'Présentations'
-    if any(term in file_name_lower or term in relative_path_str for term in ['administratif', 'admin', 'legal', 'document']):
+            
+    if any(term in file_name_lower or term in relative_path_str for term in [
+        'administratif', 'admin', 'document', 'paperwork', 'form', 'certificate', 
+        'certification', 'visa', 'official'
+    ]):
         if ext in ['.pdf', '.doc', '.docx', '.txt', '.xls', '.xlsx']:
-            return 'Documents administratifs' # Catégorie assez générique
+            return 'Documents administratifs'
 
 
     # Catégorisation par défaut basée sur l'extension si aucune règle n'a matché
@@ -665,16 +937,14 @@ def categorize_file_by_rules(file_path):
     if ext in ['.mp4', '.mov', '.avi', '.mkv', '.wmv', '.flv', '.mpg', '.mpeg', '.webm']:
         return 'Médias (audio/vidéo)'
     if ext in ['.mp3', '.wav', '.aac', '.ogg', '.flac', '.m4a']:
-         return 'Médias (audio/vidéo)' # On pourrait séparer Audio/Vidéo si besoin
+        return 'Médias (audio/vidéo)'
     if ext in ['.pdf']:
-        # PDF est ambigu, peut être DP, Revue, Contrat, Facture...
         return 'Divers' # Laisser l'analyse de contenu/IA décider
     if ext in ['.docx', '.doc']:
-        return 'Divers' # Idem pour les documents Word
+        return 'Divers'
     if ext in ['.pptx', '.ppt']:
         return 'Présentations'
     if ext in ['.xlsx', '.xls', '.csv']:
-         # Souvent admin ou factures, mais laissons 'Divers' pour affinage
         return 'Divers'
     if ext in ['.txt']:
         return 'Divers'
@@ -682,9 +952,8 @@ def categorize_file_by_rules(file_path):
     # Catégorie par défaut ultime
     return 'Divers'
 
-
 async def categorize_file(file_path):
-    """Déterminer la catégorie d'un fichier en utilisant règles, contenu et IA."""
+    """Déterminer la catégorie d'un fichier avec analyse de contenu améliorée"""
     file_name = file_path.name
     cache_key = f"category:{str(file_path)}" # Utiliser le chemin complet pour le cache
 
@@ -694,36 +963,54 @@ async def categorize_file(file_path):
     # 1. Catégorisation par règles (rapide)
     category = categorize_file_by_rules(file_path)
 
-    # 2. Affinage par contenu textuel (si catégorie ambiguë et fichier texte/doc)
+    # 2. Affinage par contenu textuel pour les documents
     extracted_text = None
-    if category == 'Divers' and file_path.suffix.lower() in ['.pdf', '.docx', '.txt']:
-        extracted_text = extract_text_from_file(file_path, max_chars=1000) # Plus de contexte
+    if category == 'Divers' and file_path.suffix.lower() in ['.pdf', '.docx', '.txt', '.doc', '.rtf']:
+        extracted_text = extract_text_from_file(file_path, max_chars=1500)  # Plus de contexte
         if extracted_text:
             text_lower = extracted_text.lower()
-            # Mots-clés pour affiner 'Divers' (priorité haute)
-            if 'facture' in text_lower or 'invoice' in text_lower: category = 'Factures'
-            elif 'contrat' in text_lower or 'agreement' in text_lower: category = 'Contrats'
-            elif 'dossier de presse' in text_lower or 'press kit' in text_lower: category = 'Dossier de presse'
-            elif 'communiqué de presse' in text_lower: category = 'Dossier de presse'
-            elif 'revue de presse' in text_lower or 'critique' in text_lower or 'article paru' in text_lower: category = 'Revue de presse'
-            elif 'présentation' in text_lower or 'slides' in text_lower: category = 'Présentations'
-            # Ajouter d'autres règles spécifiques basées sur le contenu ici
+            
+            # Mots-clés plus précis pour les catégories ambiguës
+            
+            # Vérification pour Dossier de presse
+            dp_keywords = [
+                'dossier de presse', 'press kit', 'synopsis', 'fiche technique', 
+                'biographie du réalisateur', 'directeur de la photographie',
+                'cast and crew', 'casting', 'production notes', 'présentation du film',
+                'about the film', 'director statement', 'note d\'intention'
+            ]
+            if any(keyword in text_lower for keyword in dp_keywords):
+                category = 'Dossier de presse'
+            
+            # Vérification pour Revue de presse
+            rp_keywords = [
+                'critique', 'review', 'article', 'revue de presse', 'paru dans', 
+                'published in', 'quotation', 'citation', 'press quote', 'press review',
+                'extrait de presse', 'journal', 'magazine', 'newspaper', 'media review'
+            ]
+            if any(keyword in text_lower for keyword in rp_keywords):
+                category = 'Revue de presse'
+            
+            # Autres catégories
+            if 'facture' in text_lower or 'invoice' in text_lower: 
+                category = 'Factures'
+            elif 'contrat' in text_lower or 'agreement' in text_lower or 'contract' in text_lower: 
+                category = 'Contrats'
+            elif 'présentation' in text_lower or 'slides' in text_lower: 
+                category = 'Présentations'
 
-    # 3. Affinage par métadonnées EXIF (si image et catégorie ambiguë)
+    # 3. Affinage par métadonnées EXIF (si image)
     extracted_metadata = None
     if category in ['Photo HD', 'Divers'] and Image and file_path.suffix.lower() in ['.jpg', '.jpeg', '.tif', '.tiff']:
         extracted_metadata = get_image_metadata(file_path)
         if extracted_metadata:
             # Chercher des indices dans les métadonnées
             desc = str(extracted_metadata.get('ImageDescription', '')).lower()
-            keywords = str(extracted_metadata.get('Keywords', '')).lower() # Peut être un tag spécifique
+            keywords = str(extracted_metadata.get('Keywords', '')).lower()
             if 'affiche' in desc or 'poster' in desc or 'affiche' in keywords or 'poster' in keywords:
                 category = 'AfficheS'
-            # Ajouter d'autres règles basées sur EXIF
 
-    # 4. Utilisation de l'IA (si configurée et catégorie toujours ambiguë ou 'Divers')
-    # On fait confiance à l'IA pour reclasser même une catégorie déjà trouvée si elle semble générique
-    # Ou si la catégorie est 'Divers'
+    # 4. Utilisation de l'IA (si disponible et catégorie toujours ambiguë)
     should_use_ai = openai_client and (category == 'Divers' or category not in MEDIA_LABELS)
 
     if should_use_ai:
@@ -732,65 +1019,67 @@ async def categorize_file(file_path):
             folder_path_rel = str(file_path.parent.relative_to(SOURCE_DIR))
 
             # Préparer le contexte pour l'IA
-            context_info = f"Extension: {ext}\nChemin relatif: {folder_path_rel}"
+            context_info = f"Extension: {ext}\nNom du fichier: {file_path.name}\nChemin relatif: {folder_path_rel}"
             if extracted_text:
-                context_info += f"\nExtrait texte (max 100 chars): {extracted_text[:100]}..."
+                context_info += f"\nExtrait texte (max 300 chars): {extracted_text[:300]}..."
             if extracted_metadata:
-                 # Ajouter quelques métadonnées clés si elles existent
-                 meta_sample = {k: v for k, v in extracted_metadata.items() if k in ['ImageDescription', 'Keywords', 'Artist']}
-                 if meta_sample:
-                     context_info += f"\nMetadonnées image (échantillon): {json.dumps(meta_sample, ensure_ascii=False)}"
+                meta_sample = {k: v for k, v in extracted_metadata.items() if k in ['ImageDescription', 'Keywords', 'Artist']}
+                if meta_sample:
+                    context_info += f"\nMetadonnées image: {json.dumps(meta_sample, ensure_ascii=False)}"
 
-            # Prompt amélioré pour l'IA
+            # Prompt amélioré pour l'IA avec emphasis sur les cas spéciaux
             prompt = f"""
-            Classe ce fichier dans la catégorie la plus appropriée parmi la liste fournie. Analyse le nom, le chemin, l'extension et les extraits de contenu/métadonnées si disponibles.
+            Classe ce fichier dans la catégorie la plus appropriée parmi la liste fournie. Analyse le nom, le chemin, l'extension et les extraits de contenu/métadonnées.
 
-            Nom du fichier: {file_path.name}
             Contexte:
             {context_info}
 
-            Choisis UNE SEULE catégorie parmi celles-ci (respecte la casse):
-            - AfficheS (Affiches de film, posters)
-            - Photo HD (Photos de plateau, portraits, images promotionnelles haute résolution)
-            - Dossier de presse (Documents pour la presse: communiqués, synopsis, biographies...)
-            - Revue de presse (Articles de presse publiés, critiques, interviews scannées/transcrites)
-            - Documents administratifs (Documents internes, notes, mémos, non liés à une transaction)
-            - Factures (Factures, notes de frais, documents de paiement)
+            RÈGLES IMPORTANTES: 
+            - Les termes comme "quotes" et "citation" indiquent une REVUE DE PRESSE
+            - Les termes comme "DP", "press kit" ou "dossier de presse" indiquent un DOSSIER DE PRESSE
+            - Pour les affiches de film, utilise la catégorie AFFICHES
+            - Si le fichier contient des images de film ou des photos promotionnelles, c'est une PHOTO HD
+
+            Choisis UNE SEULE catégorie parmi:
+            - AfficheS (Affiches de film, posters promotionnels)
+            - Photo HD (Photos de plateau, portraits, images promotionnelles)
+            - Dossier de presse (Documents pour la presse: communiqués, synopsis, biographies)
+            - Revue de presse (Articles publiés, critiques, interviews, citations)
+            - Documents administratifs (Documents internes, formulaires, certificats)
+            - Factures (Factures, notes de frais, paiements)
             - Contrats (Contrats, accords légaux, licences)
-            - Présentations (Diaporamas, présentations type PowerPoint/Keynote)
-            - Médias (audio/vidéo) (Fichiers vidéo ou audio : rushes, bandes-annonces, interviews audio...)
-            - Divers (Uniquement si absolument aucune autre catégorie ne correspond)
+            - Présentations (Diaporamas, présentations type PowerPoint)
+            - Médias (audio/vidéo) (Fichiers vidéo ou audio)
+            - Divers (Uniquement si aucune autre catégorie ne correspond)
 
             Réponds UNIQUEMENT avec le nom exact de la catégorie choisie. Pas d'explication.
             """
 
             response = await openai_client.chat.completions.create(
-                model="gpt-3.5-turbo", # Ou gpt-4 si besoin de plus de précision
+                model="gpt-3.5-turbo",
                 messages=[
-                    {"role": "system", "content": f"Tu es un archiviste expert. Classe le fichier donné dans l'une des catégories suivantes: {', '.join(ALL_CATEGORIES)}."},
+                    {"role": "system", "content": f"Tu es un archiviste expert. Classifie précisément les fichiers selon les règles données."},
                     {"role": "user", "content": prompt}
                 ],
-                max_tokens=30, # Suffisant pour un nom de catégorie
-                temperature=0.2 # Plus déterministe
+                max_tokens=30,
+                temperature=0.2
             )
 
             ai_category = response.choices[0].message.content.strip()
 
             # Vérifier si la réponse de l'IA est une catégorie valide
             if ai_category in ALL_CATEGORIES:
-                # console.print(f"[grey]IA category for {file_name}: {ai_category}[/grey]") # Debug
-                category = ai_category # L'IA a priorité si elle donne une réponse valide
+                category = ai_category
             else:
-                # console.print(f"[yellow]IA category invalid: '{ai_category}' for {file_name}. Keeping previous: {category}[/yellow]")
-                pass # Garder la catégorie précédente si l'IA répond n'importe quoi
+                # Garder la catégorie précédente si l'IA répond n'importe quoi
+                pass
 
         except Exception as e:
-            console.print(f"[yellow]Erreur lors de la catégorisation IA pour {file_name}: {e}. Utilisation de la catégorie précédente: {category}[/yellow]")
-            # Ne rien faire, garder la catégorie déterminée avant l'IA
+            console.print(f"[yellow]Erreur lors de la catégorisation IA pour {file_name}: {e}[/yellow]")
+            # Garder la catégorie déterminée avant l'IA
 
     # Sauvegarder la décision finale dans le cache
     ai_cache[cache_key] = category
-    # Pas besoin de sauvegarder le cache ici à chaque fois, on le fera à la fin.
     return category
 
 def sanitize_filename(filename):
