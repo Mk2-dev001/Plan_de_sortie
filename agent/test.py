@@ -50,7 +50,7 @@ except ImportError:
 
 # Configuration
 SOURCE_DIR = Path("Chaplin")  # Remplacer par le dossier source réel
-DESTINATION_DIR = Path("SortedX")
+DESTINATION_DIR = Path("SortedY")
 LOG_FILE = "traitement_medias.csv"
 MEDIA_LABELS = {'AfficheS': '1', 'Photo HD': '2', 'Dossier de presse': '3', 'Revue de presse': '4'}
 # Inclure les autres catégories pour une meilleure correspondance interne
@@ -570,7 +570,6 @@ async def save_ai_cache():
              json.dump(ai_cache, f, indent=2, ensure_ascii=False)
      except Exception as e:
          console.print(f"[yellow]Impossible de sauvegarder le cache d'IA: {e}[/yellow]")
-
 async def detect_film_structure():
     """Analyser la structure des dossiers pour détecter les films dans un grand catalogue"""
     global next_id
@@ -726,23 +725,11 @@ async def detect_film_structure():
                 except Exception:
                     pass  # Ignorer les erreurs d'accès aux sous-dossiers
             
-            # 4. Si toujours pas trouvé mais dossier semble être un film, générer ID
-            if not film_id:
-                # Vérifier si ce dossier est probablement un film non répertorié
-                is_likely_film = (
-                    re.match(r'^(19|20)\d{2}\s*-\s*.+', folder_name) or 
-                    re.match(r'.+\(\s*(19|20)\d{2}\s*\)', folder_name) or
-                    any(k in folder_name_lower for k in ['film', 'movie', 'cinema'])
-                )
-                
-                if is_likely_film:
-                    # Générer un nouvel ID pour ce film non répertorié
-                    next_id += 1
-                    film_id = str(next_id).zfill(3)
-                    film_name = folder_name
-                    match_method = "film probable (ID généré)"
+            # 4. MODIFICATION: Ne plus générer d'ID pour les films non répertoriés
+            # Nous n'assignons plus d'ID généré aux dossiers qui semblent être des films
+            # Les fichiers de ces dossiers iront dans "Inconnu" si on ne peut pas les associer à un ID connu
             
-            # Si un film a été identifié, l'ajouter aux structures
+            # Si un film a été identifié (uniquement ceux avec ID Excel), l'ajouter aux structures
             if film_id and film_name:
                 console.print(f"[grey]Film détecté: '{folder_name}' → '{film_name}' (ID: {film_id}) via {match_method}[/grey]")
                 
@@ -812,29 +799,71 @@ def should_ignore_file(file_path):
         return True, "Fichier macOS '._'"
 
     return False, None # Ne pas ignorer
-
 async def determine_film_for_file(file_path, film_paths):
-    """Déterminer le film associé à un fichier avec alternatives externes"""
+    """Déterminer le film associé à un fichier avec alternatives externes et éviter les mauvaises correspondances"""
     file_str_lower = str(file_path).lower()
     file_name_lower = file_path.name.lower()
+    
+    # Liste des termes/films à traiter avec une attention particulière
+    problematic_matches = {
+        "1479": ["amputee", "amputation"],  # ID de "AMPUTEE (THE)"
+    }
     
     # Stratégie 1: Le fichier est DANS un dossier de film déjà identifié
     current_path = file_path.parent
     while current_path != SOURCE_DIR and current_path != current_path.parent:
         path_str = str(current_path)
         if path_str in film_paths:
-            return film_paths[path_str]
+            film_id = film_paths[path_str]
+            
+            # Vérification supplémentaire pour les cas problématiques
+            if film_id in problematic_matches:
+                keywords = problematic_matches[film_id]
+                
+                # Si c'est AMPUTEE (ID 1479) mais que le chemin ou le nom contient "kid" ou "gold rush",
+                # ne pas attribuer cet ID
+                if film_id == "1479" and any(term in file_str_lower for term in ["kid", "gold rush", "ruée", "or"]):
+                    # Chercher si un autre film serait plus approprié
+                    for title, id_val in real_film_ids.items():
+                        if isinstance(title, str) and len(title) > 3:
+                            title_lower = title.lower()
+                            if ("kid" in title_lower and "kid" in file_str_lower) or \
+                               ("gold" in title_lower and "gold" in file_str_lower) or \
+                               ("ruée" in title_lower and "ruée" in file_str_lower):
+                                return id_val
+                    
+                    # Si on n'a pas trouvé de meilleur match, ne pas retourner d'ID
+                    return None
+                
+                # Vérifier si le fichier contient vraiment un mot-clé du film problématique
+                if not any(keyword in file_str_lower for keyword in keywords):
+                    # Le fichier ne contient aucun mot-clé du film, on n'attribue pas cet ID
+                    return None
+            
+            return film_id
         current_path = current_path.parent
     
     # Stratégie 2: Recherche directe dans tous les titres connus (principaux et alternatifs)
     for title, film_id in real_film_ids.items():
         if isinstance(title, str) and len(title) > 3:  # Ignorer les titres trop courts
             title_lower = title.lower()
+            
             # Vérifier si le titre apparaît dans le nom du fichier ou le chemin
             if title_lower in file_name_lower or title_lower in file_str_lower:
+                # Vérification supplémentaire pour les cas problématiques
+                if film_id in problematic_matches and not any(keyword in file_str_lower for keyword in problematic_matches[film_id]):
+                    continue
+                
+                # Cas spécifiques pour THE KID vs AMPUTEE
+                if "kid" in file_str_lower and film_id == "1479":  # ID d'AMPUTEE
+                    # Chercher un meilleur match pour "kid"
+                    for alt_title, alt_id in real_film_ids.items():
+                        if isinstance(alt_title, str) and "kid" in alt_title.lower():
+                            return alt_id
+                
                 return film_id
     
-    # Stratégie 3: Matching flou si disponible
+    # Stratégie 3: Matching flou si disponible, avec prudence accrue
     if process:
         # Préparer une liste de titres à comparer
         titles = [t for t in real_film_ids.keys() if isinstance(t, str) and len(t) > 3]
@@ -843,16 +872,43 @@ async def determine_film_for_file(file_path, film_paths):
         best_matches = process.extractBests(file_name_lower, titles, scorer=fuzz.partial_ratio, score_cutoff=FUZZY_MATCH_THRESHOLD_FILE)
         if best_matches:
             best_title = best_matches[0][0]
-            return real_film_ids[best_title]
+            film_id = real_film_ids[best_title]
+            
+            # Vérification supplémentaire pour éviter les mauvaises correspondances
+            if film_id in problematic_matches:
+                # Si c'est THE KID ou GOLD RUSH, ne pas attribuer l'ID d'AMPUTEE (THE)
+                if film_id == "1479" and any(term in file_str_lower for term in ["kid", "gold rush", "ruée", "or"]):
+                    return None
+                
+                # Vérifier si le fichier contient vraiment un mot-clé du film problématique
+                if not any(keyword in file_str_lower for keyword in problematic_matches[film_id]):
+                    # Le fichier ne contient aucun mot-clé du film, on n'attribue pas cet ID
+                    return None
+            
+            return film_id
         
-        # Ensuite avec le chemin complet
+        # Ensuite avec le chemin complet, mais avec une vérification plus stricte
         best_matches = process.extractBests(file_str_lower, titles, scorer=fuzz.partial_ratio, score_cutoff=FUZZY_MATCH_THRESHOLD_FILE)
         if best_matches:
             best_title = best_matches[0][0]
-            return real_film_ids[best_title]
+            film_id = real_film_ids[best_title]
+            
+            # Vérification supplémentaire pour les cas problématiques
+            if film_id in problematic_matches:
+                # Si c'est AMPUTEE mais que le chemin contient "kid" ou "gold rush", ne pas attribuer cet ID
+                if film_id == "1479" and any(term in file_str_lower for term in ["kid", "gold rush", "ruée", "or"]):
+                    return None
+                
+                # Vérifier si le fichier contient vraiment un mot-clé du film problématique
+                if not any(keyword in file_str_lower for keyword in problematic_matches[film_id]):
+                    # Le fichier ne contient aucun mot-clé du film, on n'attribue pas cet ID
+                    return None
+            
+            return film_id
     
     # Aucun film identifié
     return None
+
 def categorize_file_by_rules(file_path):
     """Catégoriser un fichier selon des règles améliorées basées sur nom/chemin/extension."""
     file_name_lower = file_path.name.lower()
@@ -1104,16 +1160,20 @@ def sanitize_filename(filename):
 
     return filename
 
-
 def move_file(file_path, category, film_id=None, media_type_label=None):
     """Déplacer et renommer un fichier avec gestion des erreurs et convention de nommage."""
     try:
-        # Dossier film = nom du film (ou ID si indisponible)
-        film_folder = sanitize_filename(DETECTED_FILMS[film_id] if film_id in DETECTED_FILMS else "Inconnu")
+        # Dossier film = nom du film si connu avec certitude, sinon "Inconnu"
+        film_folder = "Inconnu"
+        
+        # Vérifier explicitement que l'ID existe dans DETECTED_FILMS (films identifiés avec certitude)
+        if film_id in DETECTED_FILMS:
+            film_folder = sanitize_filename(DETECTED_FILMS[film_id])
+        
         base_target_dir = DESTINATION_DIR / film_folder
 
         # Créer sous-dossier selon type (ex: '1_123')
-        if category in MEDIA_LABELS and film_id and media_type_label:
+        if category in MEDIA_LABELS and film_id and media_type_label and film_folder != "Inconnu":
             sub_dir_name = f"{media_type_label}_{film_id}"
             target_dir = base_target_dir / sub_dir_name
         else:
@@ -1166,6 +1226,14 @@ async def process_file(file_path, film_paths, detected_films_map):
 
         # 4. Déterminer le film associé (si possible)
         film_id = await determine_film_for_file(file_path, film_paths)
+        
+        # Vérification supplémentaire: s'assurer que l'ID existe dans les films détectés avec certitude
+        if film_id and film_id not in detected_films_map:
+            # Si l'ID existe dans real_film_ids mais pas dans detected_films_map, 
+            # c'est une correspondance incertaine, on la rejette
+            film_id = None
+            log_entry['reason'] = "ID trouvé mais ne correspond pas à un film détecté avec certitude"
+        
         film_name = detected_films_map.get(film_id, None) if film_id else None
         log_entry['film_id'] = film_id
         log_entry['film_name'] = film_name
@@ -1173,26 +1241,18 @@ async def process_file(file_path, film_paths, detected_films_map):
         # 5. Déplacer et renommer
         media_type_label = MEDIA_LABELS.get(category) # Obtient '1', '2', etc. si c'est une catégorie média principale
 
-        # Si la catégorie est une des principales et qu'on n'a pas trouvé de film_id,
-        # on DOIT le mettre dans 'Divers' ou une catégorie générique, car le nommage l'exige.
-        # Ou alors, on pourrait lui assigner un ID 'UNKNOWN' ou '000'. Choisissons 'Divers' pour l'instant.
-        final_category = category
-        final_film_id = film_id
-        if category in MEDIA_LABELS and not film_id:
-             final_category = 'Divers' # Réaffecter car pas de film ID
-             final_film_id = None     # Assurer qu'on ne met pas d'ID
-             media_type_label = None # Pas de label de type non plus
-             log_entry['reason'] = f"Réaffecté à Divers (catégorie {category} sans ID film)"
+        # Si la catégorie est une des principales mais qu'on n'a pas trouvé de film_id,
+        # ou si l'ID n'est pas dans detected_films_map (correspondance incertaine),
+        # le fichier ira dans le dossier "Inconnu"
+        if not film_id or film_id not in detected_films_map:
+            if category in MEDIA_LABELS:
+                media_type_label = None  # Pas de label de type média
+                log_entry['reason'] = f"Catégorie {category} sans ID film confirmé, ira dans Inconnu/{category}"
 
-
-        new_path, error_reason = move_file(file_path, final_category, final_film_id, media_type_label)
+        new_path, error_reason = move_file(file_path, category, film_id, media_type_label)
 
         if new_path:
             log_entry.update({'status': 'success', 'new_path': new_path})
-            # Si on a réaffecté à Divers, on met à jour la catégorie dans le log aussi
-            if final_category != category:
-                 log_entry['category'] = final_category
-
         else:
             log_entry.update({'status': 'error', 'reason': f"Échec du déplacement: {error_reason}"})
 
@@ -1215,10 +1275,6 @@ async def process_file(file_path, film_paths, detected_films_map):
             new_path=log_entry.get('new_path'),
             reason=log_entry.get('reason')
         )
-        # Log du temps de traitement par fichier (optionnel, pour analyse de perf)
-        # end_process_time = time.monotonic()
-        # print(f"Processed {file_path.name} in {end_process_time - start_process_time:.2f}s")
-
 
 async def process_batch(batch, film_paths, detected_films_map):
     """Traiter un lot de fichiers en parallèle."""
