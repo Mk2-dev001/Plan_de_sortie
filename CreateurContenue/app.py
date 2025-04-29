@@ -595,65 +595,202 @@ class DataManager:
         else:
             return "below_average"
         
+    def _analyze_sentiment(self, text):
+        """Analyse le sentiment d'un texte avec OpenAI"""
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": "Tu es un expert en analyse de sentiment. Réponds uniquement avec un score entre -1 (très négatif) et 1 (très positif)."},
+                    {"role": "user", "content": f"Analyse le sentiment de ce texte et donne un score entre -1 et 1: {text}"}
+                ],
+                temperature=0,
+                max_tokens=10
+            )
+            try:
+                sentiment_score = float(response.choices[0].message.content.strip())
+                return max(-1, min(1, sentiment_score))  # Assure que le score est entre -1 et 1
+            except ValueError:
+                logger.error("Impossible de convertir la réponse OpenAI en score")
+                return 0
+        except Exception as e:
+            logger.error(f"Erreur lors de l'analyse de sentiment: {str(e)}")
+            return 0
+
     def _analyze_reputation(self, username):
         """Analyse la réputation du créateur (API ou démo)"""
-        if self.use_api and self.news_api_key:
-            try:
-                # Recherche d'articles polémiques avec NewsAPI
-                url = f'https://newsapi.org/v2/everything?q={username}&language=fr&sortBy=relevancy&pageSize=5&apiKey={self.news_api_key}'
-                response = requests.get(url)
-                if response.status_code == 200:
-                    articles = response.json().get("articles", [])
-                    controversies = []
-                    summary = "Aucune polémique détectée."
-                    for article in articles:
-                        if any(mot in article["title"].lower() for mot in ["polémique", "scandale", "controverse", "bad buzz", "accusé", "racisme", "harcèlement", "agression", "plainte", "procès"]):
-                            controversies.append({"title": article["title"], "url": article["url"]})
-                    if controversies:
-                        summary = f"{len(controversies)} polémique(s) détectée(s) dans la presse."
-                    return {
-                        "score": "Non disponible",
-                        "risk_level": "unknown" if not controversies else "high",
-                        "status": "Non disponible",
-                        "summary": summary,
-                        "controversies": controversies
+        # Mots-clés étendus pour la détection des polémiques
+        CONTROVERSY_KEYWORDS = {
+            "polémique": -0.8,
+            "scandale": -0.9,
+            "controverse": -0.7,
+            "bad buzz": -0.6,
+            "accusé": -0.7,
+            "racisme": -1.0,
+            "harcèlement": -1.0,
+            "agression": -1.0,
+            "plainte": -0.8,
+            "procès": -0.7,
+            "critique": -0.4,
+            "clash": -0.5,
+            "drama": -0.5,
+            "fake": -0.6,
+            "mensonge": -0.7,
+            "tricherie": -0.8,
+            "boycott": -0.8,
+            "fraude": -0.9,
+            "manipulation": -0.8,
+            "malversation": -0.9
+        }
+
+        try:
+            # Construire l'URL de recherche Google News
+            search_query = f"{username} youtube OR {username} influenceur"
+            encoded_query = requests.utils.quote(search_query)
+            url = f"https://news.google.com/rss/search?q={encoded_query}&hl=fr&gl=FR&ceid=FR:fr"
+            
+            logger.info(f"Tentative d'appel à Google News RSS pour {username}")
+            response = requests.get(url)
+            logger.info(f"Réponse Google News RSS reçue avec status code: {response.status_code}")
+            
+            if response.status_code == 200:
+                # Parser le XML
+                from xml.etree import ElementTree as ET
+                root = ET.fromstring(response.content)
+                
+                # Extraire les articles
+                articles = []
+                for item in root.findall('.//item'):
+                    article = {
+                        "title": item.find('title').text,
+                        "description": item.find('description').text,
+                        "url": item.find('link').text,
+                        "date": item.find('pubDate').text,
+                        "source": "Google News"
                     }
-                    # Si pas de controverse détectée
-                    return {
-                        "score": "Non disponible",
-                        "risk_level": "low",
-                        "status": "Non disponible",
-                        "summary": summary,
-                        "controversies": []
-                    }
-                else:
-                    logger.warning(f"Erreur NewsAPI: {response.status_code}")
+                    articles.append(article)
+                
+                logger.info(f"Nombre d'articles trouvés pour {username}: {len(articles)}")
+                
+                # Si aucun article pertinent n'est trouvé
+                if not articles:
                     return {
                         "score": "Non disponible",
                         "risk_level": "unknown",
-                        "status": "Non disponible",
-                        "summary": "Aucune donnée de réputation disponible (erreur NewsAPI)",
-                        "controversies": []
+                        "status": "no_data",
+                        "summary": f"Aucun article mentionnant {username} trouvé.",
+                        "controversies": [],
+                        "all_articles": [],
+                        "metrics": {
+                            "average_sentiment": 0,
+                            "controversy_score": 0,
+                            "articles_analyzed": 0
+                        }
                     }
-            except Exception as e:
-                logger.error(f"Erreur lors de l'analyse de réputation NewsAPI: {str(e)}")
+                
+                # Initialisation des variables d'analyse
+                controversies = []
+                all_articles = []
+                total_sentiment = 0
+                weighted_controversy_score = 0
+                articles_analyzed = 0
+                
+                for article in articles:
+                    title = article["title"].lower()
+                    description = article["description"].lower()
+                    full_text = f"{title} {description}"
+                    
+                    # Analyse du sentiment
+                    sentiment = self._analyze_sentiment(full_text)
+                    total_sentiment += sentiment
+                    articles_analyzed += 1
+                    
+                    # Détection des mots-clés de controverse
+                    article_controversy_score = 0
+                    found_keywords = []
+                    
+                    for keyword, impact in CONTROVERSY_KEYWORDS.items():
+                        if keyword in title or keyword in description:
+                            article_controversy_score += impact
+                            found_keywords.append(keyword)
+                    
+                    # Préparation des données de l'article
+                    article_data = {
+                        "title": article["title"],
+                        "url": article["url"],
+                        "date": article["date"],
+                        "source": article["source"],
+                        "sentiment": sentiment,
+                        "controversy_score": article_controversy_score
+                    }
+                    
+                    if found_keywords:
+                        article_data["keywords"] = found_keywords
+                        controversies.append(article_data)
+                        weighted_controversy_score += article_controversy_score
+                    
+                    all_articles.append(article_data)
+                
+                # Calcul des scores finaux
+                avg_sentiment = total_sentiment / articles_analyzed if articles_analyzed > 0 else 0
+                reputation_score = int((avg_sentiment + 1) * 50)  # Convertit [-1,1] en [0,100]
+                
+                # Ajustement du score en fonction des controverses
+                if weighted_controversy_score < 0:
+                    reputation_score = max(0, reputation_score + int(weighted_controversy_score * 10))
+                
+                # Détermination du niveau de risque
+                if reputation_score >= 70:
+                    risk_level = "low"
+                elif reputation_score >= 40:
+                    risk_level = "medium"
+                else:
+                    risk_level = "high"
+                
+                # Préparation du résumé
+                if controversies:
+                    summary = f"{len(controversies)} polémique(s) détectée(s) dans la presse sur {articles_analyzed} articles analysés. Score de réputation: {reputation_score}/100"
+                    logger.warning(f"Polémiques détectées pour {username}: {len(controversies)}")
+                else:
+                    summary = f"Aucune polémique détectée sur {articles_analyzed} articles analysés. Score de réputation: {reputation_score}/100"
+                
+                return {
+                    "score": reputation_score,
+                    "risk_level": risk_level,
+                    "status": "positive" if reputation_score >= 60 else "negative",
+                    "summary": summary,
+                    "controversies": controversies,
+                    "all_articles": all_articles,
+                    "metrics": {
+                        "average_sentiment": avg_sentiment,
+                        "controversy_score": weighted_controversy_score,
+                        "articles_analyzed": articles_analyzed
+                    }
+                }
+                
+            else:
+                error_msg = f"Erreur Google News RSS: {response.status_code}"
+                logger.error(error_msg)
                 return {
                     "score": "Non disponible",
                     "risk_level": "unknown",
-                    "status": "Non disponible",
-                    "summary": "Aucune donnée de réputation disponible (erreur NewsAPI)",
-                    "controversies": []
+                    "status": "error",
+                    "summary": f"Aucune donnée de réputation disponible ({error_msg})",
+                    "controversies": [],
+                    "all_articles": [],
+                    "metrics": {}
                 }
-        else:
-            # Mode démo (simulé)
+                
+        except Exception as e:
+            logger.error(f"Erreur lors de l'analyse de réputation: {str(e)}", exc_info=True)
             return {
-                "score": 85,
-                "risk_level": "low",
-                "status": "positive",
-                "summary": "Aucune polémique majeure détectée.",
-                "controversies": [
-                    {"title": "Polémique sur la vidéo X", "url": "https://exemple.com/article1"}
-                ]
+                "score": "Non disponible",
+                "risk_level": "unknown",
+                "status": "error",
+                "summary": "Aucune donnée de réputation disponible (erreur lors de l'analyse)",
+                "controversies": [],
+                "all_articles": [],
+                "metrics": {}
             }
     
     def _analyze_video_stats(self, channel_id, period_months=None):
@@ -1004,46 +1141,93 @@ def display_reputation_analysis(reputation_data):
     
     risk_colors = {
         "low": "normal",
-        "medium": "normal",
+        "medium": "inverse",
         "high": "inverse",
         "unknown": "off"
     }
     
-    col1, col2 = st.columns(2)
+    # Métriques principales
+    col1, col2, col3 = st.columns(3)
     
     with col1:
         score = reputation_data.get('score', 'Non disponible')
-        logger.info(f"Score de réputation : {score}/100")
+        logger.info(f"Score de réputation : {score}")
         st.metric(
             "Score de réputation",
-            f"{score}/100" if score != 'Non disponible' else score,
+            f"{score}/100" if isinstance(score, (int, float)) else score,
             delta=None,
-            delta_color=risk_colors.get(risk_level, "off"),
-            help="Le score de réputation n'est pas disponible car aucune API spécialisée n'est connectée."
+            delta_color=risk_colors.get(risk_level, 'off'),
+            help="Score basé sur l'analyse de sentiment des articles et la présence de controverses"
         )
         
     with col2:
-        logger.debug(f"Affichage du niveau de risque avec couleur : {risk_colors.get(risk_level, 'off')}")
+        logger.info(f"Niveau de risque : {risk_level}")
         st.metric(
             "Niveau de risque",
             risk_level.capitalize(),
             delta=None,
             delta_color=risk_colors.get(risk_level, "off"),
-            help="Le niveau de risque est basé sur le score de réputation et la détection de polémiques."
+            help="Évaluation du risque basée sur le score de réputation et les controverses détectées"
         )
-    # Résumé (toujours affiché)
+        
+    with col3:
+        metrics = reputation_data.get("metrics", {})
+        avg_sentiment = metrics.get("average_sentiment", 0)
+        logger.info(f"Sentiment moyen : {avg_sentiment:.2f}")
+        st.metric(
+            "Sentiment moyen",
+            f"{avg_sentiment:.2f}",
+            delta=None,
+            delta_color="normal" if avg_sentiment >= 0 else "inverse",
+            help="Moyenne du sentiment des articles (-1 très négatif, +1 très positif)"
+        )
+    
+    # Résumé
     summary = reputation_data.get("summary", "")
-    st.info(f"Résumé : {summary if summary else 'Aucune donnée de réputation disponible.'}")
-    # Controverses
-    if reputation_data.get("controversies"):
-        controversies = reputation_data["controversies"]
-        logger.warning(f"Controverses détectées : {controversies}")
-        st.warning("Controverses détectées")
-        for controversy in controversies:
-            titre = controversy.get("title", "Article")
-            url = controversy.get("url", "#")
-            st.markdown(f"- [{titre}]({url})")
+    st.info(f"📊 {summary}")
+    
+    # Métriques détaillées
+    if metrics:
+        with st.expander("📈 Métriques détaillées"):
+            st.markdown(f"""
+            - Articles analysés : {metrics.get('articles_analyzed', 0)}
+            - Score de controverse : {metrics.get('controversy_score', 0):.2f}
+            """)
+    
+    # Articles controversés
+    controversies = reputation_data.get("controversies", [])
+    if controversies:
+        with st.expander(f"⚠️ Controverses détectées ({len(controversies)})"):
+            for controversy in controversies:
+                st.markdown(f"""
+                ---
+                **{controversy.get('title')}**  
+                📰 Source : {controversy.get('source', 'Inconnue')}  
+                📅 Date : {controversy.get('date', 'Inconnue')}  
+                🔍 Mots-clés : {', '.join(controversy.get('keywords', []))}  
+                🌡️ Score de controverse : {controversy.get('controversy_score', 0):.2f}  
+                🔗 [Lire l'article]({controversy.get('url', '#')})
+                """)
+    
+    # Tous les articles
+    all_articles = reputation_data.get("all_articles", [])
+    if all_articles:
+        with st.expander(f"📰 Tous les articles ({len(all_articles)})"):
+            # Tri des articles par sentiment
+            sorted_articles = sorted(all_articles, key=lambda x: x.get('sentiment', 0), reverse=True)
             
+            for article in sorted_articles:
+                sentiment = article.get('sentiment', 0)
+                sentiment_color = "green" if sentiment > 0.2 else "red" if sentiment < -0.2 else "gray"
+                st.markdown(f"""
+                ---
+                **{article.get('title')}**  
+                📰 Source : {article.get('source', 'Inconnue')}  
+                📅 Date : {article.get('date', 'Inconnue')}  
+                🎭 Sentiment : <span style='color: {sentiment_color}'>{sentiment:.2f}</span>  
+                🔗 [Lire l'article]({article.get('url', '#')})
+                """, unsafe_allow_html=True)
+
 def display_content_stats(stats_data, content_type):
     """Affiche les statistiques de contenu"""
     logger.info(f"Affichage des statistiques {content_type}")
@@ -1160,4 +1344,4 @@ def main():
     logger.info("=== FIN DE L'APPLICATION ===")
             
 if __name__ == "__main__":
-    main() 
+    main()
