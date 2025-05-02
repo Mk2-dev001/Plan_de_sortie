@@ -30,11 +30,11 @@ import dateutil.parser
 
 # Configuration du logging
 logging.basicConfig(
-    level=logging.INFO,  # Changé à INFO pour réduire les logs verbeux
+    level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('app_debug.log'),  # Log dans un fichier
-        logging.StreamHandler()  # Log dans la console
+        logging.FileHandler('app_debug.log'),
+        logging.StreamHandler()
     ]
 )
 logger = logging.getLogger(__name__)
@@ -44,6 +44,13 @@ logging.getLogger("httpcore").setLevel(logging.WARNING)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("openai").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
+
+# Constantes
+API_QUOTA_EXCEEDED_ERROR = "quotaExceeded"
+API_RETRY_DELAY = 1
+API_MAX_RETRIES = 3
+CACHE_DURATION = 3600  # 1 heure
+CLEANUP_INTERVAL = 300  # 5 minutes
 
 # Log au démarrage de l'application
 logger.info("=== DÉMARRAGE DE L'APPLICATION ===")
@@ -88,37 +95,50 @@ else:
 
 class APICache:
     """Gestionnaire de cache pour les requêtes API"""
-    def __init__(self, cache_duration=3600):
+    def __init__(self, cache_duration=CACHE_DURATION):
         self.cache = {}
         self.cache_duration = cache_duration
         self.last_cleanup = time.time()
 
     def get(self, key):
         """Récupère une valeur du cache"""
+        self._cleanup_if_needed()
         if key in self.cache:
             data, timestamp = self.cache[key]
             if time.time() - timestamp < self.cache_duration:
+                logger.debug(f"Cache hit pour {key}")
                 return data
             else:
+                logger.debug(f"Cache expiré pour {key}")
                 del self.cache[key]
         return None
 
     def set(self, key, value):
         """Stocke une valeur dans le cache"""
         self.cache[key] = (value, time.time())
-        self._cleanup_if_needed()
+        logger.debug(f"Cache mis à jour pour {key}")
 
     def _cleanup_if_needed(self):
         """Nettoie le cache si nécessaire"""
         current_time = time.time()
-        if current_time - self.last_cleanup > 3600:  # Nettoyage toutes les heures
-            self.cache = {k: v for k, v in self.cache.items() 
-                         if current_time - v[1] < self.cache_duration}
+        if current_time - self.last_cleanup > CLEANUP_INTERVAL:
+            self._cleanup()
             self.last_cleanup = current_time
+
+    def _cleanup(self):
+        """Nettoie les entrées expirées du cache"""
+        current_time = time.time()
+        expired_keys = [
+            key for key, (_, timestamp) in self.cache.items()
+            if current_time - timestamp >= self.cache_duration
+        ]
+        for key in expired_keys:
+            del self.cache[key]
+        logger.debug(f"Nettoyage du cache: {len(expired_keys)} entrées supprimées")
 
 class APIRequestManager:
     """Gestionnaire de requêtes API avec retry et rate limiting"""
-    def __init__(self, max_retries=3, retry_delay=1):
+    def __init__(self, max_retries=API_MAX_RETRIES, retry_delay=API_RETRY_DELAY):
         self.max_retries = max_retries
         self.retry_delay = retry_delay
         self.last_request_time = {}
@@ -133,11 +153,23 @@ class APIRequestManager:
                 result = request_func(*args, **kwargs)
                 self.last_request_time[platform] = time.time()
                 return result
+            except HttpError as e:
+                if API_QUOTA_EXCEEDED_ERROR in str(e):
+                    logger.error(f"Quota API dépassé pour {platform}")
+                    raise
+                if attempt == self.max_retries - 1:
+                    logger.error(f"Échec final de la requête {platform}: {str(e)}")
+                    raise
+                delay = self.retry_delay * (2 ** attempt)
+                logger.warning(f"Tentative {attempt + 1} échouée pour {platform}: {str(e)}. Nouvelle tentative dans {delay}s")
+                time.sleep(delay)
             except Exception as e:
                 if attempt == self.max_retries - 1:
+                    logger.error(f"Erreur inattendue pour {platform}: {str(e)}")
                     raise
-                time.sleep(self.retry_delay * (attempt + 1))
-                logger.warning(f"Tentative {attempt + 1} échouée pour {platform}: {str(e)}")
+                delay = self.retry_delay * (2 ** attempt)
+                logger.warning(f"Tentative {attempt + 1} échouée pour {platform}: {str(e)}. Nouvelle tentative dans {delay}s")
+                time.sleep(delay)
 
     def _wait_for_rate_limit(self, platform):
         """Attend si nécessaire pour respecter les limites de taux"""
@@ -485,10 +517,15 @@ class DataManager:
         
     def get_platform_data(self, username, platform):
         """Récupère les données d'une plateforme avec gestion du cache"""
+        if not username:
+            logger.error("Nom d'utilisateur non fourni")
+            return None
+            
         cache_key = f"{platform}_{username}_{'api' if self.use_api else 'demo'}"
         cached_data = self.cache.get(cache_key)
         
         if cached_data:
+            logger.info(f"Données récupérées du cache pour {username} sur {platform}")
             return cached_data
             
         try:
@@ -499,35 +536,57 @@ class DataManager:
                 
             if data:
                 self.cache.set(cache_key, data)
+                logger.info(f"Données mises en cache pour {username} sur {platform}")
                 return data
                 
+        except HttpError as e:
+            if API_QUOTA_EXCEEDED_ERROR in str(e):
+                logger.error(f"Quota API dépassé pour {platform}")
+                if not self.use_api:
+                    return self._get_fallback_data(platform)
+                return None
+            logger.error(f"Erreur HTTP lors de la récupération des données {platform}: {str(e)}")
+            if not self.use_api:
+                return self._get_fallback_data(platform)
+            return None
         except Exception as e:
             logger.error(f"Erreur lors de la récupération des données {platform}: {str(e)}")
-            if self.use_api:
-                return None
-            # Toujours retourner la structure complète attendue
-            stats = self.fallback_data.get_generic_stats(platform)
-            return {
-                "platform_data": {},
-                "engagement_metrics": {},
-                "reputation_data": {},
-                "video_stats": stats if platform.lower() == "youtube" else {},
-                "post_stats": stats if platform.lower() == "instagram" else {}
-            }
+            if not self.use_api:
+                return self._get_fallback_data(platform)
+            return None
+            
+    def _get_fallback_data(self, platform):
+        """Récupère les données de fallback pour une plateforme"""
+        stats = self.fallback_data.get_generic_stats(platform)
+        return {
+            "platform_data": {},
+            "engagement_metrics": {},
+            "reputation_data": {},
+            "video_stats": stats if platform.lower() == "youtube" else {},
+            "post_stats": stats if platform.lower() == "instagram" else {}
+        }
             
     def _fetch_youtube_data(self, username):
         """Récupère les données YouTube brutes"""
         channel_id = self._get_youtube_channel_id(username)
         if not channel_id:
+            logger.error(f"ID de chaîne YouTube non trouvé pour {username}")
             return None
         
         if self.use_api:
-            stats = self.request_manager.execute_request(
-                "youtube",
-                lambda: self._get_youtube_stats_api(channel_id)
-            )
+            try:
+                stats = self.request_manager.execute_request(
+                    "youtube",
+                    lambda: self._get_youtube_stats_api(channel_id)
+                )
+            except HttpError as e:
+                if API_QUOTA_EXCEEDED_ERROR in str(e):
+                    logger.error("Quota YouTube API dépassé")
+                    raise
+                logger.error(f"Erreur lors de la récupération des stats YouTube: {str(e)}")
+                return None
         else:
-            stats = self._get_youtube_stats_demo("demo")
+            stats = self._get_youtube_stats_demo(username)
         
         if not stats:
             return None
@@ -621,31 +680,32 @@ class DataManager:
         """Analyse la réputation du créateur (API ou démo)"""
         # Mots-clés étendus pour la détection des polémiques
         CONTROVERSY_KEYWORDS = {
-            "polémique": -0.8,
-            "scandale": -0.9,
-            "controverse": -0.7,
-            "bad buzz": -0.6,
-            "accusé": -0.7,
-            "racisme": -1.0,
-            "harcèlement": -1.0,
-            "agression": -1.0,
-            "plainte": -0.8,
-            "procès": -0.7,
-            "critique": -0.4,
-            "clash": -0.5,
-            "drama": -0.5,
-            "fake": -0.6,
-            "mensonge": -0.7,
-            "tricherie": -0.8,
-            "boycott": -0.8,
-            "fraude": -0.9,
-            "manipulation": -0.8,
-            "malversation": -0.9
+            "polémique": -0.4,  # Réduit l'impact des mots-clés
+            "scandale": -0.5,
+            "controverse": -0.3,
+            "bad buzz": -0.3,
+            "accusé": -0.3,
+            "racisme": -0.8,  # Garde un impact fort pour les sujets graves
+            "harcèlement": -0.8,
+            "agression": -0.8,
+            "plainte": -0.3,
+            "procès": -0.3,
+            "critique": -0.2,
+            "clash": -0.2,
+            "drama": -0.2,
+            "fake": -0.3,
+            "mensonge": -0.3,
+            "tricherie": -0.4,
+            "boycott": -0.3,
+            "fraude": -0.5,
+            "manipulation": -0.4,
+            "malversation": -0.5
         }
 
         try:
-            # Construire l'URL de recherche Google News
-            search_query = f"{username} youtube OR {username} influenceur"
+            # Construire l'URL de recherche Google News avec des guillemets pour la recherche exacte
+            # et en excluant les termes non pertinents
+            search_query = f'"{username}" (youtube OR influenceur OR créateur) -anime -manga -japonais -japon'
             encoded_query = requests.utils.quote(search_query)
             url = f"https://news.google.com/rss/search?q={encoded_query}&hl=fr&gl=FR&ceid=FR:fr"
             
@@ -661,9 +721,16 @@ class DataManager:
                 # Extraire les articles
                 articles = []
                 for item in root.findall('.//item'):
+                    title = item.find('title').text
+                    description = item.find('description').text
+                    
+                    # Vérifier si l'article est vraiment pertinent
+                    if username.lower() not in title.lower() and username.lower() not in description.lower():
+                        continue
+                        
                     article = {
-                        "title": item.find('title').text,
-                        "description": item.find('description').text,
+                        "title": title,
+                        "description": description,
                         "url": item.find('link').text,
                         "date": item.find('pubDate').text,
                         "source": "Google News"
@@ -735,24 +802,28 @@ class DataManager:
                 avg_sentiment = total_sentiment / articles_analyzed if articles_analyzed > 0 else 0
                 reputation_score = int((avg_sentiment + 1) * 50)  # Convertit [-1,1] en [0,100]
                 
-                # Ajustement du score en fonction des controverses
+                # Ajustement du score en fonction des controverses (moins punitif)
                 if weighted_controversy_score < 0:
-                    reputation_score = max(0, reputation_score + int(weighted_controversy_score * 10))
+                    reputation_score = max(0, reputation_score + int(weighted_controversy_score * 5))  # Réduit l'impact des controverses
                 
-                # Détermination du niveau de risque
-                if reputation_score >= 70:
-                    risk_level = "low"
+                # Détermination du niveau de risque avec des seuils plus cléments
+                if reputation_score >= 80:
+                    risk_level = "excellent"
+                elif reputation_score >= 60:
+                    risk_level = "bon"
                 elif reputation_score >= 40:
-                    risk_level = "medium"
+                    risk_level = "moyen"
+                elif reputation_score >= 20:
+                    risk_level = "à surveiller"
                 else:
-                    risk_level = "high"
+                    risk_level = "risqué"
                 
                 # Préparation du résumé
                 if controversies:
-                    summary = f"{len(controversies)} polémique(s) détectée(s) dans la presse sur {articles_analyzed} articles analysés. Score de réputation: {reputation_score}/100"
+                    summary = f"{len(controversies)} polémique(s) détectée(s) dans la presse sur {articles_analyzed} articles analysés."
                     logger.warning(f"Polémiques détectées pour {username}: {len(controversies)}")
                 else:
-                    summary = f"Aucune polémique détectée sur {articles_analyzed} articles analysés. Score de réputation: {reputation_score}/100"
+                    summary = f"Aucune polémique détectée sur {articles_analyzed} articles analysés."
                 
                 return {
                     "score": reputation_score,
@@ -794,111 +865,315 @@ class DataManager:
             }
     
     def _analyze_video_stats(self, channel_id, period_months=None):
-        if self.use_api:
-            try:
-                youtube = get_youtube_client()
-                # Récupérer les vidéos sur la période demandée
-                video_ids = []
-                video_info = []
-                nextPageToken = None
-                now = datetime.datetime.utcnow()
-                cutoff = None
-                if period_months:
-                    cutoff = now - datetime.timedelta(days=30*period_months)
-                for _ in range(10):  # Jusqu'à 250 vidéos max (10 pages)
-                    search_response = youtube.search().list(
-                        channelId=channel_id,
-                        part="id,snippet",
-                        order="date",
-                        maxResults=25,
-                        type="video",
-                        pageToken=nextPageToken
-                    ).execute()
-                    for item in search_response["items"]:
-                        published_at = dateutil.parser.parse(item["snippet"]["publishedAt"]).replace(tzinfo=None)
-                        if cutoff and published_at < cutoff:
-                            continue
-                        video_ids.append(item["id"]["videoId"])
-                        video_info.append({
-                            "videoId": item["id"]["videoId"],
-                            "title": item["snippet"]["title"],
-                            "publishedAt": published_at
-                        })
-                    nextPageToken = search_response.get("nextPageToken")
-                    if not nextPageToken:
-                        break
-                if not video_ids:
-                    return {}
-                # Récupérer les stats des vidéos
-                stats_response = youtube.videos().list(
-                    part="statistics,snippet",
-                    id=",".join(video_ids)
-                ).execute()
-                # Catégorisation enrichie par mots-clés
-                categories = {
-                    "gaming": ["gaming", "jeu", "game", "minecraft", "fortnite", "gta", "call of duty", "fifa"],
-                    "vlog": ["vlog", "daily", "journee", "routine", "voyage", "travel"],
-                    "music": ["music", "musique", "clip", "cover", "chanson", "song"],
-                    "challenge": ["challenge", "défi", "defi"],
-                    "reaction": ["reaction", "réaction"],
-                    "tuto": ["tuto", "tutorial", "astuce", "how to", "conseil"],
-                    "humour": ["humour", "drôle", "blague", "sketch", "comédie", "funny"],
-                    "sport": ["sport", "football", "basket", "tennis", "match", "entrainement", "workout"],
-                    "autre": []
-                }
-                cat_stats = {cat: {"count": 0, "total_views": 0, "total_likes": 0, "total_comments": 0} for cat in categories}
-                for item in stats_response["items"]:
-                    title = item["snippet"]["title"].lower()
-                    stats = item["statistics"]
-                    found = False
-                    for cat, keywords in categories.items():
-                        if any(kw in title for kw in keywords):
-                            cat_stats[cat]["count"] += 1
-                            cat_stats[cat]["total_views"] += int(stats.get("viewCount", 0))
-                            cat_stats[cat]["total_likes"] += int(stats.get("likeCount", 0))
-                            cat_stats[cat]["total_comments"] += int(stats.get("commentCount", 0))
-                            found = True
-                            break
-                    if not found:
-                        cat_stats["autre"]["count"] += 1
-                        cat_stats["autre"]["total_views"] += int(stats.get("viewCount", 0))
-                        cat_stats["autre"]["total_likes"] += int(stats.get("likeCount", 0))
-                        cat_stats["autre"]["total_comments"] += int(stats.get("commentCount", 0))
-                # Calcul des moyennes et taux d'engagement par catégorie
-                result = {}
-                for cat, vals in cat_stats.items():
-                    if vals["count"] > 0:
-                        avg_views = vals["total_views"] // vals["count"]
-                        avg_likes = vals["total_likes"] // vals["count"]
-                        avg_comments = vals["total_comments"] // vals["count"]
-                        engagement_rate = (avg_likes / avg_views * 100) if avg_views else 0
-                        result[cat] = {
-                            "count": vals["count"],
-                            "avg_views": avg_views,
-                            "avg_likes": avg_likes,
-                            "avg_comments": avg_comments,
-                            "engagement_rate": engagement_rate
-                        }
-                return result
-            except Exception as e:
-                logger.error(f"Erreur lors de l'analyse des vidéos API: {str(e)}")
-                return {}
-        else:
-            # Simulation d'analyse des vidéos
+        """Analyse les statistiques des vidéos YouTube avec une gestion améliorée de la pagination et des catégories
+        
+        Args:
+            channel_id (str): L'ID de la chaîne YouTube
+            period_months (int, optional): Nombre de mois à analyser. None pour toutes les vidéos.
+            
+        Returns:
+            dict: Statistiques détaillées par catégorie
+        """
+        if not self.use_api:
+            # Mode démo - retourne des données simulées
             return {
                 "gaming": {
-                    "count": 10,
-                    "avg_views": 100000,
-                    "avg_likes": 5000,
+                    "count": 15,
+                    "total_views": 7500000,
+                    "total_likes": 375000,
+                    "total_comments": 15000,
+                    "avg_views": 500000,
+                    "avg_likes": 25000,
+                    "avg_comments": 1000,
                     "engagement_rate": 5.0
                 },
                 "vlog": {
+                    "count": 10,
+                    "total_views": 3000000,
+                    "total_likes": 150000,
+                    "total_comments": 5000,
+                    "avg_views": 300000,
+                    "avg_likes": 15000,
+                    "avg_comments": 500,
+                    "engagement_rate": 5.0
+                },
+                "autre": {
                     "count": 5,
-                    "avg_views": 50000,
-                    "avg_likes": 2500,
+                    "total_views": 1000000,
+                    "total_likes": 50000,
+                    "total_comments": 1500,
+                    "avg_views": 200000,
+                    "avg_likes": 10000,
+                    "avg_comments": 300,
+                    "engagement_rate": 5.0
+                },
+                "Total": {
+                    "count": 30,
+                    "total_views": 11500000,
+                    "total_likes": 575000,
+                    "total_comments": 21500,
+                    "avg_views": 383333,
+                    "avg_likes": 19166,
+                    "avg_comments": 716,
                     "engagement_rate": 5.0
                 }
             }
+
+        try:
+            youtube = get_youtube_client()
+            video_ids = []
+            video_info = []
+            nextPageToken = None
+            now = datetime.datetime.now(datetime.timezone.utc)
+            cutoff = None
+            
+            if period_months:
+                cutoff = now - datetime.timedelta(days=30*period_months)
+                logger.info(f"Filtrage des vidéos depuis {cutoff.strftime('%Y-%m-%d %H:%M:%S %Z')}")
+
+            # Configuration des catégories avec des mots-clés plus précis
+            categories = {
+                "gaming": ["gaming", "jeu", "game", "minecraft", "fortnite", "gta", "call of duty", "fifa", "valorant", "league of legends", "csgo", "stream", "live", "twitch"],
+                "vlog": ["vlog", "daily", "journee", "routine", "voyage", "travel", "ma vie", "mon quotidien", "day in my life", "dans ma vie"],
+                "music": ["music", "musique", "clip", "cover", "chanson", "song", "feat", "ft", "remix", "album", "single", "concert"],
+                "challenge": ["challenge", "défi", "defi", "24h", "48h", "72h", "1 semaine", "7 jours", "30 jours", "100 jours"],
+                "reaction": ["reaction", "réaction", "react", "réagis", "réagir", "avis", "opinion", "review", "critique"],
+                "tuto": ["tuto", "tutorial", "astuce", "how to", "conseil", "guide", "apprendre", "formation", "cours", "débutant"],
+                "humour": ["humour", "drôle", "blague", "sketch", "comédie", "funny", "meme", "parodie", "comique", "rire"],
+                "sport": ["sport", "football", "basket", "tennis", "match", "entrainement", "workout", "musculation", "fitness", "sportif"],
+                "tech": ["tech", "technologie", "smartphone", "pc", "ordinateur", "console", "test", "review", "comparatif", "unboxing"],
+                "autre": []
+            }
+
+            # Initialisation des statistiques par catégorie
+            cat_stats = {cat: {
+                "count": 0,
+                "total_views": 0,
+                "total_likes": 0,
+                "total_comments": 0,
+                "videos": []  # Liste des vidéos pour le logging
+            } for cat in categories}
+
+            # Récupération de toutes les vidéos avec pagination améliorée
+            max_retries = 3
+            retry_delay = 2
+            total_videos_retrieved = 0
+            total_videos_expected = None
+
+            # Première requête pour obtenir le nombre total de vidéos
+            try:
+                channel_response = youtube.channels().list(
+                    part="statistics",
+                    id=channel_id
+                ).execute()
+                if channel_response["items"]:
+                    total_videos_expected = int(channel_response["items"][0]["statistics"]["videoCount"])
+                    logger.info(f"Nombre total de vidéos attendu : {total_videos_expected}")
+            except Exception as e:
+                logger.warning(f"Impossible de récupérer le nombre total de vidéos : {str(e)}")
+
+            # Récupération des vidéos avec pagination
+            while True:
+                for attempt in range(max_retries):
+                    try:
+                        search_response = youtube.search().list(
+                            channelId=channel_id,
+                            part="id,snippet",
+                            order="date",
+                            maxResults=50,  # Maximum autorisé par l'API
+                            type="video",
+                            pageToken=nextPageToken
+                        ).execute()
+                        break
+                    except HttpError as e:
+                        if "quotaExceeded" in str(e):
+                            logger.warning(f"Quota API dépassé, tentative {attempt + 1}/{max_retries}")
+                            if attempt < max_retries - 1:
+                                time.sleep(retry_delay * (2 ** attempt))
+                                continue
+                            raise
+                        raise
+                    except Exception as e:
+                        logger.error(f"Erreur lors de la récupération des vidéos : {str(e)}")
+                        if attempt < max_retries - 1:
+                            time.sleep(retry_delay * (2 ** attempt))
+                            continue
+                        raise
+
+                items = search_response.get("items", [])
+                if not items:
+                    break
+
+                for item in items:
+                    published_at = dateutil.parser.parse(item["snippet"]["publishedAt"])
+                    if cutoff and published_at < cutoff:
+                        logger.debug(f"Vidéo {item['id']['videoId']} ignorée car trop ancienne ({published_at})")
+                        continue
+
+                    video_id = item["id"]["videoId"]
+                    video_ids.append(video_id)
+                    video_info.append({
+                        "videoId": video_id,
+                        "title": item["snippet"]["title"],
+                        "publishedAt": published_at,
+                        "description": item["snippet"]["description"]
+                    })
+                    total_videos_retrieved += 1
+
+                nextPageToken = search_response.get("nextPageToken")
+                if not nextPageToken:
+                    break
+
+                # Vérification si on a atteint le nombre total de vidéos attendu
+                if total_videos_expected and total_videos_retrieved >= total_videos_expected:
+                    logger.info(f"Nombre total de vidéos atteint : {total_videos_retrieved}")
+                    break
+
+            logger.info(f"Nombre total de vidéos récupérées : {total_videos_retrieved}")
+            if total_videos_expected and total_videos_retrieved < total_videos_expected:
+                logger.warning(f"Écart détecté : {total_videos_expected - total_videos_retrieved} vidéos manquantes")
+
+            if not video_ids:
+                logger.warning(f"Aucune vidéo trouvée pour la période de {period_months} mois")
+                return {}
+
+            # Récupération des statistiques détaillées par lots
+            all_stats = {}
+            batch_size = 50  # Maximum autorisé par l'API
+            for i in range(0, len(video_ids), batch_size):
+                batch_ids = video_ids[i:i+batch_size]
+                for attempt in range(max_retries):
+                    try:
+                        stats_response = youtube.videos().list(
+                            part="statistics,snippet",
+                            id=",".join(batch_ids)
+                        ).execute()
+                        break
+                    except HttpError as e:
+                        if "quotaExceeded" in str(e):
+                            logger.warning(f"Quota API dépassé pour les statistiques, tentative {attempt + 1}/{max_retries}")
+                            if attempt < max_retries - 1:
+                                time.sleep(retry_delay * (2 ** attempt))
+                                continue
+                            raise
+                        raise
+                    except Exception as e:
+                        logger.error(f"Erreur lors de la récupération des statistiques : {str(e)}")
+                        if attempt < max_retries - 1:
+                            time.sleep(retry_delay * (2 ** attempt))
+                            continue
+                        raise
+
+                for item in stats_response["items"]:
+                    all_stats[item["id"]] = {
+                        "statistics": item["statistics"],
+                        "snippet": item["snippet"]
+                    }
+
+            # Catégorisation et calcul des statistiques
+            total_count = 0
+            total_views = 0
+            total_likes = 0
+            total_comments = 0
+
+            for video_id, data in all_stats.items():
+                title = data["snippet"]["title"].lower()
+                description = data["snippet"]["description"].lower()
+                stats = data["statistics"]
+                
+                # Logging détaillé pour chaque vidéo
+                logger.debug(f"Analyse de la vidéo {video_id}: {title}")
+                
+                found = False
+                for cat, keywords in categories.items():
+                    if any(kw in title or kw in description for kw in keywords):
+                        cat_stats[cat]["count"] += 1
+                        cat_stats[cat]["total_views"] += int(stats.get("viewCount", 0))
+                        cat_stats[cat]["total_likes"] += int(stats.get("likeCount", 0))
+                        cat_stats[cat]["total_comments"] += int(stats.get("commentCount", 0))
+                        cat_stats[cat]["videos"].append({
+                            "id": video_id,
+                            "title": title,
+                            "views": int(stats.get("viewCount", 0)),
+                            "likes": int(stats.get("likeCount", 0)),
+                            "comments": int(stats.get("commentCount", 0))
+                        })
+                        logger.debug(f"Vidéo {video_id} catégorisée comme {cat}")
+                        found = True
+                        break
+
+                if not found:
+                    cat_stats["autre"]["count"] += 1
+                    cat_stats["autre"]["total_views"] += int(stats.get("viewCount", 0))
+                    cat_stats["autre"]["total_likes"] += int(stats.get("likeCount", 0))
+                    cat_stats["autre"]["total_comments"] += int(stats.get("commentCount", 0))
+                    cat_stats["autre"]["videos"].append({
+                        "id": video_id,
+                        "title": title,
+                        "views": int(stats.get("viewCount", 0)),
+                        "likes": int(stats.get("likeCount", 0)),
+                        "comments": int(stats.get("commentCount", 0))
+                    })
+                    logger.debug(f"Vidéo {video_id} catégorisée comme 'autre'")
+
+                total_count += 1
+                total_views += int(stats.get("viewCount", 0))
+                total_likes += int(stats.get("likeCount", 0))
+                total_comments += int(stats.get("commentCount", 0))
+
+            # Vérification du comptage
+            if total_count != len(video_ids):
+                logger.warning(f"Écart dans le comptage : {total_count} vidéos catégorisées sur {len(video_ids)} récupérées")
+
+            # Préparation des résultats
+            result = {}
+            for cat, vals in cat_stats.items():
+                if vals["count"] > 0:
+                    avg_views = vals["total_views"] // vals["count"]
+                    avg_likes = vals["total_likes"] // vals["count"]
+                    avg_comments = vals["total_comments"] // vals["count"]
+                    engagement_rate = (avg_likes / avg_views * 100) if avg_views else 0
+                    
+                    result[cat] = {
+                        "count": vals["count"],
+                        "total_views": vals["total_views"],
+                        "total_likes": vals["total_likes"],
+                        "total_comments": vals["total_comments"],
+                        "avg_views": avg_views,
+                        "avg_likes": avg_likes,
+                        "avg_comments": avg_comments,
+                        "engagement_rate": engagement_rate
+                    }
+                    
+                    # Logging des statistiques par catégorie
+                    logger.info(f"Catégorie {cat}: {vals['count']} vidéos, {avg_views:,} vues moyennes, {engagement_rate:.2f}% d'engagement")
+
+            # Ajout des statistiques globales
+            if total_count > 0:
+                avg_views = total_views // total_count
+                avg_likes = total_likes // total_count
+                avg_comments = total_comments // total_count
+                engagement_rate = (avg_likes / avg_views * 100) if avg_views else 0
+                
+                result["Total"] = {
+                    "count": total_count,
+                    "total_views": total_views,
+                    "total_likes": total_likes,
+                    "total_comments": total_comments,
+                    "avg_views": avg_views,
+                    "avg_likes": avg_likes,
+                    "avg_comments": avg_comments,
+                    "engagement_rate": engagement_rate
+                }
+                
+                logger.info(f"Statistiques globales : {total_count} vidéos, {avg_views:,} vues moyennes, {engagement_rate:.2f}% d'engagement")
+
+            return result
+
+        except Exception as e:
+            logger.error(f"Erreur lors de l'analyse des vidéos API: {str(e)}", exc_info=True)
+            return {}
+
     def _analyze_post_stats(self, username):
         if self.use_api:
             return {}
@@ -917,6 +1192,7 @@ class DataManager:
                     "engagement_rate": 4.0
                 }
             }
+
     def _get_youtube_channel_id(self, username):
         if self.use_api:
             try:
@@ -1136,96 +1412,142 @@ def display_reputation_analysis(reputation_data):
         
     st.subheader("Analyse de réputation")
     
-    risk_level = reputation_data.get("risk_level", "unknown")
-    logger.info(f"Niveau de risque : {risk_level}")
+    # Style CSS pour les cartes
+    st.markdown("""
+    <style>
+    .reputation-card {
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+    .reputation-card:hover {
+        transform: translateY(-2px);
+    }
+    .reputation-title {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .reputation-value {
+        font-size: 2em;
+        font-weight: 700;
+        margin: 0;
+    }
+    .reputation-metric {
+        font-size: 0.9em;
+        color: #666;
+        margin-top: 5px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
     
+    # Couleurs pour les différents niveaux
     risk_colors = {
-        "low": "normal",
-        "medium": "inverse",
-        "high": "inverse",
-        "unknown": "off"
+        "excellent": "#4CAF50",
+        "bon": "#8BC34A",
+        "moyen": "#FFC107",
+        "à surveiller": "#FF9800",
+        "risqué": "#F44336",
+        "unknown": "#9E9E9E"
     }
     
     # Métriques principales
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        score = reputation_data.get('score', 'Non disponible')
-        logger.info(f"Score de réputation : {score}")
-        st.metric(
-            "Score de réputation",
-            f"{score}/100" if isinstance(score, (int, float)) else score,
-            delta=None,
-            delta_color=risk_colors.get(risk_level, 'off'),
-            help="Score basé sur l'analyse de sentiment des articles et la présence de controverses"
-        )
+        risk_level = reputation_data.get('risk_level', 'unknown')
+        st.markdown(f"""
+        <div class="reputation-card" style="background-color: {risk_colors.get(risk_level, '#9E9E9E')}; color: white;">
+            <div class="reputation-title">Niveau de réputation</div>
+            <div class="reputation-value">{risk_level.capitalize()}</div>
+        </div>
+        """, unsafe_allow_html=True)
         
     with col2:
-        logger.info(f"Niveau de risque : {risk_level}")
-        st.metric(
-            "Niveau de risque",
-            risk_level.capitalize(),
-            delta=None,
-            delta_color=risk_colors.get(risk_level, "off"),
-            help="Évaluation du risque basée sur le score de réputation et les controverses détectées"
-        )
-        
-    with col3:
         metrics = reputation_data.get("metrics", {})
         avg_sentiment = metrics.get("average_sentiment", 0)
-        logger.info(f"Sentiment moyen : {avg_sentiment:.2f}")
-        st.metric(
-            "Sentiment moyen",
-            f"{avg_sentiment:.2f}",
-            delta=None,
-            delta_color="normal" if avg_sentiment >= 0 else "inverse",
-            help="Moyenne du sentiment des articles (-1 très négatif, +1 très positif)"
-        )
+        sentiment_color = "#4CAF50" if avg_sentiment > 0.2 else "#F44336" if avg_sentiment < -0.2 else "#FFC107"
+        st.markdown(f"""
+        <div class="reputation-card" style="background-color: {sentiment_color}; color: white;">
+            <div class="reputation-title">Sentiment moyen</div>
+            <div class="reputation-value">{avg_sentiment:.2f}</div>
+            <div class="reputation-metric">-1 (négatif) à +1 (positif)</div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with col3:
+        controversies = len(reputation_data.get("controversies", []))
+        controversy_color = "#4CAF50" if controversies == 0 else "#F44336" if controversies > 2 else "#FFC107"
+        st.markdown(f"""
+        <div class="reputation-card" style="background-color: {controversy_color}; color: white;">
+            <div class="reputation-title">Controverses</div>
+            <div class="reputation-value">{controversies}</div>
+            <div class="reputation-metric">articles détectés</div>
+        </div>
+        """, unsafe_allow_html=True)
     
-    # Résumé
+    # Résumé avec icône
     summary = reputation_data.get("summary", "")
-    st.info(f"📊 {summary}")
+    st.markdown(f"""
+    <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">
+        <span style="font-size: 1.2em;">📊</span> {summary}
+    </div>
+    """, unsafe_allow_html=True)
     
-    # Métriques détaillées
+    # Métriques détaillées avec un design plus épuré
+    metrics = reputation_data.get("metrics", {})
     if metrics:
-        with st.expander("📈 Métriques détaillées"):
+        with st.expander("📈 Détails de l'analyse", expanded=False):
             st.markdown(f"""
-            - Articles analysés : {metrics.get('articles_analyzed', 0)}
-            - Score de controverse : {metrics.get('controversy_score', 0):.2f}
-            """)
+            <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                <div style="flex: 1; text-align: center; padding: 10px; background-color: #f8f9fa; border-radius: 8px; margin: 0 5px;">
+                    <div style="font-size: 1.5em; font-weight: bold;">{metrics.get('articles_analyzed', 0)}</div>
+                    <div style="color: #666;">Articles analysés</div>
+                </div>
+                <div style="flex: 1; text-align: center; padding: 10px; background-color: #f8f9fa; border-radius: 8px; margin: 0 5px;">
+                    <div style="font-size: 1.5em; font-weight: bold;">{metrics.get('controversy_score', 0):.2f}</div>
+                    <div style="color: #666;">Score de controverse</div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
     
-    # Articles controversés
+    # Articles controversés avec un design plus moderne
     controversies = reputation_data.get("controversies", [])
     if controversies:
-        with st.expander(f"⚠️ Controverses détectées ({len(controversies)})"):
+        with st.expander(f"⚠️ Controverses ({len(controversies)})", expanded=False):
             for controversy in controversies:
                 st.markdown(f"""
-                ---
-                **{controversy.get('title')}**  
-                📰 Source : {controversy.get('source', 'Inconnue')}  
-                📅 Date : {controversy.get('date', 'Inconnue')}  
-                🔍 Mots-clés : {', '.join(controversy.get('keywords', []))}  
-                🌡️ Score de controverse : {controversy.get('controversy_score', 0):.2f}  
-                🔗 [Lire l'article]({controversy.get('url', '#')})
-                """)
+                <div style="margin: 10px 0; padding: 15px; background-color: #fff3f3; border-radius: 8px; border-left: 4px solid #F44336;">
+                    <div style="font-weight: bold; margin-bottom: 5px;">{controversy.get('title')}</div>
+                    <div style="color: #666; font-size: 0.9em;">
+                        📅 {controversy.get('date', 'Inconnue')} | 
+                        🔍 {', '.join(controversy.get('keywords', []))}
+                    </div>
+                    <a href="{controversy.get('url', '#')}" style="color: #2196F3; text-decoration: none; font-size: 0.9em;">Lire l'article →</a>
+                </div>
+                """, unsafe_allow_html=True)
     
-    # Tous les articles
+    # Tous les articles avec un design plus épuré
     all_articles = reputation_data.get("all_articles", [])
     if all_articles:
-        with st.expander(f"📰 Tous les articles ({len(all_articles)})"):
-            # Tri des articles par sentiment
+        with st.expander(f"📰 Tous les articles ({len(all_articles)})", expanded=False):
             sorted_articles = sorted(all_articles, key=lambda x: x.get('sentiment', 0), reverse=True)
             
             for article in sorted_articles:
                 sentiment = article.get('sentiment', 0)
-                sentiment_color = "green" if sentiment > 0.2 else "red" if sentiment < -0.2 else "gray"
+                sentiment_color = "#4CAF50" if sentiment > 0.2 else "#F44336" if sentiment < -0.2 else "#FFC107"
                 st.markdown(f"""
-                ---
-                **{article.get('title')}**  
-                📰 Source : {article.get('source', 'Inconnue')}  
-                📅 Date : {article.get('date', 'Inconnue')}  
-                🎭 Sentiment : <span style='color: {sentiment_color}'>{sentiment:.2f}</span>  
-                🔗 [Lire l'article]({article.get('url', '#')})
+                <div style="margin: 10px 0; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">
+                    <div style="font-weight: bold; margin-bottom: 5px;">{article.get('title')}</div>
+                    <div style="color: #666; font-size: 0.9em;">
+                        📅 {article.get('date', 'Inconnue')} | 
+                        <span style="color: {sentiment_color};">🎭 {sentiment:.2f}</span>
+                    </div>
+                    <a href="{article.get('url', '#')}" style="color: #2196F3; text-decoration: none; font-size: 0.9em;">Lire l'article →</a>
+                </div>
                 """, unsafe_allow_html=True)
 
 def display_content_stats(stats_data, content_type):
@@ -1262,86 +1584,114 @@ def display_content_stats(stats_data, content_type):
                 st.metric("Taux d'engagement", f"{engagement_rate:.2f}%")
                 
 def main():
-    logger.info("=== DÉMARRAGE DE L'APPLICATION ===")
-    st.title("Analyseur de Créateurs de Contenu")
-    
-    mode = st.radio(
-        "Mode d'exécution",
-        ["API réelle (données live)", "Démo (fausses données)"]
-    )
-    use_api = (mode == "API réelle (données live)")
-    logger.info(f"Mode sélectionné : {'API' if use_api else 'Démo'}")
-    
-    platform = st.selectbox(
-        "Plateforme",
-        ["YouTube", "Instagram"],
-        help="Sélectionnez la plateforme à analyser"
-    )
-    logger.info(f"Plateforme sélectionnée : {platform}")
-    
-    username = st.text_input(
-        "Nom d'utilisateur",
-        help=f"Entrez le nom d'utilisateur {platform}"
-    )
-    logger.info(f"Nom d'utilisateur saisi : {username}")
-    
-    # Sélecteur de période
-    period_label = st.selectbox(
-        "Période d'analyse des vidéos",
-        ["3 derniers mois", "6 derniers mois", "12 derniers mois", "Toutes les vidéos"],
-        help="Choisissez la période sur laquelle calculer les statistiques détaillées."
-    )
-    period_months = {"3 derniers mois": 3, "6 derniers mois": 6, "12 derniers mois": 12, "Toutes les vidéos": None}[period_label]
-    
-    if st.button("Analyser"):
-        if not username:
-            logger.warning("Tentative d'analyse sans nom d'utilisateur")
-            st.error("Veuillez entrer un nom d'utilisateur")
-            return
-            
-        try:
-            logger.info(f"Début de l'analyse pour {username} sur {platform}")
-            agent = ContentCreatorAgent(use_api=use_api)
-            
-            if platform == "YouTube":
-                data = agent.get_youtube_stats(username)
-            else:
-                data = agent.get_instagram_stats(username)
-                
-            if not data:
-                logger.error(f"Impossible de récupérer les données pour {username}")
-                st.error(f"Impossible de récupérer les données pour {username}")
+    """Fonction principale de l'application"""
+    try:
+        logger.info("=== DÉMARRAGE DE L'APPLICATION ===")
+        st.title("Analyseur de Créateurs de Contenu")
+        
+        # Configuration de l'interface
+        mode = st.radio(
+            "Mode d'exécution",
+            ["API réelle (données live)", "Démo (fausses données)"],
+            help="Choisissez entre les données en direct ou les données de démonstration"
+        )
+        use_api = (mode == "API réelle (données live)")
+        logger.info(f"Mode sélectionné : {'API' if use_api else 'Démo'}")
+        
+        platform = st.selectbox(
+            "Plateforme",
+            ["YouTube", "Instagram"],
+            help="Sélectionnez la plateforme à analyser"
+        )
+        logger.info(f"Plateforme sélectionnée : {platform}")
+        
+        username = st.text_input(
+            "Nom d'utilisateur",
+            help=f"Entrez le nom d'utilisateur {platform}"
+        )
+        logger.info(f"Nom d'utilisateur saisi : {username}")
+        
+        # Sélecteur de période
+        period_label = st.selectbox(
+            "Période d'analyse des vidéos",
+            ["3 derniers mois", "6 derniers mois", "12 derniers mois", "Toutes les vidéos"],
+            help="Choisissez la période sur laquelle calculer les statistiques détaillées."
+        )
+        period_months = {
+            "3 derniers mois": 3,
+            "6 derniers mois": 6,
+            "12 derniers mois": 12,
+            "Toutes les vidéos": None
+        }[period_label]
+        
+        if st.button("Analyser"):
+            if not username:
+                st.error("Veuillez entrer un nom d'utilisateur")
+                logger.warning("Tentative d'analyse sans nom d'utilisateur")
                 return
                 
-            logger.info("Affichage des résultats")
-            # Utiliser le taux d'engagement des vidéos récentes si le global est à 0
-            engagement = data.get("engagement_metrics", {})
-            # On récupère les stats vidéos sur la période choisie
-            video_stats = agent.data_manager._analyze_video_stats(
-                data["platform_data"].get("channelId", data.get("platform_data", {}).get("channelId", None)),
-                period_months=period_months
-            ) if platform == "YouTube" else {}
-            engagement_rate = engagement.get("overall_engagement_rate", 0)
-            # On prend le taux d'engagement de la catégorie la plus représentée si le global est à 0
-            if engagement_rate == 0 and video_stats:
-                best_cat = max(video_stats.items(), key=lambda x: x[1]["count"])[1]
-                if best_cat.get("engagement_rate", 0) > 0:
-                    engagement["overall_engagement_rate"] = best_cat["engagement_rate"]
-                    engagement["benchmark"] = agent.data_manager._get_engagement_benchmark(best_cat["engagement_rate"])
-            display_platform_metrics(data, platform.lower())
-            display_engagement_analysis(engagement)
-            display_reputation_analysis(data.get("reputation_data", {}))
-            
-            if platform == "YouTube":
-                display_content_stats(video_stats, f"des vidéos ({period_label})")
-            else:
-                display_content_stats(data.get("post_stats", {}), "des posts")
+            try:
+                with st.spinner("Analyse en cours..."):
+                    logger.info(f"Début de l'analyse pour {username} sur {platform}")
+                    agent = ContentCreatorAgent(use_api=use_api)
+                    
+                    if platform == "YouTube":
+                        data = agent.get_youtube_stats(username)
+                    else:
+                        data = agent.get_instagram_stats(username)
+                        
+                    if not data:
+                        st.error(f"Impossible de récupérer les données pour {username}")
+                        logger.error(f"Impossible de récupérer les données pour {username}")
+                        return
+                        
+                    logger.info("Affichage des résultats")
+                    
+                    # Traitement des données
+                    engagement = data.get("engagement_metrics", {})
+                    video_stats = None
+                    
+                    if platform == "YouTube":
+                        channel_id = data.get("platform_data", {}).get("channelId")
+                        if channel_id:
+                            video_stats = agent.data_manager._analyze_video_stats(
+                                channel_id,
+                                period_months=period_months
+                            )
+                    
+                    # Mise à jour du taux d'engagement si nécessaire
+                    engagement_rate = engagement.get("overall_engagement_rate", 0)
+                    if engagement_rate == 0 and video_stats:
+                        best_cat = max(video_stats.items(), key=lambda x: x[1]["count"])[1]
+                        if best_cat.get("engagement_rate", 0) > 0:
+                            engagement["overall_engagement_rate"] = best_cat["engagement_rate"]
+                            engagement["benchmark"] = agent.data_manager._get_engagement_benchmark(best_cat["engagement_rate"])
+                    
+                    # Affichage des résultats
+                    display_platform_metrics(data, platform.lower())
+                    display_engagement_analysis(engagement)
+                    display_reputation_analysis(data.get("reputation_data", {}))
+                    
+                    if platform == "YouTube" and video_stats:
+                        display_content_stats(video_stats, f"des vidéos ({period_label})")
+                    elif platform == "Instagram":
+                        display_content_stats(data.get("post_stats", {}), "des posts")
+                        
+            except HttpError as e:
+                if API_QUOTA_EXCEEDED_ERROR in str(e):
+                    st.error("Le quota d'API a été dépassé. Veuillez réessayer plus tard ou passer en mode démo.")
+                else:
+                    st.error(f"Une erreur est survenue lors de l'analyse : {str(e)}")
+                logger.error(f"Erreur HTTP lors de l'analyse : {str(e)}")
+            except Exception as e:
+                st.error(f"Une erreur inattendue est survenue : {str(e)}")
+                logger.error(f"Erreur lors de l'analyse : {str(e)}", exc_info=True)
                 
-        except Exception as e:
-            logger.error(f"Erreur lors de l'analyse : {str(e)}", exc_info=True)
-            st.error(f"Une erreur est survenue : {str(e)}")
-            
-    logger.info("=== FIN DE L'APPLICATION ===")
-            
+    except Exception as e:
+        st.error("Une erreur critique est survenue. Veuillez réessayer.")
+        logger.critical(f"Erreur critique : {str(e)}", exc_info=True)
+    finally:
+        logger.info("=== FIN DE L'APPLICATION ===")
+
 if __name__ == "__main__":
     main()
