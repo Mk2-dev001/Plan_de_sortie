@@ -33,7 +33,7 @@ def parser_xml(xml_file):
     for item in root.findall('./channel/item'):
         post_type = item.findtext('wp:post_type', namespaces=ns)
         if post_type not in ['post', 'page']:
-            continue  # Ignore les CPT pour l’instant
+            continue  # Ignore les CPT pour l'instant
 
         post = {
             'title': item.findtext('title'),
@@ -45,7 +45,8 @@ def parser_xml(xml_file):
             'type': post_type,
             'tags': [],
             'categories': [],
-            'content': ''
+            'content': '',
+            'link': item.findtext('link')
         }
 
         # Nettoyer le contenu HTML vers texte brut lisible
