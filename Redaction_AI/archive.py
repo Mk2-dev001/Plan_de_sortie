@@ -53,15 +53,16 @@ if requete:
     # Trier par date décroissante
     matches_sorted = sorted(matches, key=lambda x: x['date_obj'] or datetime.min, reverse=True)
 
-    st.markdown(f"### 🔎 {len(matches_sorted)} article(s) trouvé(s) pour “{requete}”")
+    st.markdown(f"### 🔎 {len(matches_sorted)} article(s) trouvé(s) pour '{requete}'")
 
     for a in matches_sorted:
         date_str = f"📅 {a['date']}" if a['date'] else ""
         auteur_str = f"✍️ {a['author']}" if a['author'] else ""
         st.markdown(f"**{a['title']}**")
         st.markdown(f"{date_str} — {auteur_str}")
+        st.write(f"Lien trouvé : {a['link']}")
         if a['link']:
-            st.markdown(f"[🔗 Lire l’article]({a['link']})")
+            st.markdown(f"[🔗 Lire l'article]({a['link']})")
         st.markdown("---")
 
 else:
