@@ -1,0 +1,17 @@
+streamlit>=1.32.0
+pandas>=2.2.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+openai>=1.12.0
+numpy>=1.26.0
+plotly>=5.18.0
+google-api-python-client>=2.118.0
+geopy>=2.4.0
+folium>=0.15.0
+streamlit-folium>=0.15.0
+reportlab>=4.1.0
+python-Levenshtein>=0.23.0
+dateutil>=2.8.2
+pyinstaller==6.3.0 
