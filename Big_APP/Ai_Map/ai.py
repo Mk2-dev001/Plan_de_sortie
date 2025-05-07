@@ -15,14 +15,16 @@ import os
 import pandas as pd
 import uuid
 import io # Ajouté pour le buffer Excel en mémoire
+from pathlib import Path
 
 # --- CONFIGURATION DE LA PAGE (DOIT ÊTRE LA PREMIÈRE COMMANDE STREAMLIT) ---
 st.set_page_config(layout="wide", page_title="Assistant Cinéma MK2", page_icon="🗺️")
 
 # --- Configuration (Variables globales) ---
-GEOCATED_CINEMAS_FILE = "cinemas_groupedBig.json"
+GEOCATED_CINEMAS_FILE = os.path.join("Ai_Map", "cinemas_groupedBig.json")
 GEOCODER_USER_AGENT = "CinemaMapApp/1.0 (App)"
 GEOCODER_TIMEOUT = 10
+CHEMIN_JSON = Path("Archivage/export_wordpress_propre.json")
 
 # --- Initialisation du client OpenAI ---
 try:
@@ -76,12 +78,12 @@ def analyser_requete_ia(question: str):
         "- \"nombre\" : nombre de spectateurs à atteindre,\n"
         "- \"nombre_seances\" : (optionnel) nombre de séances prévues.\n\n"
 
-        "🎯 Si l’utilisateur précise un nombre de séances et une fourchette de spectateurs (ex : entre 30 000 et 40 000) :\n"
+        "🎯 Si l'utilisateur précise un nombre de séances et une fourchette de spectateurs (ex : entre 30 000 et 40 000) :\n"
         "- Choisis un total réaliste dans cette fourchette,\n"
         "- Répartis ce total entre les villes proportionnellement au nombre de séances,\n"
         "- Ne dépasse jamais le maximum, et ne descends jamais en dessous du minimum.\n\n"
 
-        "🎯 Si l’utilisateur précise seulement une fourchette de spectateurs pour une zone :\n"
+        "🎯 Si l'utilisateur précise seulement une fourchette de spectateurs pour une zone :\n"
         "- Choisis un total dans la fourchette,\n"
         "- Répartis les spectateurs équitablement entre les villes de cette zone,\n"
         "- Suppose 1 séance par ville sauf indication contraire.\n\n"
@@ -107,13 +109,13 @@ def analyser_requete_ia(question: str):
         "- Mets des virgules entre les paires clé/valeur,\n"
         "- Ne retourne **aucun texte en dehors** du JSON.\n\n"
 
-        "💡 Si aucun lieu ni objectif n’est identifiable, retourne simplement : []\n\n"
+        "💡 Si aucun lieu ni objectif n'est identifiable, retourne simplement : []\n\n"
 
         "🔐 Règle obligatoire :\n"
         "- Le **nombre total de séances** (addition des \"nombre_seances\") doit correspondre **exactement** à ce que demande l'utilisateur,\n"
-        "- Ne t’arrête pas à une distribution ronde ou facile : ajuste si besoin pour que la somme soit strictement exacte."
+        "- Ne t'arrête pas à une distribution ronde ou facile : ajuste si besoin pour que la somme soit strictement exacte."
         "🔐 Règle stricte sur la fourchette :\n"
-        "- Si l’utilisateur donne une fourchette de spectateurs (ex : minimum 30 000, maximum 160 000),\n"
+        "- Si l'utilisateur donne une fourchette de spectateurs (ex : minimum 30 000, maximum 160 000),\n"
         "- Alors le **nombre total de spectateurs** (toutes zones confondues) doit rester **strictement dans cette fourchette**.\n"
         "- Tu ne dois **pas appliquer cette fourchette à une seule zone**, mais à l'ensemble de la demande.\n"
     )
@@ -204,10 +206,10 @@ def analyser_requete_ia(question: str):
                    else:
                         all_valid = False
                 if not all_valid:
-                     st.warning("Le JSON extrait manuellement n’a pas le bon format pour tous les éléments.")
+                     st.warning("Le JSON extrait manuellement n'a pas le bon format pour tous les éléments.")
                 return valid_data, raw_response
             except Exception:
-                st.error("Impossible d’interpréter la réponse de l’IA.")
+                st.error("Impossible d'interpréter la réponse de l'IA.")
                 return [], raw_response
     except openai.APIError as e:
         st.error(f"Erreur OpenAI : {e}")
@@ -370,8 +372,8 @@ with st.expander("ℹ️ Comment ça marche ?"):
     - "**15 séances** dans toute la France pour atteindre 8000 spectateurs."
     - "Diffusion en Bretagne avec un objectif de 150 spectateurs par ville."
     - "Un lancement à Paris avec 5 salles et un test à Lille avec 1 salle."
-    ### 🤖 2. Analyse par l’IA (GPT-4o)
-    L’IA interprète votre demande pour extraire les localisations cibles, les jauges et les **contraintes de séances**.
+    ### 🤖 2. Analyse par l'IA (GPT-4o)
+    L'IA interprète votre demande pour extraire les localisations cibles, les jauges et les **contraintes de séances**.
     ### 🔍 3. Recherche automatique de cinémas
     Le système cherche le **nombre exact de salles** demandées pour chaque localisation, en priorisant la proximité.
     ### 🗺️ 4. Carte interactive

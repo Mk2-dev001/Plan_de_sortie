@@ -10,8 +10,8 @@ from pathlib import Path
 from openai import OpenAI, OpenAIError
 
 # --- CONFIGURATION ---
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))  # 🟢 utilise la variable d’environnement
-CHEMIN_JSON = Path("export_wordpress_propre.json")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))  # 🟢 utilise la variable d'environnement
+CHEMIN_JSON = Path("Redaction_AI/export_wordpress_propre.json")
 
 # --- CHARGER LES DONNÉES ---
 @st.cache_data
@@ -68,9 +68,9 @@ st.markdown("Crée une critique de film à la manière d'un auteur de ton site W
 film = st.text_input("🎥 Titre du film", placeholder="Ex : Dune 2")
 auteur = st.selectbox("✍️ Choisis un auteur", extraire_auteurs(articles))
 
-if st.button("Générer l’article IA"):
+if st.button("Générer l'article IA"):
     if not film.strip():
-        st.warning("Merci d’entrer un titre de film.")
+        st.warning("Merci d'entrer un titre de film.")
     else:
         with st.spinner("Génération de l'article..."):
             article = generer_article(film.strip(), auteur)

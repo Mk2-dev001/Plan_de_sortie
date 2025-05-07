@@ -58,13 +58,8 @@ logger.info(f"Python version: {sys.version}")
 logger.info(f"Working directory: {os.getcwd()}")
 
 # Chargement des variables d'environnement
-logger.info("Chargement des variables d'environnement...")
-env_path = Path('.env')
-if not env_path.exists():
-    logger.warning("Fichier .env non trouvé. Tentative de chargement depuis les variables d'environnement système.")
-else:
-    load_dotenv(dotenv_path=env_path)
-    logger.info("Fichier .env chargé")
+load_dotenv(dotenv_path="CreateurContenue/.env")
+logger.info("Fichier .env chargé (CreateurContenue/.env)")
 
 # Vérification des variables d'environnement requises
 required_env_vars = {
@@ -342,13 +337,15 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 # Initialisation de l'API YouTube avec retry
 def get_youtube_client():
     """Crée un client YouTube avec la clé API actuelle"""
-    return build(
-        "youtube", "v3",
-        developerKey=api_manager.get_youtube_api_key(),
-        cache_discovery=False
-    )
-
-youtube = get_youtube_client()
+    if api_manager.get_youtube_api_key():
+        return build(
+            "youtube", "v3",
+            developerKey=api_manager.get_youtube_api_key(),
+            cache_discovery=False
+        )
+    else:
+        logger.error("Clé YouTube API manquante, impossible d'initialiser le client YouTube.")
+        return None
 
 class FallbackData:
     """Classe pour gérer les données de fallback de manière centralisée"""
@@ -920,7 +917,12 @@ class DataManager:
             }
 
         try:
-            youtube = get_youtube_client()
+            if api_manager.get_youtube_api_key():
+                youtube = get_youtube_client()
+            else:
+                logger.error("Clé YouTube API manquante, impossible d'initialiser le client YouTube.")
+                return {}
+            
             video_ids = []
             video_info = []
             nextPageToken = None

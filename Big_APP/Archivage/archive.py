@@ -9,7 +9,7 @@ from pathlib import Path
 from datetime import datetime
 
 # CONFIG
-CHEMIN_JSON = Path("export_wordpress_propre.json")
+CHEMIN_JSON = Path("Archivage/export_wordpress_propre.json")
 
 @st.cache_data
 def charger_articles():
