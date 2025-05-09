@@ -155,3 +155,92 @@
 2025-05-07 16:41:00,195 - __main__ - INFO - Likes moyens pour Total: 238,135
 2025-05-07 16:41:00,195 - __main__ - INFO - Taux d'engagement pour Total: 6.40%
 2025-05-07 16:41:00,196 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-09 15:04:00,607 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:04:00,607 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-09 15:04:00,607 - __main__ - INFO - Working directory: C:\Users\Pablo\Desktop\Mk2\Plan_de_sortie\Big_APP
+2025-05-09 15:04:00,608 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-09 15:04:00,608 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-09 15:04:00,608 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-09 15:04:00,608 - __main__ - WARNING - Clé News API non trouvée
+2025-05-09 15:04:00,794 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:04:00,970 - __main__ - INFO - Mode sélectionné : API
+2025-05-09 15:04:00,971 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-09 15:04:00,971 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-09 15:04:00,972 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-09 15:05:16,515 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:16,515 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-09 15:05:16,515 - __main__ - INFO - Working directory: C:\Users\Pablo\Desktop\Mk2\Plan_de_sortie\Big_APP
+2025-05-09 15:05:16,516 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-09 15:05:16,516 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-09 15:05:16,516 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-09 15:05:16,516 - __main__ - WARNING - Clé News API non trouvée
+2025-05-09 15:05:16,701 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:16,875 - __main__ - INFO - Mode sélectionné : API
+2025-05-09 15:05:16,876 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-09 15:05:16,876 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-09 15:05:16,876 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-09 15:05:22,262 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:22,263 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-09 15:05:22,263 - __main__ - INFO - Working directory: C:\Users\Pablo\Desktop\Mk2\Plan_de_sortie\Big_APP
+2025-05-09 15:05:22,264 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-09 15:05:22,265 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-09 15:05:22,265 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-09 15:05:22,266 - __main__ - WARNING - Clé News API non trouvée
+2025-05-09 15:05:22,308 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:22,309 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-09 15:05:22,309 - __main__ - INFO - Working directory: C:\Users\Pablo\Desktop\Mk2\Plan_de_sortie\Big_APP
+2025-05-09 15:05:22,309 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-09 15:05:22,310 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-09 15:05:22,310 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-09 15:05:22,310 - __main__ - WARNING - Clé News API non trouvée
+2025-05-09 15:05:22,505 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:22,505 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-09 15:05:22,550 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:22,551 - __main__ - INFO - Mode sélectionné : API
+2025-05-09 15:05:22,552 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-09 15:05:22,552 - __main__ - INFO - Nom d'utilisateur saisi : lena situation
+2025-05-09 15:05:22,553 - __main__ - INFO - Début de l'analyse pour lena situation sur YouTube
+2025-05-09 15:05:23,279 - __main__ - INFO - Tentative d'appel à Google News RSS pour lena situation
+2025-05-09 15:05:23,609 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-09 15:05:23,613 - __main__ - INFO - Nombre d'articles trouvés pour lena situation: 11
+2025-05-09 15:05:23,966 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,099 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,224 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,365 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,490 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,625 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,766 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,893 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:25,026 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:25,150 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:25,282 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:25,283 - __main__ - WARNING - Polémiques détectées pour lena situation: 1
+2025-05-09 15:05:25,501 - __main__ - INFO - Nombre total de vidéos attendu : 469
+2025-05-09 15:05:28,445 - __main__ - INFO - Nombre total de vidéos récupérées : 400
+2025-05-09 15:05:28,445 - __main__ - WARNING - Écart détecté : 69 vidéos manquantes
+2025-05-09 15:05:28,981 - __main__ - WARNING - Écart dans le comptage : 399 vidéos catégorisées sur 400 récupérées
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie gaming: 118 vidéos, 1,533,370 vues moyennes, 7.72% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie vlog: 224 vidéos, 1,158,992 vues moyennes, 6.23% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie music: 7 vidéos, 1,331,461 vues moyennes, 6.71% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie challenge: 3 vidéos, 1,942,916 vues moyennes, 6.33% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie tuto: 1 vidéos, 119,321 vues moyennes, 4.71% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie humour: 1 vidéos, 1,696,325 vues moyennes, 7.31% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie tech: 31 vidéos, 1,655,549 vues moyennes, 7.10% d'engagement
+2025-05-09 15:05:28,982 - __main__ - INFO - Catégorie autre: 14 vidéos, 833,916 vues moyennes, 5.36% d'engagement
+2025-05-09 15:05:28,982 - __main__ - INFO - Statistiques globales : 399 vidéos, 1,304,544 vues moyennes, 6.83% d'engagement
+2025-05-09 15:05:28,982 - __main__ - INFO - Données mises en cache pour lena situation sur youtube
+2025-05-09 15:05:28,982 - __main__ - INFO - Affichage des résultats
+2025-05-09 15:05:28,984 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-08 13:05:28 UTC
+2025-05-09 15:05:29,230 - __main__ - INFO - Nombre total de vidéos attendu : 469
+2025-05-09 15:05:31,802 - __main__ - INFO - Nombre total de vidéos récupérées : 0
+2025-05-09 15:05:31,802 - __main__ - WARNING - Écart détecté : 469 vidéos manquantes
+2025-05-09 15:05:31,802 - __main__ - WARNING - Aucune vidéo trouvée pour la période de 3 mois
+2025-05-09 15:05:31,802 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-09 15:05:31,804 - __main__ - INFO - Nombre d'abonnés YouTube : 2,990,000
+2025-05-09 15:05:31,805 - __main__ - INFO - Nombre total de vues : 585,286,490
+2025-05-09 15:05:31,805 - __main__ - INFO - Nombre de vidéos : 469
+2025-05-09 15:05:31,806 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-09 15:05:31,807 - __main__ - INFO - Benchmark d'engagement : unknown
+2025-05-09 15:05:31,808 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-09 15:05:31,808 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-09 15:05:31,812 - __main__ - INFO - === FIN DE L'APPLICATION ===
