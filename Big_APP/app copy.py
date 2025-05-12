@@ -264,6 +264,11 @@ st.markdown("""
         border-radius: 12px;
         margin-bottom: 0.2em;
     }
+    
+    .block-container {
+        max-width: 1500px;
+        margin: auto;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -277,75 +282,78 @@ if openai_api_key:
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center;'>Assistant IA</h3>", unsafe_allow_html=True)
     
-    # Initialize chat history
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
+    # Centrage de la chatbox au milieu
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        # Initialize chat history
+        if "messages" not in st.session_state:
+            st.session_state.messages = []
 
-    # Display chat messages from history
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
+        # Display chat messages from history
+        for message in st.session_state.messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
 
-    # Chat input
-    if prompt := st.chat_input("Posez une question ou décrivez votre besoin :"):
-        # Add user message to chat history
-        st.session_state.messages.append({"role": "user", "content": prompt})
-        
-        # Display user message
-        with st.chat_message("user"):
-            st.markdown(prompt)
+        # Chat input
+        if prompt := st.chat_input("Posez une question ou décrivez votre besoin :"):
+            # Add user message to chat history
+            st.session_state.messages.append({"role": "user", "content": prompt})
+            
+            # Display user message
+            with st.chat_message("user"):
+                st.markdown(prompt)
 
-        # System prompt for app suggestions
-        system_prompt = (
-            "Tu es un assistant qui oriente l'utilisateur vers l'application la plus adaptée parmi : "
-            "AI Map, Business Plan, Créateur de Contenu, Rédaction IA, Archivage. "
-            "Réponds d'abord à la question, puis propose un bouton pour lancer l'app la plus pertinente. "
-            "Si aucune app ne correspond, dis-le simplement."
-        )
+            # System prompt for app suggestions
+            system_prompt = (
+                "Tu es un assistant qui oriente l'utilisateur vers l'application la plus adaptée parmi : "
+                "AI Map, Business Plan, Créateur de Contenu, Rédaction IA, Archivage. "
+                "Réponds d'abord à la question, puis propose un bouton pour lancer l'app la plus pertinente. "
+                "Si aucune app ne correspond, dis-le simplement."
+            )
 
-        # Get assistant response using new OpenAI API
-        client = openai.OpenAI(api_key=openai_api_key)
-        messages = [{"role": "system", "content": system_prompt}] + st.session_state.messages
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=messages
-        )
-        assistant_reply = response.choices[0].message.content
+            # Get assistant response using new OpenAI API
+            client = openai.OpenAI(api_key=openai_api_key)
+            messages = [{"role": "system", "content": system_prompt}] + st.session_state.messages
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=messages
+            )
+            assistant_reply = response.choices[0].message.content
 
-        # Add assistant response to chat history
-        st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
-        
-        # Display assistant response
-        with st.chat_message("assistant"):
-            st.markdown(assistant_reply)
+            # Add assistant response to chat history
+            st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
+            
+            # Display assistant response
+            with st.chat_message("assistant"):
+                st.markdown(assistant_reply)
 
-        # Check for app suggestions and display launch button
-        last_reply = assistant_reply.lower()
-        if "ai map" in last_reply:
-            st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-            if st.button("🚀 Lancer AI Map", key="ai_map_suggested"):
-                os.system("streamlit run Ai_Map/ai.py")
-            st.markdown('</div>', unsafe_allow_html=True)
-        elif "business plan" in last_reply:
-            st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-            if st.button("📊 Lancer Business Plan", key="business_plan_suggested"):
-                os.system("streamlit run BuissnessPlan/business_plan_questionnaire.py")
-            st.markdown('</div>', unsafe_allow_html=True)
-        elif "créateur de contenu" in last_reply:
-            st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-            if st.button("🎨 Lancer Créateur de Contenu", key="content_creator_suggested"):
-                os.system("streamlit run CreateurContenue/app.py")
-            st.markdown('</div>', unsafe_allow_html=True)
-        elif "rédaction ia" in last_reply:
-            st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-            if st.button("✍️ Lancer Rédaction IA", key="redaction_ia_suggested"):
-                os.system("streamlit run Redaction_AI/app.py")
-            st.markdown('</div>', unsafe_allow_html=True)
-        elif "archivage" in last_reply:
-            st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-            if st.button("📁 Lancer Archivage", key="archive_suggested"):
-                os.system("streamlit run Archivage/archive.py")
-            st.markdown('</div>', unsafe_allow_html=True)
+            # Check for app suggestions and display launch button
+            last_reply = assistant_reply.lower()
+            if "ai map" in last_reply:
+                st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
+                if st.button("🚀 Lancer AI Map", key="ai_map_suggested"):
+                    os.system("streamlit run Ai_Map/ai.py")
+                st.markdown('</div>', unsafe_allow_html=True)
+            elif "business plan" in last_reply:
+                st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
+                if st.button("📊 Lancer Business Plan", key="business_plan_suggested"):
+                    os.system("streamlit run BuissnessPlan/business_plan_questionnaire.py")
+                st.markdown('</div>', unsafe_allow_html=True)
+            elif "créateur de contenu" in last_reply:
+                st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
+                if st.button("🎨 Lancer Créateur de Contenu", key="content_creator_suggested"):
+                    os.system("streamlit run CreateurContenue/app.py")
+                st.markdown('</div>', unsafe_allow_html=True)
+            elif "rédaction ia" in last_reply:
+                st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
+                if st.button("✍️ Lancer Rédaction IA", key="redaction_ia_suggested"):
+                    os.system("streamlit run Redaction_AI/app.py")
+                st.markdown('</div>', unsafe_allow_html=True)
+            elif "archivage" in last_reply:
+                st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
+                if st.button("📁 Lancer Archivage", key="archive_suggested"):
+                    os.system("streamlit run Archivage/archive.py")
+                st.markdown('</div>', unsafe_allow_html=True)
 
 # Sidebar : Applications et historique
 with st.sidebar:
