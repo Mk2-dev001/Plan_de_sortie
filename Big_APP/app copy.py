@@ -242,6 +242,28 @@ st.markdown("""
     .apple-btn button:hover::after {
         transform: rotate(45deg) translate(50%, 50%);
     }
+    
+    /* Style pour les boutons de la sidebar */
+    .sidebar-btn button {
+        width: 100%;
+        height: 2.5em;
+        margin: 0.4em 0;
+        font-size: 0.9em;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    
+    .sidebar-btn button:hover {
+        transform: translateY(-2px);
+    }
+    
+    .sidebar-image {
+        width: 100%;
+        height: 80px !important;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 0.2em;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -325,57 +347,59 @@ if openai_api_key:
                 os.system("streamlit run Archivage/archive.py")
             st.markdown('</div>', unsafe_allow_html=True)
 
-# Sidebar : historique des fichiers avec expander et dates
-with st.sidebar.expander("📂 Historique des fichiers", expanded=True):
-    historique_dir = "historique_file"
-    if os.path.exists(historique_dir):
-        fichiers = os.listdir(historique_dir)
-        if fichiers:
-            for fichier in fichiers:
-                chemin = os.path.join(historique_dir, fichier)
-                if os.path.isfile(chemin):
-                    mod_time = os.path.getmtime(chemin)
-                    date_str = datetime.datetime.fromtimestamp(mod_time).strftime('%d/%m/%Y %H:%M')
-                    st.write(f"📄 {fichier}  ", f"*{date_str}*")
-        else:
-            st.write("Aucun fichier téléchargé.")
-    else:
-        st.write("Dossier non trouvé.")
-
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.image("assets/plandesortie.png", use_container_width=True)
-    with st.container():
-        st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-        if st.button("Start", key="ai_map"):
+# Sidebar : Applications et historique
+with st.sidebar:
+    with st.expander("📱 Applications", expanded=True):
+        # AI Map
+        st.image("assets/plandesortie.png", use_container_width=True)
+        st.markdown('<div class="sidebar-btn">', unsafe_allow_html=True)
+        if st.button("🚀 AI Map", key="ai_map"):
             os.system("streamlit run Ai_Map/ai.py")
         st.markdown('</div>', unsafe_allow_html=True)
-with col2:
-    st.image("assets/buissnessplan.png", use_container_width=True)
-    with st.container():
-        st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-        if st.button("Start", key="business_plan"):
+        
+        # Business Plan
+        st.image("assets/buissnessplan.png", use_container_width=True)
+        st.markdown('<div class="sidebar-btn">', unsafe_allow_html=True)
+        if st.button("📊 Business Plan", key="business_plan"):
             os.system("streamlit run BuissnessPlan/business_plan_questionnaire.py")
         st.markdown('</div>', unsafe_allow_html=True)
-with col3:
-    st.image("assets/Analyseurcreateurdecontenu.png", use_container_width=True)
-    with st.container():
-        st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-        if st.button("Start", key="content_creator"):
+        
+        # Créateur de Contenu
+        st.image("assets/Analyseurcreateurdecontenu.png", use_container_width=True)
+        st.markdown('<div class="sidebar-btn">', unsafe_allow_html=True)
+        if st.button("🎨 Créateur de Contenu", key="content_creator"):
             os.system("streamlit run CreateurContenue/app.py")
         st.markdown('</div>', unsafe_allow_html=True)
-col4, col5 = st.columns(2)
-with col4:
-    st.image("assets/redactionIA.png", use_container_width=True)
-    with st.container():
-        st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-        if st.button("Start", key="redaction_ia"):
+        
+        # Rédaction IA
+        st.image("assets/redactionIA.png", use_container_width=True)
+        st.markdown('<div class="sidebar-btn">', unsafe_allow_html=True)
+        if st.button("✍️ Rédaction IA", key="redaction_ia"):
             os.system("streamlit run Redaction_AI/app.py")
         st.markdown('</div>', unsafe_allow_html=True)
-with col5:
-    st.image("assets/archivageIA.png", use_container_width=True)
-    with st.container():
-        st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-        if st.button("Start", key="archive"):
+        
+        # Archivage
+        st.image("assets/archivageIA.png", use_container_width=True)
+        st.markdown('<div class="sidebar-btn">', unsafe_allow_html=True)
+        if st.button("📁 Archivage", key="archive"):
             os.system("streamlit run Archivage/archive.py")
-        st.markdown('</div>', unsafe_allow_html=True) 
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    # Historique des fichiers
+    with st.expander("📂 Historique des fichiers", expanded=True):
+        historique_dir = "historique_file"
+        if os.path.exists(historique_dir):
+            fichiers = os.listdir(historique_dir)
+            if fichiers:
+                for fichier in fichiers:
+                    chemin = os.path.join(historique_dir, fichier)
+                    if os.path.isfile(chemin):
+                        mod_time = os.path.getmtime(chemin)
+                        date_str = datetime.datetime.fromtimestamp(mod_time).strftime('%d/%m/%Y %H:%M')
+                        st.write(f"📄 {fichier}  ", f"*{date_str}*")
+            else:
+                st.write("Aucun fichier téléchargé.")
+        else:
+            st.write("Dossier non trouvé.") 
