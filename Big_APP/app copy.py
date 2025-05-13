@@ -269,6 +269,69 @@ st.markdown("""
         max-width: 1500px;
         margin: auto;
     }
+    
+    /* Alignement vertical des avatars et messages dans la chatbox */
+    [data-testid="stChatMessage"] {
+        display: flex;
+        align-items: center;
+        gap: 0.8em;
+        margin-bottom: 0.5em;
+    }
+    [data-testid="stChatMessageAvatar"] {
+        display: none !important;
+    }
+    [data-testid="stChatMessageAvatar"] img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    [data-testid="stChatMessageContent"] {
+        display: flex;
+        align-items: center;
+        min-height: 40px;
+        margin: 0;
+        padding: 0;
+    }
+    </style>
+    <style>
+    /* Solution pour masquer complètement l'avatar utilisateur et ne garder que celui du bot */
+    [data-testid="stChatMessageAvatar"] {
+        display: none !important;
+    }
+
+    /* Afficher UNIQUEMENT l'avatar du bot */
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageContent"]:has(img[alt="agent.png"])) [data-testid="stChatMessageAvatar"] {
+        display: flex !important;
+    }
+
+    /* Supprimer l'espace réservé aux avatars pour les messages utilisateur */
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageContent"]:not(:has(img[alt="agent.png"]))) {
+        padding-left: 0 !important;
+    }
+
+    /* Aligner le texte utilisateur à droite pour une meilleure distinction visuelle */
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageContent"]:not(:has(img[alt="agent.png"]))) [data-testid="stChatMessageContent"] {
+        justify-content: flex-end;
+    }
+
+    /* Empêcher les retours à la ligne automatiques dans les messages */
+    [data-testid="stChatMessageContent"] p {
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        margin: 0 !important;
+    }
+    </style>
+    <style>
+    /* Style pour supprimer toute bordure/ombre sur les images d'apps */
+    .stImage img {
+        box-shadow: none !important;
+        border: none !important;
+        background: transparent !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -280,6 +343,18 @@ openai_api_key = st.secrets["openai_api_key"] if "openai_api_key" in st.secrets 
 
 if openai_api_key:
     st.markdown("<hr>", unsafe_allow_html=True)
+    # Affichage rapproché des icônes d'applications avec st.columns et st.image
+    cols = st.columns(5)
+    icons = [
+        "assets/plandesortie.png",
+        "assets/buissnessplan.png",
+        "assets/Analyseurcreateurdecontenu.png",
+        "assets/redactionIA.png",
+        "assets/archivageIA.png"
+    ]
+    for col, icon in zip(cols, icons):
+        with col:
+            st.image(icon, width=48)
     st.markdown("<h3 style='text-align:center;'>Assistant IA</h3>", unsafe_allow_html=True)
     
     # Centrage de la chatbox au milieu
@@ -291,8 +366,12 @@ if openai_api_key:
 
         # Display chat messages from history
         for message in st.session_state.messages:
-            with st.chat_message(message["role"]):
-                st.markdown(message["content"])
+            if message["role"] == "assistant":
+                with st.chat_message("assistant", avatar="assets/agent.png"):
+                    st.markdown(message["content"])
+            else:
+                with st.chat_message("user"):
+                    st.markdown(message["content"])
 
         # Chat input
         if prompt := st.chat_input("Posez une question ou décrivez votre besoin :"):
@@ -324,7 +403,7 @@ if openai_api_key:
             st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
             
             # Display assistant response
-            with st.chat_message("assistant"):
+            with st.chat_message("assistant", avatar="assets/agent.png"):
                 st.markdown(assistant_reply)
 
             # Check for app suggestions and display launch button

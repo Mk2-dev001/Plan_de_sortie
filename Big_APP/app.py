@@ -1,10 +1,12 @@
 import streamlit as st
 import os
 import sys
+import datetime
+import openai
 
 # Configuration de la page
 st.set_page_config(
-    page_title="Multi-Apps Navigation MK2",
+    page_title="Multi-Apps MK2",
     page_icon="🚀",
     layout="wide"
 )
@@ -244,54 +246,122 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # Titre principal
-st.markdown('<h1 class="title">Navigation Multi-Applications MK2</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="title">Multi-Applications MK2</h1>', unsafe_allow_html=True)
 
-# Style bouton Apple
-st.markdown("""
-    <style>
-    .apple-btn button {
-        background: rgba(255,255,255,0.10);
-        color: #fff;
-        border: 1.5px solid rgba(255,255,255,0.18);
-        border-radius: 18px;
-        padding: 0.7em 2em;
-        font-size: 1.15em;
-        font-weight: 500;
-        margin-top: 0.5em;
-        margin-bottom: 1.5em;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-        transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
-        cursor: pointer;
-    }
-    .apple-btn button:hover {
-        background: rgba(255,255,255,0.18);
-        color: #fff;
-        border: 1.5px solid rgba(255,255,255,0.28);
-        transform: scale(1.04);
-    }
-    </style>
-""", unsafe_allow_html=True)
+# --- Chatbox OpenAI ---
+openai_api_key = st.secrets["openai_api_key"] if "openai_api_key" in st.secrets else st.text_input("Entrez votre clé OpenAI API :", type="password")
+
+if openai_api_key:
+    st.markdown("<hr>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center;'>Assistant IA</h3>", unsafe_allow_html=True)
+    
+    # Initialize chat history
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+    # Display chat messages from history
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+
+    # Chat input
+    if prompt := st.chat_input("Posez une question ou décrivez votre besoin :"):
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        
+        # Display user message
+        with st.chat_message("user"):
+            st.markdown(prompt)
+
+        # System prompt for app suggestions
+        system_prompt = (
+            "Tu es un assistant qui oriente l'utilisateur vers l'application la plus adaptée parmi : "
+            "AI Map, Business Plan, Créateur de Contenu, Rédaction IA, Archivage. "
+            "Réponds d'abord à la question, puis propose un bouton pour lancer l'app la plus pertinente. "
+            "Si aucune app ne correspond, dis-le simplement."
+        )
+
+        # Get assistant response using new OpenAI API
+        client = openai.OpenAI(api_key=openai_api_key)
+        messages = [{"role": "system", "content": system_prompt}] + st.session_state.messages
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=messages
+        )
+        assistant_reply = response.choices[0].message.content
+
+        # Add assistant response to chat history
+        st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
+        
+        # Display assistant response
+        with st.chat_message("assistant"):
+            st.markdown(assistant_reply)
+
+        # Check for app suggestions and display launch button
+        last_reply = assistant_reply.lower()
+        if "ai map" in last_reply:
+            st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
+            if st.button("🚀 Lancer AI Map", key="ai_map_suggested"):
+                os.system("streamlit run Ai_Map/ai.py")
+            st.markdown('</div>', unsafe_allow_html=True)
+        elif "business plan" in last_reply:
+            st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
+            if st.button("📊 Lancer Business Plan", key="business_plan_suggested"):
+                os.system("streamlit run BuissnessPlan/business_plan_questionnaire.py")
+            st.markdown('</div>', unsafe_allow_html=True)
+        elif "créateur de contenu" in last_reply:
+            st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
+            if st.button("🎨 Lancer Créateur de Contenu", key="content_creator_suggested"):
+                os.system("streamlit run CreateurContenue/app.py")
+            st.markdown('</div>', unsafe_allow_html=True)
+        elif "rédaction ia" in last_reply:
+            st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
+            if st.button("✍️ Lancer Rédaction IA", key="redaction_ia_suggested"):
+                os.system("streamlit run Redaction_AI/app.py")
+            st.markdown('</div>', unsafe_allow_html=True)
+        elif "archivage" in last_reply:
+            st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
+            if st.button("📁 Lancer Archivage", key="archive_suggested"):
+                os.system("streamlit run Archivage/archive.py")
+            st.markdown('</div>', unsafe_allow_html=True)
+
+# Sidebar : historique des fichiers avec expander et dates
+with st.sidebar.expander("📂 Historique des fichiers", expanded=True):
+    historique_dir = "historique_file"
+    if os.path.exists(historique_dir):
+        fichiers = os.listdir(historique_dir)
+        if fichiers:
+            for fichier in fichiers:
+                chemin = os.path.join(historique_dir, fichier)
+                if os.path.isfile(chemin):
+                    mod_time = os.path.getmtime(chemin)
+                    date_str = datetime.datetime.fromtimestamp(mod_time).strftime('%d/%m/%Y %H:%M')
+                    st.write(f"📄 {fichier}  ", f"*{date_str}*")
+        else:
+            st.write("Aucun fichier téléchargé.")
+    else:
+        st.write("Dossier non trouvé.")
 
 col1, col2, col3 = st.columns(3)
 with col1:
     st.image("assets/plandesortie.png", use_container_width=True)
     with st.container():
         st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-        if st.button("Lancer AI Map", key="ai_map"):
+        if st.button("Start", key="ai_map"):
             os.system("streamlit run Ai_Map/ai.py")
         st.markdown('</div>', unsafe_allow_html=True)
 with col2:
     st.image("assets/buissnessplan.png", use_container_width=True)
     with st.container():
         st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-        if st.button("Lancer Business Plan", key="business_plan"):
+        if st.button("Start", key="business_plan"):
             os.system("streamlit run BuissnessPlan/business_plan_questionnaire.py")
         st.markdown('</div>', unsafe_allow_html=True)
 with col3:
     st.image("assets/Analyseurcreateurdecontenu.png", use_container_width=True)
     with st.container():
         st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-        if st.button("Lancer Créateur de Contenu", key="content_creator"):
+        if st.button("Start", key="content_creator"):
             os.system("streamlit run CreateurContenue/app.py")
         st.markdown('</div>', unsafe_allow_html=True)
 col4, col5 = st.columns(2)
@@ -299,13 +369,13 @@ with col4:
     st.image("assets/redactionIA.png", use_container_width=True)
     with st.container():
         st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-        if st.button("Lancer Rédaction IA", key="redaction_ia"):
+        if st.button("Start", key="redaction_ia"):
             os.system("streamlit run Redaction_AI/app.py")
         st.markdown('</div>', unsafe_allow_html=True)
 with col5:
     st.image("assets/archivageIA.png", use_container_width=True)
     with st.container():
         st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-        if st.button("Lancer Archive", key="archive"):
+        if st.button("Start", key="archive"):
             os.system("streamlit run Archivage/archive.py")
         st.markdown('</div>', unsafe_allow_html=True) 
