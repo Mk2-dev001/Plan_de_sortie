@@ -19,6 +19,8 @@ if "events" not in st.session_state:
     st.session_state.events = []
 if "messages" not in st.session_state:
     st.session_state.messages = []
+if "rejected_events" not in st.session_state:
+    st.session_state.rejected_events = []
 
 def create_calendar_event(start_date, end_date, summary):
     cal = Calendar()
@@ -29,8 +31,19 @@ def create_calendar_event(start_date, end_date, summary):
     
     event = Event()
     event.add('summary', summary)
-    event.add('dtstart', start_date)
-    event.add('dtend', end_date)
+    
+    # Si l'heure est spécifiée (différente de minuit), on utilise dtstart/dtend avec l'heure
+    if start_date.hour != 0 or start_date.minute != 0:
+        event.add('dtstart', start_date)
+        # Si end_date n'a pas d'heure spécifiée, on ajoute 1 heure par défaut
+        if end_date.hour == 0 and end_date.minute == 0:
+            end_date = end_date.replace(hour=start_date.hour + 1, minute=start_date.minute)
+        event.add('dtend', end_date)
+    else:
+        # Si pas d'heure spécifiée, on utilise vDate pour un événement sur toute la journée
+        event.add('dtstart', vDate(start_date.date()))
+        event.add('dtend', vDate(end_date.date()))
+    
     event.add('dtstamp', datetime.now())
     event.add('created', datetime.now())
     event.add('last-modified', datetime.now())
@@ -40,45 +53,73 @@ def create_calendar_event(start_date, end_date, summary):
     return cal
 
 def parse_date(date_str):
-    # Nettoyer la chaîne de caractères
     date_str = date_str.strip().lower()
-    
-    # Dictionnaire des mois en français
+    now = datetime.now()
+
     mois_fr = {
         'janvier': 1, 'février': 2, 'mars': 3, 'avril': 4, 'mai': 5, 'juin': 6,
         'juillet': 7, 'août': 8, 'septembre': 9, 'octobre': 10, 'novembre': 11, 'décembre': 12
     }
-    
-    # Pattern pour les dates au format "jour mois" ou "jour/mois"
-    pattern_jour_mois = r'(\d{1,2})\s*(?:/|-)?\s*(' + '|'.join(mois_fr.keys()) + ')'
+
+    # Expressions relatives simples
+    if "demain" in date_str:
+        return now + timedelta(days=1)
+    elif "après-demain" in date_str:
+        return now + timedelta(days=2)
+    elif "semaine prochaine" in date_str:
+        return now + timedelta(days=7)
+    elif "mois prochain" in date_str:
+        if now.month == 12:
+            return datetime(now.year + 1, 1, now.day)
+        return datetime(now.year, now.month + 1, now.day)
+
+    # Pattern : jour mois écrit explicitement avec heure optionnelle
+    pattern_jour_mois = r'(?:le\s+)?(\d{1,2})\s*(?:/|-)?\s*(' + '|'.join(mois_fr.keys()) + ')(?:\s+à\s+(\d{1,2})(?::(\d{2}))?)?'
     match = re.search(pattern_jour_mois, date_str)
-    
     if match:
         jour = int(match.group(1))
         mois = mois_fr[match.group(2)]
-        annee = datetime.now().year
-        return datetime(annee, mois, jour)
-    
-    # Pattern pour les dates au format "jour/mois/année"
-    pattern_complet = r'(\d{1,2})/(\d{1,2})/(\d{4})'
+        annee = now.year
+        heure = int(match.group(3)) if match.group(3) else 9  # 9h par défaut
+        minute = int(match.group(4)) if match.group(4) else 0
+        date_detectee = datetime(annee, mois, jour, heure, minute)
+        if date_detectee < now:
+            date_detectee = date_detectee.replace(year=annee + 1)
+        return date_detectee
+
+    # Pattern complet JJ/MM/AAAA avec heure optionnelle
+    pattern_complet = r'(?:le\s+)?(\d{1,2})/(\d{1,2})/(\d{4})(?:\s+à\s+(\d{1,2})(?::(\d{2}))?)?'
     match = re.search(pattern_complet, date_str)
-    
     if match:
-        jour = int(match.group(1))
-        mois = int(match.group(2))
-        annee = int(match.group(3))
-        return datetime(annee, mois, jour)
-    
-    # Pattern pour les dates avec seulement le jour (utilise le mois courant)
-    pattern_jour_seul = r'(?:^|\D)(\d{1,2})(?:\D|$)'
+        jour, mois, annee = int(match.group(1)), int(match.group(2)), int(match.group(3))
+        heure = int(match.group(4)) if match.group(4) else 9
+        minute = int(match.group(5)) if match.group(5) else 0
+        date_detectee = datetime(annee, mois, jour, heure, minute)
+        if date_detectee < now:
+            date_detectee = date_detectee.replace(year=now.year)
+            if date_detectee < now:
+                date_detectee = date_detectee.replace(year=now.year + 1)
+        return date_detectee
+
+    # Pattern jour seul avec heure optionnelle
+    pattern_jour_seul = r'(?:le\s+)?(\d{1,2})(?:\s+à\s+(\d{1,2})(?::(\d{2}))?)?'
     match = re.search(pattern_jour_seul, date_str)
-    
     if match:
         jour = int(match.group(1))
-        mois = datetime.now().month
-        annee = datetime.now().year
-        return datetime(annee, mois, jour)
-    
+        heure = int(match.group(2)) if match.group(2) else 9
+        minute = int(match.group(3)) if match.group(3) else 0
+        mois = now.month
+        annee = now.year
+        date_detectee = datetime(annee, mois, jour, heure, minute)
+        if date_detectee < now:
+            if mois == 12:
+                mois = 1
+                annee += 1
+            else:
+                mois += 1
+            date_detectee = datetime(annee, mois, jour, heure, minute)
+        return date_detectee
+
     return None
 
 def extract_events(text):
@@ -117,24 +158,30 @@ def extract_events_with_gpt(text):
         st.warning("Veuillez entrer votre clé API OpenAI dans la barre latérale")
         return []
 
+    current_date = datetime.now().strftime("%d/%m/%Y")
     prompt = f"""Analyse le texte suivant et extrait les événements avec leurs dates. 
+    Contexte temporel : Nous sommes le {current_date}.
+    
     Retourne uniquement un JSON avec la structure suivante:
     {{
         "events": [
             {{
                 "description": "description de l'événement",
-                "date": "YYYY-MM-DD"
+                "date": "YYYY-MM-DD",
+                "time": "HH:MM" (optionnel)
             }}
         ]
     }}
 
     Texte à analyser: {text}
 
-    Assure-toi que:
+    Règles importantes:
     1. Les dates sont au format YYYY-MM-DD
-    2. Si l'année n'est pas spécifiée, utilise l'année courante
-    3. Inclus le contexte complet de l'événement dans la description
-    4. Retourne uniquement le JSON, sans autre texte
+    2. Si l'année n'est pas spécifiée, utilise l'année courante ({datetime.now().year})
+    3. Si le jour est inférieur au jour actuel ({datetime.now().day}), passe au mois suivant
+    4. Si l'heure n'est pas spécifiée, utilise 09:00
+    5. Inclus le contexte complet de l'événement dans la description
+    6. Retourne uniquement le JSON, sans autre texte
     """
 
     try:
@@ -147,19 +194,42 @@ def extract_events_with_gpt(text):
             temperature=0.1
         )
         
-        # Extraire le JSON de la réponse
         json_str = response.choices[0].message.content.strip()
         try:
             data = json.loads(json_str)
             
-            # Convertir les dates en objets datetime
             events = []
+            rejected_events = []
             for event in data["events"]:
-                date = datetime.strptime(event["date"], "%Y-%m-%d")
-                events.append({
-                    "date": date,
-                    "description": event["description"]
-                })
+                try:
+                    date = datetime.strptime(event["date"], "%Y-%m-%d")
+                    if "time" in event:
+                        time = datetime.strptime(event["time"], "%H:%M").time()
+                        date = datetime.combine(date.date(), time)
+                    else:
+                        date = datetime.combine(date.date(), datetime.strptime("09:00", "%H:%M").time())
+                    
+                    if date.date() >= datetime.now().date():
+                        events.append({
+                            "date": date,
+                            "description": event["description"]
+                        })
+                    else:
+                        rejected_events.append({
+                            "description": event["description"],
+                            "date": date,
+                            "reason": "Date dans le passé"
+                        })
+                except ValueError as e:
+                    rejected_events.append({
+                        "description": event["description"],
+                        "reason": f"Format de date invalide: {str(e)}"
+                    })
+            
+            if rejected_events:
+                st.warning("Certains événements ont été ignorés :")
+                for event in rejected_events:
+                    st.info(f"- {event['description']} : {event['reason']}")
             
             return events
         except json.JSONDecodeError:
@@ -178,9 +248,9 @@ def generate_html_calendar(events):
             event_by_date[date] = []
         event_by_date[date].append(event['description'])
 
-    # Trouver tous les mois concernés
     if not events:
         return "<p>Aucun événement à afficher.</p>"
+
     min_date = min(e['date'] for e in events)
     max_date = max(e['date'] for e in events)
     months = []
@@ -192,76 +262,158 @@ def generate_html_calendar(events):
         else:
             d = datetime(d.year, d.month + 1, 1)
 
-    # Couleurs pour les événements (Skyscanner style)
     color_palette = [
-        "#e74c3c",  # rouge
-        "#f39c12",  # orange
-        "#3498db",  # bleu
-        "#1abc9c",  # vert
-        "#9b59b6",  # violet
-        "#2ecc71",  # vert clair
-        "#e67e22",  # orange foncé
-        "#34495e",  # bleu foncé
+        "#e74c3c", "#f39c12", "#3498db", "#1abc9c",
+        "#9b59b6", "#2ecc71", "#e67e22", "#34495e"
     ]
     
-    # Associer une couleur à chaque date d'événement (ou description unique)
     event_dates = sorted(event_by_date.keys())
     color_map = {date: color_palette[i % len(color_palette)] for i, date in enumerate(event_dates)}
 
-    # Générer le HTML
     html = '''
     <!DOCTYPE html>
     <html lang="fr">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mon Calendrier</title>
         <style>
-            body { font-family: 'Inter', Arial, sans-serif; background: #fff; color: #222; margin: 0; padding: 0; }
-            .calendar-container { display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; margin: 32px 0; }
-            .month { background: #fff; border-radius: 16px; box-shadow: 0 2px 8px #0001; padding: 24px; min-width: 320px; }
-            .month-title { text-align: center; font-size: 1.4em; font-weight: 600; margin-bottom: 12px; text-transform: capitalize; }
-            table { width: 100%; border-collapse: collapse; }
-            th { color: #888; font-weight: 500; padding: 6px 0; }
-            td { text-align: center; padding: 0; height: 38px; position: relative; }
-            .day { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; margin: 2px auto; border-radius: 50%; font-weight: 500; transition: background 0.2s; }
-            .event-day { color: #fff; font-weight: 600; cursor: pointer; }
+            :root {
+                --primary-color: #3498db;
+                --text-color: #2c3e50;
+                --bg-color: #f8f9fa;
+                --border-radius: 12px;
+                --shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+            
+            body {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                background: var(--bg-color);
+                color: var(--text-color);
+                margin: 0;
+                padding: 20px;
+                line-height: 1.6;
+            }
+            
+            .calendar-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 24px;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            
+            .month {
+                background: white;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                padding: 20px;
+                transition: transform 0.2s;
+            }
+            
+            .month:hover {
+                transform: translateY(-2px);
+            }
+            
+            .month-title {
+                text-align: center;
+                font-size: 1.4em;
+                font-weight: 600;
+                margin-bottom: 16px;
+                color: var(--primary-color);
+            }
+            
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            
+            th {
+                color: #666;
+                font-weight: 500;
+                padding: 8px 0;
+                font-size: 0.9em;
+            }
+            
+            td {
+                text-align: center;
+                padding: 4px;
+                height: 40px;
+                position: relative;
+            }
+            
+            .day {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 36px;
+                height: 36px;
+                margin: 2px auto;
+                border-radius: 50%;
+                font-weight: 500;
+                transition: all 0.2s;
+            }
+            
+            .event-day {
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            
             .event-tooltip {
                 display: none;
                 position: absolute;
                 left: 50%;
                 top: 110%;
                 transform: translateX(-50%);
-                background: #fff;
-                color: #222;
-                border: 1px solid #eee;
+                background: white;
+                color: var(--text-color);
                 border-radius: 8px;
-                box-shadow: 0 2px 8px #0002;
-                padding: 8px 14px;
+                box-shadow: var(--shadow);
+                padding: 12px 16px;
                 font-size: 0.95em;
                 z-index: 10;
-                min-width: 160px;
-                max-width: 220px;
+                min-width: 200px;
+                max-width: 280px;
                 white-space: pre-line;
             }
+            
             .event-day:hover .event-tooltip {
                 display: block;
             }
-            @media (max-width: 900px) {
-                .calendar-container { flex-direction: column; align-items: center; }
+            
+            @media (max-width: 768px) {
+                .calendar-container {
+                    grid-template-columns: 1fr;
+                    padding: 10px;
+                }
+                
+                .month {
+                    padding: 15px;
+                }
+                
+                .event-tooltip {
+                    min-width: 160px;
+                }
             }
         </style>
     </head>
     <body>
         <div class="calendar-container">
     '''
-    months_fr = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+    
+    months_fr = ["janvier", "février", "mars", "avril", "mai", "juin", 
+                "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
     days_fr = ["L", "M", "M", "J", "V", "S", "D"]
+    
     for year, month in months:
-        cal = calendar.Calendar(firstweekday=0)  # Lundi
+        cal = calendar.Calendar(firstweekday=0)
         html += f'<div class="month">'
         html += f'<div class="month-title">{months_fr[month-1]} {year}</div>'
         html += '<table>'
         html += '<tr>' + ''.join(f'<th>{d}</th>' for d in days_fr) + '</tr>'
+        
         month_days = list(cal.itermonthdates(year, month))
         for week in range(0, len(month_days), 7):
             html += '<tr>'
@@ -277,10 +429,17 @@ def generate_html_calendar(events):
                         html += f'<td><div class="day">{day.day}</div></td>'
             html += '</tr>'
         html += '</table></div>'
+    
     html += '</div></body></html>'
     return html
 
 def main():
+    st.set_page_config(
+        page_title="Assistant de Planning",
+        page_icon="📅",
+        layout="wide"
+    )
+    
     st.title("🤖 Assistant de Planning")
     st.write("Dites-moi vos événements et je créerai un calendrier pour vous!")
 
@@ -288,15 +447,12 @@ def main():
     user_input = st.chat_input("Entrez vos événements (ex: 'j'ai un tournage le 27 juin et je dois monter la vidéo le 23/07')")
 
     if user_input:
-        # Ajouter le message de l'utilisateur
         st.session_state.messages.append({"role": "user", "content": user_input})
         
-        # Extraire les événements avec GPT
         new_events = extract_events_with_gpt(user_input)
         
         if new_events:
             st.success(f"J'ai trouvé {len(new_events)} événement(s) dans votre message!")
-            # Ajouter les nouveaux événements à la liste existante
             st.session_state.events.extend(new_events)
             
             # Créer le calendrier ICS
@@ -309,8 +465,15 @@ def main():
             for event in st.session_state.events:
                 event_obj = Event()
                 event_obj.add('summary', event['description'])
-                event_obj.add('dtstart', vDate(event['date'].date()))
-                event_obj.add('dtend', vDate((event['date'] + timedelta(days=1)).date()))
+                
+                if event['date'].hour != 0 or event['date'].minute != 0:
+                    event_obj.add('dtstart', event['date'])
+                    end_date = event['date'] + timedelta(hours=1)
+                    event_obj.add('dtend', end_date)
+                else:
+                    event_obj.add('dtstart', vDate(event['date'].date()))
+                    event_obj.add('dtend', vDate((event['date'] + timedelta(days=1)).date()))
+                
                 event_obj.add('dtstamp', datetime.now())
                 event_obj.add('created', datetime.now())
                 event_obj.add('last-modified', datetime.now())
@@ -328,9 +491,15 @@ def main():
                 f_html.write(html_content.encode('utf-8'))
                 temp_path_html = f_html.name
 
-            # Afficher les boutons de téléchargement
-            col1, col2 = st.columns(2)
-            with col1:
+            # Interface de téléchargement améliorée
+            st.write("### 📥 Télécharger le calendrier")
+            export_format = st.multiselect(
+                "Choisissez le format d'export",
+                ["ICS (Google Calendar, Apple Calendar)", "HTML (Vue web)"],
+                default=["ICS (Google Calendar, Apple Calendar)"]
+            )
+
+            if "ICS (Google Calendar, Apple Calendar)" in export_format:
                 with open(temp_path_ics, 'rb') as f:
                     st.download_button(
                         label="📥 Télécharger le calendrier (ICS)",
@@ -339,7 +508,7 @@ def main():
                         mime="text/calendar"
                     )
             
-            with col2:
+            if "HTML (Vue web)" in export_format:
                 with open(temp_path_html, 'rb') as f:
                     st.download_button(
                         label="📥 Télécharger le calendrier (HTML)",
@@ -371,14 +540,15 @@ def main():
                 xaxis_title="Date",
                 yaxis_visible=False,
                 showlegend=False,
-                height=400
+                height=400,
+                template="plotly_white"
             )
-            st.plotly_chart(fig)
+            st.plotly_chart(fig, use_container_width=True)
             
             # Afficher les événements détectés
             st.write("### 📝 Événements détectés")
             for event in st.session_state.events:
-                st.write(f"- {event['description']} ({event['date'].strftime('%d/%m/%Y')})")
+                st.write(f"- {event['description']} ({event['date'].strftime('%d/%m/%Y %H:%M')})")
         else:
             st.warning("Je n'ai pas trouvé de dates dans votre message. Essayez de reformuler avec des dates explicites.")
 
