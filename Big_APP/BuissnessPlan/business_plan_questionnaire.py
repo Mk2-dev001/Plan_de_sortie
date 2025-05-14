@@ -9,15 +9,15 @@ import io
 
 # Configuration de la page
 st.set_page_config(
-    page_title="Assistant Business Plan - Application Cinéma",
+    page_title="Business Plan - Projet Cinématographique",
     page_icon="🎬",
     layout="wide"
 )
 
 # Titre de l'application
-st.title("🎬 Business Plan - Application de Planification Cinématographique")
+st.title("🎬 Business Plan - Projet Cinématographique")
 st.markdown("""
-Ce questionnaire vous guidera dans l'élaboration du business plan pour votre application de planification de projections cinématographiques.
+Ce questionnaire vous guidera dans l'élaboration du business plan pour votre projet de film.
 """)
 
 def generer_pdf(reponses):
@@ -53,18 +53,18 @@ def generer_pdf(reponses):
     )
 
     # Titre principal
-    story.append(Paragraph("Business Plan - Application Cinématographique", title_style))
+    story.append(Paragraph("Business Plan - Projet Cinématographique", title_style))
     story.append(Spacer(1, 20))
 
-    # Section 1: Informations générales
-    story.append(Paragraph("1. Informations générales", subtitle_style))
+    # Section 1: Informations générales du projet
+    story.append(Paragraph("1. Informations générales du projet", subtitle_style))
     info_data = [
-        ["Nom de l'entreprise", reponses.get('nom_entreprise', 'Non renseigné')],
-        ["Date de lancement", str(reponses.get('date_creation', 'Non renseigné'))],
-        ["Forme juridique", reponses.get('forme_juridique', 'Non renseigné')],
-        ["Type de cinéma cible", reponses.get('type_cinema', 'Non renseigné')],
-        ["Zone géographique", ", ".join(reponses.get('zone_geographique', ['Non renseigné']))],
-        ["Nombre d'utilisateurs cible", str(reponses.get('nombre_utilisateurs_cible', 'Non renseigné'))]
+        ["Titre du film", reponses.get('titre_film', 'Non renseigné')],
+        ["Durée", reponses.get('duree', 'Non renseigné')],
+        ["Budget de production", f"{reponses.get('budget_production', 0):,.2f} € HT"],
+        ["Budget de commercialisation", reponses.get('budget_commercialisation', 'Non renseigné')],
+        ["Date de tournage", reponses.get('date_tournage', 'Non renseigné')],
+        ["Lieu de tournage", reponses.get('lieu_tournage', 'Non renseigné')]
     ]
     info_table = Table(info_data, colWidths=[2*inch, 4*inch])
     info_table.setStyle(TableStyle([
@@ -83,49 +83,46 @@ def generer_pdf(reponses):
     story.append(info_table)
     story.append(Spacer(1, 20))
 
-    # Section 2: Analyse du marché
-    story.append(Paragraph("2. Analyse du marché", subtitle_style))
-    story.append(Paragraph("Description de l'application:", styles['Heading3']))
-    story.append(Paragraph(reponses.get('description_application', 'Non renseigné'), normal_style))
+    # Section 2: Synopsis et Concept
+    story.append(Paragraph("2. Synopsis et Concept", subtitle_style))
+    story.append(Paragraph("Synopsis:", styles['Heading3']))
+    story.append(Paragraph(reponses.get('synopsis', 'Non renseigné'), normal_style))
     story.append(Spacer(1, 10))
-    story.append(Paragraph("Clientèle cible:", styles['Heading3']))
-    story.append(Paragraph(", ".join(reponses.get('cible_principale', ['Non renseigné'])), normal_style))
-    story.append(Spacer(1, 10))
-    story.append(Paragraph("Analyse de la concurrence:", styles['Heading3']))
-    story.append(Paragraph(reponses.get('concurrence', 'Non renseigné'), normal_style))
+    story.append(Paragraph("Format et Style:", styles['Heading3']))
+    story.append(Paragraph(reponses.get('format_style', 'Non renseigné'), normal_style))
     story.append(Spacer(1, 20))
 
-    # Section 3: Stratégie marketing
-    story.append(Paragraph("3. Stratégie marketing", subtitle_style))
-    story.append(Paragraph("Positionnement:", styles['Heading3']))
-    story.append(Paragraph(reponses.get('positionnement', 'Non renseigné'), normal_style))
+    # Section 3: Partenaires et Distribution
+    story.append(Paragraph("3. Partenaires et Distribution", subtitle_style))
+    story.append(Paragraph("Production:", styles['Heading3']))
+    story.append(Paragraph(reponses.get('production', 'Non renseigné'), normal_style))
     story.append(Spacer(1, 10))
-    story.append(Paragraph("Canaux d'acquisition:", styles['Heading3']))
-    story.append(Paragraph(", ".join(reponses.get('canaux_acquisition', ['Non renseigné'])), normal_style))
+    story.append(Paragraph("Distribution:", styles['Heading3']))
+    story.append(Paragraph(reponses.get('distribution', 'Non renseigné'), normal_style))
     story.append(Spacer(1, 10))
-    story.append(Paragraph("Modèle économique:", styles['Heading3']))
-    story.append(Paragraph(reponses.get('strategie_prix', 'Non renseigné'), normal_style))
+    story.append(Paragraph("Partenaires:", styles['Heading3']))
+    story.append(Paragraph(reponses.get('partenaires', 'Non renseigné'), normal_style))
     story.append(Spacer(1, 20))
 
-    # Section 4: Plan opérationnel
-    story.append(Paragraph("4. Plan opérationnel", subtitle_style))
-    story.append(Paragraph("Fonctionnalités principales:", styles['Heading3']))
-    story.append(Paragraph(reponses.get('fonctionnalites_principales', 'Non renseigné'), normal_style))
+    # Section 4: Stratégie de Diffusion
+    story.append(Paragraph("4. Stratégie de Diffusion", subtitle_style))
+    story.append(Paragraph("Sortie en salles:", styles['Heading3']))
+    story.append(Paragraph(reponses.get('sortie_salles', 'Non renseigné'), normal_style))
     story.append(Spacer(1, 10))
-    story.append(Paragraph("Technologies utilisées:", styles['Heading3']))
-    story.append(Paragraph(", ".join(reponses.get('technologies', ['Non renseigné'])), normal_style))
+    story.append(Paragraph("Diffusion digitale:", styles['Heading3']))
+    story.append(Paragraph(reponses.get('diffusion_digitale', 'Non renseigné'), normal_style))
     story.append(Spacer(1, 10))
-    story.append(Paragraph("Infrastructure nécessaire:", styles['Heading3']))
-    story.append(Paragraph(reponses.get('infrastructure', 'Non renseigné'), normal_style))
+    story.append(Paragraph("Stratégie marketing:", styles['Heading3']))
+    story.append(Paragraph(reponses.get('strategie_marketing', 'Non renseigné'), normal_style))
     story.append(Spacer(1, 20))
 
-    # Section 5: Plan financier
-    story.append(Paragraph("5. Plan financier", subtitle_style))
+    # Section 5: Budget et Financement
+    story.append(Paragraph("5. Budget et Financement", subtitle_style))
     finance_data = [
-        ["Investissement initial", f"{reponses.get('investissement_initial', 0):,.2f} €"],
-        ["Prix de l'abonnement mensuel", f"{reponses.get('prix_abonnement', 0):,.2f} €"],
-        ["Coût opérationnel mensuel", f"{reponses.get('cout_operationnel_mensuel', 0):,.2f} €"],
-        ["Objectif d'utilisateurs payants", str(reponses.get('objectif_utilisateurs_payants', 0))]
+        ["Budget de production", f"{reponses.get('budget_production', 0):,.2f} € HT"],
+        ["Budget de commercialisation", reponses.get('budget_commercialisation', 'Non renseigné')],
+        ["Sources de financement", reponses.get('sources_financement', 'Non renseigné')],
+        ["Retour sur investissement attendu", reponses.get('roi_attendu', 'Non renseigné')]
     ]
     finance_table = Table(finance_data, colWidths=[3*inch, 3*inch])
     finance_table.setStyle(TableStyle([
@@ -144,13 +141,13 @@ def generer_pdf(reponses):
     story.append(finance_table)
     story.append(Spacer(1, 20))
 
-    # Section 6: Analyse des risques
-    story.append(Paragraph("6. Analyse des risques", subtitle_style))
-    story.append(Paragraph("Risques techniques:", styles['Heading3']))
-    story.append(Paragraph(reponses.get('risques_techniques', 'Non renseigné'), normal_style))
+    # Section 6: Analyse des Risques et Opportunités
+    story.append(Paragraph("6. Analyse des Risques et Opportunités", subtitle_style))
+    story.append(Paragraph("Risques:", styles['Heading3']))
+    story.append(Paragraph(reponses.get('risques', 'Non renseigné'), normal_style))
     story.append(Spacer(1, 10))
-    story.append(Paragraph("Risques liés au marché:", styles['Heading3']))
-    story.append(Paragraph(reponses.get('risques_marche', 'Non renseigné'), normal_style))
+    story.append(Paragraph("Opportunités:", styles['Heading3']))
+    story.append(Paragraph(reponses.get('opportunites', 'Non renseigné'), normal_style))
     story.append(Spacer(1, 10))
     story.append(Paragraph("Stratégies de mitigation:", styles['Heading3']))
     story.append(Paragraph(reponses.get('strategies_mitigation', 'Non renseigné'), normal_style))
@@ -164,125 +161,99 @@ def generer_pdf(reponses):
 if 'reponses' not in st.session_state:
     st.session_state.reponses = {}
 
-# Section 1: Informations générales
-st.header("1️⃣ Informations générales")
+# Section 1: Informations générales du projet
+st.header("1️⃣ Informations générales du projet")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.session_state.reponses['nom_entreprise'] = st.text_input("Nom de l'entreprise")
-    st.session_state.reponses['date_creation'] = st.date_input("Date de lancement prévue")
-    st.session_state.reponses['forme_juridique'] = st.selectbox(
-        "Forme juridique",
-        ["SARL", "SAS", "EURL", "Auto-entrepreneur", "Autre"]
-    )
-
-with col2:
-    st.session_state.reponses['type_cinema'] = st.selectbox(
-        "Type de cinéma cible",
-        ["Cinéma indépendant", "Réseau de cinémas", "Distributeur", "Producteur", "Autre"]
-    )
-    st.session_state.reponses['zone_geographique'] = st.multiselect(
-        "Zone géographique cible",
-        ["France", "Europe", "Amérique du Nord", "Asie", "Autre"]
-    )
-    st.session_state.reponses['nombre_utilisateurs_cible'] = st.number_input(
-        "Nombre d'utilisateurs cible (année 1)",
-        min_value=0,
-        step=100
-    )
-
-# Section 2: Analyse du marché
-st.header("2️⃣ Analyse du marché")
-st.session_state.reponses['description_application'] = st.text_area(
-    "Description détaillée de l'application",
-    height=100,
-    help="Décrivez les fonctionnalités principales comme la planification de projections, l'analyse de données, etc."
-)
-st.session_state.reponses['cible_principale'] = st.multiselect(
-    "Clientèle cible principale",
-    ["Distributeurs", "Producteurs", "Exploitants de salles", "Organisateurs d'événements", "Autre"]
-)
-st.session_state.reponses['concurrence'] = st.text_area(
-    "Analyse de la concurrence",
-    height=100,
-    help="Listez les solutions concurrentes existantes et leurs points forts/faibles"
-)
-
-# Section 3: Stratégie marketing
-st.header("3️⃣ Stratégie marketing")
-st.session_state.reponses['positionnement'] = st.text_area(
-    "Positionnement sur le marché",
-    height=100,
-    help="Comment votre application se différencie-t-elle des solutions existantes ?"
-)
-st.session_state.reponses['canaux_acquisition'] = st.multiselect(
-    "Canaux d'acquisition clients",
-    ["Salons professionnels", "Réseaux sociaux", "Email marketing", "Partenariats", "Conférences", "Autre"]
-)
-st.session_state.reponses['strategie_prix'] = st.selectbox(
-    "Modèle économique",
-    ["Abonnement mensuel", "Abonnement annuel", "Paiement à l'utilisation", "Freemium", "Licence"] 
-)
-
-# Section 4: Plan opérationnel
-st.header("4️⃣ Plan opérationnel")
-st.session_state.reponses['fonctionnalites_principales'] = st.text_area(
-    "Fonctionnalités principales",
-    height=100,
-    help="Listez les fonctionnalités clés de l'application"
-)
-st.session_state.reponses['technologies'] = st.multiselect(
-    "Technologies utilisées",
-    ["Python", "Streamlit", "OpenAI API", "Base de données", "Cloud", "Autre"]
-)
-st.session_state.reponses['infrastructure'] = st.text_area(
-    "Infrastructure nécessaire",
-    height=100,
-    help="Décrivez les besoins en infrastructure (serveurs, stockage, etc.)"
-)
-
-# Section 5: Plan financier
-st.header("5️⃣ Plan financier")
-col1, col2 = st.columns(2)
-
-with col1:
-    st.session_state.reponses['investissement_initial'] = st.number_input(
-        "Investissement initial (€)",
+    st.session_state.reponses['titre_film'] = st.text_input("Titre du film")
+    st.session_state.reponses['duree'] = st.text_input("Durée")
+    st.session_state.reponses['budget_production'] = st.number_input(
+        "Budget de production (€ HT)",
         min_value=0,
         step=1000
     )
-    st.session_state.reponses['prix_abonnement'] = st.number_input(
-        "Prix de l'abonnement mensuel (€)",
-        min_value=0,
-        step=10
+
+with col2:
+    st.session_state.reponses['budget_commercialisation'] = st.text_input(
+        "Budget de commercialisation"
+    )
+    st.session_state.reponses['date_tournage'] = st.text_input(
+        "Date de tournage"
+    )
+    st.session_state.reponses['lieu_tournage'] = st.text_input(
+        "Lieu de tournage"
+    )
+
+# Section 2: Synopsis et Concept
+st.header("2️⃣ Synopsis et Concept")
+st.session_state.reponses['synopsis'] = st.text_area(
+    "Synopsis",
+    height=150
+)
+st.session_state.reponses['format_style'] = st.text_area(
+    "Format et Style",
+    height=100
+)
+
+# Section 3: Partenaires et Distribution
+st.header("3️⃣ Partenaires et Distribution")
+st.session_state.reponses['production'] = st.text_area(
+    "Production",
+    height=100
+)
+st.session_state.reponses['distribution'] = st.text_area(
+    "Distribution",
+    height=100
+)
+st.session_state.reponses['partenaires'] = st.text_area(
+    "Partenaires",
+    height=100
+)
+
+# Section 4: Stratégie de Diffusion
+st.header("4️⃣ Stratégie de Diffusion")
+st.session_state.reponses['sortie_salles'] = st.text_area(
+    "Sortie en salles",
+    height=100
+)
+st.session_state.reponses['diffusion_digitale'] = st.text_area(
+    "Diffusion digitale",
+    height=100
+)
+st.session_state.reponses['strategie_marketing'] = st.text_area(
+    "Stratégie marketing",
+    height=100
+)
+
+# Section 5: Budget et Financement
+st.header("5️⃣ Budget et Financement")
+col1, col2 = st.columns(2)
+
+with col1:
+    st.session_state.reponses['sources_financement'] = st.text_area(
+        "Sources de financement",
+        height=100
     )
 
 with col2:
-    st.session_state.reponses['cout_operationnel_mensuel'] = st.number_input(
-        "Coût opérationnel mensuel (€)",
-        min_value=0,
-        step=100
-    )
-    st.session_state.reponses['objectif_utilisateurs_payants'] = st.number_input(
-        "Objectif d'utilisateurs payants (année 1)",
-        min_value=0,
-        step=10
+    st.session_state.reponses['roi_attendu'] = st.text_area(
+        "Retour sur investissement attendu",
+        height=100
     )
 
-# Section 6: Analyse des risques
-st.header("6️⃣ Analyse des risques")
-st.session_state.reponses['risques_techniques'] = st.text_area(
-    "Risques techniques",
-    height=100,
-    help="Ex: Problèmes de scalabilité, dépendance aux APIs externes, etc."
+# Section 6: Analyse des Risques et Opportunités
+st.header("6️⃣ Analyse des Risques et Opportunités")
+st.session_state.reponses['risques'] = st.text_area(
+    "Risques",
+    height=100
 )
-st.session_state.reponses['risques_marche'] = st.text_area(
-    "Risques liés au marché",
-    height=100,
-    help="Ex: Adoption lente, concurrence, etc."
+st.session_state.reponses['opportunites'] = st.text_area(
+    "Opportunités",
+    height=100
 )
 st.session_state.reponses['strategies_mitigation'] = st.text_area(
-    "Stratégies de mitigation des risques",
+    "Stratégies de mitigation",
     height=100
 )
 
@@ -290,7 +261,7 @@ st.session_state.reponses['strategies_mitigation'] = st.text_area(
 if st.button("Générer le Business Plan"):
     pdf_buffer = generer_pdf(st.session_state.reponses)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    pdf_filename = f"business_plan_cinema_{timestamp}.pdf"
+    pdf_filename = f"business_plan_{timestamp}.pdf"
     
     # Sauvegarde du PDF
     with open(pdf_filename, "wb") as f:

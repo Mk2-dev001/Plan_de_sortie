@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_6e696c02859c4152b7589077986e45ef {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_6e696c02859c4152b7589077986e45ef" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_6e696c02859c4152b7589077986e45ef = L.map(
+                "map_6e696c02859c4152b7589077986e45ef",
+                {
+                    center: [48.85649365335286, 2.33205975645493],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e6b36e7593b93e99e5a2a12ef3f0b21b = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e6b36e7593b93e99e5a2a12ef3f0b21b.addTo(map_6e696c02859c4152b7589077986e45ef);
+        
+    
+            var feature_group_01bfd48a1bd1b8030f6c4d5676492ef2 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_23d39785518798724c886e8032d723bf = L.circleMarker(
+                [48.8588897, 2.3200410217200766],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_bbeec5579ca6e91bf17efe0d80fd3f89 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2692e4cd25caaa1da3563a8011033877 = $(`<div id="html_2692e4cd25caaa1da3563a8011033877" style="width: 100.0%; height: 100.0%;"><b>Pathé Beaugrenelle - Salle 6</b><br><i>Centre Commercial Beaugrenelle - 7, rue Linois - 75015 Paris</i><br>Capacité : 232 places<br>Distance (île-de-france) : 0.0 km<br>Contact : <b>Responsable de la Programmation île de France et événementielle</b><br>📧 Marina Telkos</div>`)[0];
+                popup_bbeec5579ca6e91bf17efe0d80fd3f89.setContent(html_2692e4cd25caaa1da3563a8011033877);
+            
+        
+
+        circle_marker_23d39785518798724c886e8032d723bf.bindPopup(popup_bbeec5579ca6e91bf17efe0d80fd3f89)
+        ;
+
+        
+    
+    
+            var circle_marker_dca76c58a539bfc3f3c4b3083f852044 = L.circleMarker(
+                [48.8588897, 2.3200410217200766],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_3c68557691d1a3d085dc096f13bb200d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_30952152de44075f90f686ec6c937f1f = $(`<div id="html_30952152de44075f90f686ec6c937f1f" style="width: 100.0%; height: 100.0%;"><b>UGC Ciné Cité Maillot - Salle 12</b><br><i>place Porte Maillot - Palais des Congrés - 75017 Paris</i><br>Capacité : 152 places<br>Distance (île-de-france) : 0.0 km<br>Contact : <b></b><br>📧 Henri Ernst</div>`)[0];
+                popup_3c68557691d1a3d085dc096f13bb200d.setContent(html_30952152de44075f90f686ec6c937f1f);
+            
+        
+
+        circle_marker_dca76c58a539bfc3f3c4b3083f852044.bindPopup(popup_3c68557691d1a3d085dc096f13bb200d)
+        ;
+
+        
+    
+    
+            var circle_marker_c5cde6d51d7ca63af8e8454c63e2b21e = L.circleMarker(
+                [48.8588897, 2.3200410217200766],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_c272f59ef21c62a618a7f89426bb0e9f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0a0208dafe6f1ae9b365cf6c5c59ce46 = $(`<div id="html_0a0208dafe6f1ae9b365cf6c5c59ce46" style="width: 100.0%; height: 100.0%;"><b>Entrepôt (L') - Salle 1</b><br><i>7-9, rue Francis de Pressencé - 75014 Paris</i><br>Capacité : 104 places<br>Distance (île-de-france) : 0.0 km<br>Contact : <b>Directrice</b><br>📧 Priscilla GESSATI</div>`)[0];
+                popup_c272f59ef21c62a618a7f89426bb0e9f.setContent(html_0a0208dafe6f1ae9b365cf6c5c59ce46);
+            
+        
+
+        circle_marker_c5cde6d51d7ca63af8e8454c63e2b21e.bindPopup(popup_c272f59ef21c62a618a7f89426bb0e9f)
+        ;
+
+        
+    
+    
+            var circle_marker_db5ce566d335a37f9488a04003d4f438 = L.circleMarker(
+                [48.86668648906224, 2.3138945950302654],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_53ee5cd3b01368e97862b1e159da589b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_85f17791620a2b8110c44b0b977c9bee = $(`<div id="html_85f17791620a2b8110c44b0b977c9bee" style="width: 100.0%; height: 100.0%;"><b>MK2 Grand-Palais - Salle 1</b><br><i>3, av. Winston Churchill - 75008 Paris</i><br>Capacité : 104 places<br>Distance (île-de-france) : 0.98 km<br>Contact : <b>Bertrand Roger</b><br>📧 bertrand.roger@mk2.com</div>`)[0];
+                popup_53ee5cd3b01368e97862b1e159da589b.setContent(html_85f17791620a2b8110c44b0b977c9bee);
+            
+        
+
+        circle_marker_db5ce566d335a37f9488a04003d4f438.bindPopup(popup_53ee5cd3b01368e97862b1e159da589b)
+        ;
+
+        
+    
+    
+            var circle_marker_8743a8d95026e87e9b772c48b9cf036d = L.circleMarker(
+                [48.854579759664965, 2.3332820801554437],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_d6347914abd1894d7afa011949405bbe = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c500e0958550289a97878c5ad12adfd1 = $(`<div id="html_c500e0958550289a97878c5ad12adfd1" style="width: 100.0%; height: 100.0%;"><b>Silencio des Prés - Salle 1</b><br><i>22, rue Guillaume Apollinaire - 75006 Paris</i><br>Capacité : 208 places<br>Distance (île-de-france) : 1.08 km<br>Contact : <b></b><br>📧 cabine.silencio@assemblygroup.fr</div>`)[0];
+                popup_d6347914abd1894d7afa011949405bbe.setContent(html_c500e0958550289a97878c5ad12adfd1);
+            
+        
+
+        circle_marker_8743a8d95026e87e9b772c48b9cf036d.bindPopup(popup_d6347914abd1894d7afa011949405bbe)
+        ;
+
+        
+    
+    
+            var circle_marker_aa01f09149e88ac5109d076587885cd4 = L.circleMarker(
+                [48.8524478, 2.3382656],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_b56eddfc39374baa176d7f9b9cb02196 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0368a2f3fc515ff87939599a8738d290 = $(`<div id="html_0368a2f3fc515ff87939599a8738d290" style="width: 100.0%; height: 100.0%;"><b>MK2 Odéon (côté st Germain) - Salle 1</b><br><i>113, bd Saint-Germain - 75006 Paris</i><br>Capacité : 267 places<br>Distance (île-de-france) : 1.52 km<br>Contact : <b>Bertrand Roger</b><br>📧 bertrand.roger@mk2.com</div>`)[0];
+                popup_b56eddfc39374baa176d7f9b9cb02196.setContent(html_0368a2f3fc515ff87939599a8738d290);
+            
+        
+
+        circle_marker_aa01f09149e88ac5109d076587885cd4.bindPopup(popup_b56eddfc39374baa176d7f9b9cb02196)
+        ;
+
+        
+    
+    
+            var circle_marker_ccd284de7e1df632ce1a7e4cc2a02aee = L.circleMarker(
+                [48.8544954, 2.3401739],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_222de5b2401244c42a72d4ae28d7dc67 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bf1571d7e4af494b2f14b880eeb75ca8 = $(`<div id="html_bf1571d7e4af494b2f14b880eeb75ca8" style="width: 100.0%; height: 100.0%;"><b>Christine Cinéma Club - Salle 1</b><br><i>4, rue Christine - 75006 Paris</i><br>Capacité : 145 places<br>Distance (île-de-france) : 1.56 km<br>Contact : <b>Lorenzo Chammah / Quentin Paliwoda</b><br>📧 </div>`)[0];
+                popup_222de5b2401244c42a72d4ae28d7dc67.setContent(html_bf1571d7e4af494b2f14b880eeb75ca8);
+            
+        
+
+        circle_marker_ccd284de7e1df632ce1a7e4cc2a02aee.bindPopup(popup_222de5b2401244c42a72d4ae28d7dc67)
+        ;
+
+        
+    
+    
+            var circle_marker_4f31573651bcd801ea1581e3466001a5 = L.circleMarker(
+                [48.852181, 2.3388843],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_9111b9fd034fd945a15ed431b5bf8f55 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e6980221ca81f82c36670be55a8cf5f8 = $(`<div id="html_e6980221ca81f82c36670be55a8cf5f8" style="width: 100.0%; height: 100.0%;"><b>UGC Danton - Salle 1</b><br><i>99, bd Saint-Germain - 75006 Paris</i><br>Capacité : 327 places<br>Distance (île-de-france) : 1.57 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_9111b9fd034fd945a15ed431b5bf8f55.setContent(html_e6980221ca81f82c36670be55a8cf5f8);
+            
+        
+
+        circle_marker_4f31573651bcd801ea1581e3466001a5.bindPopup(popup_9111b9fd034fd945a15ed431b5bf8f55)
+        ;
+
+        
+    
+    
+            var circle_marker_f279cc3e0938099fed4b5584d04c6cd2 = L.circleMarker(
+                [48.8523614, 2.3398708],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_c2fd8060bb34fef5ded03a4b050aa871 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aabd8bfa1332293fd85b6445c1ab0ca8 = $(`<div id="html_aabd8bfa1332293fd85b6445c1ab0ca8" style="width: 100.0%; height: 100.0%;"><b>UGC Odéon - Salle 2</b><br><i>124, bd Saint-Germain - 75006 Paris</i><br>Capacité : 204 places<br>Distance (île-de-france) : 1.63 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_c2fd8060bb34fef5ded03a4b050aa871.setContent(html_aabd8bfa1332293fd85b6445c1ab0ca8);
+            
+        
+
+        circle_marker_f279cc3e0938099fed4b5584d04c6cd2.bindPopup(popup_c2fd8060bb34fef5ded03a4b050aa871)
+        ;
+
+        
+    
+    
+            var circle_marker_1613ff4402a2c07d3fd41a9932ce40cc = L.circleMarker(
+                [48.8715983, 2.333682],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_e7f2478a7859fffcf34d35f36f512e90 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0e188eaea4acb2f6a29fc16d20e87ba2 = $(`<div id="html_0e188eaea4acb2f6a29fc16d20e87ba2" style="width: 100.0%; height: 100.0%;"><b>Pathé Palace - Salle 1 Primaire</b><br><i>1 rue Meyerbeer - 75009 Paris</i><br>Capacité : 421 places<br>Distance (île-de-france) : 1.73 km<br>Contact : <b>Responsable de la Programmation île de France et événementielle</b><br>📧 Marina Telkos</div>`)[0];
+                popup_e7f2478a7859fffcf34d35f36f512e90.setContent(html_0e188eaea4acb2f6a29fc16d20e87ba2);
+            
+        
+
+        circle_marker_1613ff4402a2c07d3fd41a9932ce40cc.bindPopup(popup_e7f2478a7859fffcf34d35f36f512e90)
+        ;
+
+        
+    
+    
+            var circle_marker_e4ea47d9c50211fa1d49a0a0b2e8185a = L.circleMarker(
+                [48.8533544, 2.3421211],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_ea31aef8fe70b4860f0cff0b791f3ccd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8600724b60bc160b9f795ca4badc4cc3 = $(`<div id="html_8600724b60bc160b9f795ca4badc4cc3" style="width: 100.0%; height: 100.0%;"><b>Saint-André des Arts (Le) - Salle 3</b><br><i>30, rue Saint-André des Arts - 75006 Paris</i><br>Capacité : 191 places<br>Distance (île-de-france) : 1.73 km<br>Contact : <b>Antoine DOUX</b><br>📧 antoine@cinemasaintandre.com</div>`)[0];
+                popup_ea31aef8fe70b4860f0cff0b791f3ccd.setContent(html_8600724b60bc160b9f795ca4badc4cc3);
+            
+        
+
+        circle_marker_e4ea47d9c50211fa1d49a0a0b2e8185a.bindPopup(popup_ea31aef8fe70b4860f0cff0b791f3ccd)
+        ;
+
+        
+    
+    
+            var circle_marker_b12a9d3c1e4e33eeb371a26ba5ce082e = L.circleMarker(
+                [48.8434993, 2.3257407],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_edb47f1e2fd61421beeacadefa862d09 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_223800b72562921e5e563a5426e9c334 = $(`<div id="html_223800b72562921e5e563a5426e9c334" style="width: 100.0%; height: 100.0%;"><b>UGC Montparnasse - Salle 4</b><br><i>83, bd du Montparnasse - 75006 Paris</i><br>Capacité : 458 places<br>Distance (île-de-france) : 1.76 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_edb47f1e2fd61421beeacadefa862d09.setContent(html_223800b72562921e5e563a5426e9c334);
+            
+        
+
+        circle_marker_b12a9d3c1e4e33eeb371a26ba5ce082e.bindPopup(popup_edb47f1e2fd61421beeacadefa862d09)
+        ;
+
+        
+    
+    
+            var circle_marker_461261a17f8372a6ea20c47949cf8f6c = L.circleMarker(
+                [48.871332, 2.3353157],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_ed9e24d2b0881531256f08f2d50c4e51 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b7a2584b268062f2f8fcb7a97162c8f0 = $(`<div id="html_b7a2584b268062f2f8fcb7a97162c8f0" style="width: 100.0%; height: 100.0%;"><b>UGC Opéra - Salle 1</b><br><i>32, bd des Italiens - 75009 Paris</i><br>Capacité : 364 places<br>Distance (île-de-france) : 1.78 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_ed9e24d2b0881531256f08f2d50c4e51.setContent(html_b7a2584b268062f2f8fcb7a97162c8f0);
+            
+        
+
+        circle_marker_461261a17f8372a6ea20c47949cf8f6c.bindPopup(popup_ed9e24d2b0881531256f08f2d50c4e51)
+        ;
+
+        
+    
+    
+            var circle_marker_4007a2b5d995b05018715b00c7c444e5 = L.circleMarker(
+                [48.8705299, 2.3031567],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_c79a2c32e000f99c447973cb3bd7a2c6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3d968375ae837f97856b66fdf5a4b2fa = $(`<div id="html_3d968375ae837f97856b66fdf5a4b2fa" style="width: 100.0%; height: 100.0%;"><b>Elysées Lincoln - Salle 3</b><br><i>14, rue Lincoln - 75008 Paris</i><br>Capacité : 199 places<br>Distance (île-de-france) : 1.79 km<br>Contact : <b>Samuel MERLE</b><br>📧 samuel.merle@gmail.com</div>`)[0];
+                popup_c79a2c32e000f99c447973cb3bd7a2c6.setContent(html_3d968375ae837f97856b66fdf5a4b2fa);
+            
+        
+
+        circle_marker_4007a2b5d995b05018715b00c7c444e5.bindPopup(popup_c79a2c32e000f99c447973cb3bd7a2c6)
+        ;
+
+        
+    
+    
+            var circle_marker_1554b353ed50be0e3cc4098172b9cf6d = L.circleMarker(
+                [48.8442592, 2.3304599],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_80f6e332b6e3bbf9933ab35df9f3ace8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2572a667a95a41249c9917541805b51d = $(`<div id="html_2572a667a95a41249c9917541805b51d" style="width: 100.0%; height: 100.0%;"><b>Lucernaire (Le) - Salle 1</b><br><i>53, rue Notre-Dame-des-Champs - 75006 Paris</i><br>Capacité : 54 places<br>Distance (île-de-france) : 1.8 km<br>Contact : <b>Nicolas CLAUTOUR</b><br>📧 nicolas.cinema@lucernaire.fr</div>`)[0];
+                popup_80f6e332b6e3bbf9933ab35df9f3ace8.setContent(html_2572a667a95a41249c9917541805b51d);
+            
+        
+
+        circle_marker_1554b353ed50be0e3cc4098172b9cf6d.bindPopup(popup_80f6e332b6e3bbf9933ab35df9f3ace8)
+        ;
+
+        
+    
+    
+            var circle_marker_66dcde5bfe7a685b0461ba85e2b8b3b2 = L.circleMarker(
+                [48.8521797, 2.3428666333924046],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_175b4fb0385510eaace07cfbbd8bec89 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d00f08773864b8a2ad6550b0b9b8df74 = $(`<div id="html_d00f08773864b8a2ad6550b0b9b8df74" style="width: 100.0%; height: 100.0%;"><b>MK2 Odéon (côté St Michel) - Salle 1</b><br><i>7, rue hautefeuille - 75006 Paris</i><br>Capacité : 212 places<br>Distance (île-de-france) : 1.83 km<br>Contact : <b>Bertrand Roger</b><br>📧 bertrand.roger@mk2.com</div>`)[0];
+                popup_175b4fb0385510eaace07cfbbd8bec89.setContent(html_d00f08773864b8a2ad6550b0b9b8df74);
+            
+        
+
+        circle_marker_66dcde5bfe7a685b0461ba85e2b8b3b2.bindPopup(popup_175b4fb0385510eaace07cfbbd8bec89)
+        ;
+
+        
+    
+    
+            var circle_marker_1a3de5fa72032293b920db3156ba9326 = L.circleMarker(
+                [48.8508083, 2.3417802],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_ab685d6b8630c46e0f19b314f2c3b85e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_538de541e9e655eea5f4e73219c898eb = $(`<div id="html_538de541e9e655eea5f4e73219c898eb" style="width: 100.0%; height: 100.0%;"><b>Nouvel Odéon - Salle 1</b><br><i>6, rue de l'Ecole de Médecine - 75006 Paris</i><br>Capacité : 119 places<br>Distance (île-de-france) : 1.83 km<br>Contact : <b></b><br>📧 Martin Bidou</div>`)[0];
+                popup_ab685d6b8630c46e0f19b314f2c3b85e.setContent(html_538de541e9e655eea5f4e73219c898eb);
+            
+        
+
+        circle_marker_1a3de5fa72032293b920db3156ba9326.bindPopup(popup_ab685d6b8630c46e0f19b314f2c3b85e)
+        ;
+
+        
+    
+    
+            var circle_marker_dfa433d35f840f4432279294ba8bba59 = L.circleMarker(
+                [48.87097176333967, 2.3022303992813575],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_060a29fce3e6aa2bdeff1b49d81e64c0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_933c7e9a81df279e4a8965b2f087780f = $(`<div id="html_933c7e9a81df279e4a8965b2f087780f" style="width: 100.0%; height: 100.0%;"><b>Elysées Biarritz - Salle 1</b><br><i>22-24, rue Quentin Bauchart - 75008 Paris</i><br>Capacité : 245 places<br>Distance (île-de-france) : 1.87 km<br>Contact : <b>Gaëlle</b><br>📧 </div>`)[0];
+                popup_060a29fce3e6aa2bdeff1b49d81e64c0.setContent(html_933c7e9a81df279e4a8965b2f087780f);
+            
+        
+
+        circle_marker_dfa433d35f840f4432279294ba8bba59.bindPopup(popup_060a29fce3e6aa2bdeff1b49d81e64c0)
+        ;
+
+        
+    
+    
+            var circle_marker_8e3987be9ef9bdc45ffba35253ddbd4e = L.circleMarker(
+                [48.84230893269089, 2.324546727042904],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_73c5a315a8245c6f042d13abdfaa431a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c8bd3540c8c8d72c68ab78d569b680d4 = $(`<div id="html_c8bd3540c8c8d72c68ab78d569b680d4" style="width: 100.0%; height: 100.0%;"><b>Montparnos - Salle 17</b><br><i>16-18, rue d'Odessa - 75014 Paris</i><br>Capacité : 172 places<br>Distance (île-de-france) : 1.87 km<br>Contact : <b>Responsable de la Programmation île de France et événementielle</b><br>📧 Marina Telkos</div>`)[0];
+                popup_73c5a315a8245c6f042d13abdfaa431a.setContent(html_c8bd3540c8c8d72c68ab78d569b680d4);
+            
+        
+
+        circle_marker_8e3987be9ef9bdc45ffba35253ddbd4e.bindPopup(popup_73c5a315a8245c6f042d13abdfaa431a)
+        ;
+
+        
+    
+    
+            var circle_marker_61c8ac5a16246427fbef9ec437a77209 = L.circleMarker(
+                [48.8530664, 2.3441855],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_b6f7ead8f7ea2c4dec9e0f17913405cc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_773ccd714bea0a85b8d67a985e8f1c27 = $(`<div id="html_773ccd714bea0a85b8d67a985e8f1c27" style="width: 100.0%; height: 100.0%;"><b>Espace Saint-Michel - Salle 1</b><br><i>7, place Saint-Michel - 75005 Paris</i><br>Capacité : 120 places<br>Distance (île-de-france) : 1.89 km<br>Contact : <b>Justin GENTIL</b><br>📧 esm90@hotmail.com</div>`)[0];
+                popup_b6f7ead8f7ea2c4dec9e0f17913405cc.setContent(html_773ccd714bea0a85b8d67a985e8f1c27);
+            
+        
+
+        circle_marker_61c8ac5a16246427fbef9ec437a77209.bindPopup(popup_b6f7ead8f7ea2c4dec9e0f17913405cc)
+        ;
+
+        
+    
+    
+            var circle_marker_7df59250a149da620b1257207fe73fa9 = L.circleMarker(
+                [48.8424152, 2.3276286],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_00264f11c21eb38010f28eec3d3cdb2a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_579b1e7734cd94af13b92a5cea4fe36c = $(`<div id="html_579b1e7734cd94af13b92a5cea4fe36c" style="width: 100.0%; height: 100.0%;"><b>Sept Parnassiens (Les) - Salle 2</b><br><i>98, bd Montparnasse - 75014 Paris</i><br>Capacité : 265 places<br>Distance (île-de-france) : 1.91 km<br>Contact : <b>Samuel MERLE</b><br>📧 samuel.merle@gmail.com</div>`)[0];
+                popup_00264f11c21eb38010f28eec3d3cdb2a.setContent(html_579b1e7734cd94af13b92a5cea4fe36c);
+            
+        
+
+        circle_marker_7df59250a149da620b1257207fe73fa9.bindPopup(popup_00264f11c21eb38010f28eec3d3cdb2a)
+        ;
+
+        
+    
+    
+            var circle_marker_bc2d9f57bdc833a50abfcf4739005aaf = L.circleMarker(
+                [48.848402, 2.3408453],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_65cde5f6f712bfaa73897aa8042eaf2d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9982e4ad5b69d362d3d0ddd419e0086c = $(`<div id="html_9982e4ad5b69d362d3d0ddd419e0086c" style="width: 100.0%; height: 100.0%;"><b>3 Luxembourg (Les) - Salle 3</b><br><i>67, rue Monsieur Le Prince - 75006 Paris</i><br>Capacité : 132 places<br>Distance (île-de-france) : 1.92 km<br>Contact : <b>Charlotte Prunier</b><br>📧 charlotte@babylone222.com</div>`)[0];
+                popup_65cde5f6f712bfaa73897aa8042eaf2d.setContent(html_9982e4ad5b69d362d3d0ddd419e0086c);
+            
+        
+
+        circle_marker_bc2d9f57bdc833a50abfcf4739005aaf.bindPopup(popup_65cde5f6f712bfaa73897aa8042eaf2d)
+        ;
+
+        
+    
+    
+            var circle_marker_d67ff05ab6198eea26b33f826bc9c165 = L.circleMarker(
+                [48.8424534, 2.3289276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_d96abbf15b0f5876dfce3d3f43673a4d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_80fbbe9a7454aec0cd07daced207b806 = $(`<div id="html_80fbbe9a7454aec0cd07daced207b806" style="width: 100.0%; height: 100.0%;"><b>UGC Rotonde - Salle 1</b><br><i>103, bd du Montparnasse - 75006 Paris</i><br>Capacité : 250 places<br>Distance (île-de-france) : 1.94 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_d96abbf15b0f5876dfce3d3f43673a4d.setContent(html_80fbbe9a7454aec0cd07daced207b806);
+            
+        
+
+        circle_marker_d67ff05ab6198eea26b33f826bc9c165.bindPopup(popup_d96abbf15b0f5876dfce3d3f43673a4d)
+        ;
+
+        
+    
+    
+            var circle_marker_291c75d0e0b68758f0363533674f2233 = L.circleMarker(
+                [48.8756215, 2.3279247],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_d4868934a4cafdff53d5b991dbc07fa0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_547f6772db90ef16ec75b219cbf2f741 = $(`<div id="html_547f6772db90ef16ec75b219cbf2f741" style="width: 100.0%; height: 100.0%;"><b>5 Caumartin (Les) - Salle 1</b><br><i>101, rue Saint-Lazare - 75009 Paris</i><br>Capacité : 202 places<br>Distance (île-de-france) : 1.95 km<br>Contact : <b></b><br>📧 Samuel MERLE</div>`)[0];
+                popup_d4868934a4cafdff53d5b991dbc07fa0.setContent(html_547f6772db90ef16ec75b219cbf2f741);
+            
+        
+
+        circle_marker_291c75d0e0b68758f0363533674f2233.bindPopup(popup_d4868934a4cafdff53d5b991dbc07fa0)
+        ;
+
+        
+    
+    
+            var circle_marker_44e069aa193bc5bc869a91871fff843c = L.circleMarker(
+                [48.8428168, 2.3305122],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_d631c94d939adc9bd8dc725b3a8986f2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c1e27e60bb759470adddb040f4d7c948 = $(`<div id="html_c1e27e60bb759470adddb040f4d7c948" style="width: 100.0%; height: 100.0%;"><b>MK2 Parnasse - Salle 1</b><br><i>11, rue Jules Chaplain - 75006 Paris</i><br>Capacité : 135 places<br>Distance (île-de-france) : 1.95 km<br>Contact : <b>Bertrand Roger</b><br>📧 bertrand.roger@mk2.com</div>`)[0];
+                popup_d631c94d939adc9bd8dc725b3a8986f2.setContent(html_c1e27e60bb759470adddb040f4d7c948);
+            
+        
+
+        circle_marker_44e069aa193bc5bc869a91871fff843c.bindPopup(popup_d631c94d939adc9bd8dc725b3a8986f2)
+        ;
+
+        
+    
+    
+            var circle_marker_99e8278f25d7961770a298f39f31956f = L.circleMarker(
+                [48.84947470921191, 2.3427246094594376],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_55e25815e76c2e76433926b7b714a194 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1ac1d241dc4335580e5487acf6e2811d = $(`<div id="html_1ac1d241dc4335580e5487acf6e2811d" style="width: 100.0%; height: 100.0%;"><b>Reflet Médicis - Salle 1</b><br><i>3-7, rue Champollion - 75005 Paris</i><br>Capacité : 150 places<br>Distance (île-de-france) : 1.97 km<br>Contact : <b>Eric Jolivalt</b><br>📧 ejolivalt@dulacdistribution.com</div>`)[0];
+                popup_55e25815e76c2e76433926b7b714a194.setContent(html_1ac1d241dc4335580e5487acf6e2811d);
+            
+        
+
+        circle_marker_99e8278f25d7961770a298f39f31956f.bindPopup(popup_55e25815e76c2e76433926b7b714a194)
+        ;
+
+        
+    
+    
+            var circle_marker_c3102d2e41abb122a6bbe34392c2fab8 = L.circleMarker(
+                [48.8499889, 2.3432266],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_cadfc47e974d625a45ba54dbedaa11ba = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4c02852462b2a7d4ac9be030268ea5ff = $(`<div id="html_4c02852462b2a7d4ac9be030268ea5ff" style="width: 100.0%; height: 100.0%;"><b>Champo (Le) - Salle 1</b><br><i>51, rue des Ecoles - 75005 Paris</i><br>Capacité : 120 places<br>Distance (île-de-france) : 1.97 km<br>Contact : <b>Mme Renavand</b><br>📧 ch.renavand@mac.com</div>`)[0];
+                popup_cadfc47e974d625a45ba54dbedaa11ba.setContent(html_4c02852462b2a7d4ac9be030268ea5ff);
+            
+        
+
+        circle_marker_c3102d2e41abb122a6bbe34392c2fab8.bindPopup(popup_cadfc47e974d625a45ba54dbedaa11ba)
+        ;
+
+        
+    
+    
+            var circle_marker_3e251bbd59f8ee1c1aba945ed322cbeb = L.circleMarker(
+                [48.8495776, 2.342814],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_5c811aee10b2f75f480e777a57ecd7a4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e993c5ebf65b20dd19f8e065f49ee2da = $(`<div id="html_e993c5ebf65b20dd19f8e065f49ee2da" style="width: 100.0%; height: 100.0%;"><b>Filmothèque du Quartier latin - Salle 1</b><br><i>9, rue Champollion - 75005 Paris</i><br>Capacité : 97 places<br>Distance (île-de-france) : 1.97 km<br>Contact : <b>François CAUSSE</b><br>📧 f_causse@yahoo.fr</div>`)[0];
+                popup_5c811aee10b2f75f480e777a57ecd7a4.setContent(html_e993c5ebf65b20dd19f8e065f49ee2da);
+            
+        
+
+        circle_marker_3e251bbd59f8ee1c1aba945ed322cbeb.bindPopup(popup_5c811aee10b2f75f480e777a57ecd7a4)
+        ;
+
+        
+    
+    
+            var circle_marker_e1e314f115b50cdc720956d305c1ee21 = L.circleMarker(
+                [48.8481319, 2.3419859],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_4d480a177192eaa064bc3af664b1d09d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_517eeb5cd98f6feec7d1c4bd5c931006 = $(`<div id="html_517eeb5cd98f6feec7d1c4bd5c931006" style="width: 100.0%; height: 100.0%;"><b>Studio Luxembourg - Accatone - Salle 1</b><br><i>20, rue Cujas - 75005 Paris</i><br>Capacité : 73 places<br>Distance (île-de-france) : 2.01 km<br>Contact : <b>Charlotte Prunier</b><br>📧 charlotte@babylone222.com</div>`)[0];
+                popup_4d480a177192eaa064bc3af664b1d09d.setContent(html_517eeb5cd98f6feec7d1c4bd5c931006);
+            
+        
+
+        circle_marker_e1e314f115b50cdc720956d305c1ee21.bindPopup(popup_4d480a177192eaa064bc3af664b1d09d)
+        ;
+
+        
+    
+    
+            var circle_marker_fd90046b5eadd8f91b8e5dce44955e87 = L.circleMarker(
+                [48.847466999999995, 2.342463591974564],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_c7d3b2d386750de4950760d916465eea = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e4908a4065cf645e3f7de87cbdd06a4e = $(`<div id="html_e4908a4065cf645e3f7de87cbdd06a4e" style="width: 100.0%; height: 100.0%;"><b>Cinéma du Panthéon (Le) - Salle 1</b><br><i>13, rue Victor Cousin - 75005 Paris</i><br>Capacité : 200 places<br>Distance (île-de-france) : 2.08 km<br>Contact : <b>Nadège Le Breton</b><br>📧 nadege@cinemadupantheon.fr</div>`)[0];
+                popup_c7d3b2d386750de4950760d916465eea.setContent(html_e4908a4065cf645e3f7de87cbdd06a4e);
+            
+        
+
+        circle_marker_fd90046b5eadd8f91b8e5dce44955e87.bindPopup(popup_c7d3b2d386750de4950760d916465eea)
+        ;
+
+        
+    
+    
+            var circle_marker_dc18e7b497b602f5c2cb78c3b76d88c9 = L.circleMarker(
+                [48.8516341, 2.3471068],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_e02a4cd8fa78e9bffbe1f05dbadf75f7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3eeb6510c55501f47ecb0e37c4c0e204 = $(`<div id="html_3eeb6510c55501f47ecb0e37c4c0e204" style="width: 100.0%; height: 100.0%;"><b>Studio Galande (Le) - Salle 1</b><br><i>42, rue Galande - 75005 Paris</i><br>Capacité : 97 places<br>Distance (île-de-france) : 2.14 km<br>Contact : <b>Maxime MNIAÏ</b><br>📧 information@studiogalande.fr</div>`)[0];
+                popup_e02a4cd8fa78e9bffbe1f05dbadf75f7.setContent(html_3eeb6510c55501f47ecb0e37c4c0e204);
+            
+        
+
+        circle_marker_dc18e7b497b602f5c2cb78c3b76d88c9.bindPopup(popup_e02a4cd8fa78e9bffbe1f05dbadf75f7)
+        ;
+
+        
+    
+    
+            var circle_marker_24f540ea374259face9199e70e271af8 = L.circleMarker(
+                [48.8534951, 2.3483915],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_25fd18d52147b55adf8b81e26a847e4b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_992e4e56d7b25614b15059abff347a5d = $(`<div id="html_992e4e56d7b25614b15059abff347a5d" style="width: 100.0%; height: 100.0%;"><b>Grand Rex (Le) - Salle 8 GL</b><br><i>1, bd Poissonière - 75002 Paris</i><br>Capacité : 1200 places<br>Distance (île-de-france) : 2.17 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_25fd18d52147b55adf8b81e26a847e4b.setContent(html_992e4e56d7b25614b15059abff347a5d);
+            
+        
+
+        circle_marker_24f540ea374259face9199e70e271af8.bindPopup(popup_25fd18d52147b55adf8b81e26a847e4b)
+        ;
+
+        
+    
+    
+            var circle_marker_f12a29c4a91f06d5f21f9ae32770c906 = L.circleMarker(
+                [48.8534951, 2.3483915],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_9306527e904bf661306e28a94e02eb54 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c6f70afc45691e6fc50dc89fdef02c94 = $(`<div id="html_c6f70afc45691e6fc50dc89fdef02c94" style="width: 100.0%; height: 100.0%;"><b>UGC Ciné Cité les Halles - Salle 1</b><br><i>7, place de la Rotonde - 75001 Paris</i><br>Capacité : 497 places<br>Distance (île-de-france) : 2.17 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_9306527e904bf661306e28a94e02eb54.setContent(html_c6f70afc45691e6fc50dc89fdef02c94);
+            
+        
+
+        circle_marker_f12a29c4a91f06d5f21f9ae32770c906.bindPopup(popup_9306527e904bf661306e28a94e02eb54)
+        ;
+
+        
+    
+    
+            var circle_marker_4c81b62cbe0af43e258f4420cf45febe = L.circleMarker(
+                [48.8534951, 2.3483915],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_cd905027f84107ee4622463a0069354f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a1a804f713ddf32db9d42d7e199d6032 = $(`<div id="html_a1a804f713ddf32db9d42d7e199d6032" style="width: 100.0%; height: 100.0%;"><b>Pathé Opéra Premier - Salle 1</b><br><i>32, rue Louis Legrand - 75002 Paris</i><br>Capacité : 415 places<br>Distance (île-de-france) : 2.17 km<br>Contact : <b>Responsable de la Programmation île de France et événementielle</b><br>📧 Marina Telkos</div>`)[0];
+                popup_cd905027f84107ee4622463a0069354f.setContent(html_a1a804f713ddf32db9d42d7e199d6032);
+            
+        
+
+        circle_marker_4c81b62cbe0af43e258f4420cf45febe.bindPopup(popup_cd905027f84107ee4622463a0069354f)
+        ;
+
+        
+    
+    
+            var circle_marker_b8137d1498162accf46bdb7c06b9c58f = L.circleMarker(
+                [48.8534951, 2.3483915],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_1e364686ef11b32215786228266244aa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ef8ead9cca1c04ca7d69133afc3b8f5f = $(`<div id="html_ef8ead9cca1c04ca7d69133afc3b8f5f" style="width: 100.0%; height: 100.0%;"><b>Clef (La) - Salle 1</b><br><i>21-27, rue de la Clef - 34, rue Daubenton - 75005 Paris</i><br>Capacité : 190 places<br>Distance (île-de-france) : 2.17 km<br>Contact : <b>Derek Woolfenden</b><br>📧 contact.laclefrevival@gmail.com</div>`)[0];
+                popup_1e364686ef11b32215786228266244aa.setContent(html_ef8ead9cca1c04ca7d69133afc3b8f5f);
+            
+        
+
+        circle_marker_b8137d1498162accf46bdb7c06b9c58f.bindPopup(popup_1e364686ef11b32215786228266244aa)
+        ;
+
+        
+    
+    
+            var circle_marker_5f1392579a89a17c9507569ed8270da9 = L.circleMarker(
+                [48.8726727, 2.2974019],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_d090c60d73bc505243d9aa262130f3d8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fee81fc155150bae1255d80424f45384 = $(`<div id="html_fee81fc155150bae1255d80424f45384" style="width: 100.0%; height: 100.0%;"><b>Publicis Cinémas - Salle 1</b><br><i>129, av. des Champs-Élysées - 75008 Paris</i><br>Capacité : 403 places<br>Distance (île-de-france) : 2.26 km<br>Contact : <b></b><br>📧 Eric Jolivalt</div>`)[0];
+                popup_d090c60d73bc505243d9aa262130f3d8.setContent(html_fee81fc155150bae1255d80424f45384);
+            
+        
+
+        circle_marker_5f1392579a89a17c9507569ed8270da9.bindPopup(popup_d090c60d73bc505243d9aa262130f3d8)
+        ;
+
+        
+    
+    
+            var circle_marker_3907333efed503242dd1430d73aa627e = L.circleMarker(
+                [48.8713709, 2.3448748],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_fcac23db9822bccda0fc8f536f83eb33 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_107d5059b030439ac450373299f65f9e = $(`<div id="html_107d5059b030439ac450373299f65f9e" style="width: 100.0%; height: 100.0%;"><b>Max Linder (Le) - Salle 1</b><br><i>24, bd Poissonnière - 75009 Paris</i><br>Capacité : 591 places<br>Distance (île-de-france) : 2.29 km<br>Contact : <b>Claudine Cornillat</b><br>📧 claudine.cornillat@wanadoo.fr</div>`)[0];
+                popup_fcac23db9822bccda0fc8f536f83eb33.setContent(html_107d5059b030439ac450373299f65f9e);
+            
+        
+
+        circle_marker_3907333efed503242dd1430d73aa627e.bindPopup(popup_fcac23db9822bccda0fc8f536f83eb33)
+        ;
+
+        
+    
+    
+            var circle_marker_f7388acd0233d3e948b03895c83b614e = L.circleMarker(
+                [48.8430793, 2.2985273],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_0f3d2412f8f1c9851cc4f44fc6a60dcb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_61ffe3a1ee826adf45647f69fcee9fe4 = $(`<div id="html_61ffe3a1ee826adf45647f69fcee9fe4" style="width: 100.0%; height: 100.0%;"><b>Ciné Chaplin Saint-Lambert - Salle 1</b><br><i>6, rue Peclet - 75015 Paris</i><br>Capacité : 189 places<br>Distance (île-de-france) : 2.36 km<br>Contact : <b>Grégory Sauerborn</b><br>📧 gregory.sauerborn@orange.fr</div>`)[0];
+                popup_0f3d2412f8f1c9851cc4f44fc6a60dcb.setContent(html_61ffe3a1ee826adf45647f69fcee9fe4);
+            
+        
+
+        circle_marker_f7388acd0233d3e948b03895c83b614e.bindPopup(popup_0f3d2412f8f1c9851cc4f44fc6a60dcb)
+        ;
+
+        
+    
+    
+            var circle_marker_784fbbcc7bcd6d5bc370e24514a9e87e = L.circleMarker(
+                [48.8615738, 2.3524143],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_70b3481ffb8dbbe7f94feeaec885b430 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1bb7dcc5ecf74a6473800ff35be76601 = $(`<div id="html_1bb7dcc5ecf74a6473800ff35be76601" style="width: 100.0%; height: 100.0%;"><b>MK2 Beaubourg - Salle 5</b><br><i>50, rue Rambuteau - 75003 Paris</i><br>Capacité : 183 places<br>Distance (île-de-france) : 2.39 km<br>Contact : <b>Bertrand Roger</b><br>📧 bertrand.roger@mk2.com</div>`)[0];
+                popup_70b3481ffb8dbbe7f94feeaec885b430.setContent(html_1bb7dcc5ecf74a6473800ff35be76601);
+            
+        
+
+        circle_marker_784fbbcc7bcd6d5bc370e24514a9e87e.bindPopup(popup_70b3481ffb8dbbe7f94feeaec885b430)
+        ;
+
+        
+    
+    
+            var circle_marker_3b1c2710b88f783602003fe163ceb8f2 = L.circleMarker(
+                [48.8427198, 2.3420521],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_5f1e70e80a77f271e9fc9330abc91b57 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d6059ae354c51ae0e4ab110a53419e3e = $(`<div id="html_d6059ae354c51ae0e4ab110a53419e3e" style="width: 100.0%; height: 100.0%;"><b>Studio des Ursulines (Le) - Salle 1</b><br><i>10, rue des Ursulines - 75005 Paris</i><br>Capacité : 122 places<br>Distance (île-de-france) : 2.42 km<br>Contact : <b>Emilie Nouveau</b><br>📧 emilie@studiodesursulines.com</div>`)[0];
+                popup_5f1e70e80a77f271e9fc9330abc91b57.setContent(html_d6059ae354c51ae0e4ab110a53419e3e);
+            
+        
+
+        circle_marker_3b1c2710b88f783602003fe163ceb8f2.bindPopup(popup_5f1e70e80a77f271e9fc9330abc91b57)
+        ;
+
+        
+    
+    
+            var circle_marker_e2d7efe637d5b913e9cde8c0634cd211 = L.circleMarker(
+                [48.8483619, 2.3489766],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_bd5d7bfccc5447003f07d5aa7cbcc83b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d775f15e812ec98034f873e8a74d3c40 = $(`<div id="html_d775f15e812ec98034f873e8a74d3c40" style="width: 100.0%; height: 100.0%;"><b>Écoles cinéma club - Salle 1</b><br><i>23, rue des Ecoles - 75005 Paris</i><br>Capacité : 111 places<br>Distance (île-de-france) : 2.42 km<br>Contact : <b>Quentin Paliwoda / Lorenzo Chammah</b><br>📧 cinemaledesperado@gmail.com, quentin.cinemas21@gmail.com</div>`)[0];
+                popup_bd5d7bfccc5447003f07d5aa7cbcc83b.setContent(html_d775f15e812ec98034f873e8a74d3c40);
+            
+        
+
+        circle_marker_e2d7efe637d5b913e9cde8c0634cd211.bindPopup(popup_bd5d7bfccc5447003f07d5aa7cbcc83b)
+        ;
+
+        
+    
+    
+            var circle_marker_accec19ccf9e523182e9ba8d9741bc80 = L.circleMarker(
+                [48.8586559, 2.3536069],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_75f55ac64a7e9faa141ddf51b88df9e4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9b141bdcbd46a05a06ed202e206adab0 = $(`<div id="html_9b141bdcbd46a05a06ed202e206adab0" style="width: 100.0%; height: 100.0%;"><b>Luminor Hotel de ville - Salle 1</b><br><i>20, rue du Temple - 75004 Paris</i><br>Capacité : 180 places<br>Distance (île-de-france) : 2.46 km<br>Contact : <b>Timothé SAUVAGET</b><br>📧 timothe@babylone222.com</div>`)[0];
+                popup_75f55ac64a7e9faa141ddf51b88df9e4.setContent(html_9b141bdcbd46a05a06ed202e206adab0);
+            
+        
+
+        circle_marker_accec19ccf9e523182e9ba8d9741bc80.bindPopup(popup_75f55ac64a7e9faa141ddf51b88df9e4)
+        ;
+
+        
+    
+    
+            var circle_marker_52781af0e95ad0ee79c9bff4fbbcb8c0 = L.circleMarker(
+                [48.8760957, 2.29535],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_b4acbe2f27986352965414ac57253078 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f819447e9cb1c0826cd99848efb8a8c0 = $(`<div id="html_f819447e9cb1c0826cd99848efb8a8c0" style="width: 100.0%; height: 100.0%;"><b>Club de l'Etoile (Le) - Salle 1</b><br><i>14, rue Troyon - 75017 Paris</i><br>Capacité : 161 places<br>Distance (île-de-france) : 2.63 km<br>Contact : <b></b><br>📧 leclub@clubdeletoile.fr</div>`)[0];
+                popup_b4acbe2f27986352965414ac57253078.setContent(html_f819447e9cb1c0826cd99848efb8a8c0);
+            
+        
+
+        circle_marker_52781af0e95ad0ee79c9bff4fbbcb8c0.bindPopup(popup_b4acbe2f27986352965414ac57253078)
+        ;
+
+        
+    
+    
+            var circle_marker_5f101543c4a48ae673bd0891b9f05589 = L.circleMarker(
+                [48.8475212, 2.3521266],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_68a0c785e143c588933038f7086af1af = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b78eee5e5ea23590a24dd6cb1001faee = $(`<div id="html_b78eee5e5ea23590a24dd6cb1001faee" style="width: 100.0%; height: 100.0%;"><b>Grand Action (Le) - Salle 1</b><br><i>5, rue des Ecoles - 75005 Paris</i><br>Capacité : 221 places<br>Distance (île-de-france) : 2.67 km<br>Contact : <b>Victor BOURNERIAS</b><br>📧 vb@legrandaction.com</div>`)[0];
+                popup_68a0c785e143c588933038f7086af1af.setContent(html_b78eee5e5ea23590a24dd6cb1001faee);
+            
+        
+
+        circle_marker_5f101543c4a48ae673bd0891b9f05589.bindPopup(popup_68a0c785e143c588933038f7086af1af)
+        ;
+
+        
+    
+    
+            var circle_marker_4211bb1fe9bf8fedb15079c50297ce72 = L.circleMarker(
+                [48.87652536367305, 2.294569049426999],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_dfa006577d68ca89cd6ceeb724fbfd80 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d0b295ff1dd10f88542ec49c24b8cae5 = $(`<div id="html_d0b295ff1dd10f88542ec49c24b8cae5" style="width: 100.0%; height: 100.0%;"><b>Mac Mahon - Salle 1</b><br><i>5-7, av. Mac Mahon - 75017 Paris</i><br>Capacité : 137 places<br>Distance (île-de-france) : 2.71 km<br>Contact : <b></b><br>📧 cinemamacmahon@bollore.net</div>`)[0];
+                popup_dfa006577d68ca89cd6ceeb724fbfd80.setContent(html_d0b295ff1dd10f88542ec49c24b8cae5);
+            
+        
+
+        circle_marker_4211bb1fe9bf8fedb15079c50297ce72.bindPopup(popup_dfa006577d68ca89cd6ceeb724fbfd80)
+        ;
+
+        
+    
+    
+            var circle_marker_8a029e400a54bdcd8c5166a0c5423429 = L.circleMarker(
+                [48.8582216, 2.2821508],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_0299c300d76879e02a1f847d6d509f7c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_46a16e0a85f7ac456b027ddf8498c749 = $(`<div id="html_46a16e0a85f7ac456b027ddf8498c749" style="width: 100.0%; height: 100.0%;"><b>Majestic Passy - Salle 1</b><br><i>18, rue de Passy - 75016 Paris</i><br>Capacité : 305 places<br>Distance (île-de-france) : 2.78 km<br>Contact : <b>Eric Jolivalt</b><br>📧 ejolivalt@dulacdistribution.com</div>`)[0];
+                popup_0299c300d76879e02a1f847d6d509f7c.setContent(html_46a16e0a85f7ac456b027ddf8498c749);
+            
+        
+
+        circle_marker_8a029e400a54bdcd8c5166a0c5423429.bindPopup(popup_0299c300d76879e02a1f847d6d509f7c)
+        ;
+
+        
+    
+    
+            var circle_marker_e6cfbdd1fc3771cc99221e6e9bede884 = L.circleMarker(
+                [48.8839908, 2.3281131],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_791f023c1cb23396d2afe34940d08705 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_964251f1183a6127dc10a9cb3f96a992 = $(`<div id="html_964251f1183a6127dc10a9cb3f96a992" style="width: 100.0%; height: 100.0%;"><b>Pathé Wepler - Salle 1</b><br><i>140, bd de Clichy - 75018 Paris</i><br>Capacité : 382 places<br>Distance (île-de-france) : 2.85 km<br>Contact : <b>Responsable de la Programmation île de France et événementielle</b><br>📧 Marina Telkos</div>`)[0];
+                popup_791f023c1cb23396d2afe34940d08705.setContent(html_964251f1183a6127dc10a9cb3f96a992);
+            
+        
+
+        circle_marker_e6cfbdd1fc3771cc99221e6e9bede884.bindPopup(popup_791f023c1cb23396d2afe34940d08705)
+        ;
+
+        
+    
+    
+            var circle_marker_ad4af14696688bea626275917096ac84 = L.circleMarker(
+                [48.87047, 2.3546823],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_a1f9d67ca70b9453b68f797272592ccd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b7fc261d54a2ddee6c23cd51e1397c3d = $(`<div id="html_b7fc261d54a2ddee6c23cd51e1397c3d" style="width: 100.0%; height: 100.0%;"><b>Archipel (L') - Salle 1</b><br><i>17, bd de Strasbourg - 75010 Paris</i><br>Capacité : 112 places<br>Distance (île-de-france) : 2.85 km<br>Contact : <b>Lacalm Emmanuelle MERZOUK MARGOT</b><br>📧 cinema@larchipel.net, e.lacalm@larchipel.net</div>`)[0];
+                popup_a1f9d67ca70b9453b68f797272592ccd.setContent(html_b7fc261d54a2ddee6c23cd51e1397c3d);
+            
+        
+
+        circle_marker_ad4af14696688bea626275917096ac84.bindPopup(popup_a1f9d67ca70b9453b68f797272592ccd)
+        ;
+
+        
+    
+    
+            var circle_marker_feacde10475d6da131e33e59b2e2b094 = L.circleMarker(
+                [48.8843074, 2.3269007],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_8c1163f299a151bd6c5faafec1d15c89 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9aabc942cce0cadac1339e0b7a622f4e = $(`<div id="html_9aabc942cce0cadac1339e0b7a622f4e" style="width: 100.0%; height: 100.0%;"><b>Cinéma des Cinéastes (Le) - Salle 1</b><br><i>7, av. de Clichy - 75017 Paris</i><br>Capacité : 314 places<br>Distance (île-de-france) : 2.87 km<br>Contact : <b>Lydie Ratajczyk</b><br>📧 lydie@mc4-distribution.fr</div>`)[0];
+                popup_8c1163f299a151bd6c5faafec1d15c89.setContent(html_9aabc942cce0cadac1339e0b7a622f4e);
+            
+        
+
+        circle_marker_feacde10475d6da131e33e59b2e2b094.bindPopup(popup_8c1163f299a151bd6c5faafec1d15c89)
+        ;
+
+        
+    
+    
+            var circle_marker_fe53833f7543c85139511331333140e5 = L.circleMarker(
+                [48.83382365, 2.3309355718228977],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_01bfd48a1bd1b8030f6c4d5676492ef2);
+        
+    
+        var popup_95d96f45b09cc4184e3efa1f72567fd1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_474841a65a530e1540342c9362443799 = $(`<div id="html_474841a65a530e1540342c9362443799" style="width: 100.0%; height: 100.0%;"><b>Ciné Chaplin - Denfert - Salle 1</b><br><i>24, place Denfert Rochereau - 75014 Paris</i><br>Capacité : 133 places<br>Distance (île-de-france) : 2.9 km<br>Contact : <b>Grégory Sauerborn</b><br>📧 gregory.sauerborn@orange.fr</div>`)[0];
+                popup_95d96f45b09cc4184e3efa1f72567fd1.setContent(html_474841a65a530e1540342c9362443799);
+            
+        
+
+        circle_marker_fe53833f7543c85139511331333140e5.bindPopup(popup_95d96f45b09cc4184e3efa1f72567fd1)
+        ;
+
+        
+    
+    
+            feature_group_01bfd48a1bd1b8030f6c4d5676492ef2.addTo(map_6e696c02859c4152b7589077986e45ef);
+        
+    
+            var layer_control_bc1e1367ed8299e0267f55c9d9460181_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_e6b36e7593b93e99e5a2a12ef3f0b21b,
+                },
+                overlays :  {
+                    "\u00eele-de-france (50 salles)" : feature_group_01bfd48a1bd1b8030f6c4d5676492ef2,
+                },
+            };
+            let layer_control_bc1e1367ed8299e0267f55c9d9460181 = L.control.layers(
+                layer_control_bc1e1367ed8299e0267f55c9d9460181_layers.base_layers,
+                layer_control_bc1e1367ed8299e0267f55c9d9460181_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_6e696c02859c4152b7589077986e45ef);
+
+        
+</script>
+</html>

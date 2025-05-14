@@ -27,6 +27,13 @@ from pathlib import Path
 from Levenshtein import distance
 import sys
 import dateutil.parser
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
+import matplotlib
+matplotlib.use('Agg')  # Pour éviter les problèmes avec Streamlit
 
 # Configuration du logging
 logging.basicConfig(
@@ -1585,6 +1592,215 @@ def display_content_stats(stats_data, content_type):
                 logger.info(f"Taux d'engagement pour {category}: {engagement_rate:.2f}%")
                 st.metric("Taux d'engagement", f"{engagement_rate:.2f}%")
                 
+def generate_pdf_report(username, platform, platform_data, engagement_data, reputation_data, video_stats=None):
+    """Génère un rapport PDF avec les statistiques et l'analyse de réputation"""
+    buffer = BytesIO()
+    doc = SimpleDocTemplate(buffer, pagesize=letter)
+    styles = getSampleStyleSheet()
+    story = []
+
+    # Titre
+    title_style = ParagraphStyle(
+        'CustomTitle',
+        parent=styles['Heading1'],
+        fontSize=24,
+        spaceAfter=30
+    )
+    story.append(Paragraph(f"Rapport d'analyse - {username}", title_style))
+    story.append(Paragraph(f"Plateforme: {platform}", styles['Heading2']))
+    story.append(Spacer(1, 20))
+
+    # Métriques de base
+    story.append(Paragraph("Métriques de base", styles['Heading2']))
+    metrics = platform_data.get("platform_data", {})
+    if platform.lower() == "youtube":
+        data = [
+            ["Métrique", "Valeur"],
+            ["Abonnés", f"{int(metrics.get('subscriberCount', 0)):,}"],
+            ["Vues totales", f"{int(metrics.get('viewCount', 0)):,}"],
+            ["Nombre de vidéos", f"{int(metrics.get('videoCount', 0)):,}"]
+        ]
+    else:
+        data = [
+            ["Métrique", "Valeur"],
+            ["Abonnés", f"{int(metrics.get('followerCount', 0)):,}"],
+            ["Nombre de posts", f"{int(metrics.get('mediaCount', 0)):,}"],
+            ["Likes totaux", f"{int(metrics.get('likeCount', 0)):,}"]
+        ]
+
+    table = Table(data, colWidths=[2*inch, 2*inch])
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 14),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTSIZE', (0, 1), (-1, -1), 12),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black)
+    ]))
+    story.append(table)
+    story.append(Spacer(1, 20))
+
+    # Analyse d'engagement
+    story.append(Paragraph("Analyse d'engagement", styles['Heading2']))
+    engagement_rate = engagement_data.get('overall_engagement_rate', 0)
+    benchmark = engagement_data.get('benchmark', 'unknown')
+    industry_avg = engagement_data.get('industry_average', 0)
+    
+    engagement_data_table = [
+        ["Métrique", "Valeur"],
+        ["Taux d'engagement", f"{engagement_rate:.2f}%"],
+        ["Benchmark", benchmark.capitalize()],
+        ["Moyenne du secteur", f"{industry_avg:.2f}%"]
+    ]
+    
+    table = Table(engagement_data_table, colWidths=[2*inch, 2*inch])
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 14),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTSIZE', (0, 1), (-1, -1), 12),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black)
+    ]))
+    story.append(table)
+    story.append(Spacer(1, 20))
+
+    # Analyse de réputation
+    story.append(Paragraph("Analyse de réputation", styles['Heading2']))
+    
+    # Vérification et conversion des données de réputation
+    if isinstance(reputation_data, dict):
+        risk_level = reputation_data.get('risk_level', 'unknown')
+        metrics = reputation_data.get("metrics", {})
+        avg_sentiment = metrics.get("average_sentiment", 0) if isinstance(metrics, dict) else 0
+        controversies = len(reputation_data.get("controversies", []))
+        summary = reputation_data.get('summary', 'Aucun résumé disponible')
+    else:
+        risk_level = 'unknown'
+        avg_sentiment = 0
+        controversies = 0
+        summary = 'Aucun résumé disponible'
+    
+    reputation_data_table = [
+        ["Métrique", "Valeur"],
+        ["Niveau de risque", str(risk_level).capitalize()],
+        ["Sentiment moyen", f"{float(avg_sentiment):.2f}"],
+        ["Nombre de controverses", str(controversies)]
+    ]
+    
+    table = Table(reputation_data_table, colWidths=[2*inch, 2*inch])
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 14),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTSIZE', (0, 1), (-1, -1), 12),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black)
+    ]))
+    story.append(table)
+    story.append(Spacer(1, 20))
+
+    # Résumé de réputation
+    story.append(Paragraph("Résumé de réputation", styles['Heading3']))
+    story.append(Paragraph(str(summary), styles['Normal']))
+    story.append(Spacer(1, 20))
+
+    # Articles controversés
+    if isinstance(reputation_data, dict) and reputation_data.get("controversies"):
+        story.append(Paragraph("Articles controversés", styles['Heading2']))
+        story.append(Spacer(1, 10))
+        
+        # Création d'un style pour les articles controversés
+        controversy_style = ParagraphStyle(
+            'ControversyStyle',
+            parent=styles['Normal'],
+            textColor=colors.red,
+            spaceAfter=12
+        )
+        
+        for controversy in reputation_data["controversies"]:
+            if isinstance(controversy, dict):
+                title = controversy.get("title", "Sans titre")
+                date = controversy.get("date", "Date inconnue")
+                sentiment = controversy.get("sentiment", 0)
+                keywords = controversy.get("keywords", [])
+                
+                # Formatage du bloc d'article controversé
+                bloc = f"""
+                <b>Titre :</b> {title}<br/>
+                <b>Date :</b> {date}<br/>
+                <b>Sentiment :</b> {sentiment:.2f}<br/>
+                <b>Mots-clés :</b> {', '.join(keywords)}
+                """
+                story.append(Paragraph(bloc, controversy_style))
+                story.append(Spacer(1, 10))
+        
+        story.append(Spacer(1, 20))
+
+    # Autres articles
+    if isinstance(reputation_data, dict) and reputation_data.get("all_articles"):
+        story.append(Paragraph("Autres articles", styles['Heading2']))
+        story.append(Spacer(1, 10))
+        
+        # Création d'un style pour les articles normaux
+        article_style = ParagraphStyle(
+            'ArticleStyle',
+            parent=styles['Normal'],
+            textColor=colors.black,
+            spaceAfter=12
+        )
+        
+        # Filtrer les articles non controversés
+        non_controversy_articles = [
+            article for article in reputation_data["all_articles"]
+            if article not in reputation_data.get("controversies", [])
+        ]
+        
+        # Trier les articles par date
+        non_controversy_articles.sort(
+            key=lambda x: dateutil.parser.parse(x.get("date", "1970-01-01")),
+            reverse=True
+        )
+        
+        for article in non_controversy_articles:
+            if isinstance(article, dict):
+                title = article.get("title", "Sans titre")
+                date = article.get("date", "Date inconnue")
+                sentiment = article.get("sentiment", 0)
+                
+                # Formatage du bloc d'article
+                bloc = f"""
+                <b>Titre :</b> {title}<br/>
+                <b>Date :</b> {date}<br/>
+                <b>Sentiment :</b> {sentiment:.2f}
+                """
+                story.append(Paragraph(bloc, article_style))
+                story.append(Spacer(1, 10))
+
+    # Date de génération
+    story.append(Spacer(1, 20))
+    story.append(Paragraph(f"Rapport généré le {datetime.datetime.now().strftime('%d/%m/%Y à %H:%M')}", styles['Normal']))
+
+    # Génération du PDF
+    doc.build(story)
+    buffer.seek(0)
+    return buffer
+
 def main():
     """Fonction principale de l'application"""
     try:
@@ -1678,6 +1894,23 @@ def main():
                         display_content_stats(video_stats, f"des vidéos ({period_label})")
                     elif platform == "Instagram":
                         display_content_stats(data.get("post_stats", {}), "des posts")
+
+                    # Génération et téléchargement du PDF
+                    pdf_buffer = generate_pdf_report(
+                        username,
+                        platform,
+                        data,
+                        engagement,
+                        data.get("reputation_data", {}),
+                        video_stats if platform == "YouTube" else None
+                    )
+                    
+                    st.download_button(
+                        label="📥 Télécharger le rapport PDF",
+                        data=pdf_buffer,
+                        file_name=f"rapport_{username}_{platform.lower()}_{datetime.datetime.now().strftime('%Y%m%d_%H%M')}.pdf",
+                        mime="application/pdf"
+                    )
                         
             except HttpError as e:
                 if API_QUOTA_EXCEEDED_ERROR in str(e):
