@@ -1104,3 +1104,27 @@ NameError: name 'story' is not defined
 2025-05-14 12:28:24,489 - __main__ - ERROR - ID de chaîne YouTube non trouvé pour Michou
 2025-05-14 12:28:24,490 - __main__ - ERROR - Impossible de récupérer les données pour Michou
 2025-05-14 12:28:24,492 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-15 16:44:53,498 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-15 16:44:53,499 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-15 16:44:53,499 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-15 16:44:53,589 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-15 16:44:53,590 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-15 16:44:53,591 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-15 16:44:53,591 - __main__ - WARNING - Clé News API non trouvée
+2025-05-15 16:44:53,969 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-15 16:44:54,353 - __main__ - INFO - Mode sélectionné : API
+2025-05-15 16:44:54,354 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-15 16:44:54,355 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-15 16:44:54,357 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-15 16:45:17,289 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-15 16:45:17,291 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-15 16:45:17,292 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-15 16:45:17,294 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-15 16:45:17,295 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-15 16:45:17,296 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-15 16:45:17,297 - __main__ - WARNING - Clé News API non trouvée
+2025-05-15 16:45:17,633 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-15 16:45:17,635 - __main__ - INFO - Mode sélectionné : API
+2025-05-15 16:45:17,637 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-15 16:45:17,638 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-15 16:45:17,639 - __main__ - INFO - === FIN DE L'APPLICATION ===

@@ -76,12 +76,12 @@ def analyser_requete_ia(question: str):
         "- \"nombre\" : nombre de spectateurs à atteindre,\n"
         "- \"nombre_seances\" : (optionnel) nombre de séances prévues.\n\n"
 
-        "🎯 Si l’utilisateur précise un nombre de séances et une fourchette de spectateurs (ex : entre 30 000 et 40 000) :\n"
+        "🎯 Si l'utilisateur précise un nombre de séances et une fourchette de spectateurs (ex : entre 30 000 et 40 000) :\n"
         "- Choisis un total réaliste dans cette fourchette,\n"
         "- Répartis ce total entre les villes proportionnellement au nombre de séances,\n"
         "- Ne dépasse jamais le maximum, et ne descends jamais en dessous du minimum.\n\n"
 
-        "🎯 Si l’utilisateur précise seulement une fourchette de spectateurs pour une zone :\n"
+        "🎯 Si l'utilisateur précise seulement une fourchette de spectateurs pour une zone :\n"
         "- Choisis un total dans la fourchette,\n"
         "- Répartis les spectateurs équitablement entre les villes de cette zone,\n"
         "- Suppose 1 séance par ville sauf indication contraire.\n\n"
@@ -107,13 +107,13 @@ def analyser_requete_ia(question: str):
         "- Mets des virgules entre les paires clé/valeur,\n"
         "- Ne retourne **aucun texte en dehors** du JSON.\n\n"
 
-        "💡 Si aucun lieu ni objectif n’est identifiable, retourne simplement : []\n\n"
+        "💡 Si aucun lieu ni objectif n'est identifiable, retourne simplement : []\n\n"
 
         "🔐 Règle obligatoire :\n"
         "- Le **nombre total de séances** (addition des \"nombre_seances\") doit correspondre **exactement** à ce que demande l'utilisateur,\n"
-        "- Ne t’arrête pas à une distribution ronde ou facile : ajuste si besoin pour que la somme soit strictement exacte."
+        "- Ne t'arrête pas à une distribution ronde ou facile : ajuste si besoin pour que la somme soit strictement exacte."
         "🔐 Règle stricte sur la fourchette :\n"
-        "- Si l’utilisateur donne une fourchette de spectateurs (ex : minimum 30 000, maximum 160 000),\n"
+        "- Si l'utilisateur donne une fourchette de spectateurs (ex : minimum 30 000, maximum 160 000),\n"
         "- Alors le **nombre total de spectateurs** (toutes zones confondues) doit rester **strictement dans cette fourchette**.\n"
         "- Tu ne dois **pas appliquer cette fourchette à une seule zone**, mais à l'ensemble de la demande.\n"
     )
@@ -204,10 +204,10 @@ def analyser_requete_ia(question: str):
                    else:
                         all_valid = False
                 if not all_valid:
-                     st.warning("Le JSON extrait manuellement n’a pas le bon format pour tous les éléments.")
+                     st.warning("Le JSON extrait manuellement n'a pas le bon format pour tous les éléments.")
                 return valid_data, raw_response
             except Exception:
-                st.error("Impossible d’interpréter la réponse de l’IA.")
+                st.error("Impossible d'interpréter la réponse de l'IA.")
                 return [], raw_response
     except openai.APIError as e:
         st.error(f"Erreur OpenAI : {e}")
@@ -353,6 +353,47 @@ def generer_carte_folium(groupes_de_cinemas: list):
     folium.LayerControl().add_to(m)
     return m
 
+def analyser_contexte_geographique(description_projet: str):
+    """
+    Analyse le contexte du projet pour suggérer les régions les plus pertinentes
+    en fonction du public cible, du thème du film, etc.
+    Retourne un dictionnaire avec les régions suggérées et leur justification.
+    """
+    system_prompt = (
+        "Tu es un expert en distribution cinématographique et en analyse démographique en France.\n\n"
+        "🎯 Ton objectif : analyser le contexte d'un projet cinématographique pour suggérer les régions les plus pertinentes.\n\n"
+        "Considère les facteurs suivants :\n"
+        "1. Public cible (âge, centres d'intérêt)\n"
+        "2. Thème du film\n"
+        "3. Type d'événement (avant-première, test, etc.)\n"
+        "4. Contexte local (activités, industries, centres d'intérêt)\n\n"
+        "Retourne un JSON avec :\n"
+        "- regions : liste des régions suggérées\n"
+        "- justification : explication pour chaque région\n"
+        "- public_cible : description du public cible identifié\n"
+        "- facteurs_cles : liste des facteurs qui ont influencé le choix\n\n"
+        "Exemple de format de réponse :\n"
+        "{\n"
+        '  "regions": ["Île-de-France", "Lyon", "Bordeaux"],\n'
+        '  "justification": "Ces régions ont une forte concentration de jeunes urbains et d\'activités liées au thème",\n'
+        '  "public_cible": "Jeunes adultes 18-35 ans, urbains, intéressés par le thème",\n'
+        '  "facteurs_cles": ["Population jeune", "Centres urbains", "Activités liées au thème"]\n'
+        "}"
+    )
+
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": description_projet}
+            ]
+        )
+        return json.loads(response.choices[0].message.content.strip())
+    except Exception as e:
+        st.error(f"Erreur lors de l'analyse du contexte : {e}")
+        return None
+
 # --- Interface Utilisateur Streamlit ---
 st.title("🗺️ Assistant de Planification Cinéma MK2")
 st.markdown("Décrivez votre projet de diffusion et l'IA identifiera les cinémas pertinents en France.")
@@ -363,29 +404,63 @@ if cinemas_ignored_info:
 with st.expander("ℹ️ Comment ça marche ?"):
     st.markdown("""
     Cette application vous aide à planifier des projections de films en identifiant les cinémas les plus adaptés en France.
-    ### 📝 1. Décrivez votre plan
-    Indiquez votre besoin en langage naturel : lieux (villes ou régions), type d'événement et public cible (nombre de spectateurs, **nombre de séances**, etc.).
+    ### 📝 1. Décrivez votre projet
+    Indiquez votre projet en détail : thème du film, public cible, type d'événement, etc.
     *Exemples :*
-    - "Je veux tester mon film dans une petite salle à Lyon et faire une avant-première à Paris pour 300 personnes."
-    - "**15 séances** dans toute la France pour atteindre 8000 spectateurs."
-    - "Diffusion en Bretagne avec un objectif de 150 spectateurs par ville."
-    - "Un lancement à Paris avec 5 salles et un test à Lille avec 1 salle."
-    ### 🤖 2. Analyse par l’IA (GPT-4o)
-    L’IA interprète votre demande pour extraire les localisations cibles, les jauges et les **contraintes de séances**.
-    ### 🔍 3. Recherche automatique de cinémas
-    Le système cherche le **nombre exact de salles** demandées pour chaque localisation, en priorisant la proximité.
-    ### 🗺️ 4. Carte interactive
-    Une carte Folium affiche les cinémas trouvés. Cliquez sur les points pour les détails. Filtrez par zone via le menu en haut à droite de la carte.
-    ### 📊 5. Liste des Salles et Export groupé
-    - Un tableau récapitulatif affiche les détails des salles trouvées pour chaque zone.
-    - Un bouton unique permet de télécharger **un fichier Excel** contenant tous ces tableaux (une feuille par zone).
-    ### 💾 6. Téléchargements disponibles
-    - **📍 Carte HTML** : téléchargez une version interactive de la carte.
-    - ** Fichier Excel groupé** : Téléchargez tous les résultats sous forme d'un unique fichier Excel.
+    - "Film sur l'automobile par Inoxtag, public jeune"
+    - "Documentaire sur l'agriculture bio, public adulte"
+    - "Film d'animation pour enfants"
+    ### 🎯 2. Analyse du contexte
+    L'IA analyse votre projet pour suggérer les régions les plus pertinentes en fonction du public cible et du thème.
+    ### 🤖 3. Planification détaillée
+    Précisez ensuite votre besoin en langage naturel : lieux, type d'événement et public cible.
+    ### 🔍 4. Recherche de cinémas
+    Le système cherche les salles adaptées dans les régions suggérées.
+    ### 🗺️ 5. Carte interactive
+    Une carte Folium affiche les cinémas trouvés.
+    ### 📊 6. Liste des Salles et Export
+    - Tableau récapitulatif des salles
+    - Export Excel disponible
     """)
 
+# Première étape : Analyse du contexte
+st.subheader("🎯 Analyse du Contexte")
+description_projet = st.text_area(
+    "Décrivez votre projet :",
+    placeholder="Ex: Film sur l'automobile par Inoxtag, public jeune, avant-première"
+)
+
+if description_projet:
+    with st.spinner("🧠 Analyse du contexte par l'IA..."):
+        contexte = analyser_contexte_geographique(description_projet)
+        
+    if contexte:
+        st.success("✅ Analyse du contexte terminée !")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("**📊 Public cible identifié :**")
+            st.info(contexte.get("public_cible", "Non spécifié"))
+            
+            st.markdown("**🎯 Facteurs clés :**")
+            for facteur in contexte.get("facteurs_cles", []):
+                st.markdown(f"- {facteur}")
+        
+        with col2:
+            st.markdown("**🗺️ Régions suggérées :**")
+            for region in contexte.get("regions", []):
+                st.markdown(f"- {region}")
+            
+            st.markdown("**💡 Justification :**")
+            st.info(contexte.get("justification", "Non spécifié"))
+        
+        st.markdown("---")
+        st.subheader("📝 Planification détaillée")
+        st.info("Maintenant que nous avons identifié les régions pertinentes, détaillez votre plan de diffusion.")
+
+# Deuxième étape : Planification détaillée
 query = st.text_input(
-    "Votre demande :",
+    "Votre plan de diffusion :",
     placeholder="Ex: 5 séances à Paris (500 pers.) et 2 séances test à Rennes (100 pers.)"
 )
 
