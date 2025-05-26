@@ -65,7 +65,7 @@ def load_wordpress_db():
         with open('export_wordpress_propre.json', 'r', encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
-        st.error(f"Erreur lors du chargement de la base de données WordPress: {str(e)}")
+        st.error(f"Erreur lors du chargement de la base de données WordPress:{str(e)}")
         return []
 
 def analyze_text_with_gpt(text, wp_db):
@@ -74,11 +74,6 @@ def analyze_text_with_gpt(text, wp_db):
     """
     try:
         logging.info(f"Analyse du texte avec GPT-4. Longueur du texte: {len(text)} caractères")
-        
-        # Limiter la taille du texte à analyser
-        if len(text) > 4000:
-            text = text[:4000] + "..."
-            logging.warning("Texte tronqué à 4000 caractères")
         
         # Préparer les exemples de la base de données pour le prompt
         examples = []
@@ -121,16 +116,18 @@ def analyze_text_with_gpt(text, wp_db):
                 3. Fais correspondre le texte avec les titres de la base de données en utilisant:
                    - Correspondance exacte
                    - Correspondance partielle (si le texte est contenu dans un titre)
-                   - Correspondance sémantique (si le texte fait référence au même sujet)
                 4. Détecte les entités suivantes:
-                   - Noms propres (personnes, lieux, organisations)
+                   - Noms propres (personnes, organisations)
                    - Titres d'œuvres (films, livres, etc.)
-                   - Noms de réalisateurs, auteurs, artistes
-                   - Lieux géographiques
-                   - Concepts importants
-                5. Si tu trouves plusieurs correspondances possibles, choisis la plus pertinente
+                   - Noms de réalisateurs, auteurs, artistes, acteurs, actrices
+                5. Si tu trouves plusieurs correspondances possibles, choisis la plus pertinente ( privligie la longeur de l'article )
                 6. Ne crée pas d'URLs, utilise uniquement celles de la base de données
-                7. Si un mot ou une phrase apparaît plusieurs fois, crée un lien pour chaque occurrence"""},
+                7. Si un mot ou une phrase apparaît plusieurs fois, crée un lien pour chaque occurrence
+                8. IMPORTANT: Ne crée PAS de liens pour:
+                   - Les titres d'articles
+                   - Les dates (années, jours, mois)*
+                   - Les lieux (lieux, villes, pays)
+                   - Les numéros de version ou de partie"""},
                 {"role": "user", "content": text}
             ],
             temperature=0.3,
@@ -151,20 +148,28 @@ def analyze_text_with_gpt(text, wp_db):
             valid_entities = []
             for entity in result.get("entities", []):
                 logging.debug(f"Traitement de l'entité: {entity}")
-                # Recherche plus flexible des correspondances
-                for wp_item in wp_db:
-                    # Correspondance exacte
-                    if wp_item["title"].lower() == entity["text"].lower():
-                        entity["url"] = wp_item["link"]
-                        valid_entities.append(entity)
-                        logging.info(f"Entité valide trouvée (exacte): {entity}")
-                        break
-                    # Correspondance partielle
-                    elif entity["text"].lower() in wp_item["title"].lower():
-                        entity["url"] = wp_item["link"]
-                        valid_entities.append(entity)
-                        logging.info(f"Entité valide trouvée (partielle): {entity}")
-                        break
+                
+                # Vérifier si l'entité n'est pas un titre ou une date
+                if not any([
+                    entity["text"].startswith("CANNES"),  # Exclure les titres commençant par CANNES
+                    re.match(r'\d{4}', entity["text"]),  # Exclure les années
+                    re.match(r'Partie \d+', entity["text"]),  # Exclure les numéros de partie
+                    entity["text"].startswith("Mission : Impossible")  # Exclure les titres de films
+                ]):
+                    # Recherche plus flexible des correspondances
+                    for wp_item in wp_db:
+                        # Correspondance exacte
+                        if wp_item["title"].lower() == entity["text"].lower():
+                            entity["url"] = wp_item["link"]
+                            valid_entities.append(entity)
+                            logging.info(f"Entité valide trouvée (exacte): {entity}")
+                            break
+                        # Correspondance partielle
+                        elif entity["text"].lower() in wp_item["title"].lower():
+                            entity["url"] = wp_item["link"]
+                            valid_entities.append(entity)
+                            logging.info(f"Entité valide trouvée (partielle): {entity}")
+                            break
             
             logging.info(f"Nombre total d'entités valides trouvées: {len(valid_entities)}")
             return valid_entities
@@ -216,30 +221,39 @@ def process_word_document(file):
                 entities = analyze_text_with_gpt(doc_text, wp_db)
                 logging.info(f"Entités trouvées dans le paragraphe {i+1}: {len(entities)}")
                 
-                current_text = ""
+                # Préserver le texte original et ajouter les hyperliens
+                current_text = doc_text
+                last_pos = 0
+                
+                # Trier les entités par position dans le texte pour éviter les chevauchements
+                sorted_entities = sorted(entities, key=lambda x: current_text.find(x["text"]))
+                
+                for entity in sorted_entities:
+                    pos = current_text.find(entity["text"], last_pos)
+                    if pos != -1:
+                        # Ajouter le texte avant l'entité
+                        if pos > last_pos:
+                            new_para.add_run(current_text[last_pos:pos])
+                        
+                        # Ajouter l'hyperlien
+                        add_hyperlink(new_para, entity["text"], entity["url"])
+                        last_pos = pos + len(entity["text"])
+                
+                # Ajouter le reste du texte
+                if last_pos < len(current_text):
+                    new_para.add_run(current_text[last_pos:])
+                
+                # Copier le formatage original
                 for run in para.runs:
-                    text = run.text
-                    current_text += text
-                    
-                    found_entity = False
-                    for entity in entities:
-                        if entity["text"] in current_text:
-                            logging.info(f"Ajout d'un hyperlien pour: {entity['text']}")
-                            add_hyperlink(new_para, entity["text"], entity["url"])
-                            found_entity = True
-                            current_text = ""
-                            break
-                    
-                    if not found_entity:
-                        new_run = new_para.add_run(text)
-                        try:
-                            new_run.bold = run.bold
-                            new_run.italic = run.italic
-                            new_run.underline = run.underline
-                            if run.font.size:
-                                new_run.font.size = run.font.size
-                        except:
-                            logging.warning(f"Impossible de copier le formatage du run dans le paragraphe {i+1}")
+                    try:
+                        new_run = new_para.runs[-1]
+                        new_run.bold = run.bold
+                        new_run.italic = run.italic
+                        new_run.underline = run.underline
+                        if run.font.size:
+                            new_run.font.size = run.font.size
+                    except:
+                        logging.warning(f"Impossible de copier le formatage du run dans le paragraphe {i+1}")
         
         # Sauvegarder le nouveau document
         docx_buffer = io.BytesIO()
@@ -265,7 +279,7 @@ def main():
     with st.expander("ℹ️ Informations"):
         st.write("""
         Cette application:
-        - Utilise l'IA (GPT-4) pour détecter intelligemment les entités importantes dans votre texte
+        - Utilise l'IA (GPT-4) pour détecter intelligemment les entités importantes dans votre texte 
         - Crée des hyperliens vers les articles de votre base WordPress
         - Préserve le formatage original du document
         - Génère un nouveau document avec les hyperliens ajoutés
