@@ -1,4 +1,7 @@
-import streamlit as st
+import os
+import tempfile
+import requests
+from flask import Flask, request, jsonify, send_file
 import docx
 from docx.shared import Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -9,10 +12,12 @@ from openai import OpenAI
 import json
 import logging
 from datetime import datetime
+import uuid
+import mimetypes
 
 # Configuration du logging
 logging.basicConfig(
-    filename=f'processing_logs_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log',
+    filename=f'api_logs_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log',
     level=logging.DEBUG,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
@@ -20,49 +25,46 @@ logging.basicConfig(
 # Configuration du client OpenAI
 client = OpenAI(api_key="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")
 
+# Création de l'application Flask
+app = Flask(__name__)
+
+# Dossier temporaire pour stocker les fichiers
+TEMP_DIR = tempfile.mkdtemp()
+# Dossier pour les fichiers de debug
+DEBUG_DIR = os.path.join(TEMP_DIR, 'debug')
+os.makedirs(DEBUG_DIR, exist_ok=True)
+# Dictionnaire pour stocker les fichiers traités
+processed_files = {}
+
 def add_hyperlink(paragraph, text, url):
     """
     Ajoute un hyperlien dans un paragraphe Word.
     """
-    # Crée le lien dans le fichier .rels
     part = paragraph.part
-    r_id = part.relate_to(url, "http://schemas.openxmlformats.org/2006/relationships/hyperlink", is_external=True)
-
-    # Crée l'élément w:hyperlink
+    r_id = part.relate_to(url, "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink", is_external=True)
     hyperlink = OxmlElement('w:hyperlink')
     hyperlink.set(qn('r:id'), r_id)
-
-    # Crée un nouveau run pour le texte du lien
     new_run = OxmlElement('w:r')
-    text_element = OxmlElement('w:t')
-    text_element.text = text
-    new_run.append(text_element)
-
-    # Ajoute le formatage
     rPr = OxmlElement('w:rPr')
     color = OxmlElement('w:color')
-    color.set(qn('w:val'), '0000FF')  # Bleu
+    color.set(qn('w:val'), '0000FF')
     rPr.append(color)
     u = OxmlElement('w:u')
     u.set(qn('w:val'), 'single')
     rPr.append(u)
-    new_run.insert(0, rPr)
-
-    # Ajoute le run à l'hyperlink
+    new_run.append(rPr)
+    new_run.text = text
     hyperlink.append(new_run)
+    r = paragraph.add_run()
+    r._r.append(hyperlink)
+    return hyperlink
 
-    # Ajoute l'hyperlink au paragraphe
-    paragraph._p.append(hyperlink)
-
-    return new_run
-
-# Charger la base de données WordPress
 def load_wordpress_db():
     try:
         with open('export_wordpress_propre.json', 'r', encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
-        st.error(f"Erreur lors du chargement de la base de données WordPress:{str(e)}")
+        logging.error(f"Erreur lors du chargement de la base de données WordPress:{str(e)}")
         return []
 
 def analyze_text_with_gpt(text, wp_db):
@@ -72,18 +74,13 @@ def analyze_text_with_gpt(text, wp_db):
     try:
         logging.info(f"Analyse du texte avec GPT-4. Longueur du texte: {len(text)} caractères")
         
-        # Préparer les exemples de la base de données pour le prompt
         examples = []
-        for item in wp_db[:5]:  # Augmenté à 5 exemples
+        for item in wp_db[:5]:
             examples.append(f'{{"text": "{item["title"]}", "url": "{item["link"]}"}}')
         
         examples_str = "\n".join(examples)
-        logging.debug(f"Exemples préparés: {examples_str}")
-        
-        # Créer une liste des titres disponibles pour aider GPT
         available_titles = [item["title"] for item in wp_db]
-        titles_str = "\n".join(available_titles[:50])  # Augmenté à 50 titres
-        logging.debug(f"Titres disponibles: {titles_str}")
+        titles_str = "\n".join(available_titles[:50])
         
         response = client.chat.completions.create(
             model="gpt-4",
@@ -131,10 +128,7 @@ def analyze_text_with_gpt(text, wp_db):
             max_tokens=1000
         )
         
-        content = response.choices[0].message.content
-        logging.debug(f"Réponse GPT reçue: {content}")
-        
-        content = content.strip()
+        content = response.choices[0].message.content.strip()
         
         try:
             result = json.loads(content)
@@ -144,69 +138,122 @@ def analyze_text_with_gpt(text, wp_db):
             
             valid_entities = []
             for entity in result.get("entities", []):
-                logging.debug(f"Traitement de l'entité: {entity}")
-                
-                # Vérifier si l'entité n'est pas un titre ou une date
                 if not any([
-                    entity["text"].startswith("CANNES"),  # Exclure les titres commençant par CANNES
-                    re.match(r'\d{4}', entity["text"]),  # Exclure les années
-                    re.match(r'Partie \d+', entity["text"]),  # Exclure les numéros de partie
-                    entity["text"].startswith("Mission : Impossible")  # Exclure les titres de films
+                    entity["text"].startswith("CANNES"),
+                    re.match(r'\d{4}', entity["text"]),
+                    re.match(r'Partie \d+', entity["text"]),
+                    entity["text"].startswith("Mission : Impossible")
                 ]):
-                    # Recherche plus flexible des correspondances
                     for wp_item in wp_db:
-                        # Correspondance exacte
                         if wp_item["title"].lower() == entity["text"].lower():
                             entity["url"] = wp_item["link"]
                             valid_entities.append(entity)
-                            logging.info(f"Entité valide trouvée (exacte): {entity}")
                             break
-                        # Correspondance partielle
                         elif entity["text"].lower() in wp_item["title"].lower():
                             entity["url"] = wp_item["link"]
                             valid_entities.append(entity)
-                            logging.info(f"Entité valide trouvée (partielle): {entity}")
                             break
             
-            logging.info(f"Nombre total d'entités valides trouvées: {len(valid_entities)}")
             return valid_entities
             
         except json.JSONDecodeError as e:
             logging.error(f"Erreur de parsing JSON: {str(e)}")
-            logging.error(f"Contenu reçu: {content}")
             return []
             
     except Exception as e:
         logging.error(f"Erreur lors de l'analyse avec GPT: {str(e)}")
         return []
 
-def process_word_document(file):
+def download_file_from_url(url):
+    """
+    Télécharge un fichier depuis une URL avec des headers appropriés et vérifie le type de contenu.
+    """
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+    
+    try:
+        response = requests.get(url, headers=headers, stream=True)
+        response.raise_for_status()
+        
+        # Log des headers de réponse
+        logging.info(f"Response headers: {dict(response.headers)}")
+        
+        # Vérification du Content-Type
+        content_type = response.headers.get('Content-Type', '').lower()
+        if 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' not in content_type:
+            logging.warning(f"Unexpected Content-Type: {content_type}")
+        
+        # Sauvegarde du fichier brut pour debug
+        debug_filename = f"debug_received_{datetime.now().strftime('%Y%m%d_%H%M%S')}.docx"
+        debug_path = os.path.join(DEBUG_DIR, debug_filename)
+        
+        with open(debug_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                if chunk:
+                    f.write(chunk)
+        
+        logging.info(f"Debug file saved to: {debug_path}")
+        
+        # Vérification de la taille du fichier
+        file_size = os.path.getsize(debug_path)
+        if file_size == 0:
+            raise ValueError("Downloaded file is empty")
+        
+        logging.info(f"Downloaded file size: {file_size} bytes")
+        
+        return debug_path
+        
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Download error: {str(e)}")
+        raise
+
+def verify_docx_file(file_path):
+    """
+    Vérifie si le fichier est un document Word valide.
+    """
+    try:
+        doc = docx.Document(file_path)
+        # Vérification basique du contenu
+        if len(doc.paragraphs) == 0:
+            logging.warning("Document has no paragraphs")
+        return True
+    except Exception as e:
+        logging.error(f"Document verification failed: {str(e)}")
+        return False
+
+def process_word_document(file_content):
     """
     Traite un document Word pour ajouter des hyperliens intelligemment.
     """
     try:
         logging.info("Début du traitement du document Word")
         
-        # Charger la base de données WordPress
         wp_db = load_wordpress_db()
         if not wp_db:
             logging.error("Impossible de charger la base de données WordPress")
             return None
             
-        logging.info(f"Base de données WordPress chargée avec {len(wp_db)} articles")
+        # Créer un fichier temporaire pour le document Word
+        temp_input = tempfile.NamedTemporaryFile(delete=False, suffix='.docx')
+        temp_input.write(file_content)
+        temp_input.close()
         
-        # Lire le document Word
-        doc = docx.Document(file)
-        logging.info(f"Document Word chargé avec {len(doc.paragraphs)} paragraphes")
+        # Vérification du document avant traitement
+        if not verify_docx_file(temp_input.name):
+            raise ValueError("Invalid or corrupted Word document")
         
-        # Créer un nouveau document
+        # Lire le document Word avec gestion d'erreur explicite
+        try:
+            doc = docx.Document(temp_input.name)
+        except Exception as e:
+            logging.error(f"Failed to open Word document: {str(e)}")
+            raise ValueError(f"Failed to open Word document: {str(e)}")
+        
         new_doc = docx.Document()
         
-        # Traiter chaque paragraphe
         for i, para in enumerate(doc.paragraphs):
-            logging.debug(f"Traitement du paragraphe {i+1}")
             new_para = new_doc.add_paragraph()
-            
             try:
                 new_para.alignment = para.alignment
             except:
@@ -214,33 +261,22 @@ def process_word_document(file):
             
             doc_text = para.text
             if doc_text.strip():
-                logging.debug(f"Analyse du texte du paragraphe {i+1}: {doc_text[:100]}...")
                 entities = analyze_text_with_gpt(doc_text, wp_db)
-                logging.info(f"Entités trouvées dans le paragraphe {i+1}: {len(entities)}")
-                
-                # Préserver le texte original et ajouter les hyperliens
                 current_text = doc_text
                 last_pos = 0
-                
-                # Trier les entités par position dans le texte pour éviter les chevauchements
                 sorted_entities = sorted(entities, key=lambda x: current_text.find(x["text"]))
                 
                 for entity in sorted_entities:
                     pos = current_text.find(entity["text"], last_pos)
                     if pos != -1:
-                        # Ajouter le texte avant l'entité
                         if pos > last_pos:
                             new_para.add_run(current_text[last_pos:pos])
-                        
-                        # Ajouter l'hyperlien
                         add_hyperlink(new_para, entity["text"], entity["url"])
                         last_pos = pos + len(entity["text"])
                 
-                # Ajouter le reste du texte
                 if last_pos < len(current_text):
                     new_para.add_run(current_text[last_pos:])
                 
-                # Copier le formatage original
                 for run in para.runs:
                     try:
                         new_run = new_para.runs[-1]
@@ -253,68 +289,83 @@ def process_word_document(file):
                         logging.warning(f"Impossible de copier le formatage du run dans le paragraphe {i+1}")
         
         # Sauvegarder le nouveau document
-        docx_buffer = io.BytesIO()
-        new_doc.save(docx_buffer)
-        docx_buffer.seek(0)
+        output_filename = f"processed_{uuid.uuid4()}.docx"
+        output_path = os.path.join(TEMP_DIR, output_filename)
+        new_doc.save(output_path)
         
-        logging.info("Document traité avec succès")
-        return docx_buffer
+        # Nettoyer le fichier temporaire d'entrée
+        os.unlink(temp_input.name)
+        
+        return output_filename
         
     except Exception as e:
         logging.error(f"Erreur lors du traitement du document: {str(e)}")
         return None
 
-def main():
-    """
-    Interface principale de l'application Streamlit.
-    """
-    logging.info("Démarrage de l'application")
-    st.title("🔗 Traitement de Documents Word")
-    st.write("Déposez votre document Word pour ajouter des hyperliens automatiquement")
-    
-    # Informations sur l'application
-    with st.expander("ℹ️ Informations"):
-        st.write("""
-        Cette application:
-        - Utilise l'IA (GPT-4) pour détecter intelligemment les entités importantes dans votre texte 
-        - Crée des hyperliens vers les articles de votre base WordPress
-        - Préserve le formatage original du document
-        - Génère un nouveau document avec les hyperliens ajoutés
-        """)
-    
-    # Upload du fichier
-    uploaded_file = st.file_uploader(
-        "Choisissez un fichier Word", 
-        type=['docx'],
-        help="Seuls les fichiers .docx sont supportés"
-    )
-    
-    if uploaded_file is not None:
-        # Afficher les informations du fichier
-        st.info(f"📄 Fichier: {uploaded_file.name} ({uploaded_file.size} bytes)")
+@app.route('/process', methods=['POST'])
+def process_document():
+    try:
+        data = request.get_json()
+        if not data or 'file_url' not in data or 'file_name' not in data:
+            return jsonify({"error": "Missing required fields"}), 400
         
-        # Bouton pour traiter le document
-        if st.button("🔄 Traiter le document", type="primary"):
-            with st.spinner("Traitement en cours..."):
-                try:
-                    # Traiter le document
-                    processed_doc = process_word_document(uploaded_file)
-                    
-                    if processed_doc is not None:
-                        # Afficher le bouton de téléchargement
-                        st.download_button(
-                            label="📥 Télécharger le document modifié",
-                            data=processed_doc,
-                            file_name=f"modifie_{uploaded_file.name}",
-                            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                        )
-                        
-                        st.success("✅ Document traité avec succès!")
-                        st.balloons()
-                    
-                except Exception as e:
-                    st.error(f"❌ Une erreur s'est produite: {str(e)}")
-                    st.write("Veuillez vérifier que votre fichier est un document Word valide (.docx)")
+        file_url = data['file_url']
+        file_name = data['file_name']
+        
+        # Télécharger le fichier depuis Google Drive avec debugging
+        try:
+            debug_file_path = download_file_from_url(file_url)
+            with open(debug_file_path, 'rb') as f:
+                file_content = f.read()
+        except Exception as e:
+            error_msg = f"Failed to download file: {str(e)}"
+            logging.error(error_msg)
+            return jsonify({"error": error_msg}), 400
+        
+        # Traiter le document
+        try:
+            output_filename = process_word_document(file_content)
+            if not output_filename:
+                return jsonify({"error": "Document processing failed"}), 500
+        except ValueError as e:
+            error_msg = f"Document processing error: {str(e)}"
+            logging.error(error_msg)
+            return jsonify({"error": error_msg}), 500
+        except Exception as e:
+            error_msg = f"Unexpected error during processing: {str(e)}"
+            logging.error(error_msg)
+            return jsonify({"error": error_msg}), 500
+        
+        # Stocker le nom du fichier traité
+        processed_files[output_filename] = file_name
+        
+        # Générer l'URL de téléchargement
+        download_url = f"/download/{output_filename}"
+        
+        return jsonify({
+            "status": "done",
+            "download_url": download_url
+        })
+        
+    except Exception as e:
+        error_msg = f"Request processing error: {str(e)}"
+        logging.error(error_msg)
+        return jsonify({"error": error_msg}), 500
 
-if __name__ == "__main__":
-    main()
+@app.route('/download/<filename>')
+def download_file(filename):
+    if filename not in processed_files:
+        return jsonify({"error": "File not found"}), 404
+    
+    file_path = os.path.join(TEMP_DIR, filename)
+    if not os.path.exists(file_path):
+        return jsonify({"error": "File not found"}), 404
+    
+    return send_file(
+        file_path,
+        as_attachment=True,
+        download_name=processed_files[filename]
+    )
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True) 
