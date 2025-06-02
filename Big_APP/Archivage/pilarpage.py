@@ -10,6 +10,159 @@ from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from app import process_word_document, load_wordpress_db
 import io
+import nltk
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.corpus import stopwords
+from collections import Counter
+from textblob import TextBlob
+import spacy
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
+
+# Téléchargement des ressources NLTK nécessaires
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+
+# Chargement du modèle spaCy pour l'analyse sémantique
+try:
+    nlp = spacy.load('fr_core_news_md')
+except OSError:
+    # Si le modèle n'est pas installé, on utilise le modèle français de base
+    nlp = spacy.load('fr_core_news_sm')
+
+def calculate_readability_score(text):
+    """Calcule le score de lisibilité Flesch-Kincaid adapté au français."""
+    sentences = sent_tokenize(text)
+    words = word_tokenize(text)
+    syllables = sum(len(re.findall(r'[aeiouy]+', word.lower())) for word in words)
+    
+    if not sentences:
+        return 0
+        
+    avg_sentence_length = len(words) / len(sentences)
+    avg_syllables_per_word = syllables / len(words)
+    
+    # Formule adaptée pour le français
+    score = 206.835 - (1.015 * avg_sentence_length) - (84.6 * avg_syllables_per_word)
+    return max(0, min(100, score))
+
+def analyze_seo_content(text, main_keyword):
+    """Analyse la qualité SEO du contenu généré."""
+    # Tokenization et nettoyage
+    words = word_tokenize(text.lower())
+    stop_words = set(stopwords.words('french'))
+    words = [word for word in words if word.isalnum() and word not in stop_words]
+    
+    # Calcul de la densité du mot-clé
+    main_keyword_count = text.lower().count(main_keyword.lower())
+    keyword_density = (main_keyword_count / len(words)) * 100 if words else 0
+    
+    # Analyse des phrases longues
+    sentences = sent_tokenize(text)
+    long_sentences = [s for s in sentences if len(word_tokenize(s)) > 25]
+    
+    # Détection des expressions vagues
+    vague_expressions = [
+        "de plus en plus", "le monde change", "il est important de noter que",
+        "il faut savoir que", "il est essentiel de", "il est crucial de",
+        "il est primordial de", "il est nécessaire de", "il est fondamental de"
+    ]
+    found_vague = [expr for expr in vague_expressions if expr in text.lower()]
+    
+    # Calcul du score de lisibilité
+    readability_score = calculate_readability_score(text)
+    
+    # Détection des répétitions lexicales
+    word_freq = Counter(words)
+    repetitions = {word: count for word, count in word_freq.items() if count > 5}
+    
+    return {
+        "keyword_density": round(keyword_density, 2),
+        "readability_score": round(readability_score, 2),
+        "long_sentences": len(long_sentences),
+        "vague_expressions": found_vague,
+        "repetitions": repetitions,
+        "total_words": len(words)
+    }
+
+def suggest_internal_links(section_content, wp_db, main_keyword):
+    """Suggère des liens internes pertinents pour une section donnée."""
+    # Préparation du contenu pour l'analyse
+    doc = nlp(section_content)
+    section_keywords = [token.text.lower() for token in doc if not token.is_stop and token.is_alpha]
+    
+    # Création d'une matrice TF-IDF pour la comparaison
+    vectorizer = TfidfVectorizer(stop_words='french')
+    wp_titles = [item["title"] for item in wp_db]
+    wp_titles.append(section_content)  # Ajouter le contenu de la section pour comparaison
+    
+    try:
+        tfidf_matrix = vectorizer.fit_transform(wp_titles)
+        # Calculer la similarité avec le contenu de la section
+        section_vector = tfidf_matrix[-1]
+        similarities = cosine_similarity(section_vector, tfidf_matrix[:-1])[0]
+        
+        # Obtenir les 2 articles les plus pertinents
+        top_indices = similarities.argsort()[-2:][::-1]
+        suggested_links = []
+        
+        for idx in top_indices:
+            if similarities[idx] > 0.1:  # Seuil de similarité minimum
+                suggested_links.append({
+                    "title": wp_titles[idx],
+                    "relevance_score": round(similarities[idx] * 100, 2)
+                })
+        
+        return suggested_links
+    except Exception as e:
+        logging.error(f"Erreur lors de la suggestion des liens internes: {str(e)}")
+        return []
+
+def analyze_semantic_fields(text, wp_db):
+    """Analyse les champs lexicaux dominants du texte."""
+    # Tokenization et nettoyage
+    doc = nlp(text)
+    words = [token.text.lower() for token in doc if not token.is_stop and token.is_alpha]
+    
+    # Calcul des fréquences
+    word_freq = Counter(words)
+    top_keywords = word_freq.most_common(10)
+    
+    # Regroupement sémantique
+    semantic_groups = {}
+    for word, freq in top_keywords:
+        word_doc = nlp(word)
+        for other_word, other_freq in top_keywords:
+            if word != other_word:
+                other_doc = nlp(other_word)
+                similarity = word_doc.similarity(other_doc)
+                if similarity > 0.5:  # Seuil de similarité
+                    if word not in semantic_groups:
+                        semantic_groups[word] = []
+                    semantic_groups[word].append((other_word, similarity))
+    
+    # Comparaison avec les titres WordPress
+    wp_titles = " ".join([item["title"] for item in wp_db])
+    wp_doc = nlp(wp_titles)
+    
+    semantic_relevance = {}
+    for word, freq in top_keywords:
+        word_doc = nlp(word)
+        relevance = word_doc.similarity(wp_doc)
+        semantic_relevance[word] = round(relevance * 100, 2)
+    
+    return {
+        "top_keywords": top_keywords,
+        "semantic_groups": semantic_groups,
+        "semantic_relevance": semantic_relevance
+    }
 
 # Configuration du logging
 log_filename = f'pillar_page_logs_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
@@ -135,7 +288,25 @@ def generate_pillar_page(topic, wp_db):
             if missing_fields:
                 logging.error(f"Champs manquants dans la réponse: {missing_fields}")
                 return None
-                
+            
+            # Analyse SEO du contenu
+            full_content = result['content'] + "\n\n" + "\n\n".join(section['content'] for section in result['sections'])
+            seo_analysis = analyze_seo_content(full_content, topic)
+            logging.info(f"Analyse SEO effectuée: {json.dumps(seo_analysis, indent=2)}")
+            
+            # Analyse sémantique
+            semantic_analysis = analyze_semantic_fields(full_content, wp_db)
+            logging.info(f"Analyse sémantique effectuée: {json.dumps(semantic_analysis, indent=2)}")
+            
+            # Suggestion de liens internes pour chaque section
+            for section in result['sections']:
+                suggested_links = suggest_internal_links(section['content'], wp_db, topic)
+                if suggested_links:
+                    # Ajouter les suggestions de liens dans le contenu
+                    section['content'] += "\n\nLiens internes suggérés:\n"
+                    for link in suggested_links:
+                        section['content'] += f"{{{{LIEN_VERS: \"{link['title']}\"}}}}\n"
+            
             # Formater le contenu avec une meilleure structure
             formatted_content = f"{result['title']}\n\n"
             formatted_content += f"{result['content']}\n\n"
@@ -151,6 +322,11 @@ def generate_pillar_page(topic, wp_db):
                 formatted_content += f"{content}\n\n"
             
             result['content'] = formatted_content
+            
+            # Ajouter les analyses au résultat
+            result['seo_analysis'] = seo_analysis
+            result['semantic_analysis'] = semantic_analysis
+            
             logging.info(f"Page pilier générée avec succès. Titre: {result['title']}")
             return result
             
@@ -286,6 +462,7 @@ def main():
         - Crée automatiquement des liens internes pertinents
         - Structure le contenu de manière professionnelle
         - Exporte le résultat en format Word (.docx)
+        - Analyse la qualité SEO du contenu généré
         """)
     
     # Champ de saisie pour le sujet
@@ -325,6 +502,49 @@ def main():
                             st.markdown(f"**Titre:** {pillar_page['title']}")
                             st.markdown("**Contenu:**")
                             st.text(pillar_page['content'])
+                            
+                            # Afficher l'analyse SEO
+                            st.markdown("### 📊 Analyse SEO")
+                            seo_analysis = pillar_page.get('seo_analysis', {})
+                            
+                            col1, col2 = st.columns(2)
+                            with col1:
+                                st.metric("Densité du mot-clé", f"{seo_analysis.get('keyword_density', 0)}%")
+                                st.metric("Score de lisibilité", f"{seo_analysis.get('readability_score', 0)}/100")
+                                st.metric("Nombre total de mots", seo_analysis.get('total_words', 0))
+                            
+                            with col2:
+                                st.metric("Phrases trop longues", seo_analysis.get('long_sentences', 0))
+                                if seo_analysis.get('vague_expressions'):
+                                    st.warning("⚠️ Expressions vagues détectées:")
+                                    for expr in seo_analysis['vague_expressions']:
+                                        st.write(f"- {expr}")
+                            
+                            # Afficher l'analyse sémantique
+                            st.markdown("### 🔍 Analyse Sémantique")
+                            semantic_analysis = pillar_page.get('semantic_analysis', {})
+                            
+                            if semantic_analysis.get('top_keywords'):
+                                st.write("**Mots-clés principaux:**")
+                                keywords_df = pd.DataFrame(semantic_analysis['top_keywords'], 
+                                                         columns=['Mot-clé', 'Fréquence'])
+                                st.dataframe(keywords_df)
+                            
+                            if semantic_analysis.get('semantic_groups'):
+                                st.write("**Groupes sémantiques:**")
+                                for word, related in semantic_analysis['semantic_groups'].items():
+                                    with st.expander(f"Groupe: {word}"):
+                                        for related_word, similarity in related:
+                                            st.write(f"- {related_word} (similarité: {similarity:.2f})")
+                            
+                            # Afficher les liens internes suggérés
+                            st.markdown("### 🔗 Liens Internes Suggérés")
+                            for section in pillar_page.get('sections', []):
+                                if "Liens internes suggérés:" in section['content']:
+                                    st.write(f"**Section: {section['title']}**")
+                                    links = re.findall(r'{{LIEN_VERS: "([^"]+)"}}', section['content'])
+                                    for link in links:
+                                        st.write(f"- {link}")
                         else:
                             st.error("❌ Erreur lors de la sauvegarde du fichier Word")
                     else:
