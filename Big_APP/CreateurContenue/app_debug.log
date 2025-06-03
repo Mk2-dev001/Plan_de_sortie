@@ -1,0 +1,27 @@
+2025-05-07 16:35:25,252 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:35:25,253 - __main__ - INFO - Python version: 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]
+2025-05-07 16:35:25,253 - __main__ - INFO - Working directory: C:\Users\elie.nebot\OneDrive - MK2 HOLDING\Bureau\pablo\Plan_de_sortie\Big_APP\CreateurContenue
+2025-05-07 16:35:25,253 - __main__ - INFO - Chargement des variables d'environnement...
+2025-05-07 16:35:25,254 - __main__ - INFO - Fichier .env chargé
+2025-05-07 16:35:25,254 - __main__ - ERROR - Variable d'environnement manquante: YOUTUBE_API_KEY (YouTube API)
+2025-05-07 16:35:25,254 - __main__ - ERROR - Variable d'environnement manquante: OPENAI_API_KEY (OpenAI API)
+2025-05-07 16:35:25,254 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_KEY (Instagram API)
+2025-05-07 16:35:25,255 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:35:25,255 - __main__ - WARNING - Variables d'environnement manquantes: YOUTUBE_API_KEY (YouTube API), OPENAI_API_KEY (OpenAI API), INSTAGRAM_RAPID_API_KEY (Instagram API), INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:35:25,255 - __main__ - WARNING - Certaines fonctionnalités pourraient ne pas fonctionner correctement.
+2025-05-07 16:35:25,255 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-07 16:35:25,255 - __main__ - WARNING - Clé YouTube API non trouvée
+2025-05-07 16:35:25,256 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:30:18,334 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:30:18,335 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:30:18,336 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP\CreateurContenue
+2025-05-14 10:30:18,336 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:30:18,337 - __main__ - ERROR - Variable d'environnement manquante: YOUTUBE_API_KEY (YouTube API)
+2025-05-14 10:30:18,337 - __main__ - ERROR - Variable d'environnement manquante: OPENAI_API_KEY (OpenAI API)
+2025-05-14 10:30:18,338 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_KEY (Instagram API)
+2025-05-14 10:30:18,338 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-14 10:30:18,338 - __main__ - WARNING - Variables d'environnement manquantes: YOUTUBE_API_KEY (YouTube API), OPENAI_API_KEY (OpenAI API), INSTAGRAM_RAPID_API_KEY (Instagram API), INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-14 10:30:18,338 - __main__ - WARNING - Certaines fonctionnalités pourraient ne pas fonctionner correctement.
+2025-05-14 10:30:18,339 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:30:18,339 - __main__ - WARNING - Clé YouTube API non trouvée
+2025-05-14 10:30:18,339 - __main__ - WARNING - Clé News API non trouvée

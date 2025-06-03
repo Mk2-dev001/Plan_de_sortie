@@ -1,0 +1,540 @@
+2025-05-27 16:59:08,701 - INFO - Démarrage du processus de traitement automatique
+2025-05-27 16:59:08,701 - INFO - Token.json trouvé, tentative de chargement des credentials
+2025-05-27 16:59:08,705 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-05-27 16:59:08,707 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/about?fields=user&alt=json
+2025-05-27 16:59:09,125 - INFO - Connecté au compte Google Drive: pablopeiro211@gmail.com
+2025-05-27 16:59:09,125 - INFO - Service Google Drive initialisé avec succès
+2025-05-27 16:59:09,125 - INFO - Recherche du dossier: INBOX
+2025-05-27 16:59:09,132 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27INBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 16:59:09,441 - INFO - Dossier INBOX trouvé avec l'ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe
+2025-05-27 16:59:09,441 - INFO - Recherche du dossier: OUTBOX
+2025-05-27 16:59:09,443 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27OUTBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 16:59:10,127 - INFO - Dossier OUTBOX trouvé avec l'ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF
+2025-05-27 16:59:10,127 - INFO - Recherche du dossier: ARCHIVE
+2025-05-27 16:59:10,129 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27ARCHIVE%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 16:59:10,490 - INFO - Dossier ARCHIVE trouvé avec l'ID: 1lYY14WfbeLmwO3ZCMyCVgza6bwCyRNY6
+2025-05-27 16:59:10,490 - INFO - Recherche des fichiers .docx dans le dossier INBOX (ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe)
+2025-05-27 16:59:10,492 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=%271H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe%27+in+parents+and+mimeType%3D%27application%2Fvnd.openxmlformats-officedocument.wordprocessingml.document%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 16:59:10,689 - INFO - Nombre de fichiers trouvés dans INBOX: 1
+2025-05-27 16:59:10,690 - INFO - Traitement du fichier: CANNES 2025.docx (ID: 1v2NXKC4TFcsYQnz1VfEAPvu-D9wixShV)
+2025-05-27 16:59:10,692 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files/1v2NXKC4TFcsYQnz1VfEAPvu-D9wixShV?alt=media
+2025-05-27 16:59:12,014 - INFO - Début du traitement du document CANNES 2025.docx
+2025-05-27 16:59:12,014 - INFO - Début du traitement du document Word
+2025-05-27 16:59:12,304 - INFO - Base de données WordPress chargée avec 9688 articles
+2025-05-27 16:59:12,309 - INFO - Document Word chargé avec 8 paragraphes
+2025-05-27 16:59:12,320 - DEBUG - Traitement du paragraphe 1
+2025-05-27 16:59:12,321 - DEBUG - Traitement du paragraphe 2
+2025-05-27 16:59:12,321 - DEBUG - Analyse du texte du paragraphe 2: CANNES 2025 . « Mission : Impossible. The Final Reckoning » : Tom and the band
+
+Présenté comme l’ult...
+2025-05-27 16:59:12,321 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 288 caractères
+2025-05-27 16:59:12,321 - DEBUG - Exemples préparés: {"text": "Politique de confidentialité", "url": "https://www.troiscouleurs.fr/politique-de-confidentialite/"}
+{"text": "Accueil", "url": "https://www.troiscouleurs.fr/"}
+{"text": "Mentions légales et CGU", "url": "https://www.troiscouleurs.fr/mentions-legales-et-cgu/"}
+{"text": "Recherche", "url": "https://www.troiscouleurs.fr/recherche/"}
+{"text": ""Adieu les cons" d’Albert Dupontel : dystopique et sans fard", "url": "https://www.troiscouleurs.fr/?p=15540"}
+2025-05-27 16:59:12,322 - DEBUG - Titres disponibles: Politique de confidentialité
+Accueil
+Mentions légales et CGU
+Recherche
+"Adieu les cons" d’Albert Dupontel : dystopique et sans fard
+Derek Jarman plasticien
+Le magazine
+Pedro Almodóvar revient sur ses inspirations et les enjeux de « La Chambre d’à côté »
+Le retour du jeu d'enquête
+3 films d'animation à voir cet hiver
+Test Instagram
+
+En couv' : le nouveau cru des 25 de moins de 25 ans
+Stéphanie De Smedt et Jean Libon : "Strip Tease est une émission qui parle de nous, par nous même"
+test slider Pablo
+
+"Romería" de Carla Simón se dévoile dans une première image
+Musique Cinéma Club : Victor Solf et la soul électro-mélancolique de « Tout peut durer »
+Berlinale 2025 : tous nos articles
+Letterboxd : tous nos articles sur la plateforme cinéphile en vogue
+Marina Foïs : "Je déteste qu’on m’infantilise."
+Culture : que voir en janvier ?
+Le podcast « À bientôt de te revoir » de Sophie-Marie Larrouy fait son grand retour
+3 livres féministes et politiques à lire au mois de mars
+Alerte : une expo de David Lynch bientôt montrée à la Galerie Duchamp
+CANNESERIES : Nicola Coughlan recevra le Prix Konbini de l’Engagement
+3 expos qu’on vous recommande ce mois-ci à Paris
+Fragments : "Le ciné-concert est quelque chose d'assez immédiat"
+Le Groupe Ouest a sélectionné huit projets pour sa résidence d’écriture
+mk2 organise un cycle dédié à David Cronenberg
+
+TEST X/INSTA
+Oscars : une nouvelle catégorie pour récompenser les cascadeurs à partir de 2028
+Les réalisateurs de « Mon gâteau préféré » condamnés à une peine de prison avec sursis pour « propagande contre le régime » iranien
+Ryan J. Sloan et Ariella Mastroianni, réalisateur et actrice de « The Gazer » : « On a fait ce film parce qu’on ne trouvait pas notre place dans le paysage cinématographique »
+« Chaplin aujourd’hui, un roi à New York » de Jérôme de Missolz 
+Anna Karina en cinq chansons inoubliables
+Quand Jean-Claude Brialy faisait le portrait complice d’Anna Karina
+Découvrez le musée consacré au studio Ghibli lors d’une visite virtuelle
+Agnès Varda : l’art de la déambulation
+Pablo Larraín, façonner l'histoire
+La comédie musicale américaine en 6 dates clés
+« Valley of Love » de Guillaume Nicloux
+Notre top des pires scènes de drague
+Les idées d'Esther Duflo : entretien inédit
+20 films sud-coréens à (re)voir
+5 œuvres rares qui traitent des violences policières
+Frederick Wiseman : « Je ne demande qu’une chose : pouvoir tout filmer, absolument tout »
+« Calamity, une enfance de Martha Jane Cannary » : La critique de Léonore, 9 ans
+Agnès Varda, corps sensibles
+2025-05-27 16:59:12,324 - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'Tu es un assistant qui analyse du texte et identifie les entités importantes qui méritent d\'être liées.\n                IMPORTANT: Tu dois répondre UNIQUEMENT avec un JSON valide, sans aucun autre texte avant ou après.\n                \n                Voici les titres d\'articles disponibles dans la base de données:\n                Politique de confidentialité\nAccueil\nMentions légales et CGU\nRecherche\n"Adieu les cons" d’Albert Dupontel : dystopique et sans fard\nDerek Jarman plasticien\nLe magazine\nPedro Almodóvar revient sur ses inspirations et les enjeux de «\xa0La Chambre d’à côté\xa0»\nLe retour du jeu d\'enquête\n3 films d\'animation à voir cet hiver\nTest Instagram\n\nEn couv\' : le nouveau cru des 25 de moins de 25 ans\nStéphanie De Smedt et Jean Libon : "Strip Tease est une émission qui parle de nous, par nous même"\ntest slider Pablo\n\n"Romería" de Carla Simón se dévoile dans une première image\nMusique Cinéma Club\xa0: Victor Solf et la soul électro-mélancolique de «\xa0Tout peut durer\xa0»\nBerlinale 2025 : tous nos articles\nLetterboxd : tous nos articles sur la plateforme cinéphile en vogue\nMarina Foïs : "Je déteste qu’on m’infantilise."\nCulture : que voir en janvier ?\nLe podcast «\xa0À bientôt de te revoir\xa0» de Sophie-Marie Larrouy fait son grand retour\n3 livres féministes et politiques à lire au mois de mars\nAlerte\xa0: une expo de David Lynch bientôt montrée à la Galerie Duchamp\nCANNESERIES : Nicola Coughlan recevra le Prix Konbini de l’Engagement\n3 expos qu’on vous recommande ce mois-ci à Paris\nFragments : "Le ciné-concert est quelque chose d\'assez immédiat"\nLe Groupe Ouest a sélectionné huit projets pour sa résidence d’écriture\nmk2 organise un cycle dédié à David Cronenberg\n\nTEST X/INSTA\nOscars : une nouvelle catégorie pour récompenser les cascadeurs à partir de 2028\nLes réalisateurs de « Mon gâteau préféré » condamnés à une peine de prison avec sursis pour « propagande contre le régime » iranien\nRyan J. Sloan et Ariella Mastroianni, réalisateur et actrice de «\xa0The Gazer\xa0»\xa0: «\xa0On a fait ce film parce qu’on ne trouvait pas notre place dans le paysage cinématographique\xa0»\n« Chaplin aujourd’hui, un roi à New York » de Jérôme de Missolz\xa0\nAnna Karina en cinq chansons inoubliables\nQuand Jean-Claude Brialy faisait le portrait complice d’Anna Karina\nDécouvrez le musée consacré au studio Ghibli lors d’une visite virtuelle\nAgnès Varda : l’art de la déambulation\nPablo Larraín, façonner l\'histoire\nLa comédie musicale américaine en 6 dates clés\n« Valley of Love » de Guillaume Nicloux\nNotre top des pires scènes de drague\nLes idées d\'Esther Duflo : entretien inédit\n20 films sud-coréens à (re)voir\n5 œuvres rares qui traitent des violences policières\nFrederick Wiseman : «\xa0Je ne demande qu’une chose : pouvoir tout filmer, absolument tout\xa0»\n« Calamity, une enfance de Martha Jane Cannary » : La critique de Léonore, 9 ans\nAgnès Varda, corps sensibles\n\n                Le JSON doit être dans ce format exact:\n                {\n                    "entities": [\n                        {\n                            "text": "texte original",\n                            "url": "url complète de l\'article"\n                        }\n                    ]\n                }\n\n                Voici des exemples de correspondances:\n                {"text": "Politique de confidentialité", "url": "https://www.troiscouleurs.fr/politique-de-confidentialite/"}\n{"text": "Accueil", "url": "https://www.troiscouleurs.fr/"}\n{"text": "Mentions légales et CGU", "url": "https://www.troiscouleurs.fr/mentions-legales-et-cgu/"}\n{"text": "Recherche", "url": "https://www.troiscouleurs.fr/recherche/"}\n{"text": ""Adieu les cons" d’Albert Dupontel : dystopique et sans fard", "url": "https://www.troiscouleurs.fr/?p=15540"}\n\n                Règles importantes:\n                1. Ne mets aucun texte avant ou après le JSON\n                2. Le JSON doit être la seule chose dans ta réponse\n                3. Fais correspondre le texte avec les titres de la base de données en utilisant:\n                   - Correspondance exacte\n                   - Correspondance partielle (si le texte est contenu dans un titre)\n                4. Détecte les entités suivantes:\n                   - Noms propres (personnes, organisations)\n                   - Titres d\'œuvres (films, livres, etc.)\n                   - Noms de réalisateurs, auteurs, artistes, acteurs, actrices\n                5. Si tu trouves plusieurs correspondances possibles, choisis la plus pertinente ( privligie la longeur de l\'article )\n                6. Ne crée pas d\'URLs, utilise uniquement celles de la base de données\n                7. Si un mot ou une phrase apparaît plusieurs fois, crée un lien pour chaque occurrence\n                8. IMPORTANT: Ne crée PAS de liens pour:\n                   - Les titres d\'articles\n                   - Les dates (années, jours, mois)*\n                   - Les lieux (lieux, villes, pays)\n                   - Les numéros de version ou de partie'}, {'role': 'user', 'content': 'CANNES 2025 . «\xa0Mission\xa0: Impossible. The Final Reckoning\xa0»\xa0: Tom and the band\n\nPrésenté comme l’ultime film de la saga, ce huitième volet des aventures d’Ethan Hunt/Tom Cruise fait flotter sur ses personnages une renversante mélancolie et défend une vision éloquente du combat collectif.'}], 'model': 'gpt-4', 'max_tokens': 1000, 'temperature': 0.3}}
+2025-05-27 16:59:12,365 - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-05-27 16:59:12,366 - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-05-27 16:59:12,399 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000207DFDE06E0>
+2025-05-27 16:59:12,399 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x00000207DAC03770> server_hostname='api.openai.com' timeout=5.0
+2025-05-27 16:59:15,407 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000207DFD2E0D0>
+2025-05-27 16:59:15,407 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-05-27 16:59:15,407 - DEBUG - send_request_headers.complete
+2025-05-27 16:59:15,407 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-05-27 16:59:15,408 - DEBUG - send_request_body.complete
+2025-05-27 16:59:15,408 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-05-27 16:59:21,988 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 27 May 2025 14:59:21 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'mk2-g4a4of'), (b'openai-processing-ms', b'6442'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'6448'), (b'x-ratelimit-limit-requests', b'5000'), (b'x-ratelimit-limit-tokens', b'40000'), (b'x-ratelimit-remaining-requests', b'4999'), (b'x-ratelimit-remaining-tokens', b'38642'), (b'x-ratelimit-reset-requests', b'12ms'), (b'x-ratelimit-reset-tokens', b'2.037s'), (b'x-request-id', b'req_128df7a161b9b08ab9ad54e694f28038'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=wgd.GQn6Ps5.jsgrKbQzmbMmcNW9._PRldNh_JK6z98-1748357961-1.0.1.1-nf.V1.runA58YYj4HpsxbPpd1UjPj4JeTET_ZYbM53fQBBaaT0ndYRlXvtkSkBKC.6bqsvlKytKZ_jhXYA4oZt3w2EHHDvhIZwP.JWaVag0; path=/; expires=Tue, 27-May-25 15:29:21 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=j0KK9hOXdsMHqn8HViobNV1QOd_.1kfQuZxjIizY2Hg-1748357961578-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'94666002ce802a52-CDG'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-05-27 16:59:21,989 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-27 16:59:21,989 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-05-27 16:59:21,989 - DEBUG - receive_response_body.complete
+2025-05-27 16:59:21,990 - DEBUG - response_closed.started
+2025-05-27 16:59:21,990 - DEBUG - response_closed.complete
+2025-05-27 16:59:21,990 - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Tue, 27 May 2025 14:59:21 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'mk2-g4a4of'), ('openai-processing-ms', '6442'), ('openai-version', '2020-10-01'), ('x-envoy-upstream-service-time', '6448'), ('x-ratelimit-limit-requests', '5000'), ('x-ratelimit-limit-tokens', '40000'), ('x-ratelimit-remaining-requests', '4999'), ('x-ratelimit-remaining-tokens', '38642'), ('x-ratelimit-reset-requests', '12ms'), ('x-ratelimit-reset-tokens', '2.037s'), ('x-request-id', 'req_128df7a161b9b08ab9ad54e694f28038'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=wgd.GQn6Ps5.jsgrKbQzmbMmcNW9._PRldNh_JK6z98-1748357961-1.0.1.1-nf.V1.runA58YYj4HpsxbPpd1UjPj4JeTET_ZYbM53fQBBaaT0ndYRlXvtkSkBKC.6bqsvlKytKZ_jhXYA4oZt3w2EHHDvhIZwP.JWaVag0; path=/; expires=Tue, 27-May-25 15:29:21 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=j0KK9hOXdsMHqn8HViobNV1QOd_.1kfQuZxjIizY2Hg-1748357961578-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '94666002ce802a52-CDG'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-05-27 16:59:21,990 - DEBUG - request_id: req_128df7a161b9b08ab9ad54e694f28038
+2025-05-27 16:59:21,992 - DEBUG - Réponse GPT reçue: {
+    "entities": [
+        {
+            "text": "Mission : Impossible. The Final Reckoning",
+            "url": "https://www.troiscouleurs.fr/?p=15540"
+        },
+        {
+            "text": "Tom Cruise",
+            "url": "https://www.troiscouleurs.fr/recherche/?q=Tom+Cruise"
+        },
+        {
+            "text": "Ethan Hunt",
+            "url": "https://www.troiscouleurs.fr/recherche/?q=Ethan+Hunt"
+        },
+        {
+            "text": "CANNES 2025",
+            "url": "https://www.troiscouleurs.fr/berlinale-2025-tous-nos-articles/"
+        }
+    ]
+}
+2025-05-27 16:59:21,992 - DEBUG - Traitement de l'entité: {'text': 'Mission : Impossible. The Final Reckoning', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:21,992 - DEBUG - Traitement de l'entité: {'text': 'Tom Cruise', 'url': 'https://www.troiscouleurs.fr/recherche/?q=Tom+Cruise'}
+2025-05-27 16:59:21,994 - INFO - Entité valide trouvée (partielle): {'text': 'Tom Cruise', 'url': 'https://www.troiscouleurs.fr/cinema/quentin-tarantino-penserait-a-tom-cruise-pour-son-prochain-film-sur-lannee-1969/'}
+2025-05-27 16:59:21,994 - DEBUG - Traitement de l'entité: {'text': 'Ethan Hunt', 'url': 'https://www.troiscouleurs.fr/recherche/?q=Ethan+Hunt'}
+2025-05-27 16:59:22,003 - DEBUG - Traitement de l'entité: {'text': 'CANNES 2025', 'url': 'https://www.troiscouleurs.fr/berlinale-2025-tous-nos-articles/'}
+2025-05-27 16:59:22,003 - INFO - Nombre total d'entités valides trouvées: 1
+2025-05-27 16:59:22,004 - INFO - Entités trouvées dans le paragraphe 2: 1
+2025-05-27 16:59:22,004 - DEBUG - Traitement du paragraphe 3
+2025-05-27 16:59:22,005 - DEBUG - Analyse du texte du paragraphe 3: 
+Deux ans après Mission: Impossible. Dead Reckoning Partie 1, la spectaculaire saga d’espionnage rev...
+2025-05-27 16:59:22,005 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2624 caractères
+2025-05-27 16:59:22,005 - DEBUG - Exemples préparés: {"text": "Politique de confidentialité", "url": "https://www.troiscouleurs.fr/politique-de-confidentialite/"}
+{"text": "Accueil", "url": "https://www.troiscouleurs.fr/"}
+{"text": "Mentions légales et CGU", "url": "https://www.troiscouleurs.fr/mentions-legales-et-cgu/"}
+{"text": "Recherche", "url": "https://www.troiscouleurs.fr/recherche/"}
+{"text": ""Adieu les cons" d’Albert Dupontel : dystopique et sans fard", "url": "https://www.troiscouleurs.fr/?p=15540"}
+2025-05-27 16:59:22,006 - DEBUG - Titres disponibles: Politique de confidentialité
+Accueil
+Mentions légales et CGU
+Recherche
+"Adieu les cons" d’Albert Dupontel : dystopique et sans fard
+Derek Jarman plasticien
+Le magazine
+Pedro Almodóvar revient sur ses inspirations et les enjeux de « La Chambre d’à côté »
+Le retour du jeu d'enquête
+3 films d'animation à voir cet hiver
+Test Instagram
+
+En couv' : le nouveau cru des 25 de moins de 25 ans
+Stéphanie De Smedt et Jean Libon : "Strip Tease est une émission qui parle de nous, par nous même"
+test slider Pablo
+
+"Romería" de Carla Simón se dévoile dans une première image
+Musique Cinéma Club : Victor Solf et la soul électro-mélancolique de « Tout peut durer »
+Berlinale 2025 : tous nos articles
+Letterboxd : tous nos articles sur la plateforme cinéphile en vogue
+Marina Foïs : "Je déteste qu’on m’infantilise."
+Culture : que voir en janvier ?
+Le podcast « À bientôt de te revoir » de Sophie-Marie Larrouy fait son grand retour
+3 livres féministes et politiques à lire au mois de mars
+Alerte : une expo de David Lynch bientôt montrée à la Galerie Duchamp
+CANNESERIES : Nicola Coughlan recevra le Prix Konbini de l’Engagement
+3 expos qu’on vous recommande ce mois-ci à Paris
+Fragments : "Le ciné-concert est quelque chose d'assez immédiat"
+Le Groupe Ouest a sélectionné huit projets pour sa résidence d’écriture
+mk2 organise un cycle dédié à David Cronenberg
+
+TEST X/INSTA
+Oscars : une nouvelle catégorie pour récompenser les cascadeurs à partir de 2028
+Les réalisateurs de « Mon gâteau préféré » condamnés à une peine de prison avec sursis pour « propagande contre le régime » iranien
+Ryan J. Sloan et Ariella Mastroianni, réalisateur et actrice de « The Gazer » : « On a fait ce film parce qu’on ne trouvait pas notre place dans le paysage cinématographique »
+« Chaplin aujourd’hui, un roi à New York » de Jérôme de Missolz 
+Anna Karina en cinq chansons inoubliables
+Quand Jean-Claude Brialy faisait le portrait complice d’Anna Karina
+Découvrez le musée consacré au studio Ghibli lors d’une visite virtuelle
+Agnès Varda : l’art de la déambulation
+Pablo Larraín, façonner l'histoire
+La comédie musicale américaine en 6 dates clés
+« Valley of Love » de Guillaume Nicloux
+Notre top des pires scènes de drague
+Les idées d'Esther Duflo : entretien inédit
+20 films sud-coréens à (re)voir
+5 œuvres rares qui traitent des violences policières
+Frederick Wiseman : « Je ne demande qu’une chose : pouvoir tout filmer, absolument tout »
+« Calamity, une enfance de Martha Jane Cannary » : La critique de Léonore, 9 ans
+Agnès Varda, corps sensibles
+2025-05-27 16:59:22,007 - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'Tu es un assistant qui analyse du texte et identifie les entités importantes qui méritent d\'être liées.\n                IMPORTANT: Tu dois répondre UNIQUEMENT avec un JSON valide, sans aucun autre texte avant ou après.\n                \n                Voici les titres d\'articles disponibles dans la base de données:\n                Politique de confidentialité\nAccueil\nMentions légales et CGU\nRecherche\n"Adieu les cons" d’Albert Dupontel : dystopique et sans fard\nDerek Jarman plasticien\nLe magazine\nPedro Almodóvar revient sur ses inspirations et les enjeux de «\xa0La Chambre d’à côté\xa0»\nLe retour du jeu d\'enquête\n3 films d\'animation à voir cet hiver\nTest Instagram\n\nEn couv\' : le nouveau cru des 25 de moins de 25 ans\nStéphanie De Smedt et Jean Libon : "Strip Tease est une émission qui parle de nous, par nous même"\ntest slider Pablo\n\n"Romería" de Carla Simón se dévoile dans une première image\nMusique Cinéma Club\xa0: Victor Solf et la soul électro-mélancolique de «\xa0Tout peut durer\xa0»\nBerlinale 2025 : tous nos articles\nLetterboxd : tous nos articles sur la plateforme cinéphile en vogue\nMarina Foïs : "Je déteste qu’on m’infantilise."\nCulture : que voir en janvier ?\nLe podcast «\xa0À bientôt de te revoir\xa0» de Sophie-Marie Larrouy fait son grand retour\n3 livres féministes et politiques à lire au mois de mars\nAlerte\xa0: une expo de David Lynch bientôt montrée à la Galerie Duchamp\nCANNESERIES : Nicola Coughlan recevra le Prix Konbini de l’Engagement\n3 expos qu’on vous recommande ce mois-ci à Paris\nFragments : "Le ciné-concert est quelque chose d\'assez immédiat"\nLe Groupe Ouest a sélectionné huit projets pour sa résidence d’écriture\nmk2 organise un cycle dédié à David Cronenberg\n\nTEST X/INSTA\nOscars : une nouvelle catégorie pour récompenser les cascadeurs à partir de 2028\nLes réalisateurs de « Mon gâteau préféré » condamnés à une peine de prison avec sursis pour « propagande contre le régime » iranien\nRyan J. Sloan et Ariella Mastroianni, réalisateur et actrice de «\xa0The Gazer\xa0»\xa0: «\xa0On a fait ce film parce qu’on ne trouvait pas notre place dans le paysage cinématographique\xa0»\n« Chaplin aujourd’hui, un roi à New York » de Jérôme de Missolz\xa0\nAnna Karina en cinq chansons inoubliables\nQuand Jean-Claude Brialy faisait le portrait complice d’Anna Karina\nDécouvrez le musée consacré au studio Ghibli lors d’une visite virtuelle\nAgnès Varda : l’art de la déambulation\nPablo Larraín, façonner l\'histoire\nLa comédie musicale américaine en 6 dates clés\n« Valley of Love » de Guillaume Nicloux\nNotre top des pires scènes de drague\nLes idées d\'Esther Duflo : entretien inédit\n20 films sud-coréens à (re)voir\n5 œuvres rares qui traitent des violences policières\nFrederick Wiseman : «\xa0Je ne demande qu’une chose : pouvoir tout filmer, absolument tout\xa0»\n« Calamity, une enfance de Martha Jane Cannary » : La critique de Léonore, 9 ans\nAgnès Varda, corps sensibles\n\n                Le JSON doit être dans ce format exact:\n                {\n                    "entities": [\n                        {\n                            "text": "texte original",\n                            "url": "url complète de l\'article"\n                        }\n                    ]\n                }\n\n                Voici des exemples de correspondances:\n                {"text": "Politique de confidentialité", "url": "https://www.troiscouleurs.fr/politique-de-confidentialite/"}\n{"text": "Accueil", "url": "https://www.troiscouleurs.fr/"}\n{"text": "Mentions légales et CGU", "url": "https://www.troiscouleurs.fr/mentions-legales-et-cgu/"}\n{"text": "Recherche", "url": "https://www.troiscouleurs.fr/recherche/"}\n{"text": ""Adieu les cons" d’Albert Dupontel : dystopique et sans fard", "url": "https://www.troiscouleurs.fr/?p=15540"}\n\n                Règles importantes:\n                1. Ne mets aucun texte avant ou après le JSON\n                2. Le JSON doit être la seule chose dans ta réponse\n                3. Fais correspondre le texte avec les titres de la base de données en utilisant:\n                   - Correspondance exacte\n                   - Correspondance partielle (si le texte est contenu dans un titre)\n                4. Détecte les entités suivantes:\n                   - Noms propres (personnes, organisations)\n                   - Titres d\'œuvres (films, livres, etc.)\n                   - Noms de réalisateurs, auteurs, artistes, acteurs, actrices\n                5. Si tu trouves plusieurs correspondances possibles, choisis la plus pertinente ( privligie la longeur de l\'article )\n                6. Ne crée pas d\'URLs, utilise uniquement celles de la base de données\n                7. Si un mot ou une phrase apparaît plusieurs fois, crée un lien pour chaque occurrence\n                8. IMPORTANT: Ne crée PAS de liens pour:\n                   - Les titres d\'articles\n                   - Les dates (années, jours, mois)*\n                   - Les lieux (lieux, villes, pays)\n                   - Les numéros de version ou de partie'}, {'role': 'user', 'content': '\nDeux ans après\xa0Mission: Impossible. Dead Reckoning Partie 1, la spectaculaire saga d’espionnage revient avec\xa0Mission : Impossible. The Final Reckoning,\xa0qui se présente\xa0tout bonnement comme le volet final des aventures du super-agent Ethan Hunt. Le récit en profite ainsi pour intégrer trente ans de péripéties et renvoie par exemple à travers plusieurs dialogues à l’année 1996, moment où se déroulait le premier film réalisé par Brian De Palma.\n\nL’intrigue principale de ce\xa0Final Reckoning, située deux mois après celle de\xa0Dead Reckoning, tourne à nouveau autour de l’Entité, arme maléfique liée à l’intelligence artificielle, qui menace désormais de prendre le contrôle de plusieurs sites nucléaires mondiaux et de générer une apocalypse. Toujours écrit et réalisé par Christopher McQuarrie, le film prend soin de nous rappeler en introduction que nous vivons en pleine ère de manipulations numériques autour de la vérité et que les dangers de guerre qu’affrontent les personnages sont ceux qui guettent le public de 2025 en proie à un contexte géopolitique troublé.\n\nSe déployant de Londres au cercle polaire, en passant par l’Afrique du Sud, cette trépidante mission de sauvetage planétaire convoque une émotion qui se révèle de plus en plus vertigineuse. D’abord car Tom Cruise, en forme olympique du haut de ses 62 ans, dresse ici le bilan de 30 ans de sacrifices intimes et affectifs du personnage d’Ethan Hunt, semblant à chaque instant conscient de lui faire ses adieux. Mais aussi parce que le récit décide de célébrer tout un collectif autour de la figure du héros, en se focalisant sur la manière dont les connexions et les relations solidaires sont la clé de la libération. McQuarrie choisit à ce titre d’inclure dans la première partie des images des autres films de la saga\xa0Mission Impossible, comme pour rappeler tout ce que les quatre films qu’il a réalisés doivent aux cinéastes qui l’ont précédé dans l’aventure. Cette forme d’humilité et cette conscience de l’héritage du passé vont aussi prendre leur sens durant les 2h49 de rebondissements et de suspense où la synchronicité des actes va s’avérer décisive.\n\nEn invitant à la fois le casting du précédent film (Hayley Atwell, Pom Klementieff, Greg Tarzan Davis), des figures aperçues dans les volets précédents (Angela Bassett, Rolf Saxon) ou des nouvelles têtes au charisme ravageur (Katy O’Brian, Tramell Tillman), sans oublier les sempiternels Simon Pegg et Ving Rhames, ce blockbuster hollywoodien offre un éloge du combat commun et de la lutte collective qui génère une profonde mélancolie à laquelle la lyrique bande musicale n’est pas étrangère.'}], 'model': 'gpt-4', 'max_tokens': 1000, 'temperature': 0.3}}
+2025-05-27 16:59:22,007 - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-05-27 16:59:22,008 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-05-27 16:59:22,008 - DEBUG - send_request_headers.complete
+2025-05-27 16:59:22,008 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-05-27 16:59:22,008 - DEBUG - send_request_body.complete
+2025-05-27 16:59:22,008 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-05-27 16:59:47,160 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 27 May 2025 14:59:46 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'mk2-g4a4of'), (b'openai-processing-ms', b'25012'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'25017'), (b'x-ratelimit-limit-requests', b'5000'), (b'x-ratelimit-limit-tokens', b'40000'), (b'x-ratelimit-remaining-requests', b'4999'), (b'x-ratelimit-remaining-tokens', b'37864'), (b'x-ratelimit-reset-requests', b'12ms'), (b'x-ratelimit-reset-tokens', b'3.203s'), (b'x-request-id', b'req_bf445d285faed35b32fa15c876f21cd5'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9466602c0d9e2a52-CDG'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-05-27 16:59:47,161 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-27 16:59:47,161 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-05-27 16:59:47,161 - DEBUG - receive_response_body.complete
+2025-05-27 16:59:47,161 - DEBUG - response_closed.started
+2025-05-27 16:59:47,161 - DEBUG - response_closed.complete
+2025-05-27 16:59:47,162 - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Tue, 27 May 2025 14:59:46 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'mk2-g4a4of', 'openai-processing-ms': '25012', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '25017', 'x-ratelimit-limit-requests': '5000', 'x-ratelimit-limit-tokens': '40000', 'x-ratelimit-remaining-requests': '4999', 'x-ratelimit-remaining-tokens': '37864', 'x-ratelimit-reset-requests': '12ms', 'x-ratelimit-reset-tokens': '3.203s', 'x-request-id': 'req_bf445d285faed35b32fa15c876f21cd5', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9466602c0d9e2a52-CDG', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-05-27 16:59:47,162 - DEBUG - request_id: req_bf445d285faed35b32fa15c876f21cd5
+2025-05-27 16:59:47,162 - DEBUG - Réponse GPT reçue: {"entities": [
+    {"text": "Mission: Impossible. Dead Reckoning Partie 1", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Mission : Impossible. The Final Reckoning", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Ethan Hunt", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "1996", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Brian De Palma", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Final Reckoning", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Dead Reckoning", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "l’Entité", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Christopher McQuarrie", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "2025", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Tom Cruise", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Mission Impossible", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Hayley Atwell", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Pom Klementieff", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Greg Tarzan Davis", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Angela Bassett", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Rolf Saxon", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Katy O’Brian", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Tramell Tillman", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Simon Pegg", "url": "https://www.troiscouleurs.fr/?p=15540"},
+    {"text": "Ving Rhames", "url": "https://www.troiscouleurs.fr/?p=15540"}
+]}
+2025-05-27 16:59:47,162 - DEBUG - Traitement de l'entité: {'text': 'Mission: Impossible. Dead Reckoning Partie 1', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,173 - DEBUG - Traitement de l'entité: {'text': 'Mission : Impossible. The Final Reckoning', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,173 - DEBUG - Traitement de l'entité: {'text': 'Ethan Hunt', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,183 - DEBUG - Traitement de l'entité: {'text': '1996', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,183 - DEBUG - Traitement de l'entité: {'text': 'Brian De Palma', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,184 - INFO - Entité valide trouvée (partielle): {'text': 'Brian De Palma', 'url': 'https://www.troiscouleurs.fr/cinema/a-revoir-brian-de-palma-par-noah-baumbach-et-jake-paltrow-sur-arte-7/'}
+2025-05-27 16:59:47,184 - DEBUG - Traitement de l'entité: {'text': 'Final Reckoning', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,194 - DEBUG - Traitement de l'entité: {'text': 'Dead Reckoning', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,201 - INFO - Entité valide trouvée (partielle): {'text': 'Dead Reckoning', 'url': 'https://www.troiscouleurs.fr/cinema/cinema-news/mission-impossible-dead-reckoning-partie-1-de-christopher-mcquarrie-au-cur-des-tenebres/'}
+2025-05-27 16:59:47,201 - DEBUG - Traitement de l'entité: {'text': 'l’Entité', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,211 - DEBUG - Traitement de l'entité: {'text': 'Christopher McQuarrie', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,219 - INFO - Entité valide trouvée (partielle): {'text': 'Christopher McQuarrie', 'url': 'https://www.troiscouleurs.fr/cinema/cinema-news/mission-impossible-dead-reckoning-partie-1-de-christopher-mcquarrie-au-cur-des-tenebres/'}
+2025-05-27 16:59:47,219 - DEBUG - Traitement de l'entité: {'text': '2025', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,219 - DEBUG - Traitement de l'entité: {'text': 'Tom Cruise', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,221 - INFO - Entité valide trouvée (partielle): {'text': 'Tom Cruise', 'url': 'https://www.troiscouleurs.fr/cinema/quentin-tarantino-penserait-a-tom-cruise-pour-son-prochain-film-sur-lannee-1969/'}
+2025-05-27 16:59:47,221 - DEBUG - Traitement de l'entité: {'text': 'Mission Impossible', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,225 - INFO - Entité valide trouvée (partielle): {'text': 'Mission Impossible', 'url': 'https://www.troiscouleurs.fr/cinema/mission-impossible-petit-labo-du-cinema-daction-daujourdhui/'}
+2025-05-27 16:59:47,226 - DEBUG - Traitement de l'entité: {'text': 'Hayley Atwell', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,235 - DEBUG - Traitement de l'entité: {'text': 'Pom Klementieff', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,245 - DEBUG - Traitement de l'entité: {'text': 'Greg Tarzan Davis', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,255 - DEBUG - Traitement de l'entité: {'text': 'Angela Bassett', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,265 - DEBUG - Traitement de l'entité: {'text': 'Rolf Saxon', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,275 - DEBUG - Traitement de l'entité: {'text': 'Katy O’Brian', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,286 - DEBUG - Traitement de l'entité: {'text': 'Tramell Tillman', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,296 - DEBUG - Traitement de l'entité: {'text': 'Simon Pegg', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,306 - DEBUG - Traitement de l'entité: {'text': 'Ving Rhames', 'url': 'https://www.troiscouleurs.fr/?p=15540'}
+2025-05-27 16:59:47,315 - INFO - Nombre total d'entités valides trouvées: 5
+2025-05-27 16:59:47,316 - INFO - Entités trouvées dans le paragraphe 3: 5
+2025-05-27 16:59:47,318 - DEBUG - Traitement du paragraphe 4
+2025-05-27 16:59:47,318 - DEBUG - Traitement du paragraphe 5
+2025-05-27 16:59:47,319 - DEBUG - Analyse du texte du paragraphe 5: Doté dans son dernier acte d’une ambiance de quasi-utopie politique, où la présidente des États-Unis...
+2025-05-27 16:59:47,319 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 372 caractères
+2025-05-27 16:59:47,319 - DEBUG - Exemples préparés: {"text": "Politique de confidentialité", "url": "https://www.troiscouleurs.fr/politique-de-confidentialite/"}
+{"text": "Accueil", "url": "https://www.troiscouleurs.fr/"}
+{"text": "Mentions légales et CGU", "url": "https://www.troiscouleurs.fr/mentions-legales-et-cgu/"}
+{"text": "Recherche", "url": "https://www.troiscouleurs.fr/recherche/"}
+{"text": ""Adieu les cons" d’Albert Dupontel : dystopique et sans fard", "url": "https://www.troiscouleurs.fr/?p=15540"}
+2025-05-27 16:59:47,320 - DEBUG - Titres disponibles: Politique de confidentialité
+Accueil
+Mentions légales et CGU
+Recherche
+"Adieu les cons" d’Albert Dupontel : dystopique et sans fard
+Derek Jarman plasticien
+Le magazine
+Pedro Almodóvar revient sur ses inspirations et les enjeux de « La Chambre d’à côté »
+Le retour du jeu d'enquête
+3 films d'animation à voir cet hiver
+Test Instagram
+
+En couv' : le nouveau cru des 25 de moins de 25 ans
+Stéphanie De Smedt et Jean Libon : "Strip Tease est une émission qui parle de nous, par nous même"
+test slider Pablo
+
+"Romería" de Carla Simón se dévoile dans une première image
+Musique Cinéma Club : Victor Solf et la soul électro-mélancolique de « Tout peut durer »
+Berlinale 2025 : tous nos articles
+Letterboxd : tous nos articles sur la plateforme cinéphile en vogue
+Marina Foïs : "Je déteste qu’on m’infantilise."
+Culture : que voir en janvier ?
+Le podcast « À bientôt de te revoir » de Sophie-Marie Larrouy fait son grand retour
+3 livres féministes et politiques à lire au mois de mars
+Alerte : une expo de David Lynch bientôt montrée à la Galerie Duchamp
+CANNESERIES : Nicola Coughlan recevra le Prix Konbini de l’Engagement
+3 expos qu’on vous recommande ce mois-ci à Paris
+Fragments : "Le ciné-concert est quelque chose d'assez immédiat"
+Le Groupe Ouest a sélectionné huit projets pour sa résidence d’écriture
+mk2 organise un cycle dédié à David Cronenberg
+
+TEST X/INSTA
+Oscars : une nouvelle catégorie pour récompenser les cascadeurs à partir de 2028
+Les réalisateurs de « Mon gâteau préféré » condamnés à une peine de prison avec sursis pour « propagande contre le régime » iranien
+Ryan J. Sloan et Ariella Mastroianni, réalisateur et actrice de « The Gazer » : « On a fait ce film parce qu’on ne trouvait pas notre place dans le paysage cinématographique »
+« Chaplin aujourd’hui, un roi à New York » de Jérôme de Missolz 
+Anna Karina en cinq chansons inoubliables
+Quand Jean-Claude Brialy faisait le portrait complice d’Anna Karina
+Découvrez le musée consacré au studio Ghibli lors d’une visite virtuelle
+Agnès Varda : l’art de la déambulation
+Pablo Larraín, façonner l'histoire
+La comédie musicale américaine en 6 dates clés
+« Valley of Love » de Guillaume Nicloux
+Notre top des pires scènes de drague
+Les idées d'Esther Duflo : entretien inédit
+20 films sud-coréens à (re)voir
+5 œuvres rares qui traitent des violences policières
+Frederick Wiseman : « Je ne demande qu’une chose : pouvoir tout filmer, absolument tout »
+« Calamity, une enfance de Martha Jane Cannary » : La critique de Léonore, 9 ans
+Agnès Varda, corps sensibles
+2025-05-27 16:59:47,320 - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'Tu es un assistant qui analyse du texte et identifie les entités importantes qui méritent d\'être liées.\n                IMPORTANT: Tu dois répondre UNIQUEMENT avec un JSON valide, sans aucun autre texte avant ou après.\n                \n                Voici les titres d\'articles disponibles dans la base de données:\n                Politique de confidentialité\nAccueil\nMentions légales et CGU\nRecherche\n"Adieu les cons" d’Albert Dupontel : dystopique et sans fard\nDerek Jarman plasticien\nLe magazine\nPedro Almodóvar revient sur ses inspirations et les enjeux de «\xa0La Chambre d’à côté\xa0»\nLe retour du jeu d\'enquête\n3 films d\'animation à voir cet hiver\nTest Instagram\n\nEn couv\' : le nouveau cru des 25 de moins de 25 ans\nStéphanie De Smedt et Jean Libon : "Strip Tease est une émission qui parle de nous, par nous même"\ntest slider Pablo\n\n"Romería" de Carla Simón se dévoile dans une première image\nMusique Cinéma Club\xa0: Victor Solf et la soul électro-mélancolique de «\xa0Tout peut durer\xa0»\nBerlinale 2025 : tous nos articles\nLetterboxd : tous nos articles sur la plateforme cinéphile en vogue\nMarina Foïs : "Je déteste qu’on m’infantilise."\nCulture : que voir en janvier ?\nLe podcast «\xa0À bientôt de te revoir\xa0» de Sophie-Marie Larrouy fait son grand retour\n3 livres féministes et politiques à lire au mois de mars\nAlerte\xa0: une expo de David Lynch bientôt montrée à la Galerie Duchamp\nCANNESERIES : Nicola Coughlan recevra le Prix Konbini de l’Engagement\n3 expos qu’on vous recommande ce mois-ci à Paris\nFragments : "Le ciné-concert est quelque chose d\'assez immédiat"\nLe Groupe Ouest a sélectionné huit projets pour sa résidence d’écriture\nmk2 organise un cycle dédié à David Cronenberg\n\nTEST X/INSTA\nOscars : une nouvelle catégorie pour récompenser les cascadeurs à partir de 2028\nLes réalisateurs de « Mon gâteau préféré » condamnés à une peine de prison avec sursis pour « propagande contre le régime » iranien\nRyan J. Sloan et Ariella Mastroianni, réalisateur et actrice de «\xa0The Gazer\xa0»\xa0: «\xa0On a fait ce film parce qu’on ne trouvait pas notre place dans le paysage cinématographique\xa0»\n« Chaplin aujourd’hui, un roi à New York » de Jérôme de Missolz\xa0\nAnna Karina en cinq chansons inoubliables\nQuand Jean-Claude Brialy faisait le portrait complice d’Anna Karina\nDécouvrez le musée consacré au studio Ghibli lors d’une visite virtuelle\nAgnès Varda : l’art de la déambulation\nPablo Larraín, façonner l\'histoire\nLa comédie musicale américaine en 6 dates clés\n« Valley of Love » de Guillaume Nicloux\nNotre top des pires scènes de drague\nLes idées d\'Esther Duflo : entretien inédit\n20 films sud-coréens à (re)voir\n5 œuvres rares qui traitent des violences policières\nFrederick Wiseman : «\xa0Je ne demande qu’une chose : pouvoir tout filmer, absolument tout\xa0»\n« Calamity, une enfance de Martha Jane Cannary » : La critique de Léonore, 9 ans\nAgnès Varda, corps sensibles\n\n                Le JSON doit être dans ce format exact:\n                {\n                    "entities": [\n                        {\n                            "text": "texte original",\n                            "url": "url complète de l\'article"\n                        }\n                    ]\n                }\n\n                Voici des exemples de correspondances:\n                {"text": "Politique de confidentialité", "url": "https://www.troiscouleurs.fr/politique-de-confidentialite/"}\n{"text": "Accueil", "url": "https://www.troiscouleurs.fr/"}\n{"text": "Mentions légales et CGU", "url": "https://www.troiscouleurs.fr/mentions-legales-et-cgu/"}\n{"text": "Recherche", "url": "https://www.troiscouleurs.fr/recherche/"}\n{"text": ""Adieu les cons" d’Albert Dupontel : dystopique et sans fard", "url": "https://www.troiscouleurs.fr/?p=15540"}\n\n                Règles importantes:\n                1. Ne mets aucun texte avant ou après le JSON\n                2. Le JSON doit être la seule chose dans ta réponse\n                3. Fais correspondre le texte avec les titres de la base de données en utilisant:\n                   - Correspondance exacte\n                   - Correspondance partielle (si le texte est contenu dans un titre)\n                4. Détecte les entités suivantes:\n                   - Noms propres (personnes, organisations)\n                   - Titres d\'œuvres (films, livres, etc.)\n                   - Noms de réalisateurs, auteurs, artistes, acteurs, actrices\n                5. Si tu trouves plusieurs correspondances possibles, choisis la plus pertinente ( privligie la longeur de l\'article )\n                6. Ne crée pas d\'URLs, utilise uniquement celles de la base de données\n                7. Si un mot ou une phrase apparaît plusieurs fois, crée un lien pour chaque occurrence\n                8. IMPORTANT: Ne crée PAS de liens pour:\n                   - Les titres d\'articles\n                   - Les dates (années, jours, mois)*\n                   - Les lieux (lieux, villes, pays)\n                   - Les numéros de version ou de partie'}, {'role': 'user', 'content': 'Doté dans son dernier acte d’une ambiance de quasi-utopie politique, où la présidente des États-Unis serait une dirigeante pleine d’empathie et de sang-froid,\xa0The Final Reckoning\xa0parvient jusqu’au bout à émerveiller et à impressionner au cœur d’un univers de fiction où les conflits, les désirs et les tourments étaient bel et bien, pendant trente ans, ceux du monde réel.'}], 'model': 'gpt-4', 'max_tokens': 1000, 'temperature': 0.3}}
+2025-05-27 16:59:47,321 - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-05-27 16:59:47,321 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-05-27 16:59:47,321 - DEBUG - send_request_headers.complete
+2025-05-27 16:59:47,321 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-05-27 16:59:47,321 - DEBUG - send_request_body.complete
+2025-05-27 16:59:47,321 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-05-27 16:59:48,351 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 27 May 2025 14:59:47 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'mk2-g4a4of'), (b'openai-processing-ms', b'820'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'823'), (b'x-ratelimit-limit-requests', b'5000'), (b'x-ratelimit-limit-tokens', b'40000'), (b'x-ratelimit-remaining-requests', b'4999'), (b'x-ratelimit-remaining-tokens', b'38065'), (b'x-ratelimit-reset-requests', b'12ms'), (b'x-ratelimit-reset-tokens', b'2.901s'), (b'x-request-id', b'req_b82bd70f3262007447eb2471081b1fa9'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'946660ca39d22a52-CDG'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-05-27 16:59:48,351 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-27 16:59:48,351 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-05-27 16:59:48,352 - DEBUG - receive_response_body.complete
+2025-05-27 16:59:48,352 - DEBUG - response_closed.started
+2025-05-27 16:59:48,352 - DEBUG - response_closed.complete
+2025-05-27 16:59:48,352 - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Tue, 27 May 2025 14:59:47 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'mk2-g4a4of', 'openai-processing-ms': '820', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '823', 'x-ratelimit-limit-requests': '5000', 'x-ratelimit-limit-tokens': '40000', 'x-ratelimit-remaining-requests': '4999', 'x-ratelimit-remaining-tokens': '38065', 'x-ratelimit-reset-requests': '12ms', 'x-ratelimit-reset-tokens': '2.901s', 'x-request-id': 'req_b82bd70f3262007447eb2471081b1fa9', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '946660ca39d22a52-CDG', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-05-27 16:59:48,352 - DEBUG - request_id: req_b82bd70f3262007447eb2471081b1fa9
+2025-05-27 16:59:48,352 - DEBUG - Réponse GPT reçue: {
+    "entities": []
+}
+2025-05-27 16:59:48,352 - INFO - Nombre total d'entités valides trouvées: 0
+2025-05-27 16:59:48,352 - INFO - Entités trouvées dans le paragraphe 5: 0
+2025-05-27 16:59:48,353 - DEBUG - Traitement du paragraphe 6
+2025-05-27 16:59:48,353 - DEBUG - Traitement du paragraphe 7
+2025-05-27 16:59:48,353 - DEBUG - Analyse du texte du paragraphe 7: Damien Leblanc...
+2025-05-27 16:59:48,353 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-05-27 16:59:48,353 - DEBUG - Exemples préparés: {"text": "Politique de confidentialité", "url": "https://www.troiscouleurs.fr/politique-de-confidentialite/"}
+{"text": "Accueil", "url": "https://www.troiscouleurs.fr/"}
+{"text": "Mentions légales et CGU", "url": "https://www.troiscouleurs.fr/mentions-legales-et-cgu/"}
+{"text": "Recherche", "url": "https://www.troiscouleurs.fr/recherche/"}
+{"text": ""Adieu les cons" d’Albert Dupontel : dystopique et sans fard", "url": "https://www.troiscouleurs.fr/?p=15540"}
+2025-05-27 16:59:48,354 - DEBUG - Titres disponibles: Politique de confidentialité
+Accueil
+Mentions légales et CGU
+Recherche
+"Adieu les cons" d’Albert Dupontel : dystopique et sans fard
+Derek Jarman plasticien
+Le magazine
+Pedro Almodóvar revient sur ses inspirations et les enjeux de « La Chambre d’à côté »
+Le retour du jeu d'enquête
+3 films d'animation à voir cet hiver
+Test Instagram
+
+En couv' : le nouveau cru des 25 de moins de 25 ans
+Stéphanie De Smedt et Jean Libon : "Strip Tease est une émission qui parle de nous, par nous même"
+test slider Pablo
+
+"Romería" de Carla Simón se dévoile dans une première image
+Musique Cinéma Club : Victor Solf et la soul électro-mélancolique de « Tout peut durer »
+Berlinale 2025 : tous nos articles
+Letterboxd : tous nos articles sur la plateforme cinéphile en vogue
+Marina Foïs : "Je déteste qu’on m’infantilise."
+Culture : que voir en janvier ?
+Le podcast « À bientôt de te revoir » de Sophie-Marie Larrouy fait son grand retour
+3 livres féministes et politiques à lire au mois de mars
+Alerte : une expo de David Lynch bientôt montrée à la Galerie Duchamp
+CANNESERIES : Nicola Coughlan recevra le Prix Konbini de l’Engagement
+3 expos qu’on vous recommande ce mois-ci à Paris
+Fragments : "Le ciné-concert est quelque chose d'assez immédiat"
+Le Groupe Ouest a sélectionné huit projets pour sa résidence d’écriture
+mk2 organise un cycle dédié à David Cronenberg
+
+TEST X/INSTA
+Oscars : une nouvelle catégorie pour récompenser les cascadeurs à partir de 2028
+Les réalisateurs de « Mon gâteau préféré » condamnés à une peine de prison avec sursis pour « propagande contre le régime » iranien
+Ryan J. Sloan et Ariella Mastroianni, réalisateur et actrice de « The Gazer » : « On a fait ce film parce qu’on ne trouvait pas notre place dans le paysage cinématographique »
+« Chaplin aujourd’hui, un roi à New York » de Jérôme de Missolz 
+Anna Karina en cinq chansons inoubliables
+Quand Jean-Claude Brialy faisait le portrait complice d’Anna Karina
+Découvrez le musée consacré au studio Ghibli lors d’une visite virtuelle
+Agnès Varda : l’art de la déambulation
+Pablo Larraín, façonner l'histoire
+La comédie musicale américaine en 6 dates clés
+« Valley of Love » de Guillaume Nicloux
+Notre top des pires scènes de drague
+Les idées d'Esther Duflo : entretien inédit
+20 films sud-coréens à (re)voir
+5 œuvres rares qui traitent des violences policières
+Frederick Wiseman : « Je ne demande qu’une chose : pouvoir tout filmer, absolument tout »
+« Calamity, une enfance de Martha Jane Cannary » : La critique de Léonore, 9 ans
+Agnès Varda, corps sensibles
+2025-05-27 16:59:48,355 - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'Tu es un assistant qui analyse du texte et identifie les entités importantes qui méritent d\'être liées.\n                IMPORTANT: Tu dois répondre UNIQUEMENT avec un JSON valide, sans aucun autre texte avant ou après.\n                \n                Voici les titres d\'articles disponibles dans la base de données:\n                Politique de confidentialité\nAccueil\nMentions légales et CGU\nRecherche\n"Adieu les cons" d’Albert Dupontel : dystopique et sans fard\nDerek Jarman plasticien\nLe magazine\nPedro Almodóvar revient sur ses inspirations et les enjeux de «\xa0La Chambre d’à côté\xa0»\nLe retour du jeu d\'enquête\n3 films d\'animation à voir cet hiver\nTest Instagram\n\nEn couv\' : le nouveau cru des 25 de moins de 25 ans\nStéphanie De Smedt et Jean Libon : "Strip Tease est une émission qui parle de nous, par nous même"\ntest slider Pablo\n\n"Romería" de Carla Simón se dévoile dans une première image\nMusique Cinéma Club\xa0: Victor Solf et la soul électro-mélancolique de «\xa0Tout peut durer\xa0»\nBerlinale 2025 : tous nos articles\nLetterboxd : tous nos articles sur la plateforme cinéphile en vogue\nMarina Foïs : "Je déteste qu’on m’infantilise."\nCulture : que voir en janvier ?\nLe podcast «\xa0À bientôt de te revoir\xa0» de Sophie-Marie Larrouy fait son grand retour\n3 livres féministes et politiques à lire au mois de mars\nAlerte\xa0: une expo de David Lynch bientôt montrée à la Galerie Duchamp\nCANNESERIES : Nicola Coughlan recevra le Prix Konbini de l’Engagement\n3 expos qu’on vous recommande ce mois-ci à Paris\nFragments : "Le ciné-concert est quelque chose d\'assez immédiat"\nLe Groupe Ouest a sélectionné huit projets pour sa résidence d’écriture\nmk2 organise un cycle dédié à David Cronenberg\n\nTEST X/INSTA\nOscars : une nouvelle catégorie pour récompenser les cascadeurs à partir de 2028\nLes réalisateurs de « Mon gâteau préféré » condamnés à une peine de prison avec sursis pour « propagande contre le régime » iranien\nRyan J. Sloan et Ariella Mastroianni, réalisateur et actrice de «\xa0The Gazer\xa0»\xa0: «\xa0On a fait ce film parce qu’on ne trouvait pas notre place dans le paysage cinématographique\xa0»\n« Chaplin aujourd’hui, un roi à New York » de Jérôme de Missolz\xa0\nAnna Karina en cinq chansons inoubliables\nQuand Jean-Claude Brialy faisait le portrait complice d’Anna Karina\nDécouvrez le musée consacré au studio Ghibli lors d’une visite virtuelle\nAgnès Varda : l’art de la déambulation\nPablo Larraín, façonner l\'histoire\nLa comédie musicale américaine en 6 dates clés\n« Valley of Love » de Guillaume Nicloux\nNotre top des pires scènes de drague\nLes idées d\'Esther Duflo : entretien inédit\n20 films sud-coréens à (re)voir\n5 œuvres rares qui traitent des violences policières\nFrederick Wiseman : «\xa0Je ne demande qu’une chose : pouvoir tout filmer, absolument tout\xa0»\n« Calamity, une enfance de Martha Jane Cannary » : La critique de Léonore, 9 ans\nAgnès Varda, corps sensibles\n\n                Le JSON doit être dans ce format exact:\n                {\n                    "entities": [\n                        {\n                            "text": "texte original",\n                            "url": "url complète de l\'article"\n                        }\n                    ]\n                }\n\n                Voici des exemples de correspondances:\n                {"text": "Politique de confidentialité", "url": "https://www.troiscouleurs.fr/politique-de-confidentialite/"}\n{"text": "Accueil", "url": "https://www.troiscouleurs.fr/"}\n{"text": "Mentions légales et CGU", "url": "https://www.troiscouleurs.fr/mentions-legales-et-cgu/"}\n{"text": "Recherche", "url": "https://www.troiscouleurs.fr/recherche/"}\n{"text": ""Adieu les cons" d’Albert Dupontel : dystopique et sans fard", "url": "https://www.troiscouleurs.fr/?p=15540"}\n\n                Règles importantes:\n                1. Ne mets aucun texte avant ou après le JSON\n                2. Le JSON doit être la seule chose dans ta réponse\n                3. Fais correspondre le texte avec les titres de la base de données en utilisant:\n                   - Correspondance exacte\n                   - Correspondance partielle (si le texte est contenu dans un titre)\n                4. Détecte les entités suivantes:\n                   - Noms propres (personnes, organisations)\n                   - Titres d\'œuvres (films, livres, etc.)\n                   - Noms de réalisateurs, auteurs, artistes, acteurs, actrices\n                5. Si tu trouves plusieurs correspondances possibles, choisis la plus pertinente ( privligie la longeur de l\'article )\n                6. Ne crée pas d\'URLs, utilise uniquement celles de la base de données\n                7. Si un mot ou une phrase apparaît plusieurs fois, crée un lien pour chaque occurrence\n                8. IMPORTANT: Ne crée PAS de liens pour:\n                   - Les titres d\'articles\n                   - Les dates (années, jours, mois)*\n                   - Les lieux (lieux, villes, pays)\n                   - Les numéros de version ou de partie'}, {'role': 'user', 'content': 'Damien Leblanc'}], 'model': 'gpt-4', 'max_tokens': 1000, 'temperature': 0.3}}
+2025-05-27 16:59:48,355 - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-05-27 16:59:48,356 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-05-27 16:59:48,356 - DEBUG - send_request_headers.complete
+2025-05-27 16:59:48,356 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-05-27 16:59:48,356 - DEBUG - send_request_body.complete
+2025-05-27 16:59:48,356 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-05-27 16:59:49,705 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 27 May 2025 14:59:49 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'mk2-g4a4of'), (b'openai-processing-ms', b'1214'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'1217'), (b'x-ratelimit-limit-requests', b'5000'), (b'x-ratelimit-limit-tokens', b'40000'), (b'x-ratelimit-remaining-requests', b'4999'), (b'x-ratelimit-remaining-tokens', b'37367'), (b'x-ratelimit-reset-requests', b'12ms'), (b'x-ratelimit-reset-tokens', b'3.949s'), (b'x-request-id', b'req_aeb753b995022d60c4e3e811bc6ba314'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'cf-cache-status', b'DYNAMIC'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'946660d0bd9d2a52-CDG'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-05-27 16:59:49,705 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-27 16:59:49,705 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-05-27 16:59:49,706 - DEBUG - receive_response_body.complete
+2025-05-27 16:59:49,706 - DEBUG - response_closed.started
+2025-05-27 16:59:49,706 - DEBUG - response_closed.complete
+2025-05-27 16:59:49,706 - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Tue, 27 May 2025 14:59:49 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'mk2-g4a4of', 'openai-processing-ms': '1214', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '1217', 'x-ratelimit-limit-requests': '5000', 'x-ratelimit-limit-tokens': '40000', 'x-ratelimit-remaining-requests': '4999', 'x-ratelimit-remaining-tokens': '37367', 'x-ratelimit-reset-requests': '12ms', 'x-ratelimit-reset-tokens': '3.949s', 'x-request-id': 'req_aeb753b995022d60c4e3e811bc6ba314', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'cf-cache-status': 'DYNAMIC', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '946660d0bd9d2a52-CDG', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-05-27 16:59:49,706 - DEBUG - request_id: req_aeb753b995022d60c4e3e811bc6ba314
+2025-05-27 16:59:49,706 - DEBUG - Réponse GPT reçue: {
+    "entities": []
+}
+2025-05-27 16:59:49,706 - INFO - Nombre total d'entités valides trouvées: 0
+2025-05-27 16:59:49,707 - INFO - Entités trouvées dans le paragraphe 7: 0
+2025-05-27 16:59:49,707 - DEBUG - Traitement du paragraphe 8
+2025-05-27 16:59:49,718 - INFO - Document traité avec succès
+2025-05-27 16:59:49,730 - INFO - Upload du fichier traité vers OUTBOX: processed_CANNES 2025.docx
+2025-05-27 16:59:49,732 - DEBUG - URL being requested: POST https://www.googleapis.com/upload/drive/v3/files?fields=id&alt=json&uploadType=resumable
+2025-05-27 16:59:51,215 - INFO - Déplacement du fichier original vers ARCHIVE: CANNES 2025.docx
+2025-05-27 16:59:51,217 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files/1v2NXKC4TFcsYQnz1VfEAPvu-D9wixShV?fields=parents&alt=json
+2025-05-27 16:59:51,430 - DEBUG - URL being requested: PATCH https://www.googleapis.com/drive/v3/files/1v2NXKC4TFcsYQnz1VfEAPvu-D9wixShV?addParents=1lYY14WfbeLmwO3ZCMyCVgza6bwCyRNY6&removeParents=1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe&fields=id%2C+parents&alt=json
+2025-05-27 16:59:52,054 - INFO - Fichier CANNES 2025.docx traité avec succès
+2025-05-27 16:59:52,055 - INFO - Attente de 5 minutes avant la prochaine vérification
+2025-05-27 17:04:52,055 - INFO - Token.json trouvé, tentative de chargement des credentials
+2025-05-27 17:04:52,058 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-05-27 17:04:52,065 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/about?fields=user&alt=json
+2025-05-27 17:04:52,497 - INFO - Connecté au compte Google Drive: pablopeiro211@gmail.com
+2025-05-27 17:04:52,497 - INFO - Service Google Drive initialisé avec succès
+2025-05-27 17:04:52,497 - INFO - Recherche du dossier: INBOX
+2025-05-27 17:04:52,502 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27INBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:04:52,864 - INFO - Dossier INBOX trouvé avec l'ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe
+2025-05-27 17:04:52,864 - INFO - Recherche du dossier: OUTBOX
+2025-05-27 17:04:52,867 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27OUTBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:04:53,151 - INFO - Dossier OUTBOX trouvé avec l'ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF
+2025-05-27 17:04:53,151 - INFO - Recherche du dossier: ARCHIVE
+2025-05-27 17:04:53,153 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27ARCHIVE%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:04:53,480 - INFO - Dossier ARCHIVE trouvé avec l'ID: 1lYY14WfbeLmwO3ZCMyCVgza6bwCyRNY6
+2025-05-27 17:04:53,480 - INFO - Recherche des fichiers .docx dans le dossier INBOX (ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe)
+2025-05-27 17:04:53,482 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=%271H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe%27+in+parents+and+mimeType%3D%27application%2Fvnd.openxmlformats-officedocument.wordprocessingml.document%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:04:53,761 - INFO - Nombre de fichiers trouvés dans INBOX: 0
+2025-05-27 17:04:53,761 - INFO - Aucun nouveau fichier à traiter
+2025-05-27 17:04:53,761 - INFO - Attente de 5 minutes avant la prochaine vérification
+2025-05-27 17:09:53,762 - INFO - Token.json trouvé, tentative de chargement des credentials
+2025-05-27 17:09:53,765 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-05-27 17:09:53,769 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/about?fields=user&alt=json
+2025-05-27 17:09:54,208 - INFO - Connecté au compte Google Drive: pablopeiro211@gmail.com
+2025-05-27 17:09:54,208 - INFO - Service Google Drive initialisé avec succès
+2025-05-27 17:09:54,208 - INFO - Recherche du dossier: INBOX
+2025-05-27 17:09:54,215 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27INBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:09:54,554 - INFO - Dossier INBOX trouvé avec l'ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe
+2025-05-27 17:09:54,554 - INFO - Recherche du dossier: OUTBOX
+2025-05-27 17:09:54,558 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27OUTBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:09:54,857 - INFO - Dossier OUTBOX trouvé avec l'ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF
+2025-05-27 17:09:54,857 - INFO - Recherche du dossier: ARCHIVE
+2025-05-27 17:09:54,862 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27ARCHIVE%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:09:55,223 - INFO - Dossier ARCHIVE trouvé avec l'ID: 1lYY14WfbeLmwO3ZCMyCVgza6bwCyRNY6
+2025-05-27 17:09:55,223 - INFO - Recherche des fichiers .docx dans le dossier INBOX (ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe)
+2025-05-27 17:09:55,228 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=%271H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe%27+in+parents+and+mimeType%3D%27application%2Fvnd.openxmlformats-officedocument.wordprocessingml.document%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:09:55,446 - INFO - Nombre de fichiers trouvés dans INBOX: 0
+2025-05-27 17:09:55,446 - INFO - Aucun nouveau fichier à traiter
+2025-05-27 17:09:55,446 - INFO - Attente de 5 minutes avant la prochaine vérification
+2025-05-27 17:14:55,447 - INFO - Token.json trouvé, tentative de chargement des credentials
+2025-05-27 17:14:55,449 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-05-27 17:14:55,453 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/about?fields=user&alt=json
+2025-05-27 17:14:55,914 - INFO - Connecté au compte Google Drive: pablopeiro211@gmail.com
+2025-05-27 17:14:55,914 - INFO - Service Google Drive initialisé avec succès
+2025-05-27 17:14:55,914 - INFO - Recherche du dossier: INBOX
+2025-05-27 17:14:55,923 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27INBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:14:56,221 - INFO - Dossier INBOX trouvé avec l'ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe
+2025-05-27 17:14:56,221 - INFO - Recherche du dossier: OUTBOX
+2025-05-27 17:14:56,225 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27OUTBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:14:56,578 - INFO - Dossier OUTBOX trouvé avec l'ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF
+2025-05-27 17:14:56,578 - INFO - Recherche du dossier: ARCHIVE
+2025-05-27 17:14:56,582 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27ARCHIVE%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:14:56,945 - INFO - Dossier ARCHIVE trouvé avec l'ID: 1lYY14WfbeLmwO3ZCMyCVgza6bwCyRNY6
+2025-05-27 17:14:56,945 - INFO - Recherche des fichiers .docx dans le dossier INBOX (ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe)
+2025-05-27 17:14:56,948 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=%271H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe%27+in+parents+and+mimeType%3D%27application%2Fvnd.openxmlformats-officedocument.wordprocessingml.document%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:14:57,141 - INFO - Nombre de fichiers trouvés dans INBOX: 0
+2025-05-27 17:14:57,141 - INFO - Aucun nouveau fichier à traiter
+2025-05-27 17:14:57,141 - INFO - Attente de 5 minutes avant la prochaine vérification
+2025-05-27 17:19:57,142 - INFO - Token.json trouvé, tentative de chargement des credentials
+2025-05-27 17:19:57,147 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-05-27 17:19:57,154 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/about?fields=user&alt=json
+2025-05-27 17:19:57,637 - INFO - Connecté au compte Google Drive: pablopeiro211@gmail.com
+2025-05-27 17:19:57,637 - INFO - Service Google Drive initialisé avec succès
+2025-05-27 17:19:57,638 - INFO - Recherche du dossier: INBOX
+2025-05-27 17:19:57,644 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27INBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:19:57,920 - INFO - Dossier INBOX trouvé avec l'ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe
+2025-05-27 17:19:57,920 - INFO - Recherche du dossier: OUTBOX
+2025-05-27 17:19:57,925 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27OUTBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:19:58,219 - INFO - Dossier OUTBOX trouvé avec l'ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF
+2025-05-27 17:19:58,219 - INFO - Recherche du dossier: ARCHIVE
+2025-05-27 17:19:58,225 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27ARCHIVE%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:19:58,627 - INFO - Dossier ARCHIVE trouvé avec l'ID: 1lYY14WfbeLmwO3ZCMyCVgza6bwCyRNY6
+2025-05-27 17:19:58,627 - INFO - Recherche des fichiers .docx dans le dossier INBOX (ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe)
+2025-05-27 17:19:58,631 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=%271H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe%27+in+parents+and+mimeType%3D%27application%2Fvnd.openxmlformats-officedocument.wordprocessingml.document%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:19:58,857 - INFO - Nombre de fichiers trouvés dans INBOX: 0
+2025-05-27 17:19:58,857 - INFO - Aucun nouveau fichier à traiter
+2025-05-27 17:19:58,857 - INFO - Attente de 5 minutes avant la prochaine vérification
+2025-05-27 17:24:58,858 - INFO - Token.json trouvé, tentative de chargement des credentials
+2025-05-27 17:24:58,862 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-05-27 17:24:58,867 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/about?fields=user&alt=json
+2025-05-27 17:24:59,308 - INFO - Connecté au compte Google Drive: pablopeiro211@gmail.com
+2025-05-27 17:24:59,308 - INFO - Service Google Drive initialisé avec succès
+2025-05-27 17:24:59,308 - INFO - Recherche du dossier: INBOX
+2025-05-27 17:24:59,314 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27INBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:24:59,662 - INFO - Dossier INBOX trouvé avec l'ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe
+2025-05-27 17:24:59,662 - INFO - Recherche du dossier: OUTBOX
+2025-05-27 17:24:59,665 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27OUTBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:25:00,053 - INFO - Dossier OUTBOX trouvé avec l'ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF
+2025-05-27 17:25:00,054 - INFO - Recherche du dossier: ARCHIVE
+2025-05-27 17:25:00,058 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27ARCHIVE%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:25:00,439 - INFO - Dossier ARCHIVE trouvé avec l'ID: 1lYY14WfbeLmwO3ZCMyCVgza6bwCyRNY6
+2025-05-27 17:25:00,439 - INFO - Recherche des fichiers .docx dans le dossier INBOX (ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe)
+2025-05-27 17:25:00,443 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=%271H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe%27+in+parents+and+mimeType%3D%27application%2Fvnd.openxmlformats-officedocument.wordprocessingml.document%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:25:00,671 - INFO - Nombre de fichiers trouvés dans INBOX: 0
+2025-05-27 17:25:00,672 - INFO - Aucun nouveau fichier à traiter
+2025-05-27 17:25:00,672 - INFO - Attente de 5 minutes avant la prochaine vérification
+2025-05-27 17:30:00,673 - INFO - Token.json trouvé, tentative de chargement des credentials
+2025-05-27 17:30:00,677 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-05-27 17:30:00,682 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/about?fields=user&alt=json
+2025-05-27 17:30:01,128 - INFO - Connecté au compte Google Drive: pablopeiro211@gmail.com
+2025-05-27 17:30:01,129 - INFO - Service Google Drive initialisé avec succès
+2025-05-27 17:30:01,129 - INFO - Recherche du dossier: INBOX
+2025-05-27 17:30:01,136 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27INBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:30:01,531 - INFO - Dossier INBOX trouvé avec l'ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe
+2025-05-27 17:30:01,531 - INFO - Recherche du dossier: OUTBOX
+2025-05-27 17:30:01,535 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27OUTBOX%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:30:01,883 - INFO - Dossier OUTBOX trouvé avec l'ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF
+2025-05-27 17:30:01,884 - INFO - Recherche du dossier: ARCHIVE
+2025-05-27 17:30:01,890 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+name%3D%27ARCHIVE%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:30:02,196 - INFO - Dossier ARCHIVE trouvé avec l'ID: 1lYY14WfbeLmwO3ZCMyCVgza6bwCyRNY6
+2025-05-27 17:30:02,196 - INFO - Recherche des fichiers .docx dans le dossier INBOX (ID: 1H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe)
+2025-05-27 17:30:02,200 - DEBUG - URL being requested: GET https://www.googleapis.com/drive/v3/files?q=%271H4t79h9KeKGS9f5h0bz_owhC-gfUFvAe%27+in+parents+and+mimeType%3D%27application%2Fvnd.openxmlformats-officedocument.wordprocessingml.document%27+and+trashed%3Dfalse&fields=files%28id%2C+name%29&alt=json
+2025-05-27 17:30:02,416 - INFO - Nombre de fichiers trouvés dans INBOX: 0
+2025-05-27 17:30:02,416 - INFO - Aucun nouveau fichier à traiter
+2025-05-27 17:30:02,416 - INFO - Attente de 5 minutes avant la prochaine vérification
+2025-05-27 17:32:43,175 - INFO - Arrêt du programme demandé par l'utilisateur
+2025-05-27 17:32:43,363 - DEBUG - close.started
+2025-05-27 17:32:43,364 - DEBUG - close.complete

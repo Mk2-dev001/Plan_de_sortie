@@ -1,0 +1,6 @@
+streamlit==1.28.0
+pandas==1.5.3
+numpy==1.23.5
+plotly==5.18.0
+icalendar==5.0.11
+openai==1.12.0 

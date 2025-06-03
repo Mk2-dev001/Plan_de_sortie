@@ -1,0 +1,1130 @@
+2025-05-07 16:14:59,826 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:14:59,827 - __main__ - INFO - Python version: 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]
+2025-05-07 16:14:59,827 - __main__ - INFO - Working directory: C:\Users\elie.nebot\OneDrive - MK2 HOLDING\Bureau\pablo\Plan_de_sortie\Big_APP
+2025-05-07 16:14:59,827 - __main__ - INFO - Chargement des variables d'environnement...
+2025-05-07 16:14:59,827 - __main__ - WARNING - Fichier .env non trouvé. Tentative de chargement depuis les variables d'environnement système.
+2025-05-07 16:14:59,828 - __main__ - ERROR - Variable d'environnement manquante: YOUTUBE_API_KEY (YouTube API)
+2025-05-07 16:14:59,829 - __main__ - ERROR - Variable d'environnement manquante: OPENAI_API_KEY (OpenAI API)
+2025-05-07 16:14:59,830 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_KEY (Instagram API)
+2025-05-07 16:14:59,830 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:14:59,830 - __main__ - WARNING - Variables d'environnement manquantes: YOUTUBE_API_KEY (YouTube API), OPENAI_API_KEY (OpenAI API), INSTAGRAM_RAPID_API_KEY (Instagram API), INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:14:59,830 - __main__ - WARNING - Certaines fonctionnalités pourraient ne pas fonctionner correctement.
+2025-05-07 16:14:59,830 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-07 16:14:59,830 - __main__ - WARNING - Clé YouTube API non trouvée
+2025-05-07 16:14:59,830 - __main__ - WARNING - Clé News API non trouvée
+2025-05-07 16:20:45,871 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:20:45,872 - __main__ - INFO - Python version: 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]
+2025-05-07 16:20:45,872 - __main__ - INFO - Working directory: C:\Users\elie.nebot\OneDrive - MK2 HOLDING\Bureau\pablo\Plan_de_sortie\Big_APP
+2025-05-07 16:20:45,872 - __main__ - INFO - Chargement des variables d'environnement...
+2025-05-07 16:20:45,872 - __main__ - WARNING - Fichier .env non trouvé. Tentative de chargement depuis les variables d'environnement système.
+2025-05-07 16:20:45,873 - __main__ - ERROR - Variable d'environnement manquante: YOUTUBE_API_KEY (YouTube API)
+2025-05-07 16:20:45,873 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_KEY (Instagram API)
+2025-05-07 16:20:45,873 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:20:45,873 - __main__ - WARNING - Variables d'environnement manquantes: YOUTUBE_API_KEY (YouTube API), INSTAGRAM_RAPID_API_KEY (Instagram API), INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:20:45,873 - __main__ - WARNING - Certaines fonctionnalités pourraient ne pas fonctionner correctement.
+2025-05-07 16:20:45,873 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-07 16:20:45,873 - __main__ - WARNING - Clé YouTube API non trouvée
+2025-05-07 16:20:45,874 - __main__ - WARNING - Clé News API non trouvée
+2025-05-07 16:20:49,079 - google.auth.compute_engine._metadata - WARNING - Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+2025-05-07 16:20:53,096 - google.auth.compute_engine._metadata - WARNING - Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+2025-05-07 16:20:58,228 - google.auth.compute_engine._metadata - WARNING - Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+2025-05-07 16:20:58,229 - google.auth._default - WARNING - Authentication failed using Compute Engine authentication due to unavailable metadata server.
+2025-05-07 16:30:08,687 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:30:08,688 - __main__ - INFO - Python version: 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]
+2025-05-07 16:30:08,688 - __main__ - INFO - Working directory: C:\Users\elie.nebot\OneDrive - MK2 HOLDING\Bureau\pablo\Plan_de_sortie\Big_APP
+2025-05-07 16:30:08,688 - __main__ - INFO - Chargement des variables d'environnement...
+2025-05-07 16:30:08,688 - __main__ - WARNING - Fichier .env non trouvé. Tentative de chargement depuis les variables d'environnement système.
+2025-05-07 16:30:08,688 - __main__ - ERROR - Variable d'environnement manquante: YOUTUBE_API_KEY (YouTube API)
+2025-05-07 16:30:08,689 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_KEY (Instagram API)
+2025-05-07 16:30:08,689 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:30:08,689 - __main__ - WARNING - Variables d'environnement manquantes: YOUTUBE_API_KEY (YouTube API), INSTAGRAM_RAPID_API_KEY (Instagram API), INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:30:08,689 - __main__ - WARNING - Certaines fonctionnalités pourraient ne pas fonctionner correctement.
+2025-05-07 16:30:08,689 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-07 16:30:08,689 - __main__ - WARNING - Clé YouTube API non trouvée
+2025-05-07 16:30:08,689 - __main__ - WARNING - Clé News API non trouvée
+2025-05-07 16:30:11,901 - google.auth.compute_engine._metadata - WARNING - Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+2025-05-07 16:30:16,009 - google.auth.compute_engine._metadata - WARNING - Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+2025-05-07 16:30:20,922 - google.auth.compute_engine._metadata - WARNING - Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+2025-05-07 16:30:20,923 - google.auth._default - WARNING - Authentication failed using Compute Engine authentication due to unavailable metadata server.
+2025-05-07 16:36:16,702 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:36:16,703 - __main__ - INFO - Python version: 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]
+2025-05-07 16:36:16,703 - __main__ - INFO - Working directory: C:\Users\elie.nebot\OneDrive - MK2 HOLDING\Bureau\pablo\Plan_de_sortie\Big_APP
+2025-05-07 16:36:16,703 - __main__ - INFO - Chargement des variables d'environnement...
+2025-05-07 16:36:16,704 - __main__ - WARNING - Fichier .env non trouvé. Tentative de chargement depuis les variables d'environnement système.
+2025-05-07 16:36:16,704 - __main__ - ERROR - Variable d'environnement manquante: YOUTUBE_API_KEY (YouTube API)
+2025-05-07 16:36:16,704 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_KEY (Instagram API)
+2025-05-07 16:36:16,704 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:36:16,705 - __main__ - WARNING - Variables d'environnement manquantes: YOUTUBE_API_KEY (YouTube API), INSTAGRAM_RAPID_API_KEY (Instagram API), INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:36:16,705 - __main__ - WARNING - Certaines fonctionnalités pourraient ne pas fonctionner correctement.
+2025-05-07 16:36:16,705 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-07 16:36:16,705 - __main__ - WARNING - Clé YouTube API non trouvée
+2025-05-07 16:36:16,705 - __main__ - WARNING - Clé News API non trouvée
+2025-05-07 16:36:19,917 - google.auth.compute_engine._metadata - WARNING - Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+2025-05-07 16:36:24,003 - google.auth.compute_engine._metadata - WARNING - Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+2025-05-07 16:36:28,999 - google.auth.compute_engine._metadata - WARNING - Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+2025-05-07 16:36:29,000 - google.auth._default - WARNING - Authentication failed using Compute Engine authentication due to unavailable metadata server.
+2025-05-07 16:38:05,749 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:38:05,750 - __main__ - INFO - Python version: 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]
+2025-05-07 16:38:05,750 - __main__ - INFO - Working directory: C:\Users\elie.nebot\OneDrive - MK2 HOLDING\Bureau\pablo\Plan_de_sortie\Big_APP
+2025-05-07 16:38:05,750 - __main__ - INFO - Chargement des variables d'environnement...
+2025-05-07 16:38:05,750 - __main__ - WARNING - Fichier .env non trouvé. Tentative de chargement depuis les variables d'environnement système.
+2025-05-07 16:38:05,750 - __main__ - ERROR - Variable d'environnement manquante: YOUTUBE_API_KEY (YouTube API)
+2025-05-07 16:38:05,751 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_KEY (Instagram API)
+2025-05-07 16:38:05,751 - __main__ - ERROR - Variable d'environnement manquante: INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:38:05,751 - __main__ - WARNING - Variables d'environnement manquantes: YOUTUBE_API_KEY (YouTube API), INSTAGRAM_RAPID_API_KEY (Instagram API), INSTAGRAM_RAPID_API_HOST (Instagram API Host)
+2025-05-07 16:38:05,751 - __main__ - WARNING - Certaines fonctionnalités pourraient ne pas fonctionner correctement.
+2025-05-07 16:38:05,751 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-07 16:38:05,751 - __main__ - WARNING - Clé YouTube API non trouvée
+2025-05-07 16:38:05,751 - __main__ - WARNING - Clé News API non trouvée
+2025-05-07 16:38:05,954 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:38:06,148 - __main__ - INFO - Mode sélectionné : API
+2025-05-07 16:38:06,149 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-07 16:38:06,149 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-07 16:38:06,150 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-07 16:39:53,771 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:39:53,771 - __main__ - INFO - Python version: 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]
+2025-05-07 16:39:53,771 - __main__ - INFO - Working directory: C:\Users\elie.nebot\OneDrive - MK2 HOLDING\Bureau\pablo\Plan_de_sortie\Big_APP
+2025-05-07 16:39:53,772 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-07 16:39:53,772 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-07 16:39:53,772 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-07 16:39:53,773 - __main__ - WARNING - Clé News API non trouvée
+2025-05-07 16:39:53,974 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:39:54,177 - __main__ - INFO - Mode sélectionné : API
+2025-05-07 16:39:54,178 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-07 16:39:54,179 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-07 16:39:54,179 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-07 16:40:02,764 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:40:02,765 - __main__ - INFO - Python version: 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]
+2025-05-07 16:40:02,765 - __main__ - INFO - Working directory: C:\Users\elie.nebot\OneDrive - MK2 HOLDING\Bureau\pablo\Plan_de_sortie\Big_APP
+2025-05-07 16:40:02,766 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-07 16:40:02,767 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-07 16:40:02,768 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-07 16:40:02,769 - __main__ - WARNING - Clé News API non trouvée
+2025-05-07 16:40:02,853 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:40:02,854 - __main__ - INFO - Python version: 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]
+2025-05-07 16:40:02,854 - __main__ - INFO - Working directory: C:\Users\elie.nebot\OneDrive - MK2 HOLDING\Bureau\pablo\Plan_de_sortie\Big_APP
+2025-05-07 16:40:02,855 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-07 16:40:02,855 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-07 16:40:02,855 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-07 16:40:02,855 - __main__ - WARNING - Clé News API non trouvée
+2025-05-07 16:40:02,924 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:40:02,925 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-07 16:40:03,009 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-07 16:40:03,010 - __main__ - INFO - Mode sélectionné : API
+2025-05-07 16:40:03,010 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-07 16:40:03,011 - __main__ - INFO - Nom d'utilisateur saisi : squeezie
+2025-05-07 16:40:03,011 - __main__ - INFO - Début de l'analyse pour squeezie sur YouTube
+2025-05-07 16:40:03,707 - __main__ - INFO - Tentative d'appel à Google News RSS pour squeezie
+2025-05-07 16:40:04,265 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-07 16:40:04,275 - __main__ - INFO - Nombre d'articles trouvés pour squeezie: 85
+2025-05-07 16:40:59,137 - __main__ - WARNING - Polémiques détectées pour squeezie: 5
+2025-05-07 16:40:59,343 - __main__ - INFO - Nombre total de vidéos attendu : 1737
+2025-05-07 16:40:59,676 - __main__ - INFO - Nombre total de vidéos récupérées : 2
+2025-05-07 16:40:59,677 - __main__ - WARNING - Écart détecté : 1735 vidéos manquantes
+2025-05-07 16:40:59,722 - __main__ - INFO - Catégorie music: 1 vidéos, 7,337,879 vues moyennes, 6.42% d'engagement
+2025-05-07 16:40:59,722 - __main__ - INFO - Catégorie autre: 1 vidéos, 106,921 vues moyennes, 4.55% d'engagement
+2025-05-07 16:40:59,723 - __main__ - INFO - Statistiques globales : 2 vidéos, 3,722,400 vues moyennes, 6.40% d'engagement
+2025-05-07 16:40:59,723 - __main__ - INFO - Données mises en cache pour squeezie sur youtube
+2025-05-07 16:40:59,723 - __main__ - INFO - Affichage des résultats
+2025-05-07 16:40:59,726 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-06 14:40:59 UTC
+2025-05-07 16:40:59,912 - __main__ - INFO - Nombre total de vidéos attendu : 1737
+2025-05-07 16:41:00,138 - __main__ - INFO - Nombre total de vidéos récupérées : 2
+2025-05-07 16:41:00,140 - __main__ - WARNING - Écart détecté : 1735 vidéos manquantes
+2025-05-07 16:41:00,171 - __main__ - INFO - Catégorie music: 1 vidéos, 7,337,879 vues moyennes, 6.42% d'engagement
+2025-05-07 16:41:00,172 - __main__ - INFO - Catégorie autre: 1 vidéos, 106,921 vues moyennes, 4.55% d'engagement
+2025-05-07 16:41:00,172 - __main__ - INFO - Statistiques globales : 2 vidéos, 3,722,400 vues moyennes, 6.40% d'engagement
+2025-05-07 16:41:00,172 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-07 16:41:00,174 - __main__ - INFO - Nombre d'abonnés YouTube : 19,500,000
+2025-05-07 16:41:00,174 - __main__ - INFO - Nombre total de vues : 11,190,193,172
+2025-05-07 16:41:00,175 - __main__ - INFO - Nombre de vidéos : 1,737
+2025-05-07 16:41:00,175 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-07 16:41:00,176 - __main__ - INFO - Benchmark d'engagement : good
+2025-05-07 16:41:00,176 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-07 16:41:00,177 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-07 16:41:00,189 - __main__ - INFO - Affichage des statistiques des vidéos (3 derniers mois)
+2025-05-07 16:41:00,190 - __main__ - INFO - Nombre de music: 1
+2025-05-07 16:41:00,190 - __main__ - INFO - Vues moyennes pour music: 7,337,879
+2025-05-07 16:41:00,191 - __main__ - INFO - Likes moyens pour music: 471,401
+2025-05-07 16:41:00,191 - __main__ - INFO - Taux d'engagement pour music: 6.42%
+2025-05-07 16:41:00,192 - __main__ - INFO - Nombre de autre: 1
+2025-05-07 16:41:00,192 - __main__ - INFO - Vues moyennes pour autre: 106,921
+2025-05-07 16:41:00,193 - __main__ - INFO - Likes moyens pour autre: 4,869
+2025-05-07 16:41:00,193 - __main__ - INFO - Taux d'engagement pour autre: 4.55%
+2025-05-07 16:41:00,194 - __main__ - INFO - Nombre de Total: 2
+2025-05-07 16:41:00,195 - __main__ - INFO - Vues moyennes pour Total: 3,722,400
+2025-05-07 16:41:00,195 - __main__ - INFO - Likes moyens pour Total: 238,135
+2025-05-07 16:41:00,195 - __main__ - INFO - Taux d'engagement pour Total: 6.40%
+2025-05-07 16:41:00,196 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-09 15:04:00,607 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:04:00,607 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-09 15:04:00,607 - __main__ - INFO - Working directory: C:\Users\Pablo\Desktop\Mk2\Plan_de_sortie\Big_APP
+2025-05-09 15:04:00,608 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-09 15:04:00,608 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-09 15:04:00,608 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-09 15:04:00,608 - __main__ - WARNING - Clé News API non trouvée
+2025-05-09 15:04:00,794 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:04:00,970 - __main__ - INFO - Mode sélectionné : API
+2025-05-09 15:04:00,971 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-09 15:04:00,971 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-09 15:04:00,972 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-09 15:05:16,515 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:16,515 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-09 15:05:16,515 - __main__ - INFO - Working directory: C:\Users\Pablo\Desktop\Mk2\Plan_de_sortie\Big_APP
+2025-05-09 15:05:16,516 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-09 15:05:16,516 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-09 15:05:16,516 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-09 15:05:16,516 - __main__ - WARNING - Clé News API non trouvée
+2025-05-09 15:05:16,701 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:16,875 - __main__ - INFO - Mode sélectionné : API
+2025-05-09 15:05:16,876 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-09 15:05:16,876 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-09 15:05:16,876 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-09 15:05:22,262 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:22,263 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-09 15:05:22,263 - __main__ - INFO - Working directory: C:\Users\Pablo\Desktop\Mk2\Plan_de_sortie\Big_APP
+2025-05-09 15:05:22,264 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-09 15:05:22,265 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-09 15:05:22,265 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-09 15:05:22,266 - __main__ - WARNING - Clé News API non trouvée
+2025-05-09 15:05:22,308 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:22,309 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-09 15:05:22,309 - __main__ - INFO - Working directory: C:\Users\Pablo\Desktop\Mk2\Plan_de_sortie\Big_APP
+2025-05-09 15:05:22,309 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-09 15:05:22,310 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-09 15:05:22,310 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-09 15:05:22,310 - __main__ - WARNING - Clé News API non trouvée
+2025-05-09 15:05:22,505 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:22,505 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-09 15:05:22,550 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-09 15:05:22,551 - __main__ - INFO - Mode sélectionné : API
+2025-05-09 15:05:22,552 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-09 15:05:22,552 - __main__ - INFO - Nom d'utilisateur saisi : lena situation
+2025-05-09 15:05:22,553 - __main__ - INFO - Début de l'analyse pour lena situation sur YouTube
+2025-05-09 15:05:23,279 - __main__ - INFO - Tentative d'appel à Google News RSS pour lena situation
+2025-05-09 15:05:23,609 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-09 15:05:23,613 - __main__ - INFO - Nombre d'articles trouvés pour lena situation: 11
+2025-05-09 15:05:23,966 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,099 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,224 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,365 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,490 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,625 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,766 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:24,893 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:25,026 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:25,150 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:25,282 - __main__ - ERROR - Erreur lors de l'analyse de sentiment: Error code: 401 - {'error': {'message': 'Incorrect API key provided: OPENAI_A***********************************************************************************************************************************************************************4VEA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-05-09 15:05:25,283 - __main__ - WARNING - Polémiques détectées pour lena situation: 1
+2025-05-09 15:05:25,501 - __main__ - INFO - Nombre total de vidéos attendu : 469
+2025-05-09 15:05:28,445 - __main__ - INFO - Nombre total de vidéos récupérées : 400
+2025-05-09 15:05:28,445 - __main__ - WARNING - Écart détecté : 69 vidéos manquantes
+2025-05-09 15:05:28,981 - __main__ - WARNING - Écart dans le comptage : 399 vidéos catégorisées sur 400 récupérées
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie gaming: 118 vidéos, 1,533,370 vues moyennes, 7.72% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie vlog: 224 vidéos, 1,158,992 vues moyennes, 6.23% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie music: 7 vidéos, 1,331,461 vues moyennes, 6.71% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie challenge: 3 vidéos, 1,942,916 vues moyennes, 6.33% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie tuto: 1 vidéos, 119,321 vues moyennes, 4.71% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie humour: 1 vidéos, 1,696,325 vues moyennes, 7.31% d'engagement
+2025-05-09 15:05:28,981 - __main__ - INFO - Catégorie tech: 31 vidéos, 1,655,549 vues moyennes, 7.10% d'engagement
+2025-05-09 15:05:28,982 - __main__ - INFO - Catégorie autre: 14 vidéos, 833,916 vues moyennes, 5.36% d'engagement
+2025-05-09 15:05:28,982 - __main__ - INFO - Statistiques globales : 399 vidéos, 1,304,544 vues moyennes, 6.83% d'engagement
+2025-05-09 15:05:28,982 - __main__ - INFO - Données mises en cache pour lena situation sur youtube
+2025-05-09 15:05:28,982 - __main__ - INFO - Affichage des résultats
+2025-05-09 15:05:28,984 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-08 13:05:28 UTC
+2025-05-09 15:05:29,230 - __main__ - INFO - Nombre total de vidéos attendu : 469
+2025-05-09 15:05:31,802 - __main__ - INFO - Nombre total de vidéos récupérées : 0
+2025-05-09 15:05:31,802 - __main__ - WARNING - Écart détecté : 469 vidéos manquantes
+2025-05-09 15:05:31,802 - __main__ - WARNING - Aucune vidéo trouvée pour la période de 3 mois
+2025-05-09 15:05:31,802 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-09 15:05:31,804 - __main__ - INFO - Nombre d'abonnés YouTube : 2,990,000
+2025-05-09 15:05:31,805 - __main__ - INFO - Nombre total de vues : 585,286,490
+2025-05-09 15:05:31,805 - __main__ - INFO - Nombre de vidéos : 469
+2025-05-09 15:05:31,806 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-09 15:05:31,807 - __main__ - INFO - Benchmark d'engagement : unknown
+2025-05-09 15:05:31,808 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-09 15:05:31,808 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-09 15:05:31,812 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-12 11:55:27,569 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-12 11:55:27,570 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-12 11:55:27,570 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-12 11:55:27,571 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-12 11:55:27,572 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-12 11:55:27,572 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-12 11:55:27,572 - __main__ - WARNING - Clé News API non trouvée
+2025-05-12 11:55:27,878 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-12 11:55:28,197 - __main__ - INFO - Mode sélectionné : API
+2025-05-12 11:55:28,199 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-12 11:55:28,200 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-12 11:55:28,201 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-12 12:17:52,953 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-12 12:17:52,953 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-12 12:17:52,953 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-12 12:17:52,954 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-12 12:17:52,954 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-12 12:17:52,955 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-12 12:17:52,955 - __main__ - WARNING - Clé News API non trouvée
+2025-05-12 12:17:53,246 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-12 12:17:53,489 - __main__ - INFO - Mode sélectionné : API
+2025-05-12 12:17:53,490 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-12 12:17:53,491 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-12 12:17:53,492 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:27:20,384 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:27:20,384 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:27:20,385 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:27:20,404 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:27:20,404 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:27:20,405 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:27:20,406 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:27:20,792 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:27:21,147 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:27:21,149 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:27:21,150 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 10:27:21,152 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:27:25,625 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:27:25,626 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:27:25,626 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:27:25,629 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:27:25,629 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:27:25,630 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:27:25,631 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:27:25,726 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:27:25,727 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:27:25,727 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:27:25,730 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:27:25,731 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:27:25,732 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:27:25,733 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:27:26,192 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:27:26,192 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:27:26,319 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:27:26,323 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:27:26,324 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:27:26,326 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 10:27:26,329 - __main__ - INFO - Début de l'analyse pour Michou sur YouTube
+2025-05-14 10:27:27,433 - __main__ - INFO - Tentative d'appel à Google News RSS pour Michou
+2025-05-14 10:27:27,932 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-14 10:27:28,232 - __main__ - INFO - Nombre d'articles trouvés pour Michou: 99
+2025-05-14 10:28:31,716 - __main__ - WARNING - Polémiques détectées pour Michou: 22
+2025-05-14 10:28:32,169 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:31:35,832 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:31:35,833 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:31:35,834 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:31:35,836 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:31:35,837 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:31:35,837 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:31:35,838 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:31:36,228 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:31:36,607 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:31:36,609 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:31:36,610 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 10:31:36,611 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:31:47,455 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:31:47,456 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:31:47,457 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:31:47,459 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:31:47,460 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:31:47,461 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:31:47,463 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:31:47,858 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:31:47,860 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:31:47,862 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:31:47,865 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 10:31:47,870 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:32:02,578 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:32:02,579 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:32:02,582 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:32:02,584 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:32:02,588 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:32:02,591 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:32:02,593 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:32:03,559 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:32:03,564 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:32:03,566 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:32:03,572 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 10:32:03,576 - __main__ - INFO - Début de l'analyse pour Michou sur YouTube
+2025-05-14 10:32:05,676 - __main__ - INFO - Tentative d'appel à Google News RSS pour Michou
+2025-05-14 10:32:06,210 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-14 10:32:06,240 - __main__ - INFO - Nombre d'articles trouvés pour Michou: 99
+2025-05-14 10:33:03,052 - __main__ - WARNING - Polémiques détectées pour Michou: 22
+2025-05-14 10:33:03,461 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:33:06,261 - __main__ - INFO - Nombre total de vidéos récupérées : 364
+2025-05-14 10:33:06,262 - __main__ - WARNING - Écart détecté : 470 vidéos manquantes
+2025-05-14 10:33:06,761 - __main__ - WARNING - Écart dans le comptage : 290 vidéos catégorisées sur 364 récupérées
+2025-05-14 10:33:06,762 - __main__ - INFO - Catégorie gaming: 244 vidéos, 5,597,370 vues moyennes, 4.03% d'engagement
+2025-05-14 10:33:06,762 - __main__ - INFO - Catégorie vlog: 2 vidéos, 2,806,114 vues moyennes, 5.48% d'engagement
+2025-05-14 10:33:06,763 - __main__ - INFO - Catégorie music: 2 vidéos, 24,670,624 vues moyennes, 2.13% d'engagement
+2025-05-14 10:33:06,764 - __main__ - INFO - Catégorie challenge: 1 vidéos, 6,403,636 vues moyennes, 2.18% d'engagement
+2025-05-14 10:33:06,764 - __main__ - INFO - Catégorie reaction: 1 vidéos, 5,591,453 vues moyennes, 4.48% d'engagement
+2025-05-14 10:33:06,765 - __main__ - INFO - Catégorie tech: 3 vidéos, 5,301,367 vues moyennes, 4.54% d'engagement
+2025-05-14 10:33:06,765 - __main__ - INFO - Catégorie autre: 37 vidéos, 4,915,408 vues moyennes, 4.41% d'engagement
+2025-05-14 10:33:06,766 - __main__ - INFO - Statistiques globales : 290 vidéos, 5,622,349 vues moyennes, 4.02% d'engagement
+2025-05-14 10:33:06,769 - __main__ - INFO - Données mises en cache pour Michou sur youtube
+2025-05-14 10:33:06,769 - __main__ - INFO - Affichage des résultats
+2025-05-14 10:33:06,777 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-13 08:33:06 UTC
+2025-05-14 10:33:07,160 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:33:08,991 - __main__ - INFO - Nombre total de vidéos récupérées : 1
+2025-05-14 10:33:08,992 - __main__ - WARNING - Écart détecté : 833 vidéos manquantes
+2025-05-14 10:33:09,022 - __main__ - INFO - Catégorie gaming: 1 vidéos, 4,008,272 vues moyennes, 4.04% d'engagement
+2025-05-14 10:33:09,023 - __main__ - INFO - Statistiques globales : 1 vidéos, 4,008,272 vues moyennes, 4.04% d'engagement
+2025-05-14 10:33:09,024 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-14 10:33:09,027 - __main__ - INFO - Nombre d'abonnés YouTube : 10,400,000
+2025-05-14 10:33:09,028 - __main__ - INFO - Nombre total de vues : 3,018,206,060
+2025-05-14 10:33:09,029 - __main__ - INFO - Nombre de vidéos : 834
+2025-05-14 10:33:09,031 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-14 10:33:09,034 - __main__ - INFO - Benchmark d'engagement : average
+2025-05-14 10:33:09,037 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-14 10:33:09,039 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-14 10:33:09,092 - __main__ - INFO - Affichage des statistiques des vidéos (3 derniers mois)
+2025-05-14 10:33:09,094 - __main__ - INFO - Nombre de gaming: 1
+2025-05-14 10:33:09,095 - __main__ - INFO - Vues moyennes pour gaming: 4,008,272
+2025-05-14 10:33:09,095 - __main__ - INFO - Likes moyens pour gaming: 161,889
+2025-05-14 10:33:09,096 - __main__ - INFO - Taux d'engagement pour gaming: 4.04%
+2025-05-14 10:33:09,098 - __main__ - INFO - Nombre de Total: 1
+2025-05-14 10:33:09,100 - __main__ - INFO - Vues moyennes pour Total: 4,008,272
+2025-05-14 10:33:09,102 - __main__ - INFO - Likes moyens pour Total: 161,889
+2025-05-14 10:33:09,104 - __main__ - INFO - Taux d'engagement pour Total: 4.04%
+2025-05-14 10:33:09,107 - __main__ - ERROR - Erreur lors de l'analyse : 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP\CreateurContenue\app.py", line 1849, in main
+    pdf_buffer = generate_pdf_report(
+        username,
+    ...<4 lines>...
+        video_stats if platform == "YouTube" else None
+    )
+  File "C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP\CreateurContenue\app.py", line 1710, in generate_pdf_report
+    summary = reputation_data.get('summary', '')
+              ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-05-14 10:33:09,183 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:33:39,804 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:33:39,805 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:33:39,806 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:33:39,810 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:33:39,810 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:33:39,811 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:33:39,812 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:33:40,415 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:33:40,418 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:33:40,421 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:33:40,423 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 10:33:40,426 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:37:39,673 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:37:39,674 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:37:39,675 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:37:39,678 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:37:39,679 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:37:39,680 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:37:39,681 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:37:40,592 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:37:41,697 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:37:41,700 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:37:41,702 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 10:37:41,707 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:38:29,181 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:38:29,182 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:38:29,184 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:38:29,207 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:38:29,209 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:38:29,210 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:38:29,211 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:38:29,277 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:38:29,278 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:38:29,280 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:38:29,283 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:38:29,285 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:38:29,288 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:38:29,290 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:38:30,267 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:38:30,269 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:38:30,437 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:38:30,444 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:38:30,451 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:38:30,453 - __main__ - INFO - Nom d'utilisateur saisi : michou
+2025-05-14 10:38:30,461 - __main__ - INFO - Début de l'analyse pour michou sur YouTube
+2025-05-14 10:38:32,369 - __main__ - INFO - Tentative d'appel à Google News RSS pour michou
+2025-05-14 10:38:32,930 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-14 10:38:33,034 - __main__ - INFO - Nombre d'articles trouvés pour michou: 99
+2025-05-14 10:39:37,326 - __main__ - WARNING - Polémiques détectées pour michou: 22
+2025-05-14 10:39:38,094 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:39:41,324 - __main__ - INFO - Nombre total de vidéos récupérées : 364
+2025-05-14 10:39:41,325 - __main__ - WARNING - Écart détecté : 470 vidéos manquantes
+2025-05-14 10:39:41,770 - __main__ - WARNING - Écart dans le comptage : 315 vidéos catégorisées sur 364 récupérées
+2025-05-14 10:39:41,771 - __main__ - INFO - Catégorie gaming: 258 vidéos, 5,524,439 vues moyennes, 4.06% d'engagement
+2025-05-14 10:39:41,772 - __main__ - INFO - Catégorie vlog: 2 vidéos, 2,806,122 vues moyennes, 5.48% d'engagement
+2025-05-14 10:39:41,773 - __main__ - INFO - Catégorie music: 3 vidéos, 16,872,931 vues moyennes, 2.19% d'engagement
+2025-05-14 10:39:41,775 - __main__ - INFO - Catégorie challenge: 2 vidéos, 5,650,072 vues moyennes, 2.60% d'engagement
+2025-05-14 10:39:41,776 - __main__ - INFO - Catégorie reaction: 1 vidéos, 5,591,453 vues moyennes, 4.48% d'engagement
+2025-05-14 10:39:41,777 - __main__ - INFO - Catégorie humour: 7 vidéos, 913,516 vues moyennes, 6.08% d'engagement
+2025-05-14 10:39:41,778 - __main__ - INFO - Catégorie sport: 1 vidéos, 1,288,900 vues moyennes, 4.81% d'engagement
+2025-05-14 10:39:41,779 - __main__ - INFO - Catégorie tech: 5 vidéos, 3,622,804 vues moyennes, 4.70% d'engagement
+2025-05-14 10:39:41,781 - __main__ - INFO - Catégorie autre: 36 vidéos, 4,658,630 vues moyennes, 4.45% d'engagement
+2025-05-14 10:39:41,782 - __main__ - INFO - Statistiques globales : 315 vidéos, 5,371,226 vues moyennes, 4.06% d'engagement
+2025-05-14 10:39:41,789 - __main__ - INFO - Données mises en cache pour michou sur youtube
+2025-05-14 10:39:41,791 - __main__ - INFO - Affichage des résultats
+2025-05-14 10:39:41,810 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-13 08:39:41 UTC
+2025-05-14 10:39:42,490 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:39:43,782 - __main__ - INFO - Nombre total de vidéos récupérées : 1
+2025-05-14 10:39:43,783 - __main__ - WARNING - Écart détecté : 833 vidéos manquantes
+2025-05-14 10:39:43,817 - __main__ - INFO - Catégorie gaming: 1 vidéos, 4,008,424 vues moyennes, 4.04% d'engagement
+2025-05-14 10:39:43,819 - __main__ - INFO - Statistiques globales : 1 vidéos, 4,008,424 vues moyennes, 4.04% d'engagement
+2025-05-14 10:39:43,819 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-14 10:39:43,825 - __main__ - INFO - Nombre d'abonnés YouTube : 10,400,000
+2025-05-14 10:39:43,830 - __main__ - INFO - Nombre total de vues : 3,018,206,060
+2025-05-14 10:39:43,904 - __main__ - INFO - Nombre de vidéos : 834
+2025-05-14 10:39:43,908 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-14 10:39:43,911 - __main__ - INFO - Benchmark d'engagement : average
+2025-05-14 10:39:43,914 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-14 10:39:43,918 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-14 10:39:44,033 - __main__ - INFO - Affichage des statistiques des vidéos (3 derniers mois)
+2025-05-14 10:39:44,039 - __main__ - INFO - Nombre de gaming: 1
+2025-05-14 10:39:44,043 - __main__ - INFO - Vues moyennes pour gaming: 4,008,424
+2025-05-14 10:39:44,046 - __main__ - INFO - Likes moyens pour gaming: 161,891
+2025-05-14 10:39:44,048 - __main__ - INFO - Taux d'engagement pour gaming: 4.04%
+2025-05-14 10:39:44,059 - __main__ - INFO - Nombre de Total: 1
+2025-05-14 10:39:44,064 - __main__ - INFO - Vues moyennes pour Total: 4,008,424
+2025-05-14 10:39:44,067 - __main__ - INFO - Likes moyens pour Total: 161,891
+2025-05-14 10:39:44,070 - __main__ - INFO - Taux d'engagement pour Total: 4.04%
+2025-05-14 10:39:44,104 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:39:52,202 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:39:52,203 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:39:52,204 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:39:52,209 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:39:52,210 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:39:52,211 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:39:52,214 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:39:52,991 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:39:52,996 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:39:52,998 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:39:53,000 - __main__ - INFO - Nom d'utilisateur saisi : michou
+2025-05-14 10:39:53,003 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:43:17,096 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:43:17,097 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:43:17,098 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:43:17,101 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:43:17,102 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:43:17,103 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:43:17,105 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:43:17,987 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:43:19,297 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:43:19,316 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:43:19,319 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 10:43:19,324 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:43:22,492 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:43:22,494 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:43:22,495 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:43:22,498 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:43:22,499 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:43:22,500 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:43:22,502 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:43:23,194 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:43:23,197 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:43:23,199 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:43:23,201 - __main__ - INFO - Nom d'utilisateur saisi : michou
+2025-05-14 10:43:23,205 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:43:26,762 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:43:26,763 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:43:26,763 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:43:26,766 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:43:26,766 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:43:26,767 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:43:26,768 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:43:26,861 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:43:26,862 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:43:26,863 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:43:26,865 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:43:26,866 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:43:26,867 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:43:26,869 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:43:27,777 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:43:27,778 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:43:27,962 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:43:27,969 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:43:27,973 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:43:27,976 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 10:43:27,982 - __main__ - INFO - Début de l'analyse pour Michou sur YouTube
+2025-05-14 10:43:30,052 - __main__ - INFO - Tentative d'appel à Google News RSS pour Michou
+2025-05-14 10:43:30,520 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-14 10:43:30,543 - __main__ - INFO - Nombre d'articles trouvés pour Michou: 99
+2025-05-14 10:44:39,984 - __main__ - WARNING - Polémiques détectées pour Michou: 22
+2025-05-14 10:44:40,846 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:44:42,919 - __main__ - INFO - Nombre total de vidéos récupérées : 200
+2025-05-14 10:44:42,921 - __main__ - WARNING - Écart détecté : 634 vidéos manquantes
+2025-05-14 10:44:43,618 - __main__ - INFO - Catégorie gaming: 115 vidéos, 4,885,164 vues moyennes, 3.86% d'engagement
+2025-05-14 10:44:43,619 - __main__ - INFO - Catégorie vlog: 3 vidéos, 3,219,792 vues moyennes, 4.97% d'engagement
+2025-05-14 10:44:43,620 - __main__ - INFO - Catégorie music: 3 vidéos, 1,337,268 vues moyennes, 4.83% d'engagement
+2025-05-14 10:44:43,621 - __main__ - INFO - Catégorie challenge: 2 vidéos, 5,650,101 vues moyennes, 2.60% d'engagement
+2025-05-14 10:44:43,621 - __main__ - INFO - Catégorie reaction: 1 vidéos, 5,591,453 vues moyennes, 4.48% d'engagement
+2025-05-14 10:44:43,622 - __main__ - INFO - Catégorie humour: 8 vidéos, 924,063 vues moyennes, 5.86% d'engagement
+2025-05-14 10:44:43,622 - __main__ - INFO - Catégorie sport: 1 vidéos, 1,288,906 vues moyennes, 4.81% d'engagement
+2025-05-14 10:44:43,623 - __main__ - INFO - Catégorie tech: 5 vidéos, 3,441,158 vues moyennes, 4.72% d'engagement
+2025-05-14 10:44:43,623 - __main__ - INFO - Catégorie autre: 62 vidéos, 4,048,583 vues moyennes, 4.59% d'engagement
+2025-05-14 10:44:43,624 - __main__ - INFO - Statistiques globales : 200 vidéos, 4,346,280 vues moyennes, 4.11% d'engagement
+2025-05-14 10:44:43,626 - __main__ - INFO - Données mises en cache pour Michou sur youtube
+2025-05-14 10:44:43,627 - __main__ - INFO - Affichage des résultats
+2025-05-14 10:44:43,633 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-13 08:44:43 UTC
+2025-05-14 10:44:44,745 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:44:46,690 - __main__ - INFO - Nombre total de vidéos récupérées : 7
+2025-05-14 10:44:46,691 - __main__ - WARNING - Écart détecté : 827 vidéos manquantes
+2025-05-14 10:44:47,012 - __main__ - INFO - Catégorie gaming: 5 vidéos, 4,082,902 vues moyennes, 3.69% d'engagement
+2025-05-14 10:44:47,013 - __main__ - INFO - Catégorie humour: 2 vidéos, 404,721 vues moyennes, 6.55% d'engagement
+2025-05-14 10:44:47,014 - __main__ - INFO - Statistiques globales : 7 vidéos, 3,031,993 vues moyennes, 3.80% d'engagement
+2025-05-14 10:44:47,014 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-14 10:44:47,018 - __main__ - INFO - Nombre d'abonnés YouTube : 10,400,000
+2025-05-14 10:44:47,019 - __main__ - INFO - Nombre total de vues : 3,018,206,060
+2025-05-14 10:44:47,021 - __main__ - INFO - Nombre de vidéos : 834
+2025-05-14 10:44:47,024 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-14 10:44:47,027 - __main__ - INFO - Benchmark d'engagement : average
+2025-05-14 10:44:47,033 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-14 10:44:47,034 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-14 10:44:47,084 - __main__ - INFO - Affichage des statistiques des vidéos (3 derniers mois)
+2025-05-14 10:44:47,086 - __main__ - INFO - Nombre de gaming: 5
+2025-05-14 10:44:47,087 - __main__ - INFO - Vues moyennes pour gaming: 4,082,902
+2025-05-14 10:44:47,088 - __main__ - INFO - Likes moyens pour gaming: 150,503
+2025-05-14 10:44:47,089 - __main__ - INFO - Taux d'engagement pour gaming: 3.69%
+2025-05-14 10:44:47,093 - __main__ - INFO - Nombre de humour: 2
+2025-05-14 10:44:47,095 - __main__ - INFO - Vues moyennes pour humour: 404,721
+2025-05-14 10:44:47,096 - __main__ - INFO - Likes moyens pour humour: 26,494
+2025-05-14 10:44:47,097 - __main__ - INFO - Taux d'engagement pour humour: 6.55%
+2025-05-14 10:44:47,099 - __main__ - INFO - Nombre de Total: 7
+2025-05-14 10:44:47,100 - __main__ - INFO - Vues moyennes pour Total: 3,031,993
+2025-05-14 10:44:47,101 - __main__ - INFO - Likes moyens pour Total: 115,072
+2025-05-14 10:44:47,103 - __main__ - INFO - Taux d'engagement pour Total: 3.80%
+2025-05-14 10:44:47,117 - __main__ - ERROR - Erreur lors de l'analyse : can only concatenate str (not "bytes") to str
+Traceback (most recent call last):
+  File "C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP\CreateurContenue\app.py", line 1845, in main
+    pdf_buffer, links_buffer = generate_pdf_report(
+                               ~~~~~~~~~~~~~~~~~~~^
+        username,
+        ^^^^^^^^^
+    ...<4 lines>...
+        video_stats if platform == "YouTube" else None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP\CreateurContenue\app.py", line 1734, in generate_pdf_report
+    links_buffer.write("=" * 80 + "\n\n".encode('utf-8'))
+                       ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: can only concatenate str (not "bytes") to str
+2025-05-14 10:44:47,119 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:47:19,715 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:47:19,716 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:47:19,717 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:47:19,719 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:47:19,720 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:47:19,720 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:47:19,721 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:47:20,369 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:47:21,077 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:47:21,079 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:47:21,080 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 10:47:21,082 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:47:27,274 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:47:27,275 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:47:27,276 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:47:27,278 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:47:27,279 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:47:27,280 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:47:27,280 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:47:27,411 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:47:27,411 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:47:27,412 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:47:27,414 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:47:27,415 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:47:27,416 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:47:27,417 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:47:28,157 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:47:28,159 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:47:28,331 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:47:28,333 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:47:28,336 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:47:28,339 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 10:47:28,344 - __main__ - INFO - Début de l'analyse pour Michou sur YouTube
+2025-05-14 10:47:29,915 - __main__ - INFO - Tentative d'appel à Google News RSS pour Michou
+2025-05-14 10:47:30,352 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-14 10:47:30,368 - __main__ - INFO - Nombre d'articles trouvés pour Michou: 99
+2025-05-14 10:48:28,346 - __main__ - WARNING - Polémiques détectées pour Michou: 22
+2025-05-14 10:48:28,987 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:48:30,772 - __main__ - INFO - Nombre total de vidéos récupérées : 200
+2025-05-14 10:48:30,773 - __main__ - WARNING - Écart détecté : 634 vidéos manquantes
+2025-05-14 10:48:31,006 - __main__ - INFO - Catégorie gaming: 144 vidéos, 4,117,672 vues moyennes, 4.12% d'engagement
+2025-05-14 10:48:31,007 - __main__ - INFO - Catégorie vlog: 3 vidéos, 3,219,797 vues moyennes, 4.97% d'engagement
+2025-05-14 10:48:31,008 - __main__ - INFO - Catégorie music: 2 vidéos, 1,237,099 vues moyennes, 4.61% d'engagement
+2025-05-14 10:48:31,008 - __main__ - INFO - Catégorie challenge: 2 vidéos, 5,650,101 vues moyennes, 2.60% d'engagement
+2025-05-14 10:48:31,009 - __main__ - INFO - Catégorie humour: 8 vidéos, 924,065 vues moyennes, 5.86% d'engagement
+2025-05-14 10:48:31,009 - __main__ - INFO - Catégorie sport: 1 vidéos, 1,288,914 vues moyennes, 4.81% d'engagement
+2025-05-14 10:48:31,010 - __main__ - INFO - Catégorie tech: 3 vidéos, 1,580,132 vues moyennes, 5.71% d'engagement
+2025-05-14 10:48:31,011 - __main__ - INFO - Catégorie autre: 37 vidéos, 3,163,470 vues moyennes, 4.87% d'engagement
+2025-05-14 10:48:31,012 - __main__ - INFO - Statistiques globales : 200 vidéos, 3,734,244 vues moyennes, 4.25% d'engagement
+2025-05-14 10:48:31,013 - __main__ - INFO - Données mises en cache pour Michou sur youtube
+2025-05-14 10:48:31,014 - __main__ - INFO - Affichage des résultats
+2025-05-14 10:48:31,021 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-13 08:48:31 UTC
+2025-05-14 10:48:31,729 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:48:34,665 - __main__ - INFO - Nombre total de vidéos récupérées : 7
+2025-05-14 10:48:34,666 - __main__ - WARNING - Écart détecté : 827 vidéos manquantes
+2025-05-14 10:48:34,706 - __main__ - INFO - Catégorie gaming: 5 vidéos, 4,082,935 vues moyennes, 3.69% d'engagement
+2025-05-14 10:48:34,707 - __main__ - INFO - Catégorie humour: 2 vidéos, 404,727 vues moyennes, 6.55% d'engagement
+2025-05-14 10:48:34,708 - __main__ - INFO - Statistiques globales : 7 vidéos, 3,032,018 vues moyennes, 3.80% d'engagement
+2025-05-14 10:48:34,709 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-14 10:48:34,715 - __main__ - INFO - Nombre d'abonnés YouTube : 10,400,000
+2025-05-14 10:48:34,717 - __main__ - INFO - Nombre total de vues : 3,018,206,060
+2025-05-14 10:48:34,719 - __main__ - INFO - Nombre de vidéos : 834
+2025-05-14 10:48:34,724 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-14 10:48:34,727 - __main__ - INFO - Benchmark d'engagement : average
+2025-05-14 10:48:34,732 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-14 10:48:34,734 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-14 10:48:34,822 - __main__ - INFO - Affichage des statistiques des vidéos (3 derniers mois)
+2025-05-14 10:48:34,827 - __main__ - INFO - Nombre de gaming: 5
+2025-05-14 10:48:34,829 - __main__ - INFO - Vues moyennes pour gaming: 4,082,935
+2025-05-14 10:48:34,830 - __main__ - INFO - Likes moyens pour gaming: 150,504
+2025-05-14 10:48:34,832 - __main__ - INFO - Taux d'engagement pour gaming: 3.69%
+2025-05-14 10:48:34,836 - __main__ - INFO - Nombre de humour: 2
+2025-05-14 10:48:34,837 - __main__ - INFO - Vues moyennes pour humour: 404,727
+2025-05-14 10:48:34,839 - __main__ - INFO - Likes moyens pour humour: 26,494
+2025-05-14 10:48:34,840 - __main__ - INFO - Taux d'engagement pour humour: 6.55%
+2025-05-14 10:48:34,845 - __main__ - INFO - Nombre de Total: 7
+2025-05-14 10:48:34,847 - __main__ - INFO - Vues moyennes pour Total: 3,032,018
+2025-05-14 10:48:34,848 - __main__ - INFO - Likes moyens pour Total: 115,072
+2025-05-14 10:48:34,850 - __main__ - INFO - Taux d'engagement pour Total: 3.80%
+2025-05-14 10:48:34,896 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:49:51,252 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:49:51,252 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:49:51,253 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:49:51,255 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:49:51,255 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:49:51,256 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:49:51,257 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:49:52,010 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:49:52,014 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:49:52,017 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:49:52,020 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 10:49:52,025 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:53:00,230 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:53:00,231 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:53:00,232 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:53:00,233 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:53:00,234 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:53:00,234 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:53:00,235 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:53:00,607 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:53:00,944 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:53:00,946 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:53:00,947 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 10:53:00,949 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:53:05,021 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:53:05,022 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:53:05,024 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:53:05,026 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:53:05,027 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:53:05,029 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:53:05,030 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:53:05,151 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:53:05,152 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:53:05,153 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:53:05,155 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:53:05,156 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:53:05,156 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:53:05,157 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:53:05,901 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:53:05,903 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:53:06,080 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:53:06,089 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:53:06,092 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:53:06,095 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 10:53:06,102 - __main__ - INFO - Début de l'analyse pour Michou sur YouTube
+2025-05-14 10:53:07,945 - __main__ - INFO - Tentative d'appel à Google News RSS pour Michou
+2025-05-14 10:53:08,578 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-14 10:53:08,593 - __main__ - INFO - Nombre d'articles trouvés pour Michou: 99
+2025-05-14 10:54:14,221 - __main__ - WARNING - Polémiques détectées pour Michou: 22
+2025-05-14 10:54:14,858 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:54:16,911 - __main__ - INFO - Nombre total de vidéos récupérées : 250
+2025-05-14 10:54:16,912 - __main__ - WARNING - Écart détecté : 584 vidéos manquantes
+2025-05-14 10:54:17,213 - __main__ - WARNING - Écart dans le comptage : 213 vidéos catégorisées sur 250 récupérées
+2025-05-14 10:54:17,214 - __main__ - INFO - Catégorie gaming: 145 vidéos, 6,020,792 vues moyennes, 4.01% d'engagement
+2025-05-14 10:54:17,215 - __main__ - INFO - Catégorie vlog: 3 vidéos, 3,219,823 vues moyennes, 4.97% d'engagement
+2025-05-14 10:54:17,216 - __main__ - INFO - Catégorie music: 2 vidéos, 1,367,165 vues moyennes, 4.91% d'engagement
+2025-05-14 10:54:17,216 - __main__ - INFO - Catégorie challenge: 1 vidéos, 6,403,847 vues moyennes, 2.18% d'engagement
+2025-05-14 10:54:17,217 - __main__ - INFO - Catégorie reaction: 1 vidéos, 5,591,453 vues moyennes, 4.48% d'engagement
+2025-05-14 10:54:17,217 - __main__ - INFO - Catégorie humour: 1 vidéos, 997,870 vues moyennes, 4.49% d'engagement
+2025-05-14 10:54:17,217 - __main__ - INFO - Catégorie tech: 4 vidéos, 4,608,651 vues moyennes, 4.67% d'engagement
+2025-05-14 10:54:17,218 - __main__ - INFO - Catégorie autre: 56 vidéos, 4,127,563 vues moyennes, 4.59% d'engagement
+2025-05-14 10:54:17,219 - __main__ - INFO - Statistiques globales : 213 vidéos, 5,389,577 vues moyennes, 4.14% d'engagement
+2025-05-14 10:54:17,221 - __main__ - INFO - Données mises en cache pour Michou sur youtube
+2025-05-14 10:54:17,221 - __main__ - INFO - Affichage des résultats
+2025-05-14 10:54:17,228 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-13 08:54:17 UTC
+2025-05-14 10:54:17,895 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:54:20,702 - __main__ - INFO - Nombre total de vidéos récupérées : 7
+2025-05-14 10:54:20,702 - __main__ - WARNING - Écart détecté : 827 vidéos manquantes
+2025-05-14 10:54:20,732 - __main__ - INFO - Catégorie gaming: 5 vidéos, 4,082,972 vues moyennes, 3.69% d'engagement
+2025-05-14 10:54:20,734 - __main__ - INFO - Catégorie humour: 2 vidéos, 404,736 vues moyennes, 6.55% d'engagement
+2025-05-14 10:54:20,735 - __main__ - INFO - Statistiques globales : 7 vidéos, 3,032,047 vues moyennes, 3.80% d'engagement
+2025-05-14 10:54:20,736 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-14 10:54:20,741 - __main__ - INFO - Nombre d'abonnés YouTube : 10,400,000
+2025-05-14 10:54:20,743 - __main__ - INFO - Nombre total de vues : 3,018,206,060
+2025-05-14 10:54:20,745 - __main__ - INFO - Nombre de vidéos : 834
+2025-05-14 10:54:20,747 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-14 10:54:20,750 - __main__ - INFO - Benchmark d'engagement : average
+2025-05-14 10:54:20,755 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-14 10:54:20,757 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-14 10:54:20,848 - __main__ - INFO - Affichage des statistiques des vidéos (3 derniers mois)
+2025-05-14 10:54:20,853 - __main__ - INFO - Nombre de gaming: 5
+2025-05-14 10:54:20,854 - __main__ - INFO - Vues moyennes pour gaming: 4,082,972
+2025-05-14 10:54:20,856 - __main__ - INFO - Likes moyens pour gaming: 150,505
+2025-05-14 10:54:20,858 - __main__ - INFO - Taux d'engagement pour gaming: 3.69%
+2025-05-14 10:54:20,862 - __main__ - INFO - Nombre de humour: 2
+2025-05-14 10:54:20,864 - __main__ - INFO - Vues moyennes pour humour: 404,736
+2025-05-14 10:54:20,866 - __main__ - INFO - Likes moyens pour humour: 26,494
+2025-05-14 10:54:20,868 - __main__ - INFO - Taux d'engagement pour humour: 6.55%
+2025-05-14 10:54:20,872 - __main__ - INFO - Nombre de Total: 7
+2025-05-14 10:54:20,875 - __main__ - INFO - Vues moyennes pour Total: 3,032,047
+2025-05-14 10:54:20,876 - __main__ - INFO - Likes moyens pour Total: 115,073
+2025-05-14 10:54:20,878 - __main__ - INFO - Taux d'engagement pour Total: 3.80%
+2025-05-14 10:54:21,097 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:54:28,327 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:54:28,328 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:54:28,329 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:54:28,332 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:54:28,333 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:54:28,334 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:54:28,335 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:54:29,025 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:54:29,028 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:54:29,030 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:54:29,032 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 10:54:29,036 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:57:07,675 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:57:07,676 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:57:07,677 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:57:07,679 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:57:07,680 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:57:07,680 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:57:07,681 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:57:08,346 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:57:08,980 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:57:08,982 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:57:08,984 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 10:57:08,987 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:57:16,423 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:57:16,427 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:57:16,428 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:57:16,431 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:57:16,432 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:57:16,432 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:57:16,433 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:57:16,508 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:57:16,509 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:57:16,511 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:57:16,517 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:57:16,518 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:57:16,519 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:57:16,520 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:57:17,327 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:57:17,329 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:57:17,468 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:57:17,474 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:57:17,477 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:57:17,481 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 10:57:17,487 - __main__ - INFO - Début de l'analyse pour Michou sur YouTube
+2025-05-14 10:57:19,647 - __main__ - INFO - Tentative d'appel à Google News RSS pour Michou
+2025-05-14 10:57:20,449 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-14 10:57:20,467 - __main__ - INFO - Nombre d'articles trouvés pour Michou: 99
+2025-05-14 10:58:27,650 - __main__ - WARNING - Polémiques détectées pour Michou: 22
+2025-05-14 10:58:28,542 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:58:31,542 - __main__ - INFO - Nombre total de vidéos récupérées : 300
+2025-05-14 10:58:31,543 - __main__ - WARNING - Écart détecté : 534 vidéos manquantes
+2025-05-14 10:58:32,160 - __main__ - INFO - Catégorie gaming: 213 vidéos, 6,528,503 vues moyennes, 4.17% d'engagement
+2025-05-14 10:58:32,162 - __main__ - INFO - Catégorie vlog: 3 vidéos, 3,219,831 vues moyennes, 4.97% d'engagement
+2025-05-14 10:58:32,162 - __main__ - INFO - Catégorie music: 4 vidéos, 12,953,894 vues moyennes, 2.25% d'engagement
+2025-05-14 10:58:32,163 - __main__ - INFO - Catégorie challenge: 2 vidéos, 5,650,139 vues moyennes, 2.60% d'engagement
+2025-05-14 10:58:32,164 - __main__ - INFO - Catégorie reaction: 1 vidéos, 5,591,453 vues moyennes, 4.48% d'engagement
+2025-05-14 10:58:32,165 - __main__ - INFO - Catégorie humour: 8 vidéos, 924,073 vues moyennes, 5.86% d'engagement
+2025-05-14 10:58:32,166 - __main__ - INFO - Catégorie sport: 1 vidéos, 1,288,914 vues moyennes, 4.81% d'engagement
+2025-05-14 10:58:32,166 - __main__ - INFO - Catégorie tech: 6 vidéos, 3,440,761 vues moyennes, 4.80% d'engagement
+2025-05-14 10:58:32,167 - __main__ - INFO - Catégorie autre: 62 vidéos, 4,048,592 vues moyennes, 4.59% d'engagement
+2025-05-14 10:58:32,168 - __main__ - INFO - Statistiques globales : 300 vidéos, 5,830,922 vues moyennes, 4.18% d'engagement
+2025-05-14 10:58:32,170 - __main__ - INFO - Données mises en cache pour Michou sur youtube
+2025-05-14 10:58:32,171 - __main__ - INFO - Affichage des résultats
+2025-05-14 10:58:32,179 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-13 08:58:32 UTC
+2025-05-14 10:58:33,008 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 10:58:35,105 - __main__ - INFO - Nombre total de vidéos récupérées : 1
+2025-05-14 10:58:35,107 - __main__ - WARNING - Écart détecté : 833 vidéos manquantes
+2025-05-14 10:58:35,203 - __main__ - INFO - Catégorie gaming: 1 vidéos, 4,008,761 vues moyennes, 4.04% d'engagement
+2025-05-14 10:58:35,205 - __main__ - INFO - Statistiques globales : 1 vidéos, 4,008,761 vues moyennes, 4.04% d'engagement
+2025-05-14 10:58:35,206 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-14 10:58:35,211 - __main__ - INFO - Nombre d'abonnés YouTube : 10,400,000
+2025-05-14 10:58:35,214 - __main__ - INFO - Nombre total de vues : 3,018,206,060
+2025-05-14 10:58:35,216 - __main__ - INFO - Nombre de vidéos : 834
+2025-05-14 10:58:35,221 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-14 10:58:35,224 - __main__ - INFO - Benchmark d'engagement : average
+2025-05-14 10:58:35,228 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-14 10:58:35,230 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-14 10:58:35,380 - __main__ - INFO - Affichage des statistiques des vidéos (3 derniers mois)
+2025-05-14 10:58:35,386 - __main__ - INFO - Nombre de gaming: 1
+2025-05-14 10:58:35,387 - __main__ - INFO - Vues moyennes pour gaming: 4,008,761
+2025-05-14 10:58:35,389 - __main__ - INFO - Likes moyens pour gaming: 161,902
+2025-05-14 10:58:35,392 - __main__ - INFO - Taux d'engagement pour gaming: 4.04%
+2025-05-14 10:58:35,398 - __main__ - INFO - Nombre de Total: 1
+2025-05-14 10:58:35,400 - __main__ - INFO - Vues moyennes pour Total: 4,008,761
+2025-05-14 10:58:35,402 - __main__ - INFO - Likes moyens pour Total: 161,902
+2025-05-14 10:58:35,404 - __main__ - INFO - Taux d'engagement pour Total: 4.04%
+2025-05-14 10:58:35,485 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 10:58:47,912 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:58:47,915 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 10:58:47,915 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 10:58:47,917 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 10:58:47,918 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 10:58:47,919 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 10:58:47,920 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 10:58:48,392 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 10:58:48,394 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 10:58:48,395 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 10:58:48,397 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 10:58:48,400 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 11:17:41,289 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 11:17:41,289 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 11:17:41,290 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 11:17:41,291 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 11:17:41,291 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 11:17:41,292 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 11:17:41,292 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 11:17:41,680 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 11:17:42,025 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 11:17:42,027 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 11:17:42,028 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 11:17:42,030 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 12:09:43,089 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:09:43,089 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 12:09:43,090 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 12:09:43,091 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 12:09:43,092 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 12:09:43,092 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 12:09:43,093 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 12:09:43,494 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:09:43,849 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 12:09:43,850 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 12:09:43,852 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 12:09:43,853 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 12:14:42,574 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:14:42,576 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 12:14:42,577 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 12:14:42,579 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 12:14:42,580 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 12:14:42,581 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 12:14:42,582 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 12:14:43,336 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:14:43,991 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 12:14:43,994 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 12:14:43,995 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 12:14:43,998 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 12:14:57,315 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:14:57,316 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 12:14:57,317 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 12:14:57,320 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 12:14:57,321 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 12:14:57,322 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 12:14:57,324 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 12:14:57,991 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:14:57,994 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 12:14:57,997 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 12:14:57,999 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 12:14:58,002 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 12:15:24,332 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:15:24,334 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 12:15:24,334 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 12:15:24,337 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 12:15:24,338 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 12:15:24,339 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 12:15:24,340 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 12:15:24,665 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:15:24,683 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 12:15:24,685 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 12:15:24,686 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 12:15:24,688 - __main__ - INFO - Début de l'analyse pour Michou sur YouTube
+2025-05-14 12:15:25,806 - __main__ - INFO - Tentative d'appel à Google News RSS pour Michou
+2025-05-14 12:15:26,426 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-14 12:15:26,444 - __main__ - INFO - Nombre d'articles trouvés pour Michou: 99
+2025-05-14 12:16:35,309 - __main__ - WARNING - Polémiques détectées pour Michou: 22
+2025-05-14 12:16:35,712 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 12:16:36,776 - __main__ - INFO - Nombre total de vidéos récupérées : 163
+2025-05-14 12:16:36,777 - __main__ - WARNING - Écart détecté : 671 vidéos manquantes
+2025-05-14 12:16:37,017 - __main__ - WARNING - Écart dans le comptage : 158 vidéos catégorisées sur 163 récupérées
+2025-05-14 12:16:37,018 - __main__ - INFO - Catégorie gaming: 140 vidéos, 4,477,420 vues moyennes, 4.24% d'engagement
+2025-05-14 12:16:37,019 - __main__ - INFO - Catégorie vlog: 2 vidéos, 2,806,242 vues moyennes, 5.48% d'engagement
+2025-05-14 12:16:37,019 - __main__ - INFO - Catégorie tech: 1 vidéos, 3,750,702 vues moyennes, 4.67% d'engagement
+2025-05-14 12:16:37,020 - __main__ - INFO - Catégorie autre: 15 vidéos, 5,704,360 vues moyennes, 4.18% d'engagement
+2025-05-14 12:16:37,020 - __main__ - INFO - Statistiques globales : 158 vidéos, 4,568,148 vues moyennes, 4.24% d'engagement
+2025-05-14 12:16:37,021 - __main__ - INFO - Données mises en cache pour Michou sur youtube
+2025-05-14 12:16:37,022 - __main__ - INFO - Affichage des résultats
+2025-05-14 12:16:37,027 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-13 10:16:37 UTC
+2025-05-14 12:16:37,452 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 12:16:39,262 - __main__ - INFO - Nombre total de vidéos récupérées : 1
+2025-05-14 12:16:39,263 - __main__ - WARNING - Écart détecté : 833 vidéos manquantes
+2025-05-14 12:16:40,184 - __main__ - INFO - Catégorie gaming: 1 vidéos, 4,009,872 vues moyennes, 4.04% d'engagement
+2025-05-14 12:16:40,185 - __main__ - INFO - Statistiques globales : 1 vidéos, 4,009,872 vues moyennes, 4.04% d'engagement
+2025-05-14 12:16:40,186 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-14 12:16:40,189 - __main__ - INFO - Nombre d'abonnés YouTube : 10,400,000
+2025-05-14 12:16:40,190 - __main__ - INFO - Nombre total de vues : 3,018,206,060
+2025-05-14 12:16:40,192 - __main__ - INFO - Nombre de vidéos : 834
+2025-05-14 12:16:40,194 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-14 12:16:40,195 - __main__ - INFO - Benchmark d'engagement : average
+2025-05-14 12:16:40,198 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-14 12:16:40,199 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-14 12:16:40,216 - __main__ - ERROR - Erreur lors de l'analyse : name 'story' is not defined
+Traceback (most recent call last):
+  File "C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP\CreateurContenue\app.py", line 1661, in main
+    display_reputation_analysis(data.get("reputation_data", {}))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP\CreateurContenue\app.py", line 1544, in display_reputation_analysis
+    story.append(Paragraph("Articles non controversés", styles['Heading2']))
+    ^^^^^
+NameError: name 'story' is not defined
+2025-05-14 12:16:40,288 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 12:22:25,235 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:22:25,236 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 12:22:25,237 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 12:22:25,238 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 12:22:25,239 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 12:22:25,239 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 12:22:25,240 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 12:22:25,606 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:22:25,921 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 12:22:25,923 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 12:22:25,924 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 12:22:25,926 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 12:23:33,036 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:23:33,037 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 12:23:33,038 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 12:23:33,040 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 12:23:33,042 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 12:23:33,043 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 12:23:33,044 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 12:23:33,119 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:23:33,120 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 12:23:33,121 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 12:23:33,123 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 12:23:33,124 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 12:23:33,125 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 12:23:33,126 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 12:23:33,965 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:23:33,967 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 12:23:34,162 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:23:34,170 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 12:23:34,173 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 12:23:34,175 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 12:23:34,182 - __main__ - INFO - Début de l'analyse pour Michou sur YouTube
+2025-05-14 12:23:35,864 - __main__ - INFO - Tentative d'appel à Google News RSS pour Michou
+2025-05-14 12:23:36,556 - __main__ - INFO - Réponse Google News RSS reçue avec status code: 200
+2025-05-14 12:23:36,575 - __main__ - INFO - Nombre d'articles trouvés pour Michou: 99
+2025-05-14 12:24:36,557 - __main__ - WARNING - Polémiques détectées pour Michou: 22
+2025-05-14 12:24:37,203 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 12:24:38,806 - __main__ - INFO - Nombre total de vidéos récupérées : 200
+2025-05-14 12:24:38,807 - __main__ - WARNING - Écart détecté : 634 vidéos manquantes
+2025-05-14 12:24:39,027 - __main__ - INFO - Catégorie gaming: 115 vidéos, 4,885,270 vues moyennes, 3.86% d'engagement
+2025-05-14 12:24:39,029 - __main__ - INFO - Catégorie vlog: 3 vidéos, 3,219,897 vues moyennes, 4.97% d'engagement
+2025-05-14 12:24:39,029 - __main__ - INFO - Catégorie music: 3 vidéos, 1,337,345 vues moyennes, 4.83% d'engagement
+2025-05-14 12:24:39,029 - __main__ - INFO - Catégorie challenge: 2 vidéos, 5,650,536 vues moyennes, 2.60% d'engagement
+2025-05-14 12:24:39,030 - __main__ - INFO - Catégorie reaction: 1 vidéos, 5,591,453 vues moyennes, 4.48% d'engagement
+2025-05-14 12:24:39,030 - __main__ - INFO - Catégorie humour: 8 vidéos, 924,108 vues moyennes, 5.86% d'engagement
+2025-05-14 12:24:39,031 - __main__ - INFO - Catégorie sport: 1 vidéos, 1,288,987 vues moyennes, 4.81% d'engagement
+2025-05-14 12:24:39,031 - __main__ - INFO - Catégorie tech: 5 vidéos, 3,441,238 vues moyennes, 4.72% d'engagement
+2025-05-14 12:24:39,032 - __main__ - INFO - Catégorie autre: 62 vidéos, 4,048,644 vues moyennes, 4.59% d'engagement
+2025-05-14 12:24:39,033 - __main__ - INFO - Statistiques globales : 200 vidéos, 4,346,371 vues moyennes, 4.11% d'engagement
+2025-05-14 12:24:39,035 - __main__ - INFO - Données mises en cache pour Michou sur youtube
+2025-05-14 12:24:39,036 - __main__ - INFO - Affichage des résultats
+2025-05-14 12:24:39,044 - __main__ - INFO - Filtrage des vidéos depuis 2025-02-13 10:24:39 UTC
+2025-05-14 12:24:39,748 - __main__ - INFO - Nombre total de vidéos attendu : 834
+2025-05-14 12:24:39,931 - googleapiclient.http - WARNING - Encountered 403 Forbidden with reason "quotaExceeded"
+2025-05-14 12:24:39,932 - __main__ - WARNING - Quota API dépassé, tentative 1/3
+2025-05-14 12:24:41,955 - googleapiclient.http - WARNING - Encountered 403 Forbidden with reason "quotaExceeded"
+2025-05-14 12:24:41,957 - __main__ - WARNING - Quota API dépassé, tentative 2/3
+2025-05-14 12:24:45,993 - googleapiclient.http - WARNING - Encountered 403 Forbidden with reason "quotaExceeded"
+2025-05-14 12:24:45,994 - __main__ - WARNING - Quota API dépassé, tentative 3/3
+2025-05-14 12:24:45,994 - __main__ - ERROR - Erreur lors de l'analyse des vidéos API: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/search?channelId=UCo3i0nUzZjjLuM7VjAVz4zA&part=id%2Csnippet&order=date&maxResults=50&type=video&key=AIzaSyAlZaJNBABjCik1N5k1yPbbcg6LrCQ38no&alt=json returned "The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.". Details: "[{'message': 'The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]">
+Traceback (most recent call last):
+  File "C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP\CreateurContenue\app.py", line 995, in _analyze_video_stats
+    ).execute()
+      ~~~~~~~^^
+  File "C:\Users\PabloPeiro\AppData\Local\Programs\Python\Python313\Lib\site-packages\googleapiclient\_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "C:\Users\PabloPeiro\AppData\Local\Programs\Python\Python313\Lib\site-packages\googleapiclient\http.py", line 938, in execute
+    raise HttpError(resp, content, uri=self.uri)
+googleapiclient.errors.HttpError: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/search?channelId=UCo3i0nUzZjjLuM7VjAVz4zA&part=id%2Csnippet&order=date&maxResults=50&type=video&key=AIzaSyAlZaJNBABjCik1N5k1yPbbcg6LrCQ38no&alt=json returned "The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.". Details: "[{'message': 'The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]">
+2025-05-14 12:24:46,068 - __main__ - INFO - Affichage des métriques pour youtube
+2025-05-14 12:24:46,071 - __main__ - INFO - Nombre d'abonnés YouTube : 10,400,000
+2025-05-14 12:24:46,073 - __main__ - INFO - Nombre total de vues : 3,018,206,060
+2025-05-14 12:24:46,075 - __main__ - INFO - Nombre de vidéos : 834
+2025-05-14 12:24:46,077 - __main__ - INFO - Affichage de l'analyse d'engagement
+2025-05-14 12:24:46,079 - __main__ - INFO - Benchmark d'engagement : unknown
+2025-05-14 12:24:46,083 - __main__ - INFO - Moyenne du secteur : 3.50%
+2025-05-14 12:24:46,085 - __main__ - INFO - Affichage de l'analyse de réputation
+2025-05-14 12:24:46,110 - __main__ - ERROR - Erreur lors de l'analyse : name 'story' is not defined
+Traceback (most recent call last):
+  File "C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP\CreateurContenue\app.py", line 1833, in main
+    display_reputation_analysis(data.get("reputation_data", {}))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP\CreateurContenue\app.py", line 1544, in display_reputation_analysis
+    story.append(Paragraph("Articles non controversés", styles['Heading2']))
+    ^^^^^
+NameError: name 'story' is not defined
+2025-05-14 12:24:46,115 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 12:28:16,245 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:28:16,246 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 12:28:16,246 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 12:28:16,248 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 12:28:16,248 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 12:28:16,249 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 12:28:16,249 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 12:28:16,626 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:28:16,960 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 12:28:16,963 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 12:28:16,964 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-14 12:28:16,966 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 12:28:23,494 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:28:23,494 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 12:28:23,495 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 12:28:23,497 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 12:28:23,498 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 12:28:23,499 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 12:28:23,500 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 12:28:23,586 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:28:23,586 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-14 12:28:23,587 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-14 12:28:23,588 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-14 12:28:23,589 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-14 12:28:23,589 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-14 12:28:23,590 - __main__ - WARNING - Clé News API non trouvée
+2025-05-14 12:28:23,912 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:28:23,913 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-14 12:28:24,011 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-14 12:28:24,014 - __main__ - INFO - Mode sélectionné : API
+2025-05-14 12:28:24,015 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-14 12:28:24,016 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-14 12:28:24,019 - __main__ - INFO - Début de l'analyse pour Michou sur YouTube
+2025-05-14 12:28:24,487 - googleapiclient.http - WARNING - Encountered 403 Forbidden with reason "quotaExceeded"
+2025-05-14 12:28:24,488 - __main__ - ERROR - Erreur lors de la récupération de l'ID YouTube: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=Michou&type=channel&maxResults=1&key=AIzaSyAlZaJNBABjCik1N5k1yPbbcg6LrCQ38no&alt=json returned "The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.". Details: "[{'message': 'The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]">
+2025-05-14 12:28:24,489 - __main__ - ERROR - ID de chaîne YouTube non trouvé pour Michou
+2025-05-14 12:28:24,490 - __main__ - ERROR - Impossible de récupérer les données pour Michou
+2025-05-14 12:28:24,492 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-15 16:44:53,498 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-15 16:44:53,499 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-15 16:44:53,499 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-15 16:44:53,589 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-15 16:44:53,590 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-15 16:44:53,591 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-15 16:44:53,591 - __main__ - WARNING - Clé News API non trouvée
+2025-05-15 16:44:53,969 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-15 16:44:54,353 - __main__ - INFO - Mode sélectionné : API
+2025-05-15 16:44:54,354 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-15 16:44:54,355 - __main__ - INFO - Nom d'utilisateur saisi : 
+2025-05-15 16:44:54,357 - __main__ - INFO - === FIN DE L'APPLICATION ===
+2025-05-15 16:45:17,289 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-15 16:45:17,291 - __main__ - INFO - Python version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]
+2025-05-15 16:45:17,292 - __main__ - INFO - Working directory: C:\Users\PabloPeiro\Desktop\pablo\Plan_de_sortie\Big_APP
+2025-05-15 16:45:17,294 - __main__ - INFO - Fichier .env chargé (CreateurContenue/.env)
+2025-05-15 16:45:17,295 - __main__ - INFO - Toutes les variables d'environnement requises sont présentes
+2025-05-15 16:45:17,296 - __main__ - WARNING - NEWS_API_KEY manquante. L'analyse des actualités sera limitée.
+2025-05-15 16:45:17,297 - __main__ - WARNING - Clé News API non trouvée
+2025-05-15 16:45:17,633 - __main__ - INFO - === DÉMARRAGE DE L'APPLICATION ===
+2025-05-15 16:45:17,635 - __main__ - INFO - Mode sélectionné : API
+2025-05-15 16:45:17,637 - __main__ - INFO - Plateforme sélectionnée : YouTube
+2025-05-15 16:45:17,638 - __main__ - INFO - Nom d'utilisateur saisi : Michou
+2025-05-15 16:45:17,639 - __main__ - INFO - === FIN DE L'APPLICATION ===

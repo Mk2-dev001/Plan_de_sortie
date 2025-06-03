@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c8f88972f0f5fcad6090cafc582378f0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_c8f88972f0f5fcad6090cafc582378f0" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c8f88972f0f5fcad6090cafc582378f0 = L.map(
+                "map_c8f88972f0f5fcad6090cafc582378f0",
+                {
+                    center: [47.73180556032216, 3.563919183724495],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_c0ba97b73fa78b2004e37e5c546ad8b9 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_c0ba97b73fa78b2004e37e5c546ad8b9.addTo(map_c8f88972f0f5fcad6090cafc582378f0);
+        
+    
+            var feature_group_a1e6f1dd0926c64f206cd4c1c91264ef = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_0e21a4e01272a7abe4570cc0074e42a9 = L.circleMarker(
+                [48.8588897, 2.3200410217200766],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_cbf771e60bdb2d3cd8771ee7ccca0f94 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_20263bccebf5321d81d51a3dd54c55a8 = $(`<div id="html_20263bccebf5321d81d51a3dd54c55a8" style="width: 100.0%; height: 100.0%;"><b>Pathé Beaugrenelle - Salle 6</b><br><i>Centre Commercial Beaugrenelle - 7, rue Linois - 75015 Paris</i><br>Capacité : 232 places<br>Distance (Île-de-france) : 0.0 km<br>Contact : <b>Responsable de la Programmation île de France et événementielle</b><br>📧 Marina Telkos</div>`)[0];
+                popup_cbf771e60bdb2d3cd8771ee7ccca0f94.setContent(html_20263bccebf5321d81d51a3dd54c55a8);
+            
+        
+
+        circle_marker_0e21a4e01272a7abe4570cc0074e42a9.bindPopup(popup_cbf771e60bdb2d3cd8771ee7ccca0f94)
+        ;
+
+        
+    
+    
+            var circle_marker_ecc9b82f13f2a3b03ba5ca4c128990d2 = L.circleMarker(
+                [48.8588897, 2.3200410217200766],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_4a1ca467b2d7325f14554015f18d1876 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4d206df63764d6400c85867d38215285 = $(`<div id="html_4d206df63764d6400c85867d38215285" style="width: 100.0%; height: 100.0%;"><b>UGC Ciné Cité Maillot - Salle 12</b><br><i>place Porte Maillot - Palais des Congrés - 75017 Paris</i><br>Capacité : 152 places<br>Distance (Île-de-france) : 0.0 km<br>Contact : <b></b><br>📧 Henri Ernst</div>`)[0];
+                popup_4a1ca467b2d7325f14554015f18d1876.setContent(html_4d206df63764d6400c85867d38215285);
+            
+        
+
+        circle_marker_ecc9b82f13f2a3b03ba5ca4c128990d2.bindPopup(popup_4a1ca467b2d7325f14554015f18d1876)
+        ;
+
+        
+    
+    
+            var circle_marker_5613e21c8b2b4533b3cc469b8b7135c0 = L.circleMarker(
+                [48.8588897, 2.3200410217200766],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_b7c207462c97c1b736cf25c1b75a1109 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_541a88043678c982fca32b9ebd801989 = $(`<div id="html_541a88043678c982fca32b9ebd801989" style="width: 100.0%; height: 100.0%;"><b>Entrepôt (L') - Salle 1</b><br><i>7-9, rue Francis de Pressencé - 75014 Paris</i><br>Capacité : 104 places<br>Distance (Île-de-france) : 0.0 km<br>Contact : <b>Directrice</b><br>📧 Priscilla GESSATI</div>`)[0];
+                popup_b7c207462c97c1b736cf25c1b75a1109.setContent(html_541a88043678c982fca32b9ebd801989);
+            
+        
+
+        circle_marker_5613e21c8b2b4533b3cc469b8b7135c0.bindPopup(popup_b7c207462c97c1b736cf25c1b75a1109)
+        ;
+
+        
+    
+    
+            var circle_marker_92a721e59e40e88faa6c0869ec06fe2b = L.circleMarker(
+                [48.86668648906224, 2.3138945950302654],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_01dca1c1ae66bfbab964d96ab7bb271b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7059ae2c07bd87f9417fd9f77c368981 = $(`<div id="html_7059ae2c07bd87f9417fd9f77c368981" style="width: 100.0%; height: 100.0%;"><b>MK2 Grand-Palais - Salle 1</b><br><i>3, av. Winston Churchill - 75008 Paris</i><br>Capacité : 104 places<br>Distance (Île-de-france) : 0.98 km<br>Contact : <b>Bertrand Roger</b><br>📧 bertrand.roger@mk2.com</div>`)[0];
+                popup_01dca1c1ae66bfbab964d96ab7bb271b.setContent(html_7059ae2c07bd87f9417fd9f77c368981);
+            
+        
+
+        circle_marker_92a721e59e40e88faa6c0869ec06fe2b.bindPopup(popup_01dca1c1ae66bfbab964d96ab7bb271b)
+        ;
+
+        
+    
+    
+            var circle_marker_fa5a059d4b5e91cf07223280f4b68049 = L.circleMarker(
+                [48.854579759664965, 2.3332820801554437],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_2d47142e7acaabb3e72629d25f5cc814 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3b47910284190b9dea26b9c36acb46de = $(`<div id="html_3b47910284190b9dea26b9c36acb46de" style="width: 100.0%; height: 100.0%;"><b>Silencio des Prés - Salle 1</b><br><i>22, rue Guillaume Apollinaire - 75006 Paris</i><br>Capacité : 208 places<br>Distance (Île-de-france) : 1.08 km<br>Contact : <b></b><br>📧 cabine.silencio@assemblygroup.fr</div>`)[0];
+                popup_2d47142e7acaabb3e72629d25f5cc814.setContent(html_3b47910284190b9dea26b9c36acb46de);
+            
+        
+
+        circle_marker_fa5a059d4b5e91cf07223280f4b68049.bindPopup(popup_2d47142e7acaabb3e72629d25f5cc814)
+        ;
+
+        
+    
+    
+            var circle_marker_f03896b149159691ce7ff53a44f33d6d = L.circleMarker(
+                [48.8524478, 2.3382656],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_0899a9c6b090260cd07630581f016a3b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7d2ad357f3f45f5c8f14da8d3b32eb13 = $(`<div id="html_7d2ad357f3f45f5c8f14da8d3b32eb13" style="width: 100.0%; height: 100.0%;"><b>MK2 Odéon (côté st Germain) - Salle 1</b><br><i>113, bd Saint-Germain - 75006 Paris</i><br>Capacité : 267 places<br>Distance (Île-de-france) : 1.52 km<br>Contact : <b>Bertrand Roger</b><br>📧 bertrand.roger@mk2.com</div>`)[0];
+                popup_0899a9c6b090260cd07630581f016a3b.setContent(html_7d2ad357f3f45f5c8f14da8d3b32eb13);
+            
+        
+
+        circle_marker_f03896b149159691ce7ff53a44f33d6d.bindPopup(popup_0899a9c6b090260cd07630581f016a3b)
+        ;
+
+        
+    
+    
+            var circle_marker_6f42b40d5c2512a8b4a90b5a5e7e8ec2 = L.circleMarker(
+                [48.8544954, 2.3401739],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_4d9a664beba4a054110b49f7fd64a73c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f07ff460b58b8eebc1d303ef976f6f55 = $(`<div id="html_f07ff460b58b8eebc1d303ef976f6f55" style="width: 100.0%; height: 100.0%;"><b>Christine Cinéma Club - Salle 1</b><br><i>4, rue Christine - 75006 Paris</i><br>Capacité : 145 places<br>Distance (Île-de-france) : 1.56 km<br>Contact : <b>Lorenzo Chammah / Quentin Paliwoda</b><br>📧 </div>`)[0];
+                popup_4d9a664beba4a054110b49f7fd64a73c.setContent(html_f07ff460b58b8eebc1d303ef976f6f55);
+            
+        
+
+        circle_marker_6f42b40d5c2512a8b4a90b5a5e7e8ec2.bindPopup(popup_4d9a664beba4a054110b49f7fd64a73c)
+        ;
+
+        
+    
+    
+            var circle_marker_e730d23abcca8d9a28af85cbfee18e33 = L.circleMarker(
+                [48.852181, 2.3388843],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_3c23220bcc92beba3cf52ec7e3e7f46b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_07fc306d499ddacc091f5a050c0599cd = $(`<div id="html_07fc306d499ddacc091f5a050c0599cd" style="width: 100.0%; height: 100.0%;"><b>UGC Danton - Salle 1</b><br><i>99, bd Saint-Germain - 75006 Paris</i><br>Capacité : 327 places<br>Distance (Île-de-france) : 1.57 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_3c23220bcc92beba3cf52ec7e3e7f46b.setContent(html_07fc306d499ddacc091f5a050c0599cd);
+            
+        
+
+        circle_marker_e730d23abcca8d9a28af85cbfee18e33.bindPopup(popup_3c23220bcc92beba3cf52ec7e3e7f46b)
+        ;
+
+        
+    
+    
+            var circle_marker_1c1b19d63fb0dcc05d581e4013f4e3d5 = L.circleMarker(
+                [48.8523614, 2.3398708],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_4ade5ddd5a96f7c3290f2a4b0d177786 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1360e807d18cf93459059ac7213e48fe = $(`<div id="html_1360e807d18cf93459059ac7213e48fe" style="width: 100.0%; height: 100.0%;"><b>UGC Odéon - Salle 2</b><br><i>124, bd Saint-Germain - 75006 Paris</i><br>Capacité : 204 places<br>Distance (Île-de-france) : 1.63 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_4ade5ddd5a96f7c3290f2a4b0d177786.setContent(html_1360e807d18cf93459059ac7213e48fe);
+            
+        
+
+        circle_marker_1c1b19d63fb0dcc05d581e4013f4e3d5.bindPopup(popup_4ade5ddd5a96f7c3290f2a4b0d177786)
+        ;
+
+        
+    
+    
+            var circle_marker_4563e3bb183353a8122e69cef044555e = L.circleMarker(
+                [48.8715983, 2.333682],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_b085f1edd6a74dd86535a46ea9b76a67 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6446e11d0be824cbff97739cf226678a = $(`<div id="html_6446e11d0be824cbff97739cf226678a" style="width: 100.0%; height: 100.0%;"><b>Pathé Palace - Salle 1 Primaire</b><br><i>1 rue Meyerbeer - 75009 Paris</i><br>Capacité : 421 places<br>Distance (Île-de-france) : 1.73 km<br>Contact : <b>Responsable de la Programmation île de France et événementielle</b><br>📧 Marina Telkos</div>`)[0];
+                popup_b085f1edd6a74dd86535a46ea9b76a67.setContent(html_6446e11d0be824cbff97739cf226678a);
+            
+        
+
+        circle_marker_4563e3bb183353a8122e69cef044555e.bindPopup(popup_b085f1edd6a74dd86535a46ea9b76a67)
+        ;
+
+        
+    
+    
+            var circle_marker_7189221eb972c652cac0d59987770982 = L.circleMarker(
+                [48.8533544, 2.3421211],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_733ecdbda441b56b1080ec6e9f5b1a82 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_69a00afb464f380fd7aa9da8b92d25dc = $(`<div id="html_69a00afb464f380fd7aa9da8b92d25dc" style="width: 100.0%; height: 100.0%;"><b>Saint-André des Arts (Le) - Salle 3</b><br><i>30, rue Saint-André des Arts - 75006 Paris</i><br>Capacité : 191 places<br>Distance (Île-de-france) : 1.73 km<br>Contact : <b>Antoine DOUX</b><br>📧 antoine@cinemasaintandre.com</div>`)[0];
+                popup_733ecdbda441b56b1080ec6e9f5b1a82.setContent(html_69a00afb464f380fd7aa9da8b92d25dc);
+            
+        
+
+        circle_marker_7189221eb972c652cac0d59987770982.bindPopup(popup_733ecdbda441b56b1080ec6e9f5b1a82)
+        ;
+
+        
+    
+    
+            var circle_marker_f2c953f83e24e5346ae0c6897cc6dc10 = L.circleMarker(
+                [48.8434993, 2.3257407],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_8bf78cf9a383af3aad8ebed3b5e5699a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c22ec8519d3e9741f881a0d7b7b14917 = $(`<div id="html_c22ec8519d3e9741f881a0d7b7b14917" style="width: 100.0%; height: 100.0%;"><b>UGC Montparnasse - Salle 4</b><br><i>83, bd du Montparnasse - 75006 Paris</i><br>Capacité : 458 places<br>Distance (Île-de-france) : 1.76 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_8bf78cf9a383af3aad8ebed3b5e5699a.setContent(html_c22ec8519d3e9741f881a0d7b7b14917);
+            
+        
+
+        circle_marker_f2c953f83e24e5346ae0c6897cc6dc10.bindPopup(popup_8bf78cf9a383af3aad8ebed3b5e5699a)
+        ;
+
+        
+    
+    
+            var circle_marker_0831171d43a2e8f122151d956ce8f177 = L.circleMarker(
+                [48.871332, 2.3353157],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_73b65b6c012b069f13a2b2daa1dc562b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_32dc82abf12f25ba67d0f43e4488852e = $(`<div id="html_32dc82abf12f25ba67d0f43e4488852e" style="width: 100.0%; height: 100.0%;"><b>UGC Opéra - Salle 1</b><br><i>32, bd des Italiens - 75009 Paris</i><br>Capacité : 364 places<br>Distance (Île-de-france) : 1.78 km<br>Contact : <b>Henri Ernst</b><br>📧 hernst@ugc.fr</div>`)[0];
+                popup_73b65b6c012b069f13a2b2daa1dc562b.setContent(html_32dc82abf12f25ba67d0f43e4488852e);
+            
+        
+
+        circle_marker_0831171d43a2e8f122151d956ce8f177.bindPopup(popup_73b65b6c012b069f13a2b2daa1dc562b)
+        ;
+
+        
+    
+    
+            var circle_marker_340fff08523a6f253fd4d8307ceb8f5f = L.circleMarker(
+                [48.8705299, 2.3031567],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_449171b8d4b7940e1a35ed743267c9f9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_315a150dddb46809ad06ee12977a4bf1 = $(`<div id="html_315a150dddb46809ad06ee12977a4bf1" style="width: 100.0%; height: 100.0%;"><b>Elysées Lincoln - Salle 3</b><br><i>14, rue Lincoln - 75008 Paris</i><br>Capacité : 199 places<br>Distance (Île-de-france) : 1.79 km<br>Contact : <b>Samuel MERLE</b><br>📧 samuel.merle@gmail.com</div>`)[0];
+                popup_449171b8d4b7940e1a35ed743267c9f9.setContent(html_315a150dddb46809ad06ee12977a4bf1);
+            
+        
+
+        circle_marker_340fff08523a6f253fd4d8307ceb8f5f.bindPopup(popup_449171b8d4b7940e1a35ed743267c9f9)
+        ;
+
+        
+    
+    
+            var circle_marker_7ba29fdcfc760e6a3d2c5efcc0a97251 = L.circleMarker(
+                [48.8442592, 2.3304599],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_095e9942ca9927fd60cd2d8252d12004 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1fdbe28b01fb0992e54a1da2c6435569 = $(`<div id="html_1fdbe28b01fb0992e54a1da2c6435569" style="width: 100.0%; height: 100.0%;"><b>Lucernaire (Le) - Salle 1</b><br><i>53, rue Notre-Dame-des-Champs - 75006 Paris</i><br>Capacité : 54 places<br>Distance (Île-de-france) : 1.8 km<br>Contact : <b>Nicolas CLAUTOUR</b><br>📧 nicolas.cinema@lucernaire.fr</div>`)[0];
+                popup_095e9942ca9927fd60cd2d8252d12004.setContent(html_1fdbe28b01fb0992e54a1da2c6435569);
+            
+        
+
+        circle_marker_7ba29fdcfc760e6a3d2c5efcc0a97251.bindPopup(popup_095e9942ca9927fd60cd2d8252d12004)
+        ;
+
+        
+    
+    
+            var circle_marker_25310ae11eae4e71756e2f2389e6188d = L.circleMarker(
+                [48.8521797, 2.3428666333924046],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_a1e6f1dd0926c64f206cd4c1c91264ef);
+        
+    
+        var popup_6ce776b8e01c3eac05a17f0bc21eb445 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fbe862a9464040827d8b74e9cbe326c0 = $(`<div id="html_fbe862a9464040827d8b74e9cbe326c0" style="width: 100.0%; height: 100.0%;"><b>MK2 Odéon (côté St Michel) - Salle 1</b><br><i>7, rue hautefeuille - 75006 Paris</i><br>Capacité : 212 places<br>Distance (Île-de-france) : 1.83 km<br>Contact : <b>Bertrand Roger</b><br>📧 bertrand.roger@mk2.com</div>`)[0];
+                popup_6ce776b8e01c3eac05a17f0bc21eb445.setContent(html_fbe862a9464040827d8b74e9cbe326c0);
+            
+        
+
+        circle_marker_25310ae11eae4e71756e2f2389e6188d.bindPopup(popup_6ce776b8e01c3eac05a17f0bc21eb445)
+        ;
+
+        
+    
+    
+            feature_group_a1e6f1dd0926c64f206cd4c1c91264ef.addTo(map_c8f88972f0f5fcad6090cafc582378f0);
+        
+    
+            var feature_group_1fade75482100b4fd61a557294bb2d5b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_59c2c2beed4b526ad7a8fc5a87de3f24 = L.circleMarker(
+                [50.6365934, 3.0670272],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1fade75482100b4fd61a557294bb2d5b);
+        
+    
+        var popup_222f25d37eb17a6ad5a88d0654a6ba79 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b0039ce3336b4fc61792ef70e7fb63bc = $(`<div id="html_b0039ce3336b4fc61792ef70e7fb63bc" style="width: 100.0%; height: 100.0%;"><b>UGC Métropole Lille - Salle 1</b><br><i>26, rue des Ponts de Comines - 59000 Lille</i><br>Capacité : 171 places<br>Distance (Lille) : 0.25 km<br>Contact : <b>Barbara Samain</b><br>📧 bsamain@ugc.fr</div>`)[0];
+                popup_222f25d37eb17a6ad5a88d0654a6ba79.setContent(html_b0039ce3336b4fc61792ef70e7fb63bc);
+            
+        
+
+        circle_marker_59c2c2beed4b526ad7a8fc5a87de3f24.bindPopup(popup_222f25d37eb17a6ad5a88d0654a6ba79)
+        ;
+
+        
+    
+    
+            var circle_marker_c51fa59d1f7ab3e950916aad9bdd1c1a = L.circleMarker(
+                [50.633508, 3.0629565],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1fade75482100b4fd61a557294bb2d5b);
+        
+    
+        var popup_a5b118951fa265480a3bf2f98e7f538a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2d88c540a6147151743eca903cbe4661 = $(`<div id="html_2d88c540a6147151743eca903cbe4661" style="width: 100.0%; height: 100.0%;"><b>UGC Majestic Lille - Salle 1</b><br><i>54, rue de Béthune - 59000 Lille</i><br>Capacité : 176 places<br>Distance (Lille) : 0.34 km<br>Contact : <b></b><br>📧 Barbara Samain</div>`)[0];
+                popup_a5b118951fa265480a3bf2f98e7f538a.setContent(html_2d88c540a6147151743eca903cbe4661);
+            
+        
+
+        circle_marker_c51fa59d1f7ab3e950916aad9bdd1c1a.bindPopup(popup_a5b118951fa265480a3bf2f98e7f538a)
+        ;
+
+        
+    
+    
+            var circle_marker_1f0ed79d0653072928a2c7da2e192cd8 = L.circleMarker(
+                [50.6240218, 3.0743691],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1fade75482100b4fd61a557294bb2d5b);
+        
+    
+        var popup_9a500c2731629b11f192fa60ad530216 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_99a1ccfe9e74cb8d8d06672a36acd005 = $(`<div id="html_99a1ccfe9e74cb8d8d06672a36acd005" style="width: 100.0%; height: 100.0%;"><b>Cinéligue Hauts-de-France - Salle 4</b><br><i>104, rue de Cambrai - 59000 Lille</i><br>Capacité : 211 places<br>Distance (Lille) : 1.59 km<br>Contact : <b></b><br>📧 Camille</div>`)[0];
+                popup_9a500c2731629b11f192fa60ad530216.setContent(html_99a1ccfe9e74cb8d8d06672a36acd005);
+            
+        
+
+        circle_marker_1f0ed79d0653072928a2c7da2e192cd8.bindPopup(popup_9a500c2731629b11f192fa60ad530216)
+        ;
+
+        
+    
+    
+            var circle_marker_fe4d632cb0d820d7959e8e97677fa5a7 = L.circleMarker(
+                [50.6510448, 3.0278073],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1fade75482100b4fd61a557294bb2d5b);
+        
+    
+        var popup_b3062775baf07f5df5d2c38a33ebb0e0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_73564bbacaf9116799895e399e3e9d3d = $(`<div id="html_73564bbacaf9116799895e399e3e9d3d" style="width: 100.0%; height: 100.0%;"><b>Ciné Lambersart - Salle 1</b><br><i>place Felix Clouet - 59130 Lambersart</i><br>Capacité : 181 places<br>Distance (Lille) : 3.0 km<br>Contact : <b>GRP</b><br>📧 Laurent Geissmann</div>`)[0];
+                popup_b3062775baf07f5df5d2c38a33ebb0e0.setContent(html_73564bbacaf9116799895e399e3e9d3d);
+            
+        
+
+        circle_marker_fe4d632cb0d820d7959e8e97677fa5a7.bindPopup(popup_b3062775baf07f5df5d2c38a33ebb0e0)
+        ;
+
+        
+    
+    
+            var circle_marker_115b38b313146b17486bbecede27ea95 = L.circleMarker(
+                [50.6193174, 3.1314002],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1fade75482100b4fd61a557294bb2d5b);
+        
+    
+        var popup_5365f9959e73adf6d4a2cbbaebe3e433 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_097ef37876108414a21c2bdcf9c45b52 = $(`<div id="html_097ef37876108414a21c2bdcf9c45b52" style="width: 100.0%; height: 100.0%;"><b>Kino-Ciné - Salle 1</b><br><i>3a Rue du Barreau - Domaine universitaire du Pont-de-Bois - 59650 Villeneuve-d'Ascq</i><br>Capacité : 316 places<br>Distance (Lille) : 5.17 km<br>Contact : <b>Patrice GOSTIJANOVIC</b><br>📧 prog.kino.cine@gmail.com</div>`)[0];
+                popup_5365f9959e73adf6d4a2cbbaebe3e433.setContent(html_097ef37876108414a21c2bdcf9c45b52);
+            
+        
+
+        circle_marker_115b38b313146b17486bbecede27ea95.bindPopup(popup_5365f9959e73adf6d4a2cbbaebe3e433)
+        ;
+
+        
+    
+    
+            var circle_marker_f4aedb315aa8456ced810fcc979e83d1 = L.circleMarker(
+                [50.6457022, 2.9870927],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1fade75482100b4fd61a557294bb2d5b);
+        
+    
+        var popup_a18a77ef78db258c73508caf911897d5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e77ad6259328dc230aa35772f61c2094 = $(`<div id="html_e77ad6259328dc230aa35772f61c2094" style="width: 100.0%; height: 100.0%;"><b>Kinepolis Lomme - Salle 14</b><br><i>1, rue du Château d'Isenghein - 59160 Lomme</i><br>Capacité : 613 places<br>Distance (Lille) : 5.5 km<br>Contact : <b>Content Manager</b><br>📧 Patrice Prat</div>`)[0];
+                popup_a18a77ef78db258c73508caf911897d5.setContent(html_e77ad6259328dc230aa35772f61c2094);
+            
+        
+
+        circle_marker_f4aedb315aa8456ced810fcc979e83d1.bindPopup(popup_a18a77ef78db258c73508caf911897d5)
+        ;
+
+        
+    
+    
+            feature_group_1fade75482100b4fd61a557294bb2d5b.addTo(map_c8f88972f0f5fcad6090cafc582378f0);
+        
+    
+            var feature_group_5704e5d29d786f482e94c9cda52a66a8 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_89323f1a522d2cef658a80358ffd51f8 = L.circleMarker(
+                [45.7578137, 4.8320114],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_55290fcd296272fff9fc7ce13e1a4d32 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bd6b3aea2b23346097553baa1b471b95 = $(`<div id="html_bd6b3aea2b23346097553baa1b471b95" style="width: 100.0%; height: 100.0%;"><b>UGC Ciné Cité Confluence - Salle 10</b><br><i>112, cours Charlemagne ,Pôle de loisirs et de commerces - 69002 Lyon</i><br>Capacité : 396 places<br>Distance (Lyon) : 0.0 km<br>Contact : <b></b><br>📧 Barbara Samain</div>`)[0];
+                popup_55290fcd296272fff9fc7ce13e1a4d32.setContent(html_bd6b3aea2b23346097553baa1b471b95);
+            
+        
+
+        circle_marker_89323f1a522d2cef658a80358ffd51f8.bindPopup(popup_55290fcd296272fff9fc7ce13e1a4d32)
+        ;
+
+        
+    
+    
+            var circle_marker_2778e6344691115109cfd0b324838950 = L.circleMarker(
+                [45.7586907, 4.83488],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_2ecac0e1cfd52c94ffc0e4c4a1f568ab = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2ce8d81e9f4af8ddbd31f68facf86e1d = $(`<div id="html_2ce8d81e9f4af8ddbd31f68facf86e1d" style="width: 100.0%; height: 100.0%;"><b>Pathé Bellecour - Salle 7</b><br><i>79, rue de la République - 69002 Lyon</i><br>Capacité : 470 places<br>Distance (Lyon) : 0.24 km<br>Contact : <b>Directeur adjoint de la Programmation</b><br>📧 Marc Mercier</div>`)[0];
+                popup_2ecac0e1cfd52c94ffc0e4c4a1f568ab.setContent(html_2ce8d81e9f4af8ddbd31f68facf86e1d);
+            
+        
+
+        circle_marker_2778e6344691115109cfd0b324838950.bindPopup(popup_2ecac0e1cfd52c94ffc0e4c4a1f568ab)
+        ;
+
+        
+    
+    
+            var circle_marker_cf4eb028a7c431376624087ec1d0b32f = L.circleMarker(
+                [45.7673191, 4.8350337],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_6ba87ed7a099e6039b98da83c1a3080a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_89afbe9ed62329a008d883c74558d6a8 = $(`<div id="html_89afbe9ed62329a008d883c74558d6a8" style="width: 100.0%; height: 100.0%;"><b>Opéra - Salle 1</b><br><i>6, rue Joseph Serlin - 69001 Lyon</i><br>Capacité : 97 places<br>Distance (Lyon) : 1.08 km<br>Contact : <b>Frédéric Lefort</b><br>📧 </div>`)[0];
+                popup_6ba87ed7a099e6039b98da83c1a3080a.setContent(html_89afbe9ed62329a008d883c74558d6a8);
+            
+        
+
+        circle_marker_cf4eb028a7c431376624087ec1d0b32f.bindPopup(popup_6ba87ed7a099e6039b98da83c1a3080a)
+        ;
+
+        
+    
+    
+            var circle_marker_df89279abf44bd78a132937e7a90bfa5 = L.circleMarker(
+                [45.7632832, 4.8438331],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_824ae643584558071964c8165617d6e1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_be581a0cfe643d48d03c45211e312afc = $(`<div id="html_be581a0cfe643d48d03c45211e312afc" style="width: 100.0%; height: 100.0%;"><b>Lumière Fourmi - Salle 1</b><br><i>68, rue Pierre Corneille - 69003 Lyon</i><br>Capacité : 63 places<br>Distance (Lyon) : 1.1 km<br>Contact : <b>Martin Bidou</b><br>📧 martin.bidou@hautetcourt.com</div>`)[0];
+                popup_824ae643584558071964c8165617d6e1.setContent(html_be581a0cfe643d48d03c45211e312afc);
+            
+        
+
+        circle_marker_df89279abf44bd78a132937e7a90bfa5.bindPopup(popup_824ae643584558071964c8165617d6e1)
+        ;
+
+        
+    
+    
+            var circle_marker_9121a24600910dcc4806fb4ce647ee6a = L.circleMarker(
+                [45.7473766, 4.8355764],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_0d4584759cd297352b88cb3ef84a50e8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f48b40973222a7110f3517f3ad7d004b = $(`<div id="html_f48b40973222a7110f3517f3ad7d004b" style="width: 100.0%; height: 100.0%;"><b>Comoedia (Le) - Salle 1</b><br><i>13, av. Berthelot - 69007 Lyon</i><br>Capacité : 299 places<br>Distance (Lyon) : 1.19 km<br>Contact : <b>Ronan Frémondière</b><br>📧 ronanf@cinema-comoedia.com</div>`)[0];
+                popup_0d4584759cd297352b88cb3ef84a50e8.setContent(html_f48b40973222a7110f3517f3ad7d004b);
+            
+        
+
+        circle_marker_9121a24600910dcc4806fb4ce647ee6a.bindPopup(popup_0d4584759cd297352b88cb3ef84a50e8)
+        ;
+
+        
+    
+    
+            var circle_marker_5f05309e5ca2b35ab1509b3ef45365d8 = L.circleMarker(
+                [45.76122755, 4.856219267063065],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_8434ab025ceab54c61a4d8b1477a6ac0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f7f2fecf8e01471ba2e27e8f7df28acd = $(`<div id="html_f7f2fecf8e01471ba2e27e8f7df28acd" style="width: 100.0%; height: 100.0%;"><b>UGC Part-Dieu - Salle 10</b><br><i>Centre Commercial Part Dieu - 69003 Lyon</i><br>Capacité : 356 places<br>Distance (Lyon) : 1.92 km<br>Contact : <b></b><br>📧 Barbara Samain</div>`)[0];
+                popup_8434ab025ceab54c61a4d8b1477a6ac0.setContent(html_f7f2fecf8e01471ba2e27e8f7df28acd);
+            
+        
+
+        circle_marker_5f05309e5ca2b35ab1509b3ef45365d8.bindPopup(popup_8434ab025ceab54c61a4d8b1477a6ac0)
+        ;
+
+        
+    
+    
+            var circle_marker_e05d591ab7b283ffbd2c3a2ef2ff3343 = L.circleMarker(
+                [45.76965611113123, 4.854255820849998],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_3391bb292dba04cf9d5fbbb5cabe2f12 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_637c3668d5ec28b764ac537ebdec30f8 = $(`<div id="html_637c3668d5ec28b764ac537ebdec30f8" style="width: 100.0%; height: 100.0%;"><b>UGC Astoria - Salle 1</b><br><i>31-33, cours Vitton - 69006 Lyon</i><br>Capacité : 425 places<br>Distance (Lyon) : 2.17 km<br>Contact : <b></b><br>📧 Barbara Samain</div>`)[0];
+                popup_3391bb292dba04cf9d5fbbb5cabe2f12.setContent(html_637c3668d5ec28b764ac537ebdec30f8);
+            
+        
+
+        circle_marker_e05d591ab7b283ffbd2c3a2ef2ff3343.bindPopup(popup_3391bb292dba04cf9d5fbbb5cabe2f12)
+        ;
+
+        
+    
+    
+            var circle_marker_8ad074f9bc8b70abdfa392c4e259ef08 = L.circleMarker(
+                [45.779971, 4.8323485],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_37d97490828ee16d3b873aa7882419b3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e06da649689d3528945409df04adbc0c = $(`<div id="html_e06da649689d3528945409df04adbc0c" style="width: 100.0%; height: 100.0%;"><b>Saint Denis - Salle 1</b><br><i>77, grande rue de la Croix Rousse - 69004 Lyon</i><br>Capacité : 237 places<br>Distance (Lyon) : 2.46 km<br>Contact : <b>Aurélie</b><br>📧 gsflyon@free.fr</div>`)[0];
+                popup_37d97490828ee16d3b873aa7882419b3.setContent(html_e06da649689d3528945409df04adbc0c);
+            
+        
+
+        circle_marker_8ad074f9bc8b70abdfa392c4e259ef08.bindPopup(popup_37d97490828ee16d3b873aa7882419b3)
+        ;
+
+        
+    
+    
+            var circle_marker_b78b0de23d823b47e643db9b6d40a582 = L.circleMarker(
+                [45.765776, 4.8659127],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_bb12d9747977b34780f723886056cdf5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_31fa6598b32513eaeb319c5068c859b9 = $(`<div id="html_31fa6598b32513eaeb319c5068c859b9" style="width: 100.0%; height: 100.0%;"><b>Bellecombe - Salle 1</b><br><i>61, rue d'Inkermann - 69006 Lyon</i><br>Capacité : 290 places<br>Distance (Lyon) : 2.78 km<br>Contact : <b>Colette Perinet</b><br>📧 colette.perinet@gmail.com</div>`)[0];
+                popup_bb12d9747977b34780f723886056cdf5.setContent(html_31fa6598b32513eaeb319c5068c859b9);
+            
+        
+
+        circle_marker_b78b0de23d823b47e643db9b6d40a582.bindPopup(popup_bb12d9747977b34780f723886056cdf5)
+        ;
+
+        
+    
+    
+            var circle_marker_3ddf23ad02c40e05bcaba7e418df3795 = L.circleMarker(
+                [45.784498400000004, 4.852183976309021],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_b7881435c61b9c972c66719dce3be351 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_90c254a4558e2219b6ed1d84982b840c = $(`<div id="html_90c254a4558e2219b6ed1d84982b840c" style="width: 100.0%; height: 100.0%;"><b>UGC Ciné Cité Internationale - Salle 13</b><br><i>Cité internationale - 80, quai Charles-de-Gaulle - 69463 Lyon</i><br>Capacité : 426 places<br>Distance (Lyon) : 3.36 km<br>Contact : <b></b><br>📧 Barbara Samain</div>`)[0];
+                popup_b7881435c61b9c972c66719dce3be351.setContent(html_90c254a4558e2219b6ed1d84982b840c);
+            
+        
+
+        circle_marker_3ddf23ad02c40e05bcaba7e418df3795.bindPopup(popup_b7881435c61b9c972c66719dce3be351)
+        ;
+
+        
+    
+    
+            var circle_marker_b57e55f43359ebe19f254ea0f7b059d8 = L.circleMarker(
+                [45.7359478, 4.7999968],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_78a9acce967cfd58dee74708efa55d71 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bd0f4a9ee700bfb3e0516b27f359bce8 = $(`<div id="html_bd0f4a9ee700bfb3e0516b27f359bce8" style="width: 100.0%; height: 100.0%;"><b>Ciné Mourguet - Salle 1</b><br><i>15, rue Deshay - 69110 Sainte-Foy-lès-Lyon</i><br>Capacité : 200 places<br>Distance (Lyon) : 3.48 km<br>Contact : <b>Colette Perinet</b><br>📧 colette.perinet@gmail.com</div>`)[0];
+                popup_78a9acce967cfd58dee74708efa55d71.setContent(html_bd0f4a9ee700bfb3e0516b27f359bce8);
+            
+        
+
+        circle_marker_b57e55f43359ebe19f254ea0f7b059d8.bindPopup(popup_78a9acce967cfd58dee74708efa55d71)
+        ;
+
+        
+    
+    
+            var circle_marker_e8ae7354c167743cda4c80f05c621457 = L.circleMarker(
+                [45.77071665, 4.874359417364565],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_4931965a1a37fea328368c2814f388f4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_146ac1ac1a07b484bb0e25cba2a029fc = $(`<div id="html_146ac1ac1a07b484bb0e25cba2a029fc" style="width: 100.0%; height: 100.0%;"><b>Zola (Le) - Salle 1</b><br><i>117, Cours Emile Zola - 69100 Villeurbanne</i><br>Capacité : 243 places<br>Distance (Lyon) : 3.59 km<br>Contact : <b>Cyril Désiré</b><br>📧 direction@lezola.com</div>`)[0];
+                popup_4931965a1a37fea328368c2814f388f4.setContent(html_146ac1ac1a07b484bb0e25cba2a029fc);
+            
+        
+
+        circle_marker_e8ae7354c167743cda4c80f05c621457.bindPopup(popup_4931965a1a37fea328368c2814f388f4)
+        ;
+
+        
+    
+    
+            var circle_marker_b2e0d8a7fc1fa45207032185981a74c2 = L.circleMarker(
+                [45.7873354, 4.8121121],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_515dfbb101f2ee8710459d94442d626f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_97e42f1561bca21d881e57568e9cc2a3 = $(`<div id="html_97e42f1561bca21d881e57568e9cc2a3" style="width: 100.0%; height: 100.0%;"><b>Pathé Vaise - Salle 3</b><br><i>43, rue des Docks - 69009 Lyon</i><br>Capacité : 342 places<br>Distance (Lyon) : 3.63 km<br>Contact : <b>Directeur adjoint de la Programmation</b><br>📧 Marc Mercier</div>`)[0];
+                popup_515dfbb101f2ee8710459d94442d626f.setContent(html_97e42f1561bca21d881e57568e9cc2a3);
+            
+        
+
+        circle_marker_b2e0d8a7fc1fa45207032185981a74c2.bindPopup(popup_515dfbb101f2ee8710459d94442d626f)
+        ;
+
+        
+    
+    
+            var circle_marker_dc5468b471be9b23ef71ab4031576a52 = L.circleMarker(
+                [45.788375, 4.8005712],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_9b3f3a38db589db1aa864abde187ac0b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_60a71f9a05e3fc36d94a760463c85ae0 = $(`<div id="html_60a71f9a05e3fc36d94a760463c85ae0" style="width: 100.0%; height: 100.0%;"><b>Cinéduchère - Salle 1</b><br><i>308, av. Andrei Sakharov - 69009 Lyon</i><br>Capacité : 91 places<br>Distance (Lyon) : 4.19 km<br>Contact : <b>Emmanuelle Bureau</b><br>📧 cineduchere@orange.fr</div>`)[0];
+                popup_9b3f3a38db589db1aa864abde187ac0b.setContent(html_60a71f9a05e3fc36d94a760463c85ae0);
+            
+        
+
+        circle_marker_dc5468b471be9b23ef71ab4031576a52.bindPopup(popup_9b3f3a38db589db1aa864abde187ac0b)
+        ;
+
+        
+    
+    
+            var circle_marker_7d00e8e9332d3e7a47020c0389f0aed3 = L.circleMarker(
+                [45.7754498, 4.7785644],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_10aa9fb7b5493069f97b644dfd5a05fc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0d0395551d7f95b39f783033fd81cb68 = $(`<div id="html_0d0395551d7f95b39f783033fd81cb68" style="width: 100.0%; height: 100.0%;"><b>Cinéma (Le) - Salle 1</b><br><i>Maison de la Rencontre - 21, av. Edouard Aynard - 69130 Ecully</i><br>Capacité : 171 places<br>Distance (Lyon) : 4.6 km<br>Contact : <b>Rodolphe Girard</b><br>📧 cinema@ville-ecully.fr</div>`)[0];
+                popup_10aa9fb7b5493069f97b644dfd5a05fc.setContent(html_0d0395551d7f95b39f783033fd81cb68);
+            
+        
+
+        circle_marker_7d00e8e9332d3e7a47020c0389f0aed3.bindPopup(popup_10aa9fb7b5493069f97b644dfd5a05fc)
+        ;
+
+        
+    
+    
+            var circle_marker_59aa8aee7cc46b6e09d8a80d4b744449 = L.circleMarker(
+                [45.738850777466396, 4.8924718033391805],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_3adaa073c43bc2a799f0336f5dfea8c7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_077706dd801dbbb7517abeb3230472bb = $(`<div id="html_077706dd801dbbb7517abeb3230472bb" style="width: 100.0%; height: 100.0%;"><b>Alizés (Les) - Salle 2</b><br><i>214-216, av. Franklin Roosevelt - 69500 Bron</i><br>Capacité : 215 places<br>Distance (Lyon) : 5.16 km<br>Contact : <b>Programmation</b><br>📧 Jean-Philippe Sicaud</div>`)[0];
+                popup_3adaa073c43bc2a799f0336f5dfea8c7.setContent(html_077706dd801dbbb7517abeb3230472bb);
+            
+        
+
+        circle_marker_59aa8aee7cc46b6e09d8a80d4b744449.bindPopup(popup_3adaa073c43bc2a799f0336f5dfea8c7)
+        ;
+
+        
+    
+    
+            var circle_marker_59470d9617a0490ecc77b71b6014d363 = L.circleMarker(
+                [45.7610204, 4.7612892],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_0dee2684d629662659492ed74232d266 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1d57823db0e443c985eb955deed74e55 = $(`<div id="html_1d57823db0e443c985eb955deed74e55" style="width: 100.0%; height: 100.0%;"><b>Lem (Le) - Salle 1</b><br><i>62, Av. du 8 Mai 1945 - 69160 Tassin-la-Demi-Lune</i><br>Capacité : 245 places<br>Distance (Lyon) : 5.51 km<br>Contact : <b>Aurélie</b><br>📧 gsflyon@free.fr</div>`)[0];
+                popup_0dee2684d629662659492ed74232d266.setContent(html_1d57823db0e443c985eb955deed74e55);
+            
+        
+
+        circle_marker_59470d9617a0490ecc77b71b6014d363.bindPopup(popup_0dee2684d629662659492ed74232d266)
+        ;
+
+        
+    
+    
+            var circle_marker_83b83920ea903b4594b0c8ec48f0b17a = L.circleMarker(
+                [45.73255287556153, 4.766657490315636],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_5704e5d29d786f482e94c9cda52a66a8);
+        
+    
+        var popup_dcb902f3a89123b5a66dcd69d7e581dd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a787b632230835002cc97ea7fdf386cf = $(`<div id="html_a787b632230835002cc97ea7fdf386cf" style="width: 100.0%; height: 100.0%;"><b>Ciné Francheville - Salle 1</b><br><i>Montée des Roches - 69340 Francheville</i><br>Capacité : 193 places<br>Distance (Lyon) : 5.81 km<br>Contact : <b>Programmation</b><br>📧 Jean-Philippe Sicaud</div>`)[0];
+                popup_dcb902f3a89123b5a66dcd69d7e581dd.setContent(html_a787b632230835002cc97ea7fdf386cf);
+            
+        
+
+        circle_marker_83b83920ea903b4594b0c8ec48f0b17a.bindPopup(popup_dcb902f3a89123b5a66dcd69d7e581dd)
+        ;
+
+        
+    
+    
+            feature_group_5704e5d29d786f482e94c9cda52a66a8.addTo(map_c8f88972f0f5fcad6090cafc582378f0);
+        
+    
+            var layer_control_2301957f69c5da5f6e091ee326ebb43a_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_c0ba97b73fa78b2004e37e5c546ad8b9,
+                },
+                overlays :  {
+                    "\u00cele-de-france (16 salles)" : feature_group_a1e6f1dd0926c64f206cd4c1c91264ef,
+                    "Lille (6 salles)" : feature_group_1fade75482100b4fd61a557294bb2d5b,
+                    "Lyon (18 salles)" : feature_group_5704e5d29d786f482e94c9cda52a66a8,
+                },
+            };
+            let layer_control_2301957f69c5da5f6e091ee326ebb43a = L.control.layers(
+                layer_control_2301957f69c5da5f6e091ee326ebb43a_layers.base_layers,
+                layer_control_2301957f69c5da5f6e091ee326ebb43a_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_c8f88972f0f5fcad6090cafc582378f0);
+
+        
+</script>
+</html>

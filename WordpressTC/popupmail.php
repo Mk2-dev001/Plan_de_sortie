@@ -1,0 +1,206 @@
+<!-- Conteneur principal pour la vidéo -->
+<div id="video-container" style="position: relative; width: 100%; max-width: 800px; margin: 0 auto; overflow: hidden;">
+  <!-- Nous utilisons un div pour maintenir le ratio 16:9 -->
+  <div style="padding-top: 56.25%; position: relative;">
+    <!-- Iframe Dailymotion -->
+    <iframe id="dailymotion-player"
+            frameborder="0"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+            src="https://geo.dailymotion.com/player/x10fna.html?video=x9hzrv0&autoplay=0&controls=1&sharing-enable=false"
+            allowfullscreen
+            allow="autoplay; fullscreen; picture-in-picture"
+            title="Dailymotion video player – Signs and Wonders">
+    </iframe>
+
+    <!-- Conteneur pour la publicité préroll -->
+    <div id="preroll-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; z-index: 1000; display: none;">
+      <div id="ad-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; z-index: 1002;"></div>
+
+      <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 10px; border-radius: 5px; font-weight: bold; z-index: 1003;">
+        Film de la semaine - mk2curiosity
+      </div>
+      <div id="ad-timer" style="position: absolute; bottom: 20px; left: 20px; padding: 5px 10px; background: rgba(0,0,0,0.7); color: white; border-radius: 3px; z-index: 1003;">
+        Publicité: <span id="countdown">15</span>s
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Popup email -->
+<div id="email-popup" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+  <div id="form-container" style="background: #333; color: #fff; max-width: 600px; width: 90%; padding: 1.5rem; border-radius: 6px;">
+    <h2 style="margin-bottom: 20px;">Rentrez votre adresse email pour regarder le film</h2>
+    <div style="text-align: right; font-size: 13px; margin-bottom: 15px;">
+      <span style="color: red;">*</span> indique "obligatoire"
+    </div>
+    <form id="email-form">
+      <div style="margin-bottom: 20px;">
+        <label for="email-input">Email Address <span style="color: red;">*</span></label>
+        <input type="email" id="email-input" required style="width: 100%; padding: 8px;">
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="display: flex; align-items: flex-start;">
+          <input type="checkbox" id="cgu-checkbox" required style="margin-right: 8px;">
+          <span>J'accepte les <a href="https://accueil.mk2curiosity.com/policies/privacy-policy" target="_blank" style="color: #FFD700;">Conditions Générales d'Utilisation</a> <span style="color: red;">*</span></span>
+        </label>
+      </div>
+      <div id="confirmation-message" style="display: none; color: #FFD700; margin-bottom: 15px; font-weight: bold;">
+        Vous êtes inscrit, votre profil a été mis à jour. Merci !
+      </div>
+      <div>
+        <button type="submit" id="submit-button" style="background: #555; color: white; padding: 10px 20px; border: none; border-radius: 4px;">m'inscrire / m'identifier</button>
+      </div>
+    </form>
+    <button id="close-popup-button" style="display: none; margin-top: 15px; background: #555; color: white; padding: 10px 20px; border: none; border-radius: 4px;">Regarder le film</button>
+  </div>
+</div>
+
+<!-- IMA SDK + Dailymotion SDK -->
+<script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+<script src="https://api.dmcdn.net/all.js"></script>
+
+<script>
+  const vastUrl = "https://videoapi.smartadserver.com/ac?siteid=688620&pgid=2045731&fmtid=95103&ab=1&tgt=&oc=1&out=vast4&ps=1&pb=0&visit=S&vcn=s&vph=600&vpw=800&vpmt=0&skip=&mabd=&ctd=&tmstp=" + Date.now() + "&pgDomain=" + encodeURIComponent(window.location.hostname);
+
+  let adDisplayContainer, adsLoader, adsManager, countdownInterval, timeLeft = 15;
+  let dailymotionPlayer;
+
+  function resizeVideoContainer() {
+    const container = document.getElementById('video-container');
+    const containerWidth = container.clientWidth;
+    document.getElementById('ad-timer').style.fontSize = containerWidth < 400 ? '12px' : '14px';
+  }
+
+  function initializeIMA() {
+    const adContainer = document.getElementById('ad-container');
+    adDisplayContainer = new google.ima.AdDisplayContainer(adContainer);
+    adDisplayContainer.initialize();
+
+    adsLoader = new google.ima.AdsLoader(adDisplayContainer);
+    adsLoader.addEventListener(google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED, onAdsManagerLoaded);
+    adsLoader.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, onAdError);
+
+    const adsRequest = new google.ima.AdsRequest();
+    adsRequest.adTagUrl = vastUrl;
+    adsRequest.linearAdSlotWidth = window.innerWidth > 800 ? 800 : window.innerWidth;
+    adsRequest.linearAdSlotHeight = (adsRequest.linearAdSlotWidth * 9) / 16;
+    adsRequest.nonLinearAdSlotWidth = adsRequest.linearAdSlotWidth;
+    adsRequest.nonLinearAdSlotHeight = adsRequest.linearAdSlotHeight;
+
+    adsLoader.requestAds(adsRequest);
+  }
+
+  function onAdsManagerLoaded(event) {
+    const viewMode = google.ima.ViewMode.NORMAL;
+    const width = window.innerWidth > 800 ? 800 : window.innerWidth;
+    const height = (width * 9) / 16;
+
+    adsManager = event.getAdsManager();
+    adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED, () => {});
+    adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED, endPreroll);
+    adsManager.addEventListener(google.ima.AdEvent.Type.ALL_ADS_COMPLETED, endPreroll);
+    adsManager.addEventListener(google.ima.AdEvent.Type.STARTED, onAdStarted);
+    adsManager.addEventListener(google.ima.AdEvent.Type.COMPLETE, endPreroll);
+    adsManager.addEventListener(google.ima.AdEvent.Type.SKIPPED, endPreroll);
+    adsManager.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, onAdError);
+
+    try {
+      adsManager.init(width, height, viewMode);
+      adsManager.start();
+    } catch (e) {
+      endPreroll();
+    }
+  }
+
+  function onAdStarted() {
+    const countdownElement = document.getElementById('countdown');
+    const endTime = Date.now() + timeLeft * 1000;
+
+    function updateCountdown() {
+      const remainingTime = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+      countdownElement.textContent = remainingTime;
+
+      if (remainingTime > 0) {
+        requestAnimationFrame(updateCountdown);
+      } else {
+        if (adsManager) adsManager.stop();
+        endPreroll();
+      }
+    }
+
+    updateCountdown();
+  }
+
+  function onAdError() {
+    if (adsManager) adsManager.destroy();
+    endPreroll();
+  }
+
+  function showPrerollAd() {
+    document.getElementById('preroll-container').style.display = 'block';
+    if (typeof google !== 'undefined' && google.ima) {
+      initializeIMA();
+    } else {
+      endPreroll();
+    }
+  }
+
+  function endPreroll() {
+    if (adsManager) try { adsManager.destroy(); } catch {}
+    if (adsLoader) try { adsLoader.destroy(); } catch {}
+    if (adDisplayContainer) try { adDisplayContainer.destroy(); } catch {}
+    if (countdownInterval) clearInterval(countdownInterval);
+
+    document.getElementById('preroll-container').style.display = 'none';
+    if (dailymotionPlayer) {
+      dailymotionPlayer.play();
+    }
+  }
+
+  function closePopup() {
+    document.getElementById('email-popup').style.display = 'none';
+    localStorage.setItem('userRegistered', 'true');
+    startPlayback();
+  }
+
+  function startPlayback() {
+    showPrerollAd();
+  }
+
+  document.getElementById('email-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (document.getElementById('email-input').value && document.getElementById('cgu-checkbox').checked) {
+      document.getElementById('confirmation-message').style.display = 'block';
+      document.getElementById('submit-button').style.display = 'none';
+      document.getElementById('close-popup-button').style.display = 'block';
+      setTimeout(closePopup, 3000);
+    } else {
+      alert("Veuillez accepter les Conditions Générales d'Utilisation pour continuer.");
+    }
+  });
+
+  document.getElementById('close-popup-button').addEventListener('click', closePopup);
+
+  window.addEventListener('resize', resizeVideoContainer);
+
+  window.addEventListener('DOMContentLoaded', function () {
+    resizeVideoContainer();
+
+    const iframe = document.getElementById('dailymotion-player');
+    dailymotionPlayer = DM.player(iframe);
+
+    const isRegistered = localStorage.getItem('userRegistered') === 'true';
+
+    if (isRegistered) {
+      document.getElementById('email-popup').style.display = 'none';
+
+      const fakeButton = document.createElement('button');
+      fakeButton.style.display = 'none';
+      document.body.appendChild(fakeButton);
+      fakeButton.addEventListener('click', showPrerollAd);
+      fakeButton.click();
+    } else {
+      document.getElementById('email-popup').style.display = 'flex';
+    }
+  });
+</script>

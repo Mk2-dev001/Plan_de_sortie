@@ -1,0 +1,78 @@
+Objet : Présentation détaillée des projets en cours dans le repository
+
+Bonjour,
+
+Je vous présente une description détaillée des différents projets actuellement en développement :
+
+Agent
+- Outil IA sophistiqué pour le tri et l'analyse du serveur MK2+
+- Utilisation d'agents OpenAI intelligents pour l'optimisation des processus
+- Environnement de test et d'entraînement pour les agents OpenAI
+- Plateforme de développement et d'expérimentation des capacités d'IA
+
+Ai_Map
+- Outil intelligent de planification de sorties sur carte interactive
+- Données enrichies provenant de Cinego
+- Visualisation et analyse géographique des données
+- Interface front-end d'aide à la création de business plan
+
+CreateurContenue
+- Programme d'analyse approfondie des statistiques des créateurs de contenu
+- Système de background check automatisé via IA
+- Analyse en temps réel basée sur l'ensemble des données YouTube et Google
+- Surveillance complète de la présence en ligne des créateurs
+
+Curiosity/Institut/WordpressTC
+- Maintenance et refonte de sites web existants
+- Ajout de nouvelles fonctionnalités
+- Optimisation des performances
+
+Geocod
+- Programme de géocodage d'adresses via Google Maps
+- Conversion précise des adresses en coordonnées géographiques
+
+Privatisation
+- Maquette front-end pour un site de réservation de cinéma
+- Base de données complète des cinémas MK2
+
+Redaction_AI
+- Outil de rédaction d'articles IA inspiré du style des auteurs de Trois Couleurs
+- Entraîné sur l'ensemble de la base d'articles de Trois Couleurs
+- Système d'archivage intelligent avec recherche avancée par mots-clés (auteur, film, etc.)
+- Indexation et catégorisation automatique du contenu
+
+Scrap_Cinego et Otto
+- Outils de scraping de bases de données
+- Collecte et structuration automatisée des données
+
+Zappier Trois Couleurs
+- Automatisation de la publication d'articles
+- Intégration avec Google Drive
+- Système de détection et de traitement automatique des documents Word
+- Remplissage automatique des champs d'articles
+
+Maquette ADE
+- Développement d'une maquette e-commerce sur Shopify pour "Beer-Moshé"
+- Projet en cours de développement
+- Design et fonctionnalités adaptées aux besoins spécifiques de l'école
+
+Tests et Expérimentations
+- Évaluation de Cursor
+- Tests de Windsurf (pas fou)
+- Expérimentation a venir de OpenAI Codex
+- Tests de Terminal Claude (pas fou)
+
+Cette semaine : (jeudi/vendredi OFF)
+- Zappier : Automatisation et intégration
+- Articles WordPress Cannes : Création et publication
+- Maquette ADE Beer-Moshé
+- Optimisation de l'archivage : Amélioration du système et ajout des liens
+- Fix sur les résultats de stats des créateurs de contenu
+- Update Preroll pub Curiosity
+- Wordpress Ajout d'une page et sous page MK2+
+- Développement d'une multi-app regroupant les gros projet pour deployer sur des ordi non dev
+
+Je reste à votre disposition pour plus de détails sur chacun de ces projets ou pour discuter des priorités de développement.
+
+Cordialement,
+Pablo Peiro
