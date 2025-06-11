@@ -367,18 +367,18 @@ def analyser_contexte_geographique(description_projet: str):
         "2. Thème du film\n"
         "3. Type d'événement (avant-première, test, etc.)\n"
         "4. Contexte local (activités, industries, centres d'intérêt)\n\n"
-        "Retourne un JSON avec :\n"
-        "- regions : liste des régions suggérées\n"
-        "- justification : explication pour chaque région\n"
-        "- public_cible : description du public cible identifié\n"
-        "- facteurs_cles : liste des facteurs qui ont influencé le choix\n\n"
-        "Exemple de format de réponse :\n"
+        "Tu DOIS retourner un JSON valide avec EXACTEMENT cette structure :\n"
         "{\n"
-        '  "regions": ["Île-de-France", "Lyon", "Bordeaux"],\n'
-        '  "justification": "Ces régions ont une forte concentration de jeunes urbains et d\'activités liées au thème",\n'
-        '  "public_cible": "Jeunes adultes 18-35 ans, urbains, intéressés par le thème",\n'
-        '  "facteurs_cles": ["Population jeune", "Centres urbains", "Activités liées au thème"]\n'
-        "}"
+        '  "regions": ["région1", "région2", ...],\n'
+        '  "justification": "explication détaillée",\n'
+        '  "public_cible": "description du public",\n'
+        '  "facteurs_cles": ["facteur1", "facteur2", ...]\n'
+        "}\n\n"
+        "⚠️ IMPORTANT :\n"
+        "- Utilise UNIQUEMENT des guillemets doubles pour les chaînes\n"
+        "- Ne mets AUCUN texte avant ou après le JSON\n"
+        "- Assure-toi que le JSON est valide et complet\n"
+        "- Inclus TOUS les champs demandés\n"
     )
 
     try:
@@ -387,11 +387,39 @@ def analyser_contexte_geographique(description_projet: str):
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": description_projet}
-            ]
+            ],
+            response_format={"type": "json_object"}  # Force la réponse en JSON
         )
-        return json.loads(response.choices[0].message.content.strip())
+        
+        # Récupérer la réponse et s'assurer qu'elle est un JSON valide
+        raw_response = response.choices[0].message.content.strip()
+        
+        try:
+            data = json.loads(raw_response)
+            
+            # Vérifier que tous les champs requis sont présents
+            required_fields = ["regions", "justification", "public_cible", "facteurs_cles"]
+            missing_fields = [field for field in required_fields if field not in data]
+            
+            if missing_fields:
+                st.error(f"La réponse de l'IA manque des champs requis : {', '.join(missing_fields)}")
+                return None
+                
+            # Vérifier que les types sont corrects
+            if not isinstance(data["regions"], list):
+                data["regions"] = [data["regions"]]
+            if not isinstance(data["facteurs_cles"], list):
+                data["facteurs_cles"] = [data["facteurs_cles"]]
+                
+            return data
+            
+        except json.JSONDecodeError as e:
+            st.error(f"La réponse de l'IA n'est pas un JSON valide : {str(e)}")
+            st.error(f"Réponse brute : {raw_response}")
+            return None
+            
     except Exception as e:
-        st.error(f"Erreur lors de l'analyse du contexte : {e}")
+        st.error(f"Erreur lors de l'analyse du contexte : {str(e)}")
         return None
 
 # --- Interface Utilisateur Streamlit ---
@@ -423,40 +451,54 @@ with st.expander("ℹ️ Comment ça marche ?"):
     - Export Excel disponible
     """)
 
+# Initialisation des variables de session
+if 'contexte_analyse' not in st.session_state:
+    st.session_state.contexte_analyse = None
+if 'description_projet' not in st.session_state:
+    st.session_state.description_projet = ""
+
 # Première étape : Analyse du contexte
 st.subheader("🎯 Analyse du Contexte")
 description_projet = st.text_area(
     "Décrivez votre projet :",
-    placeholder="Ex: Film sur l'automobile par Inoxtag, public jeune, avant-première"
+    placeholder="Ex: Film sur l'automobile par Inoxtag, public jeune, avant-première",
+    value=st.session_state.description_projet
 )
 
-if description_projet:
+# Mettre à jour la description du projet dans la session
+if description_projet != st.session_state.description_projet:
+    st.session_state.description_projet = description_projet
+    st.session_state.contexte_analyse = None
+
+# Lancer l'analyse uniquement si nécessaire
+if description_projet and st.session_state.contexte_analyse is None:
     with st.spinner("🧠 Analyse du contexte par l'IA..."):
-        contexte = analyser_contexte_geographique(description_projet)
+        st.session_state.contexte_analyse = analyser_contexte_geographique(description_projet)
+
+# Afficher les résultats de l'analyse si disponibles
+if st.session_state.contexte_analyse:
+    st.success("✅ Analyse du contexte terminée !")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("**📊 Public cible identifié :**")
+        st.info(st.session_state.contexte_analyse.get("public_cible", "Non spécifié"))
         
-    if contexte:
-        st.success("✅ Analyse du contexte terminée !")
-        col1, col2 = st.columns(2)
+        st.markdown("**🎯 Facteurs clés :**")
+        for facteur in st.session_state.contexte_analyse.get("facteurs_cles", []):
+            st.markdown(f"- {facteur}")
+    
+    with col2:
+        st.markdown("**🗺️ Régions suggérées :**")
+        for region in st.session_state.contexte_analyse.get("regions", []):
+            st.markdown(f"- {region}")
         
-        with col1:
-            st.markdown("**📊 Public cible identifié :**")
-            st.info(contexte.get("public_cible", "Non spécifié"))
-            
-            st.markdown("**🎯 Facteurs clés :**")
-            for facteur in contexte.get("facteurs_cles", []):
-                st.markdown(f"- {facteur}")
-        
-        with col2:
-            st.markdown("**🗺️ Régions suggérées :**")
-            for region in contexte.get("regions", []):
-                st.markdown(f"- {region}")
-            
-            st.markdown("**💡 Justification :**")
-            st.info(contexte.get("justification", "Non spécifié"))
-        
-        st.markdown("---")
-        st.subheader("📝 Planification détaillée")
-        st.info("Maintenant que nous avons identifié les régions pertinentes, détaillez votre plan de diffusion.")
+        st.markdown("**💡 Justification :**")
+        st.info(st.session_state.contexte_analyse.get("justification", "Non spécifié"))
+    
+    st.markdown("---")
+    st.subheader("📝 Planification détaillée")
+    st.info("Maintenant que nous avons identifié les régions pertinentes, détaillez votre plan de diffusion.")
 
 # Deuxième étape : Planification détaillée
 query = st.text_input(

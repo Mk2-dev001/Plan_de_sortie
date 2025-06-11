@@ -333,6 +333,17 @@ st.markdown("""
         background: transparent !important;
     }
     </style>
+    <style>
+    /* Centrage vertical parfait de l'icône et du texte dans la colonne */
+    .app-icon-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 140px; /* Ajuste la hauteur minimale selon ton besoin */
+        height: 100%;
+    }
+    </style>
     """, unsafe_allow_html=True)
 
 # Titre principal
@@ -343,18 +354,22 @@ openai_api_key = st.secrets["openai_api_key"] if "openai_api_key" in st.secrets 
 
 if openai_api_key:
     st.markdown("<hr>", unsafe_allow_html=True)
-    # Affichage rapproché des icônes d'applications avec st.columns et st.image
-    cols = st.columns(5)
+    # Affichage des icônes d'applications avec st.columns et st.image
+    cols = st.columns(7)
     icons = [
         "assets/plandesortie.png",
         "assets/buissnessplan.png",
         "assets/Analyseurcreateurdecontenu.png",
         "assets/redactionIA.png",
-        "assets/archivageIA.png"
+        "assets/archivageIA.png",
+        "assets/planning.png",
+        "assets/revenucalculator.png"
     ]
     for col, icon in zip(cols, icons):
         with col:
+            st.markdown('<div class="app-icon-center">', unsafe_allow_html=True)
             st.image(icon, width=48)
+            st.markdown('</div>', unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center;'>Assistant IA</h3>", unsafe_allow_html=True)
     
     # Centrage de la chatbox au milieu
@@ -384,17 +399,40 @@ if openai_api_key:
 
             # System prompt for app suggestions
             system_prompt = (
-                "Tu es un assistant qui oriente l'utilisateur vers l'application la plus adaptée parmi : "
-                "AI Map, Business Plan, Créateur de Contenu, Rédaction IA, Archivage. "
-                "Réponds d'abord à la question, puis propose un bouton pour lancer l'app la plus pertinente. "
-                "Si aucune app ne correspond, dis-le simplement."
+                "Tu es un assistant IA intelligent et bienveillant qui aide les utilisateurs à choisir l'application la plus adaptée à leurs besoins. "
+                "Voici les applications disponibles et leurs fonctionnalités :\n\n"
+                "1. **AI Map** : Une application spécialisée dans la planification de sortie de films. "
+                "Elle permet de générer automatiquement un plan de sortie sur une carte "
+                "en analysant les meilleures stratégies de déploiement géographique en fonction du contexte.\n\n"
+                "2. **Business Plan** : Un outil complet pour créer et analyser des business plans, "
+                "Rédiger un business plan complet pour n'importe quel projet.\n\n"
+                "3. **Créateur de Contenu** : Un outil d'analyse et de vérification des créateurs de contenu. "
+                "Il permet d'obtenir des statistiques détaillées et de faire un background check sur n'importe quel créateur "
+                "(par exemple : Squeezie). L'application fournit des insights sur leur audience, leur engagement, "
+                "et d'autres métriques importantes.\n\n"
+                "4. **Rédaction IA** : Un assistant d'écriture intelligent qui aide à rédiger, "
+                "rédige des articles à la façon de n'importe quel auteur de Trois Couleurs.\n\n"
+                "5. **Archivage** : Un système de gestion documentaire intelligent pour organiser, "
+                "classer et retrouver facilement des documents importants.\n\n"
+                "6. **Planning** : Une application qui permet d'intégrer automatiquement des plannings générés par l'IA "
+                "directement dans Outlook Calendar, facilitant la gestion des emplois du temps et des rendez-vous.\n\n"
+                "7. **Revenue Calculator** : Un outil spécialisé pour calculer les revenus potentiels en fonction "
+                "d'un fichier Excel contenant les données des salles de cinéma, permettant d'optimiser les projections "
+                "financières et l'analyse des performances.\n\n"
+                "Pour chaque demande de l'utilisateur :\n"
+                "1. Analyse attentivement le besoin exprimé\n"
+                "2. Réponds de manière précise et utile à la question\n"
+                "3. Suggère l'application la plus pertinente en expliquant pourquoi elle correspond au besoin\n"
+                "4. Si aucune application ne correspond parfaitement, explique pourquoi et suggère la meilleure alternative\n"
+                "5. Sois toujours poli, professionnel et constructif dans tes réponses\n"
+                "6. IMPORTANT : Mets toujours les noms des applications en gras en utilisant la syntaxe markdown **nom de l'app**"
             )
 
             # Get assistant response using new OpenAI API
             client = openai.OpenAI(api_key=openai_api_key)
             messages = [{"role": "system", "content": system_prompt}] + st.session_state.messages
             response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4o",
                 messages=messages
             )
             assistant_reply = response.choices[0].message.content
@@ -405,34 +443,6 @@ if openai_api_key:
             # Display assistant response
             with st.chat_message("assistant", avatar="assets/agent.png"):
                 st.markdown(assistant_reply)
-
-            # Check for app suggestions and display launch button
-            last_reply = assistant_reply.lower()
-            if "ai map" in last_reply:
-                st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-                if st.button("🚀 Lancer AI Map", key="ai_map_suggested"):
-                    os.system("streamlit run Ai_Map/ai.py")
-                st.markdown('</div>', unsafe_allow_html=True)
-            elif "business plan" in last_reply:
-                st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-                if st.button("📊 Lancer Business Plan", key="business_plan_suggested"):
-                    os.system("streamlit run BuissnessPlan/business_plan_questionnaire.py")
-                st.markdown('</div>', unsafe_allow_html=True)
-            elif "créateur de contenu" in last_reply:
-                st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-                if st.button("🎨 Lancer Créateur de Contenu", key="content_creator_suggested"):
-                    os.system("streamlit run CreateurContenue/app.py")
-                st.markdown('</div>', unsafe_allow_html=True)
-            elif "rédaction ia" in last_reply:
-                st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-                if st.button("✍️ Lancer Rédaction IA", key="redaction_ia_suggested"):
-                    os.system("streamlit run Redaction_AI/app.py")
-                st.markdown('</div>', unsafe_allow_html=True)
-            elif "archivage" in last_reply:
-                st.markdown('<div class="apple-btn">', unsafe_allow_html=True)
-                if st.button("📁 Lancer Archivage", key="archive_suggested"):
-                    os.system("streamlit run Archivage/archive.py")
-                st.markdown('</div>', unsafe_allow_html=True)
 
 # Sidebar : Applications et historique
 with st.sidebar:
@@ -470,6 +480,20 @@ with st.sidebar:
         st.markdown('<div class="sidebar-btn">', unsafe_allow_html=True)
         if st.button("📁 Archivage", key="archive"):
             os.system("streamlit run Archivage/archive.py")
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Planning
+        st.image("assets/planning.png", use_container_width=True)
+        st.markdown('<div class="sidebar-btn">', unsafe_allow_html=True)
+        if st.button("📅 Planning", key="planning"):
+            os.system("streamlit run Planning/app.py")
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Revenue Calculator
+        st.image("assets/revenucalculator.png", use_container_width=True)
+        st.markdown('<div class="sidebar-btn">', unsafe_allow_html=True)
+        if st.button("💰 Revenue Calculator", key="revenue_calculator"):
+            os.system("streamlit run RevenueCalculator/app.py")
         st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown("---")
