@@ -74,7 +74,12 @@ def analyser_requete_ia(question: str):
         "🎯 Ton objectif : retourner une liste JSON valide de villes avec :\n"
         "- \"localisation\" : une ville en France,\n"
         "- \"nombre\" : nombre de spectateurs à atteindre,\n"
-        "- \"nombre_seances\" : (optionnel) nombre de séances prévues.\n\n"
+        "- \"nombre_seances\" : (optionnel) nombre de séances prévues,\n"
+        "- \"priorite_grandes_salles\" : (optionnel) true si l'utilisateur demande explicitement les plus grandes salles.\n\n"
+
+        "🎯 Si l'utilisateur demande les plus grandes salles :\n"
+        "- Mets \"priorite_grandes_salles\" à true\n"
+        "- Le nombre de spectateurs sera ignoré car on prendra les plus grandes salles disponibles\n\n"
 
         "🎯 Si l'utilisateur précise un nombre de séances et une fourchette de spectateurs (ex : entre 30 000 et 40 000) :\n"
         "- Choisis un total réaliste dans cette fourchette,\n"
@@ -102,7 +107,7 @@ def analyser_requete_ia(question: str):
         "]\n\n"
 
         "💡 Le résultat doit être une **liste JSON strictement valide** :\n"
-        "- Format : [{\"localisation\": \"Paris\", \"nombre\": 1000, \"nombre_seances\": 10}]\n"
+        "- Format : [{\"localisation\": \"Paris\", \"nombre\": 1000, \"nombre_seances\": 10, \"priorite_grandes_salles\": true}]\n"
         "- Utilise des guillemets doubles,\n"
         "- Mets des virgules entre les paires clé/valeur,\n"
         "- Ne retourne **aucun texte en dehors** du JSON.\n\n"
@@ -141,18 +146,32 @@ def analyser_requete_ia(question: str):
                 if 'nombre_seances' in data:
                     try: result[0]['nombre_seances'] = int(data['nombre_seances'])
                     except (ValueError, TypeError): pass
+                if 'priorite_grandes_salles' in data:
+                    result[0]['priorite_grandes_salles'] = bool(data['priorite_grandes_salles'])
                 return result, raw_response
             elif isinstance(data, list):
                 valid_data = []
                 all_valid = True
                 for item in data:
-                    if isinstance(item, dict) and 'localisation' in item and 'nombre' in item:
-                        try: item['nombre'] = int(item['nombre'])
-                        except (ValueError, TypeError): item['nombre'] = 0; all_valid = False
+                    if isinstance(item, dict) and 'localisation' in item:
+                        # Si priorite_grandes_salles est true, on peut ignorer le nombre
+                        if item.get('priorite_grandes_salles', False):
+                            item['nombre'] = 0  # On met 0 car il sera ignoré
+                        elif 'nombre' not in item:
+                            all_valid = False
+                            continue
+                        else:
+                            try: item['nombre'] = int(item['nombre'])
+                            except (ValueError, TypeError): item['nombre'] = 0; all_valid = False
+                        
                         if 'nombre_seances' in item:
                             try: item['nombre_seances'] = int(item['nombre_seances'])
                             except (ValueError, TypeError):
                                 if 'nombre_seances' in item: del item['nombre_seances']
+                        
+                        if 'priorite_grandes_salles' in item:
+                            item['priorite_grandes_salles'] = bool(item['priorite_grandes_salles'])
+                        
                         valid_data.append(item)
                     else:
                         all_valid = False
@@ -255,7 +274,7 @@ def geo_localisation(adresse: str):
         st.error(f"❌ Erreur inattendue lors du géocodage de '{adresse_requete}': {e}")
         return None
 
-def trouver_cinemas_proches(localisation_cible: str, spectateurs_voulus: int, nombre_de_salles_voulues: int, rayon_km: int = 50):
+def trouver_cinemas_proches(localisation_cible: str, spectateurs_voulus: int, nombre_de_salles_voulues: int, rayon_km: int = 50, priorite_grandes_salles: bool = False):
     """
     Trouve des cinémas proches d'une localisation cible, pour un nombre EXACT de salles.
     Affiche les warnings/infos directement dans Streamlit.
@@ -276,8 +295,7 @@ def trouver_cinemas_proches(localisation_cible: str, spectateurs_voulus: int, no
             continue
         if distance > rayon_km: continue
         salles = cinema.get("salles", [])
-        # Ne garder que les 2 meilleures salles (par capacité décroissante)
-        # Nettoyage : on filtre les salles avec une capacité convertible en int
+        # Ne garder que les meilleures salles (par capacité décroissante)
         salles_valides = []
         for s in salles:
             try:
@@ -288,7 +306,7 @@ def trouver_cinemas_proches(localisation_cible: str, spectateurs_voulus: int, no
             except (ValueError, TypeError):
                 continue
 
-        # Tri et limitation à 2 salles max par cinéma
+        # Tri et limitation à 1 salle max par cinéma
         salles = sorted(salles_valides, key=lambda s: s["capacite"], reverse=True)[:1]
         for salle in salles:
             try: capacite = int(salle.get("capacite", 0))
@@ -306,7 +324,12 @@ def trouver_cinemas_proches(localisation_cible: str, spectateurs_voulus: int, no
         st.warning(f"Aucune salle trouvée pour '{localisation_cible}' dans un rayon de {rayon_km} km.")
         return []
 
-    salles_eligibles.sort(key=lambda x: (x["distance_km"], -x["capacite"]))
+    # Si priorité aux grandes salles, on trie uniquement par capacité
+    if priorite_grandes_salles:
+        salles_eligibles.sort(key=lambda x: -x["capacite"])
+    else:
+        # Sinon on trie par distance puis capacité
+        salles_eligibles.sort(key=lambda x: (x["distance_km"], -x["capacite"]))
 
     if len(salles_eligibles) < nombre_de_salles_voulues:
          st.warning(f"⚠️ Seulement {len(salles_eligibles)} salle(s) trouvée(s) pour '{localisation_cible}' (au lieu de {nombre_de_salles_voulues} demandées).")
@@ -555,17 +578,24 @@ if query:
             for instruction in instructions_ia:
                 loc = instruction.get('localisation')
                 num_spectateurs = instruction.get('nombre')
+                priorite_grandes_salles = instruction.get('priorite_grandes_salles', False)
                 if loc and isinstance(num_spectateurs, int) and num_spectateurs >= 0:
                     st.write(f"**Recherche pour : {loc}**")
                     rayon_recherche = rayons_par_loc.get(loc, 50)
                     if "nombre_seances" in instruction and isinstance(instruction["nombre_seances"], int) and instruction["nombre_seances"] > 0:
                         nombre_salles_a_trouver = instruction["nombre_seances"]
-                        st.info(f"   -> Objectif : trouver {nombre_salles_a_trouver} salle(s) dans {rayon_recherche} km (cible: {num_spectateurs} spect.).")
+                        if priorite_grandes_salles:
+                            st.info(f"   -> Objectif : trouver les {nombre_salles_a_trouver} plus grandes salles dans {rayon_recherche} km.")
+                        else:
+                            st.info(f"   -> Objectif : trouver {nombre_salles_a_trouver} salle(s) dans {rayon_recherche} km (cible: {num_spectateurs} spect.).")
                     else:
                         nombre_salles_a_trouver = 1
-                        st.info(f"   -> Objectif : trouver {nombre_salles_a_trouver} salle (défaut) dans {rayon_recherche} km (cible: {num_spectateurs} spect.).")
+                        if priorite_grandes_salles:
+                            st.info(f"   -> Objectif : trouver la plus grande salle dans {rayon_recherche} km.")
+                        else:
+                            st.info(f"   -> Objectif : trouver {nombre_salles_a_trouver} salle (défaut) dans {rayon_recherche} km (cible: {num_spectateurs} spect.).")
                     total_seances_estimees_ou_demandees += nombre_salles_a_trouver
-                    resultats_cinemas = trouver_cinemas_proches(loc, num_spectateurs, nombre_salles_a_trouver, rayon_recherche)
+                    resultats_cinemas = trouver_cinemas_proches(loc, num_spectateurs, nombre_salles_a_trouver, rayon_recherche, priorite_grandes_salles)
                     groupe_actuel = {"localisation": loc, "resultats": resultats_cinemas, "nombre_salles_demandees": nombre_salles_a_trouver}
                     liste_groupes_resultats.append(groupe_actuel)
                     if resultats_cinemas:
