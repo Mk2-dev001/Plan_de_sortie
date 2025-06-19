@@ -202,6 +202,9 @@ def process_word_document(file):
         # Créer un nouveau document
         new_doc = docx.Document()
         
+        # Ensemble pour suivre les hyperliens déjà utilisés
+        used_hyperlinks = set()
+        
         # Traiter chaque paragraphe
         for i, para in enumerate(doc.paragraphs):
             logging.debug(f"Traitement du paragraphe {i+1}")
@@ -226,15 +229,28 @@ def process_word_document(file):
                 sorted_entities = sorted(entities, key=lambda x: current_text.find(x["text"]))
                 
                 for entity in sorted_entities:
-                    pos = current_text.find(entity["text"], last_pos)
-                    if pos != -1:
-                        # Ajouter le texte avant l'entité
-                        if pos > last_pos:
-                            new_para.add_run(current_text[last_pos:pos])
-                        
-                        # Ajouter l'hyperlien
-                        add_hyperlink(new_para, entity["text"], entity["url"])
-                        last_pos = pos + len(entity["text"])
+                    # Vérifier si l'hyperlien a déjà été utilisé
+                    hyperlink_key = f"{entity['text']}_{entity['url']}"
+                    if hyperlink_key not in used_hyperlinks:
+                        pos = current_text.find(entity["text"], last_pos)
+                        if pos != -1:
+                            # Ajouter le texte avant l'entité
+                            if pos > last_pos:
+                                new_para.add_run(current_text[last_pos:pos])
+                            
+                            # Ajouter l'hyperlien
+                            add_hyperlink(new_para, entity["text"], entity["url"])
+                            # Marquer l'hyperlien comme utilisé
+                            used_hyperlinks.add(hyperlink_key)
+                            last_pos = pos + len(entity["text"])
+                    else:
+                        # Si l'hyperlien a déjà été utilisé, ajouter le texte normalement
+                        pos = current_text.find(entity["text"], last_pos)
+                        if pos != -1:
+                            if pos > last_pos:
+                                new_para.add_run(current_text[last_pos:pos])
+                            new_para.add_run(entity["text"])
+                            last_pos = pos + len(entity["text"])
                 
                 # Ajouter le reste du texte
                 if last_pos < len(current_text):
