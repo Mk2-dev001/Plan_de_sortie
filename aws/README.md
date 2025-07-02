@@ -1,144 +1,148 @@
-# Scripts de Test S3 Access Points AWS
+# 🚀 Script de Test Megascope S3/CloudFront
 
-Ce projet contient des scripts Python pour tester et diagnostiquer les points d'accès S3 AWS.
+Ce script permet de tester les fonctionnalités d'upload et de récupération d'images via AWS S3 et CloudFront pour le projet Megascope.
 
-## 📁 Fichiers
+## 📋 Prérequis
 
-- `test.py` - Script principal de test des points d'accès S3
-- `diagnostic_iam.py` - Script de diagnostic des permissions IAM
-- `README.md` - Ce fichier de documentation
+1. **Python 3.7+** installé
+2. **Compte AWS** avec accès S3 et CloudFront
+3. **Bucket S3** configuré (`megascope-media`)
+4. **Distribution CloudFront** configurée
+
+## 🔧 Installation
+
+1. **Installer les dépendances :**
+```bash
+pip install -r requirements.txt
+```
+
+2. **Configurer les credentials AWS :**
+   - Remplacer `VOTRE_ACCESS_KEY_ID` et `VOTRE_SECRET_ACCESS_KEY` dans le script
+   - Ou utiliser les variables d'environnement AWS
+
+3. **Configurer l'URL CloudFront :**
+   - Remplacer `VOTRE_URL_CLOUDFRONT` par votre URL CloudFront
+
+## 🧪 Tests Disponibles
+
+### Test 1 : Upload d'Image (POST)
+```python
+upload_image('mon-image.jpg', 'images/produit-123.jpg')
+```
+- Upload une image locale vers S3
+- Retourne les URLs S3 et CloudFront
+
+### Test 2 : Récupération d'Image (GET)
+```python
+get_image_info('images/produit-123.jpg')
+```
+- Vérifie l'existence de l'image dans S3
+- Teste l'accessibilité via CloudFront
+- Retourne les métadonnées
+
+### Test 3 : Liste des Images
+```python
+list_images('images/')
+```
+- Liste toutes les images dans un dossier S3
+- Affiche les URLs CloudFront
 
 ## 🚀 Utilisation
 
-### Prérequis
-
-1. **Python 3.6+** installé
-2. **AWS CLI** configuré avec vos credentials
-3. **boto3** installé : `pip install boto3`
-
-### Configuration AWS
-
-Assurez-vous que vos credentials AWS sont configurés :
-
-```bash
-aws configure
-```
-
-Ou via les variables d'environnement :
-```bash
-export AWS_ACCESS_KEY_ID=votre_access_key
-export AWS_SECRET_ACCESS_KEY=votre_secret_key
-export AWS_DEFAULT_REGION=eu-west-1
-```
-
-### Test du Point d'Accès S3
-
-1. **Modifiez l'ARN** dans `test.py` (ligne 250) :
+### Lancement des tests automatiques :
 ```python
-ACCESS_POINT_ARN = "arn:aws:s3:eu-west-1:VOTRE_COMPTE:accesspoint/VOTRE_POINT_ACCES"
+# Dans le script, décommenter :
+run_tests()
 ```
 
-2. **Lancez le test** :
+### Utilisation manuelle :
+```python
+# Upload d'une image
+result = upload_image('./mon-produit.jpg', 'images/produit-456.jpg')
+if result['success']:
+    print(f"Image uploadée: {result['cloudfront_url']}")
+
+# Vérifier une image
+info = get_image_info('images/produit-456.jpg')
+if info['success']:
+    print(f"Image accessible: {info['accessible']}")
+
+# Lister les images
+images = list_images('images/')
+```
+
+## 📁 Structure S3
+
+Le script utilise la structure suivante :
+```
+megascope-media/
+└── media/
+    └── images/
+        ├── produit-123.jpg
+        ├── produit-456.jpg
+        └── ...
+```
+
+## 🔍 Configuration AWS
+
+### Variables d'environnement (recommandé) :
 ```bash
-python test.py
+export AWS_ACCESS_KEY_ID="votre_access_key"
+export AWS_SECRET_ACCESS_KEY="votre_secret_key"
+export AWS_DEFAULT_REGION="eu-west-1"
 ```
 
-Le script effectuera les tests suivants :
-- ✅ Vérification des credentials AWS
-- 🔑 Test des permissions S3 Control
-- 🔍 Vérification de l'existence du point d'accès
-- 📋 Test GET (list objects)
-- 📤 Test PUT (upload d'objet)
-- 📥 Test GET (lecture d'objet)
-- 🗑️ Nettoyage (suppression de l'objet de test)
-
-### Diagnostic IAM
-
-Si vous rencontrez des erreurs "Access Denied", utilisez le script de diagnostic :
-
-```bash
-python diagnostic_iam.py
-```
-
-Ce script vous aidera à :
-- 👤 Identifier votre utilisateur AWS actuel
-- 📋 Lister vos politiques IAM
-- 👥 Vérifier les politiques de vos groupes
-- 💡 Suggérer les permissions nécessaires
-
-## 🔧 Résolution des Problèmes
-
-### Erreur "Access Denied"
-
-**Causes possibles :**
-1. Credentials AWS non configurées ou invalides
-2. Utilisateur dans le mauvais compte AWS
-3. Permissions IAM insuffisantes
-4. Point d'accès inexistant ou dans la mauvaise région
-
-**Solutions :**
-1. Vérifiez vos credentials : `aws sts get-caller-identity`
-2. Contactez votre administrateur AWS
-3. Vérifiez que vous êtes dans le bon compte (488643426355)
-4. Vérifiez que le point d'accès existe dans eu-west-1
-
-### Permissions IAM Requises
-
-Votre utilisateur AWS doit avoir au minimum ces permissions :
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:GetAccessPoint",
-        "s3:ListAccessPoints"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:GetObject",
-        "s3:PutObject",
-        "s3:DeleteObject",
-        "s3:ListBucket"
-      ],
-      "Resource": [
-        "arn:aws:s3:eu-west-1:488643426355:accesspoint/accesspoint-megascope",
-        "arn:aws:s3:eu-west-1:488643426355:accesspoint/accesspoint-megascope/*"
-      ]
-    }
-  ]
+### Ou dans le script :
+```python
+AWS_CONFIG = {
+    'aws_access_key_id': 'VOTRE_ACCESS_KEY_ID',
+    'aws_secret_access_key': 'VOTRE_SECRET_ACCESS_KEY',
+    'region_name': 'eu-west-1'
 }
 ```
 
-## 📊 Interprétation des Résultats
+## 🛠️ Fonctionnalités
 
-### Tests Réussis ✅
-- Tous les tests passent : Votre point d'accès fonctionne correctement
-- Certains tests échouent : Vérifiez les permissions spécifiques
+- ✅ Upload automatique avec détection MIME
+- ✅ Optimisation coût (StorageClass STANDARD_IA)
+- ✅ Test d'accessibilité CloudFront
+- ✅ Gestion d'erreurs complète
+- ✅ Création d'image de test automatique
+- ✅ Listing avec métadonnées
 
-### Tests Échoués ❌
-- **Credentials** : Reconfigurez vos credentials AWS
-- **S3 Control** : Demandez les permissions s3:ListAccessPoints
-- **Point d'accès** : Vérifiez l'ARN et l'existence du point d'accès
-- **GET/PUT** : Vérifiez les permissions sur le bucket sous-jacent
+## 📝 Exemples de Sortie
 
-## 🆘 Support
+```
+🔄 Upload de test-image.jpg vers S3...
+✅ Upload réussi!
+📍 S3 URL: https://megascope-media.s3.eu-west-1.amazonaws.com/media/images/test-produit-123.jpg
+🌐 CloudFront URL: https://votre-url.cloudfront.net/images/test-produit-123.jpg
 
-Si vous rencontrez des problèmes :
+🔄 Vérification de l'image images/test-produit-123.jpg...
+✅ Image trouvée dans S3:
+📏 Taille: 1024 bytes
+📅 Dernière modification: 2024-01-15 10:30:00
+🏷️ Type: image/jpeg
+✅ CloudFront accessible!
+```
 
-1. Lancez d'abord le diagnostic IAM : `python diagnostic_iam.py`
-2. Vérifiez les logs détaillés du script de test
-3. Contactez votre administrateur AWS avec les informations du diagnostic
-4. Vérifiez la documentation AWS sur les S3 Access Points
+## ⚠️ Notes Importantes
 
-## 📝 Notes
+1. **Sécurité** : Ne jamais commiter les credentials AWS dans le code
+2. **Permissions** : L'utilisateur AWS doit avoir les permissions S3 et CloudFront
+3. **Région** : Vérifier que la région correspond à votre configuration
+4. **Bucket** : Le bucket `megascope-media` doit exister et être accessible
 
-- Les scripts sont conçus pour la région `eu-west-1`
-- Modifiez la région dans le code si nécessaire
-- Les objets de test sont automatiquement supprimés après les tests
-- Les scripts incluent des messages d'aide détaillés en français 
+## 🐛 Dépannage
+
+### Erreur "Access Denied"
+- Vérifier les permissions AWS
+- Vérifier que le bucket existe
+
+### Erreur "NoSuchBucket"
+- Vérifier le nom du bucket
+- Vérifier la région
+
+### Erreur CloudFront
+- Vérifier l'URL CloudFront
+- Vérifier la configuration de la distribution 
