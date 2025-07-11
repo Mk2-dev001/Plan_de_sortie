@@ -1,0 +1,27 @@
+{
+  "google_drive": {
+    "credentials_file": "credentials.json",
+    "token_file": "token.json",
+    "folder_name": "OUTBOX",
+    "scopes": ["https://www.googleapis.com/auth/drive.readonly"]
+  },
+  "wordpress": {
+    "site_url": "https://votre-site.com",
+    "username": "votre_username",
+    "password": "votre_password",
+    "api_endpoint": "/wp-json/wp/v2/posts"
+  },
+  "monitoring": {
+    "check_interval": 300,
+    "max_file_size": 10485760
+  },
+  "content_processing": {
+    "enable_hyperlinks": true,
+    "save_processed_documents": true,
+    "supported_formats": [
+      "application/vnd.google-apps.document",
+      "text/plain",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ]
+  }
+} 
