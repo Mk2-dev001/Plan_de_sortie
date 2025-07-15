@@ -23,5 +23,11 @@
       "text/plain",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     ]
+  },
+  "seo": {
+    "enable_rank_math": true,
+    "default_seo_score": 60,
+    "default_robots": "index,follow",
+    "auto_generate_meta_description": true
   }
 } 

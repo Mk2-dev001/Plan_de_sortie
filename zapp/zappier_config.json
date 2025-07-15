@@ -29,8 +29,13 @@
     ],
     "default_category": "Non classé",
     "auto_create_categories": true,
-    "auto_create_tags": true,
-    "seo_plugin_support": true
+    "auto_create_tags": true
+  },
+  "seo": {
+    "enable_rank_math": true,
+    "default_seo_score": 60,
+    "default_robots": "index,follow",
+    "auto_generate_meta_description": true
   },
   "categories_mapping": {
     "Critiques": 1,

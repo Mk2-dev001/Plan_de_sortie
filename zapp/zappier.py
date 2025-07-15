@@ -261,44 +261,21 @@ def process_word_document_with_hyperlinks(file_content):
             doc_text = para.text
             
             if doc_text.strip():
-                # NE PAS traiter les paragraphes qui contiennent des métadonnées
-                doc_text_stripped = doc_text.strip().upper()
-                if (doc_text_stripped.startswith('TITRE :') or 
-                    doc_text_stripped.startswith('CATEGORIE :') or 
-                    doc_text_stripped.startswith('TAGS :') or 
-                    doc_text_stripped.startswith('AUTEUR :') or 
-                    doc_text_stripped.startswith('SEO_KEYWORD :') or 
-                    doc_text_stripped.startswith('EXCERPT :') or 
-                    doc_text_stripped.startswith('CONTENU :')):
-                    # C'est une métadonnée, la copier telle quelle SANS AUCUN TRAITEMENT
-                    new_para.add_run(doc_text)
-                    continue
-                
-                # Seulement analyser avec GPT si ce n'est PAS une métadonnée
                 entities = analyze_text_with_gpt(doc_text, wp_db, aggressive_mode=True)
                 current_text = doc_text
                 last_pos = 0
                 sorted_entities = sorted(entities, key=lambda x: current_text.find(x["text"]))
                 
-                # Préserver le texte original et ajouter les hyperliens par-dessus
-                # Au lieu de remplacer le texte, on va créer des hyperliens qui préservent le texte
-                current_pos = 0
-                
                 for entity in sorted_entities:
-                    pos = current_text.find(entity["text"], current_pos)
+                    pos = current_text.find(entity["text"], last_pos)
                     if pos != -1:
-                        # Ajouter le texte avant l'entité
-                        if pos > current_pos:
-                            new_para.add_run(current_text[current_pos:pos])
-                        
-                        # Créer un hyperlien qui préserve le texte original
+                        if pos > last_pos:
+                            new_para.add_run(current_text[last_pos:pos])
                         add_hyperlink(new_para, entity["text"], entity["url"])
-                        
-                        current_pos = pos + len(entity["text"])
+                        last_pos = pos + len(entity["text"])
                 
-                # Ajouter le reste du texte
-                if current_pos < len(current_text):
-                    new_para.add_run(current_text[current_pos:])
+                if last_pos < len(current_text):
+                    new_para.add_run(current_text[last_pos:])
         
         # Sauvegarder le nouveau document
         output_filename = f"processed_{uuid.uuid4()}.docx"
@@ -627,59 +604,85 @@ class GoogleDriveToWordPress:
         return mime_type in supported_formats
     
     def parse_content_format(self, content: str) -> Dict:
-        """Parse le contenu selon le format spécifique avec métadonnées - FILTRE LES MÉTADONNÉES DU CONTENU FINAL"""
+        """Parse le contenu selon le format spécifique avec métadonnées - PRÉSERVE TOUT LE CONTENU ORIGINAL"""
         parsed = {}
         lines = content.split('\n')
         
-        # Extraire les métadonnées et construire le contenu filtré
-        content_lines = []
-        in_content_section = False
+        # Sauvegarder le contenu original complet
+        original_content = content
+        
+        # Extraire les métadonnées sans modifier le contenu
+        metadata_lines = []
+        content_started = False
         
         for line in lines:
-            line_stripped = line.strip()
+            line_original = line  # Garder la ligne originale
+            line = line.strip()
             
-            # Détecte les sections par leurs préfixes
-            if line_stripped.upper().startswith('TITRE :'):
-                # Extraire le titre - tout ce qui suit "TITRE :"
-                title_part = line_stripped[7:].strip()  # Enlever "TITRE :"
+            # Détecte les sections par leurs préfixes (plus flexible)
+            if line.upper().startswith('TITRE :'):
+                # Gérer les cas où le titre contient des caractères spéciaux
+                title_part = line.replace('TITRE :', '').replace('Titre :', '').strip()
                 if title_part:
                     parsed['titre'] = title_part
-            elif line_stripped.upper().startswith('CATEGORIE :'):
-                category_part = line_stripped[11:].strip()  # Enlever "CATEGORIE :"
+                metadata_lines.append(line_original)
+            elif line.upper().startswith('CATEGORIE :'):
+                category_part = line.replace('CATEGORIE :', '').replace('Catégorie :', '').strip()
                 if category_part:
                     parsed['categorie'] = category_part
-            elif line_stripped.upper().startswith('TAGS :'):
-                tags_part = line_stripped[6:].strip()  # Enlever "TAGS :"
+                metadata_lines.append(line_original)
+            elif line.upper().startswith('TAGS :'):
+                tags_part = line.replace('TAGS :', '').replace('Tags :', '').strip()
                 if tags_part:
                     parsed['tags'] = tags_part
-            elif line_stripped.upper().startswith('AUTEUR :'):
-                author_part = line_stripped[8:].strip()  # Enlever "AUTEUR :"
+                metadata_lines.append(line_original)
+            elif line.upper().startswith('AUTEUR :'):
+                author_part = line.replace('AUTEUR :', '').replace('Auteur :', '').strip()
                 if author_part:
                     parsed['auteur'] = author_part
-            elif line_stripped.upper().startswith('SEO_KEYWORD :'):
-                seo_part = line_stripped[13:].strip()  # Enlever "SEO_KEYWORD :"
+                metadata_lines.append(line_original)
+            elif line.upper().startswith('SEO_KEYWORD :'):
+                seo_part = line.replace('SEO_KEYWORD :', '').replace('Seo_keyword :', '').strip()
                 if seo_part:
                     parsed['seo_keyword'] = seo_part
-            elif line_stripped.upper().startswith('EXCERPT :'):
-                excerpt_part = line_stripped[9:].strip()  # Enlever "EXCERPT :"
+                metadata_lines.append(line_original)
+            elif line.upper().startswith('EXCERPT :'):
+                excerpt_part = line.replace('EXCERPT :', '').replace('Excerpt :', '').strip()
                 if excerpt_part:
                     parsed['excerpt'] = excerpt_part
-            elif line_stripped.upper().startswith('CONTENU :'):
-                in_content_section = True
+                metadata_lines.append(line_original)
+            elif line.upper().startswith('CONTENU :'):
+                metadata_lines.append(line_original)
+                content_started = True
             else:
-                # Si on est dans la section CONTENU, ajouter la ligne au contenu
-                if in_content_section:
-                    content_lines.append(line)
+                # Toute ligne qui n'est pas une métadonnée fait partie du contenu
+                if content_started or not any(line.upper().startswith(prefix) for prefix in ['TITRE :', 'CATEGORIE :', 'TAGS :', 'AUTEUR :', 'SEO_KEYWORD :', 'EXCERPT :']):
+                    # Si on a trouvé des métadonnées, on garde tout le reste comme contenu
+                    if parsed:  # Si on a déjà trouvé des métadonnées
+                        break
+                    else:
+                        # Si pas de métadonnées, tout est contenu
+                        pass
         
-        # Construire le contenu final (sans les métadonnées)
-        if content_lines:
-            parsed['contenu'] = '\n'.join(content_lines).strip()
-        else:
-            parsed['contenu'] = ""
+        # IMPORTANT: Utiliser le contenu original complet
+        parsed['contenu'] = original_content
         
-        # Valeurs par défaut pour les métadonnées manquantes
+        # Nettoyer le titre si nécessaire (sans modifier le contenu)
+        if parsed.get('titre'):
+            title = parsed['titre']
+            if title.startswith(':') or title.startswith('"'):
+                title = title.lstrip(':"').strip()
+            if title.endswith('"'):
+                title = title.rstrip('"').strip()
+            parsed['titre'] = title
+        
+        # Valeurs par défaut pour les métadonnées manquantes (sans toucher au contenu)
         if not parsed.get('titre'):
             parsed['titre'] = "Sans titre"
+        
+        # Le contenu est toujours préservé intégralement
+        if not parsed.get('contenu'):
+            parsed['contenu'] = original_content
         
         return parsed
     
@@ -694,7 +697,6 @@ class GoogleDriveToWordPress:
             # Supprimer les balises HTML pour extraire le texte brut
             text_content = re.sub(r'<[^>]+>', '', content)
             text_content = re.sub(r'&nbsp;', ' ', text_content)
-            
             # Parse le contenu selon le format spécifique
             parsed_data = self.parse_content_format(text_content)
             
@@ -705,13 +707,11 @@ class GoogleDriveToWordPress:
             parsed_data = self.parse_content_format(content)
         
         # Traiter le contenu avec des hyperliens automatiques si activé
-        # MAIS seulement sur le contenu principal, pas sur les métadonnées
         if self.config.get("content_processing", {}).get("enable_hyperlinks", False):
             try:
                 wp_db = load_wordpress_db()
                 if wp_db:
                     # Analyser le contenu pour ajouter des hyperliens
-                    # IMPORTANT: Ne traiter que le contenu principal, pas les métadonnées
                     content_with_links = self.add_hyperlinks_to_content(parsed_data['contenu'], wp_db)
                     parsed_data['contenu'] = content_with_links
                     is_html_content = True
@@ -787,19 +787,6 @@ class GoogleDriveToWordPress:
                         text_content = re.sub(r'<[^>]+>', '', part)
                         text_content = re.sub(r'&nbsp;', ' ', text_content)
                         
-                        # NE PAS traiter les paragraphes qui contiennent des métadonnées
-                        text_stripped = text_content.strip().upper()
-                        if (text_stripped.startswith('TITRE :') or 
-                            text_stripped.startswith('CATEGORIE :') or 
-                            text_stripped.startswith('TAGS :') or 
-                            text_stripped.startswith('AUTEUR :') or 
-                            text_stripped.startswith('SEO_KEYWORD :') or 
-                            text_stripped.startswith('EXCERPT :') or 
-                            text_stripped.startswith('CONTENU :')):
-                            # C'est une métadonnée, la laisser PARFAITEMENT INTACTE
-                            result_parts.append(part)
-                            continue
-                        
                         # Analyser ce paragraphe
                         entities = analyze_text_with_gpt(text_content, wp_db, aggressive_mode=True)
                         
@@ -832,10 +819,9 @@ class GoogleDriveToWordPress:
                     
                     # Éviter de créer des liens dans des liens existants
                     if f'<a href="{url}">{text}</a>' not in result_content:
-                        # Créer un lien HTML qui préserve le texte original
+                        # Remplacer le texte par un lien HTML - préservation du texte original
                         link_html = f'<a href="{url}" target="_blank">{text}</a>'
                         # Utiliser une méthode de remplacement qui préserve le contenu
-                        # IMPORTANT: Le texte original est préservé dans le lien HTML
                         result_content = result_content.replace(text, link_html)
                 
                 return result_content

@@ -8,7 +8,7 @@ Un script Python qui surveille automatiquement un dossier Google Drive et crée 
 - 📝 **Parsing intelligent** : Extrait automatiquement les métadonnées des fichiers Word
 - 🔗 **Hyperliens automatiques** : Ajoute automatiquement des liens vers les articles existants
 - 🏷️ **Gestion des catégories et tags** : Crée automatiquement les catégories et tags manquants
-- 📊 **Métadonnées SEO** : Support des mots-clés SEO et métadonnées personnalisées
+- 📊 **Métadonnées SEO Rank Math** : Support complet des métadonnées Rank Math (mot-clé principal, score SEO, robots, meta description, etc.)
 - 🔐 **Authentification sécurisée** : OAuth2 pour Google Drive et JWT pour WordPress
 - 📋 **Suivi des fichiers traités** : Évite le retraitement des fichiers déjà traités
 - 💾 **Sauvegarde des documents traités** : Sauvegarde les versions avec hyperliens dans Google Drive
@@ -79,7 +79,7 @@ Damien Leblanc
 - **CATEGORIE** : La catégorie de l'article (sera créée automatiquement si elle n'existe pas)
 - **TAGS** : Liste de tags séparés par des virgules
 - **AUTEUR** : Nom de l'auteur de l'article
-- **SEO_KEYWORD** : Mot-clé principal pour le SEO
+- **SEO_KEYWORD** : Mot-clé principal pour Rank Math (sera automatiquement configuré dans Rank Math)
 - **EXCERPT** : Extrait/résumé de l'article
 - **CONTENU** : Le contenu principal de l'article
 
@@ -173,13 +173,43 @@ Le script peut automatiquement :
 - Créer de nouveaux tags si ils n'existent pas
 - Utiliser les catégories existantes
 
-## Métadonnées WordPress
+## Métadonnées WordPress et Rank Math
 
 Le script ajoute automatiquement :
+
+### Métadonnées générales
 - Métadonnées de source (fichier original, ID, etc.)
 - Informations d'auteur
-- Mots-clés SEO
 - Horodatage de modification
+
+### Métadonnées Rank Math SEO
+- **Mot-clé principal** (`rank_math_focus_keyword`)
+- **Score SEO** (`rank_math_seo_score`) - configurable (défaut: 60/100)
+- **Robots** (`rank_math_robots_advanced`) - configurable (défaut: index,follow)
+- **URL canonique** (`rank_math_robots_canonical`)
+- **Meta description** (`rank_math_description`) - générée automatiquement depuis l'extrait
+- **Titre SEO** (`rank_math_title`) - utilise le titre de l'article
+- **Type Schema.org** (`rank_math_schema_type`) - défini comme "Article"
+
+### Configuration SEO
+
+Dans `zappier_config.json`, vous pouvez configurer les options SEO :
+
+```json
+{
+  "seo": {
+    "enable_rank_math": true,
+    "default_seo_score": 60,
+    "default_robots": "index,follow",
+    "auto_generate_meta_description": true
+  }
+}
+```
+
+- `enable_rank_math` : Active/désactive le support Rank Math
+- `default_seo_score` : Score SEO par défaut (0-100)
+- `default_robots` : Instructions pour les robots d'indexation
+- `auto_generate_meta_description` : Génère automatiquement la meta description depuis l'extrait
 
 ## Logs et débogage
 
@@ -198,6 +228,40 @@ Niveaux de log :
 - Les mots de passe ne sont pas stockés en clair
 - Connexions HTTPS pour WordPress
 - Permissions minimales pour Google Drive (lecture seule)
+
+## Test de l'intégration Rank Math
+
+Pour vérifier que l'intégration Rank Math fonctionne correctement, vous pouvez utiliser le script de test :
+
+```bash
+python test_rank_math.py
+```
+
+Ce script va :
+1. Créer un article de test
+2. Ajouter toutes les métadonnées Rank Math
+3. Vérifier que les métadonnées ont été correctement ajoutées
+4. Supprimer l'article de test
+
+### Résultat attendu
+
+Si tout fonctionne correctement, vous devriez voir :
+```
+🧪 Test d'intégration Rank Math
+========================================
+✅ Article de test créé avec succès (ID: 123)
+✅ rank_math_focus_keyword: test rank math
+✅ rank_math_seo_score: 60
+✅ rank_math_robots_advanced: index,follow
+✅ rank_math_robots_canonical: https://www.troiscouleurs.fr/?p=123
+✅ rank_math_description: Test d'intégration des métadonnées SEO Rank Math...
+✅ rank_math_title: Test Rank Math Integration
+✅ rank_math_schema_type: Article
+
+📊 Résultat: 7/7 métadonnées ajoutées avec succès
+
+🎉 Test réussi! L'intégration Rank Math fonctionne correctement.
+```
 
 ## Dépannage
 

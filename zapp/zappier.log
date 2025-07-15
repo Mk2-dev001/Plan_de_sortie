@@ -2177,3 +2177,669 @@ EXCERPT : Le dernier  mêle mélancolie,  et esprit d’équipe, tout en faisant ses 
 2025-07-11 13:11:24,708 - INFO - Fichier traité avec succès: zazapayepas (1).docx
 2025-07-11 13:11:24,709 - INFO - Prochaine vérification dans 300 secondes
 2025-07-11 13:13:09,695 - INFO - Arrêt du script demandé par l'utilisateur
+2025-07-11 13:17:07,081 - INFO - Démarrage du script Zapier-like
+2025-07-11 13:17:07,084 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-11 13:17:07,085 - INFO - Authentification Google Drive réussie
+2025-07-11 13:17:07,085 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 13:17:07,639 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 13:17:07,839 - INFO - 1 fichiers trouvés dans le dossier
+2025-07-11 13:17:07,840 - INFO - Traitement du fichier: zazapayepas (1) (1).docx
+2025-07-11 13:17:08,722 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 13:17:09,011 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 13:17:09,909 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 13:17:09,913 - INFO - Entités valides trouvées: 0
+2025-07-11 13:17:09,915 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3281 caractères
+2025-07-11 13:17:31,046 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 13:17:31,680 - INFO - Entités valides trouvées: 11
+2025-07-11 13:17:31,683 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 13:17:32,412 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 13:17:32,414 - INFO - Entités valides trouvées: 0
+2025-07-11 13:17:32,430 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_5caf1cda-9aa2-480b-bf87-2ef96658a173.docx
+2025-07-11 13:17:32,804 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 13:17:34,305 - INFO - Document traité sauvegardé dans Google Drive: zazapayepas (1) (1)_avec_hyperliens.docx (ID: 1EsA7O-Ax5zPtxRvyCwAZ0XZVKMahtQP7)
+2025-07-11 13:17:34,305 - INFO - Document Word traité avec hyperliens et converti en HTML: 1luHpAFxioKpmTlsjZiYSAuh2LTLloskF
+2025-07-11 13:17:34,589 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 13:17:35,307 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 13:17:35,318 - INFO - Entités valides trouvées: 0
+2025-07-11 13:17:35,319 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3098 caractères
+2025-07-11 13:17:48,921 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 13:17:49,294 - INFO - Entités valides trouvées: 3
+2025-07-11 13:17:49,295 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 13:17:49,295 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 13:17:49,295 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 13:17:50,603 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 13:17:50,616 - INFO - Entités valides trouvées: 0
+2025-07-11 13:17:50,617 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 13:17:51,596 - INFO - Article créé avec succès (ID: 54969): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 13:17:52,256 - INFO - Mot-clé SEO Rank Math ajouté: Mission Impossible
+2025-07-11 13:17:52,326 - INFO - Score SEO ajouté: 60/100
+2025-07-11 13:17:52,394 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 13:17:52,462 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=54969
+2025-07-11 13:17:52,530 - INFO - Meta description ajoutée: Le dernier Mission Impossible mêle mélancolie, int...
+2025-07-11 13:17:52,599 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 13:17:52,667 - INFO - Type Schema.org ajouté: Article
+2025-07-11 13:17:52,667 - INFO - Fichier traité avec succès: zazapayepas (1) (1).docx
+2025-07-11 13:17:52,667 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 13:19:16,725 - INFO - Arrêt du script demandé par l'utilisateur
+2025-07-11 14:23:20,320 - INFO - Démarrage du script Zapier-like
+2025-07-11 14:23:20,589 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-11 14:23:20,596 - INFO - Authentification Google Drive réussie
+2025-07-11 14:23:20,596 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 14:23:21,110 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 14:23:21,329 - INFO - 1 fichiers trouvés dans le dossier
+2025-07-11 14:23:21,329 - INFO - Traitement du fichier: zazapayepas (1) (1) (1).docx
+2025-07-11 14:23:22,131 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 14:23:22,515 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 14:23:24,216 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:23:24,221 - INFO - Entités valides trouvées: 0
+2025-07-11 14:23:24,223 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3281 caractères
+2025-07-11 14:23:57,179 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:23:57,720 - INFO - Entités valides trouvées: 10
+2025-07-11 14:23:57,723 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 14:23:58,628 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:23:58,629 - INFO - Entités valides trouvées: 0
+2025-07-11 14:23:58,640 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_c776b333-4e48-4981-907b-369c4c699cad.docx
+2025-07-11 14:23:59,050 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 14:24:00,557 - INFO - Document traité sauvegardé dans Google Drive: zazapayepas (1) (1) (1)_avec_hyperliens.docx (ID: 17CHQtOLWcN61JAVO2QIWouejwvo-6Row)
+2025-07-11 14:24:00,558 - INFO - Document Word traité avec hyperliens et converti en HTML: 19KxC2BeKLiS-dunbIfZEoGDz-LzewWqf
+2025-07-11 14:24:00,858 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 14:24:01,694 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:24:01,696 - INFO - Entités valides trouvées: 0
+2025-07-11 14:24:01,697 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3116 caractères
+2025-07-11 14:24:25,139 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:24:25,503 - INFO - Entités valides trouvées: 3
+2025-07-11 14:24:25,504 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 14:24:25,504 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 14:24:25,504 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 14:24:26,513 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:24:26,514 - INFO - Entités valides trouvées: 0
+2025-07-11 14:24:26,514 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 14:24:27,515 - INFO - Article créé avec succès (ID: 54972): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 14:24:28,247 - INFO - Mot-clé SEO Rank Math ajouté: Mission Impossible
+2025-07-11 14:24:28,325 - INFO - Score SEO ajouté: 60/100
+2025-07-11 14:24:28,393 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 14:24:28,465 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=54972
+2025-07-11 14:24:28,535 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 14:24:28,603 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 14:24:28,670 - INFO - Type Schema.org ajouté: Article
+2025-07-11 14:24:28,671 - INFO - Fichier traité avec succès: zazapayepas (1) (1) (1).docx
+2025-07-11 14:24:28,671 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 14:24:29,573 - INFO - Arrêt du script demandé par l'utilisateur
+2025-07-11 14:35:59,676 - INFO - Démarrage du script Zapier-like
+2025-07-11 14:35:59,680 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-11 14:35:59,681 - INFO - Authentification Google Drive réussie
+2025-07-11 14:35:59,682 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 14:36:00,233 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 14:36:00,455 - INFO - 1 fichiers trouvés dans le dossier
+2025-07-11 14:36:00,456 - INFO - Traitement du fichier: zazacnon.docx
+2025-07-11 14:36:01,220 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 14:36:01,555 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 14:36:02,752 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:36:02,766 - INFO - Entités valides trouvées: 0
+2025-07-11 14:36:02,767 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3281 caractères
+2025-07-11 14:36:37,482 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:36:38,089 - INFO - Entités valides trouvées: 11
+2025-07-11 14:36:38,093 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 14:36:38,722 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:36:38,723 - INFO - Entités valides trouvées: 0
+2025-07-11 14:36:38,738 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_b28a92e3-8d60-4037-b1d4-12529fc9e815.docx
+2025-07-11 14:36:39,203 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 14:36:40,939 - INFO - Document traité sauvegardé dans Google Drive: zazacnon_avec_hyperliens.docx (ID: 1AlcVWjluWw28IzH3KW5S_KMRrimPlQAw)
+2025-07-11 14:36:40,940 - INFO - Document Word traité avec hyperliens et converti en HTML: 1LLuh7gNTPryeV6NcnVtFW4pX1f9VJP1c
+2025-07-11 14:36:41,281 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 14:36:41,872 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:36:41,874 - INFO - Entités valides trouvées: 0
+2025-07-11 14:36:41,874 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3098 caractères
+2025-07-11 14:37:03,856 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:37:04,246 - INFO - Entités valides trouvées: 4
+2025-07-11 14:37:04,247 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 14:37:04,248 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 14:37:04,248 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 14:37:05,850 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:37:05,852 - INFO - Entités valides trouvées: 0
+2025-07-11 14:37:05,853 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 14:37:06,848 - INFO - Article créé avec succès (ID: 54985): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 14:37:07,532 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 14:37:07,601 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 14:37:07,670 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 14:37:07,737 - INFO - Score SEO ajouté: 60/100
+2025-07-11 14:37:07,817 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 14:37:07,885 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=54985
+2025-07-11 14:37:07,952 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 14:37:08,034 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 14:37:08,097 - INFO - Type Schema.org ajouté: Article
+2025-07-11 14:37:08,098 - INFO - Fichier traité avec succès: zazacnon.docx
+2025-07-11 14:37:08,099 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 14:42:08,100 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 14:42:08,470 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 14:42:08,690 - INFO - 2 fichiers trouvés dans le dossier
+2025-07-11 14:42:08,691 - INFO - Traitement du fichier: zazacnon_avec_hyperliens.docx
+2025-07-11 14:42:10,256 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 14:42:10,628 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 14:42:11,981 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:42:11,983 - INFO - Entités valides trouvées: 0
+2025-07-11 14:42:11,988 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3098 caractères
+2025-07-11 14:42:33,972 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:42:34,410 - INFO - Entités valides trouvées: 4
+2025-07-11 14:42:34,413 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 14:42:35,341 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:42:35,342 - INFO - Entités valides trouvées: 0
+2025-07-11 14:42:35,359 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_5f9f86fb-8f57-4aab-b068-87366353a65f.docx
+2025-07-11 14:42:35,737 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 14:42:37,475 - INFO - Document traité sauvegardé dans Google Drive: zazacnon_avec_hyperliens_avec_hyperliens.docx (ID: 1guFWWfs2663izdUqyqEBn_rsg9RzuBPH)
+2025-07-11 14:42:37,476 - INFO - Document Word traité avec hyperliens et converti en HTML: 1AlcVWjluWw28IzH3KW5S_KMRrimPlQAw
+2025-07-11 14:42:37,767 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 14:42:38,385 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:42:38,389 - INFO - Entités valides trouvées: 0
+2025-07-11 14:42:38,390 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3029 caractères
+2025-07-11 14:42:57,041 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:42:57,425 - INFO - Entités valides trouvées: 1
+2025-07-11 14:42:57,425 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 14:42:57,426 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 14:42:57,426 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 14:42:58,068 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:42:58,069 - INFO - Entités valides trouvées: 0
+2025-07-11 14:42:58,069 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 14:42:59,020 - INFO - Article créé avec succès (ID: 54986): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 14:42:59,716 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 14:42:59,792 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 14:42:59,863 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 14:42:59,936 - INFO - Score SEO ajouté: 60/100
+2025-07-11 14:43:00,177 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 14:43:00,276 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=54986
+2025-07-11 14:43:00,366 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 14:43:00,448 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 14:43:00,515 - INFO - Type Schema.org ajouté: Article
+2025-07-11 14:43:00,516 - INFO - Fichier traité avec succès: zazacnon_avec_hyperliens.docx
+2025-07-11 14:43:00,516 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 14:48:00,516 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 14:48:00,915 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 14:48:01,154 - INFO - 3 fichiers trouvés dans le dossier
+2025-07-11 14:48:01,154 - INFO - Traitement du fichier: zazacnon_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 14:48:03,261 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 14:48:03,639 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 14:48:05,252 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:48:05,253 - INFO - Entités valides trouvées: 0
+2025-07-11 14:48:05,254 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3029 caractères
+2025-07-11 14:48:22,103 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:48:22,419 - INFO - Entités valides trouvées: 1
+2025-07-11 14:48:22,420 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 14:48:23,707 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:48:23,709 - INFO - Entités valides trouvées: 0
+2025-07-11 14:48:23,722 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_8218f6ad-8aca-4d35-b3d7-c396e8222844.docx
+2025-07-11 14:48:24,183 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 14:48:25,570 - INFO - Document traité sauvegardé dans Google Drive: zazacnon_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx (ID: 1Q6zkzaDTS3vbYH0T_DZQPg8wK_NaMwIQ)
+2025-07-11 14:48:25,571 - INFO - Document Word traité avec hyperliens et converti en HTML: 1guFWWfs2663izdUqyqEBn_rsg9RzuBPH
+2025-07-11 14:48:25,862 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 14:48:26,810 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:48:26,813 - INFO - Entités valides trouvées: 0
+2025-07-11 14:48:26,814 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3025 caractères
+2025-07-11 14:48:40,424 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:48:40,724 - INFO - Entités valides trouvées: 0
+2025-07-11 14:48:40,724 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 14:48:40,724 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 14:48:40,725 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 14:48:41,802 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:48:41,805 - INFO - Entités valides trouvées: 0
+2025-07-11 14:48:41,805 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 14:48:42,774 - INFO - Article créé avec succès (ID: 54989): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 14:48:43,468 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 14:48:43,537 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 14:48:43,609 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 14:48:43,675 - INFO - Score SEO ajouté: 60/100
+2025-07-11 14:48:43,741 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 14:48:43,816 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=54989
+2025-07-11 14:48:43,883 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 14:48:43,953 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 14:48:44,026 - INFO - Type Schema.org ajouté: Article
+2025-07-11 14:48:44,026 - INFO - Fichier traité avec succès: zazacnon_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 14:48:44,026 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 14:53:44,027 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 14:53:44,421 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 14:53:44,645 - INFO - 4 fichiers trouvés dans le dossier
+2025-07-11 14:53:44,645 - INFO - Traitement du fichier: zazacnon_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 14:53:46,047 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 14:53:46,364 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 14:53:47,362 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:53:47,362 - INFO - Entités valides trouvées: 0
+2025-07-11 14:53:47,363 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3025 caractères
+2025-07-11 14:54:03,260 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:54:03,568 - INFO - Entités valides trouvées: 0
+2025-07-11 14:54:03,569 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 14:54:04,287 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 14:54:04,292 - INFO - Entités valides trouvées: 0
+2025-07-11 14:54:04,314 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_2a784f3e-4baa-4812-917e-7ad60b195eeb.docx
+2025-07-11 14:54:04,747 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 14:54:05,222 - INFO - Arrêt du script demandé par l'utilisateur
+2025-07-11 15:08:38,126 - INFO - Démarrage du script Zapier-like
+2025-07-11 15:08:38,128 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-11 15:08:38,129 - INFO - Authentification Google Drive réussie
+2025-07-11 15:08:38,129 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 15:08:38,709 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:08:38,967 - INFO - 1 fichiers trouvés dans le dossier
+2025-07-11 15:08:38,967 - INFO - Traitement du fichier: zazacoui.docx
+2025-07-11 15:08:39,803 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 15:08:40,102 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:08:42,261 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:08:42,263 - INFO - Entités valides trouvées: 0
+2025-07-11 15:08:42,263 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3281 caractères
+2025-07-11 15:09:10,821 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:09:11,385 - INFO - Entités valides trouvées: 10
+2025-07-11 15:09:11,388 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:09:12,393 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:09:12,395 - INFO - Entités valides trouvées: 0
+2025-07-11 15:09:12,417 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_6d94c4a8-f83a-49e8-ac50-3d9d7dba1ea6.docx
+2025-07-11 15:09:12,768 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:09:14,329 - INFO - Document traité sauvegardé dans Google Drive: zazacoui_avec_hyperliens.docx (ID: 1_S6f0a2AOHCcouWE4YTfBL2P4hoT9kMm)
+2025-07-11 15:09:14,330 - INFO - Document Word traité avec hyperliens et converti en HTML: 1fjF7DKAEwwqSPf0gfrireP_vIGJ1UQ7C
+2025-07-11 15:09:14,632 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:09:15,616 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:09:15,618 - INFO - Entités valides trouvées: 0
+2025-07-11 15:09:15,619 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3116 caractères
+2025-07-11 15:09:39,600 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:09:40,013 - INFO - Entités valides trouvées: 4
+2025-07-11 15:09:40,014 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 15:09:40,014 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 15:09:40,014 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:09:41,468 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:09:41,471 - INFO - Entités valides trouvées: 0
+2025-07-11 15:09:41,472 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 15:09:42,472 - INFO - Article créé avec succès (ID: 55010): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:09:43,156 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 15:09:43,224 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 15:09:43,295 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 15:09:43,370 - INFO - Score SEO ajouté: 60/100
+2025-07-11 15:09:43,436 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 15:09:43,508 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=55010
+2025-07-11 15:09:43,577 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 15:09:43,642 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:09:43,713 - INFO - Type Schema.org ajouté: Article
+2025-07-11 15:09:43,714 - INFO - Fichier traité avec succès: zazacoui.docx
+2025-07-11 15:09:43,715 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 15:14:43,715 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 15:14:44,104 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:14:44,386 - INFO - 2 fichiers trouvés dans le dossier
+2025-07-11 15:14:44,386 - INFO - Traitement du fichier: zazacoui_avec_hyperliens.docx
+2025-07-11 15:14:46,633 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 15:14:46,985 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:14:47,846 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:14:47,850 - INFO - Entités valides trouvées: 0
+2025-07-11 15:14:47,851 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3116 caractères
+2025-07-11 15:15:15,123 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:15:15,590 - INFO - Entités valides trouvées: 4
+2025-07-11 15:15:15,593 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:15:16,768 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:15:16,769 - INFO - Entités valides trouvées: 0
+2025-07-11 15:15:16,788 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_2a653ccb-d413-4312-8142-80184ed50866.docx
+2025-07-11 15:15:17,222 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:15:18,939 - INFO - Document traité sauvegardé dans Google Drive: zazacoui_avec_hyperliens_avec_hyperliens.docx (ID: 13aMTScN4RsZ7-mlqPPV0cnt5jrWlCBVo)
+2025-07-11 15:15:18,940 - INFO - Document Word traité avec hyperliens et converti en HTML: 1_S6f0a2AOHCcouWE4YTfBL2P4hoT9kMm
+2025-07-11 15:15:19,250 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:15:19,794 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:15:19,795 - INFO - Entités valides trouvées: 0
+2025-07-11 15:15:19,796 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3038 caractères
+2025-07-11 15:15:32,769 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:15:33,082 - INFO - Entités valides trouvées: 1
+2025-07-11 15:15:33,083 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 15:15:33,083 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 15:15:33,083 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:15:33,675 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:15:33,676 - INFO - Entités valides trouvées: 0
+2025-07-11 15:15:33,677 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 15:15:34,661 - INFO - Article créé avec succès (ID: 55024): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:15:35,342 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 15:15:35,412 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 15:15:35,483 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 15:15:35,555 - INFO - Score SEO ajouté: 60/100
+2025-07-11 15:15:35,621 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 15:15:35,687 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=55024
+2025-07-11 15:15:35,753 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 15:15:35,824 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:15:35,891 - INFO - Type Schema.org ajouté: Article
+2025-07-11 15:15:35,892 - INFO - Fichier traité avec succès: zazacoui_avec_hyperliens.docx
+2025-07-11 15:15:35,892 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 15:20:35,893 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 15:20:36,259 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:20:36,497 - INFO - 3 fichiers trouvés dans le dossier
+2025-07-11 15:20:36,498 - INFO - Traitement du fichier: zazacoui_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:20:38,312 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 15:20:38,650 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:20:40,169 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:20:40,170 - INFO - Entités valides trouvées: 0
+2025-07-11 15:20:40,172 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3038 caractères
+2025-07-11 15:20:54,359 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:20:54,679 - INFO - Entités valides trouvées: 1
+2025-07-11 15:20:54,680 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:20:55,468 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:20:55,469 - INFO - Entités valides trouvées: 0
+2025-07-11 15:20:55,486 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_5982004c-132d-40b0-9af1-df08bbfdd2c8.docx
+2025-07-11 15:20:55,981 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:20:57,451 - INFO - Document traité sauvegardé dans Google Drive: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx (ID: 15tuJqPxWSScl5JlIK6bkn2-EHTZEikAH)
+2025-07-11 15:20:57,452 - INFO - Document Word traité avec hyperliens et converti en HTML: 13aMTScN4RsZ7-mlqPPV0cnt5jrWlCBVo
+2025-07-11 15:20:57,771 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:20:59,188 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:20:59,189 - INFO - Entités valides trouvées: 0
+2025-07-11 15:20:59,189 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3034 caractères
+2025-07-11 15:21:15,412 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:21:15,771 - INFO - Entités valides trouvées: 1
+2025-07-11 15:21:15,772 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 15:21:15,772 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 15:21:15,772 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:21:17,316 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:21:17,326 - INFO - Entités valides trouvées: 0
+2025-07-11 15:21:17,327 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 15:21:18,302 - INFO - Article créé avec succès (ID: 55039): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:21:19,010 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 15:21:19,079 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 15:21:19,154 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 15:21:19,223 - INFO - Score SEO ajouté: 60/100
+2025-07-11 15:21:19,290 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 15:21:19,369 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=55039
+2025-07-11 15:21:19,436 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 15:21:19,505 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:21:19,572 - INFO - Type Schema.org ajouté: Article
+2025-07-11 15:21:19,573 - INFO - Fichier traité avec succès: zazacoui_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:21:19,574 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 15:26:19,574 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 15:26:20,416 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:26:20,675 - INFO - 4 fichiers trouvés dans le dossier
+2025-07-11 15:26:20,675 - INFO - Traitement du fichier: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:26:21,971 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 15:26:22,321 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:26:23,115 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:26:23,117 - INFO - Entités valides trouvées: 0
+2025-07-11 15:26:23,119 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3034 caractères
+2025-07-11 15:26:40,015 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:26:40,342 - INFO - Entités valides trouvées: 1
+2025-07-11 15:26:40,344 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:26:41,159 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:26:41,162 - INFO - Entités valides trouvées: 0
+2025-07-11 15:26:41,180 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_66dcb515-d4e9-4b36-8e3f-a6608ae9ef10.docx
+2025-07-11 15:26:41,546 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:26:43,588 - INFO - Document traité sauvegardé dans Google Drive: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx (ID: 1aC-1yWrUHnocOy_HrCJrzICjDvGho39-)
+2025-07-11 15:26:43,589 - INFO - Document Word traité avec hyperliens et converti en HTML: 15tuJqPxWSScl5JlIK6bkn2-EHTZEikAH
+2025-07-11 15:26:43,886 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:26:44,478 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:26:44,480 - INFO - Entités valides trouvées: 0
+2025-07-11 15:26:44,481 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3009 caractères
+2025-07-11 15:27:02,447 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:27:02,839 - INFO - Entités valides trouvées: 1
+2025-07-11 15:27:02,840 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 15:27:02,840 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 15:27:02,841 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:27:03,506 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:27:03,507 - INFO - Entités valides trouvées: 0
+2025-07-11 15:27:03,507 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 15:27:04,504 - INFO - Article créé avec succès (ID: 55047): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:27:05,203 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 15:27:05,270 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 15:27:05,337 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 15:27:05,414 - INFO - Score SEO ajouté: 60/100
+2025-07-11 15:27:05,485 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 15:27:05,557 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=55047
+2025-07-11 15:27:05,625 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 15:27:05,704 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:27:05,778 - INFO - Type Schema.org ajouté: Article
+2025-07-11 15:27:05,780 - INFO - Fichier traité avec succès: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:27:05,780 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 15:32:05,781 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 15:32:06,204 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:32:06,437 - INFO - 5 fichiers trouvés dans le dossier
+2025-07-11 15:32:06,437 - INFO - Traitement du fichier: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:32:07,637 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 15:32:07,967 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:32:08,902 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:32:08,904 - INFO - Entités valides trouvées: 0
+2025-07-11 15:32:08,907 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 3009 caractères
+2025-07-11 15:32:27,443 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:32:27,774 - INFO - Entités valides trouvées: 1
+2025-07-11 15:32:27,775 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:32:28,435 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:32:28,438 - INFO - Entités valides trouvées: 0
+2025-07-11 15:32:28,458 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_45f1520f-fe4c-4308-97fb-ca39a66344f5.docx
+2025-07-11 15:32:28,848 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:32:30,441 - INFO - Document traité sauvegardé dans Google Drive: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx (ID: 13ptYsCHUVnFsfSL7dya0qG3V-E620F2y)
+2025-07-11 15:32:30,442 - INFO - Document Word traité avec hyperliens et converti en HTML: 1aC-1yWrUHnocOy_HrCJrzICjDvGho39-
+2025-07-11 15:32:30,734 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:32:31,419 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:32:31,422 - INFO - Entités valides trouvées: 0
+2025-07-11 15:32:31,422 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2995 caractères
+2025-07-11 15:32:50,021 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:32:50,362 - INFO - Entités valides trouvées: 1
+2025-07-11 15:32:50,363 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 15:32:50,363 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 15:32:50,364 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:32:51,157 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:32:51,158 - INFO - Entités valides trouvées: 0
+2025-07-11 15:32:51,158 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 15:32:52,093 - INFO - Article créé avec succès (ID: 55052): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:32:52,780 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 15:32:52,847 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 15:32:52,913 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 15:32:52,982 - INFO - Score SEO ajouté: 60/100
+2025-07-11 15:32:53,050 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 15:32:53,120 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=55052
+2025-07-11 15:32:53,192 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 15:32:53,260 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:32:53,326 - INFO - Type Schema.org ajouté: Article
+2025-07-11 15:32:53,327 - INFO - Fichier traité avec succès: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:32:53,328 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 15:37:53,330 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 15:37:53,768 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:37:54,019 - INFO - 6 fichiers trouvés dans le dossier
+2025-07-11 15:37:54,019 - INFO - Traitement du fichier: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:37:55,306 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 15:37:55,607 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:37:57,015 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:37:57,016 - INFO - Entités valides trouvées: 0
+2025-07-11 15:37:57,018 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2995 caractères
+2025-07-11 15:38:13,400 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:38:13,702 - INFO - Entités valides trouvées: 1
+2025-07-11 15:38:13,703 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:38:15,226 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:38:15,230 - INFO - Entités valides trouvées: 0
+2025-07-11 15:38:15,258 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_e657e51b-40c2-4f0d-abea-cce7d1c92e68.docx
+2025-07-11 15:38:15,679 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:38:17,419 - INFO - Document traité sauvegardé dans Google Drive: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx (ID: 1BS737u2FXRqPXL8_6Zr45s3GQuUa8KCa)
+2025-07-11 15:38:17,420 - INFO - Document Word traité avec hyperliens et converti en HTML: 13ptYsCHUVnFsfSL7dya0qG3V-E620F2y
+2025-07-11 15:38:17,729 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:38:19,165 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:38:19,178 - INFO - Entités valides trouvées: 0
+2025-07-11 15:38:19,179 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2989 caractères
+2025-07-11 15:38:38,399 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:38:38,716 - INFO - Entités valides trouvées: 1
+2025-07-11 15:38:38,716 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 15:38:38,716 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 15:38:38,717 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:38:39,464 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:38:39,465 - INFO - Entités valides trouvées: 0
+2025-07-11 15:38:39,465 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 15:38:40,456 - INFO - Article créé avec succès (ID: 55054): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:38:41,150 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 15:38:41,219 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 15:38:41,285 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 15:38:41,357 - INFO - Score SEO ajouté: 60/100
+2025-07-11 15:38:41,422 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 15:38:41,488 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=55054
+2025-07-11 15:38:41,556 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 15:38:41,628 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:38:41,694 - INFO - Type Schema.org ajouté: Article
+2025-07-11 15:38:41,695 - INFO - Fichier traité avec succès: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:38:41,695 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 15:43:41,696 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 15:43:42,205 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:43:42,523 - INFO - 7 fichiers trouvés dans le dossier
+2025-07-11 15:43:42,524 - INFO - Traitement du fichier: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:43:43,864 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 15:43:44,193 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:43:45,023 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:43:45,027 - INFO - Entités valides trouvées: 0
+2025-07-11 15:43:45,030 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2989 caractères
+2025-07-11 15:44:00,282 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:44:00,557 - INFO - Entités valides trouvées: 0
+2025-07-11 15:44:00,558 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:44:02,268 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:44:02,269 - INFO - Entités valides trouvées: 0
+2025-07-11 15:44:02,286 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_080c2c45-18fc-4fc4-a581-8a3d6d7a62a7.docx
+2025-07-11 15:44:02,722 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:44:04,220 - INFO - Document traité sauvegardé dans Google Drive: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx (ID: 1645x02aFUYQehuHGGlcSSc5v14HAWOuw)
+2025-07-11 15:44:04,220 - INFO - Document Word traité avec hyperliens et converti en HTML: 1BS737u2FXRqPXL8_6Zr45s3GQuUa8KCa
+2025-07-11 15:44:04,513 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:44:05,368 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:44:05,371 - INFO - Entités valides trouvées: 0
+2025-07-11 15:44:05,371 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2989 caractères
+2025-07-11 15:44:21,306 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:44:21,587 - INFO - Entités valides trouvées: 0
+2025-07-11 15:44:21,588 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 15:44:21,588 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 15:44:21,588 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:44:22,415 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:44:22,419 - INFO - Entités valides trouvées: 0
+2025-07-11 15:44:22,420 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 15:44:23,383 - INFO - Article créé avec succès (ID: 55061): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:44:24,407 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 15:44:24,478 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 15:44:24,552 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 15:44:24,628 - INFO - Score SEO ajouté: 60/100
+2025-07-11 15:44:24,704 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 15:44:24,776 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=55061
+2025-07-11 15:44:24,844 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 15:44:24,925 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:44:25,011 - INFO - Type Schema.org ajouté: Article
+2025-07-11 15:44:25,012 - INFO - Fichier traité avec succès: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:44:25,013 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 15:49:25,013 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 15:49:25,416 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:49:25,622 - INFO - 8 fichiers trouvés dans le dossier
+2025-07-11 15:49:25,623 - INFO - Traitement du fichier: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:49:26,962 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 15:49:27,290 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:49:28,332 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:49:28,333 - INFO - Entités valides trouvées: 0
+2025-07-11 15:49:28,334 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2989 caractères
+2025-07-11 15:49:45,160 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:49:45,463 - INFO - Entités valides trouvées: 0
+2025-07-11 15:49:45,464 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:49:46,545 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:49:46,546 - INFO - Entités valides trouvées: 0
+2025-07-11 15:49:46,558 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_17b25774-5d16-421c-a592-61e6d4757513.docx
+2025-07-11 15:49:46,999 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:49:48,789 - INFO - Document traité sauvegardé dans Google Drive: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx (ID: 1b8vixHDexdryDhB4lLJdWBiwMdQSaFcy)
+2025-07-11 15:49:48,792 - INFO - Document Word traité avec hyperliens et converti en HTML: 1645x02aFUYQehuHGGlcSSc5v14HAWOuw
+2025-07-11 15:49:49,085 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:49:49,736 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:49:49,738 - INFO - Entités valides trouvées: 0
+2025-07-11 15:49:49,738 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2989 caractères
+2025-07-11 15:50:04,249 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:50:04,519 - INFO - Entités valides trouvées: 0
+2025-07-11 15:50:04,520 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 15:50:04,520 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 15:50:04,520 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:50:05,435 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:50:05,437 - INFO - Entités valides trouvées: 0
+2025-07-11 15:50:05,438 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 15:50:06,415 - INFO - Article créé avec succès (ID: 55064): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:50:07,112 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 15:50:07,184 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 15:50:07,259 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 15:50:07,334 - INFO - Score SEO ajouté: 60/100
+2025-07-11 15:50:07,403 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 15:50:07,485 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=55064
+2025-07-11 15:50:07,553 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 15:50:07,624 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:50:07,693 - INFO - Type Schema.org ajouté: Article
+2025-07-11 15:50:07,696 - INFO - Fichier traité avec succès: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:50:07,697 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 15:55:07,698 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 15:55:08,073 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:55:08,334 - INFO - 9 fichiers trouvés dans le dossier
+2025-07-11 15:55:08,335 - INFO - Traitement du fichier: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:55:09,833 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 15:55:10,142 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:55:10,974 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:55:10,975 - INFO - Entités valides trouvées: 0
+2025-07-11 15:55:10,975 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2989 caractères
+2025-07-11 15:55:30,470 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:55:30,794 - INFO - Entités valides trouvées: 0
+2025-07-11 15:55:30,795 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:55:31,657 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:55:31,658 - INFO - Entités valides trouvées: 0
+2025-07-11 15:55:31,668 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_ff0b23e9-971d-4fd4-b0db-f266a582157e.docx
+2025-07-11 15:55:32,149 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 15:55:33,714 - INFO - Document traité sauvegardé dans Google Drive: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx (ID: 1nkDwEFt8RcvxuVBYi0AA6yGZsyEYusse)
+2025-07-11 15:55:33,716 - INFO - Document Word traité avec hyperliens et converti en HTML: 1b8vixHDexdryDhB4lLJdWBiwMdQSaFcy
+2025-07-11 15:55:34,003 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 15:55:35,368 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:55:35,369 - INFO - Entités valides trouvées: 0
+2025-07-11 15:55:35,369 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2989 caractères
+2025-07-11 15:55:50,665 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:55:50,985 - INFO - Entités valides trouvées: 1
+2025-07-11 15:55:50,985 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 15:55:50,985 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 15:55:50,986 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 15:55:52,111 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 15:55:52,118 - INFO - Entités valides trouvées: 0
+2025-07-11 15:55:52,119 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 15:55:53,104 - INFO - Article créé avec succès (ID: 55076): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:55:53,814 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 15:55:53,887 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 15:55:53,965 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 15:55:54,087 - INFO - Score SEO ajouté: 60/100
+2025-07-11 15:55:54,168 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 15:55:54,239 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=55076
+2025-07-11 15:55:54,309 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 15:55:54,389 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 15:55:54,472 - INFO - Type Schema.org ajouté: Article
+2025-07-11 15:55:54,474 - INFO - Fichier traité avec succès: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 15:55:54,474 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 16:00:54,475 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 16:00:54,920 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 16:00:55,236 - INFO - 10 fichiers trouvés dans le dossier
+2025-07-11 16:00:55,236 - INFO - Traitement du fichier: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 16:00:57,299 - INFO - Début du traitement du document Word avec hyperliens
+2025-07-11 16:00:57,610 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 16:00:58,420 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 16:00:58,430 - INFO - Entités valides trouvées: 0
+2025-07-11 16:00:58,431 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2989 caractères
+2025-07-11 16:01:16,489 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 16:01:16,789 - INFO - Entités valides trouvées: 0
+2025-07-11 16:01:16,791 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 16:01:17,638 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 16:01:17,640 - INFO - Entités valides trouvées: 0
+2025-07-11 16:01:17,658 - INFO - Document traité avec hyperliens sauvegardé: C:\Users\Pablo\AppData\Local\Temp\processed_80ada0cd-b542-41e5-a576-33e16075248b.docx
+2025-07-11 16:01:18,151 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 16:01:19,911 - INFO - Document traité sauvegardé dans Google Drive: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx (ID: 1701my6HOSVlYQDtWdSft9EIODGl2muKi)
+2025-07-11 16:01:19,911 - INFO - Document Word traité avec hyperliens et converti en HTML: 1nkDwEFt8RcvxuVBYi0AA6yGZsyEYusse
+2025-07-11 16:01:20,179 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 5 caractères
+2025-07-11 16:01:20,884 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 16:01:20,886 - INFO - Entités valides trouvées: 0
+2025-07-11 16:01:20,887 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 2989 caractères
+2025-07-11 16:01:38,881 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 16:01:39,157 - INFO - Entités valides trouvées: 0
+2025-07-11 16:01:39,158 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 1 caractères
+2025-07-11 16:01:39,158 - INFO - Texte trop court, pas d'analyse nécessaire
+2025-07-11 16:01:39,159 - INFO - Analyse du texte avec GPT-4. Longueur du texte: 14 caractères
+2025-07-11 16:01:39,795 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-11 16:01:39,797 - INFO - Entités valides trouvées: 0
+2025-07-11 16:01:39,797 - INFO - Hyperliens automatiques ajoutés au contenu
+2025-07-11 16:01:40,783 - INFO - Article créé avec succès (ID: 55081): Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 16:01:41,494 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_focus_keyword): Mission Impossible
+2025-07-11 16:01:41,558 - INFO - Mot-clé SEO Rank Math ajouté (rank_math_primary_focus_keyword): Mission Impossible
+2025-07-11 16:01:41,631 - INFO - Mot-clé SEO Rank Math ajouté (focus_keyword): Mission Impossible
+2025-07-11 16:01:41,699 - INFO - Score SEO ajouté: 60/100
+2025-07-11 16:01:41,764 - INFO - Robots SEO ajoutés: index,follow
+2025-07-11 16:01:41,837 - INFO - URL canonique ajoutée: https://www.troiscouleurs.fr//?p=55081
+2025-07-11 16:01:41,904 - INFO - Meta description ajoutée: Mission Impossible. Le dernier Mission Impossible ...
+2025-07-11 16:01:41,973 - INFO - Titre SEO ajouté: Mission Impossible – The Final Reckoning : Tom and the band
+2025-07-11 16:01:42,050 - INFO - Type Schema.org ajouté: Article
+2025-07-11 16:01:42,051 - INFO - Fichier traité avec succès: zazacoui_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens_avec_hyperliens.docx
+2025-07-11 16:01:42,052 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 16:04:14,978 - INFO - Arrêt du script demandé par l'utilisateur
+2025-07-11 16:59:00,051 - INFO - Démarrage du script Zapier-like
+2025-07-11 16:59:00,321 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-11 16:59:00,322 - INFO - Authentification Google Drive réussie
+2025-07-11 16:59:00,322 - INFO - Vérification des nouveaux fichiers...
+2025-07-11 16:59:00,933 - INFO - Dossier trouvé: OUTBOX (ID: 1XnZ5-prXBt1jJ30yqmT4RIxKW478MkUF)
+2025-07-11 16:59:01,169 - INFO - 1 fichiers trouvés dans le dossier
+2025-07-11 16:59:01,169 - INFO - Prochaine vérification dans 300 secondes
+2025-07-11 16:59:01,522 - INFO - Arrêt du script demandé par l'utilisateur

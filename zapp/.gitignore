@@ -1,0 +1,36 @@
+# Fichiers de configuration sensibles
+credentials.json
+token.json
+zappier_config.json
+processed_files.json
+
+# Logs
+*.log
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Fichiers temporaires
+temp/
+tmp/
+*.tmp
+
+# Base de données WordPress
+export_wordpress_propre.json 
